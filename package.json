@@ -1,0 +1,27 @@
+{
+  "name": "grommet-leaflet",
+  "version": "0.1.0",
+  "description": "Example of using leafletjs.org maps with react and grommet",
+  "repository": "https://github.com/grommet/grommet-leaflet.git",
+  "author": "Eric Soderberg <eric.soderberg@hpe.com>",
+  "license": "Apache-2.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "grommet": "^2.30.0",
+    "grommet-icons": "^4.10.0",
+    "grommet-theme-hpe": "^4.2.0",
+    "leaflet": "^1.9.3",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-leaflet": "^4.2.1",
+    "styled-components": "^5.3.8"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^3.1.0",
+    "vite": "^4.1.4"
+  }
+}
