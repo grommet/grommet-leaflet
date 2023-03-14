@@ -46,7 +46,7 @@ function Map() {
           id="map"
           ref={mapContainerRef}
           center={geolocation}
-          zoom={8}
+          zoom={6}
           scrollWheelZoom={false}
         >
           {/* <TileLayer
