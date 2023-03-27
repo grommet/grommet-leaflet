@@ -1,6 +1,9 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
-import { MapContainer, Marker, TileLayer } from 'react-leaflet';
+import { MapContainer, TileLayer } from 'react-leaflet';
 import { Box } from 'grommet';
+import { Grommet } from 'grommet-icons';
+
+import GrommetMarker from './GrommetMarker';
 
 function Map() {
   const [geolocation, setGeolocation] = useState();
@@ -58,7 +61,7 @@ function Map() {
               &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors`}
             url="https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png"
           />
-          <Marker position={geolocation} />
+          <GrommetMarker position={geolocation} icon={<Grommet />} />
         </MapContainer>
       )}
     </Box>
