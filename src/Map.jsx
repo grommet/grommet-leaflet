@@ -4,6 +4,8 @@ import { Box } from 'grommet';
 import { Grommet } from 'grommet-icons';
 
 import GrommetMarker from './GrommetMarker';
+import MarkerClusterGroup from './MarkerClusterGroup';
+import { generateLocations } from './utils/locations';
 
 function Map() {
   const [geolocation, setGeolocation] = useState();
@@ -62,6 +64,13 @@ function Map() {
             url="https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png"
           />
           <GrommetMarker position={geolocation} icon={<Grommet />} />
+          <MarkerClusterGroup>
+            {generateLocations(50, { center: geolocation, radius: 5 }).map(
+              (location, index) => (
+                <GrommetMarker key={index} position={location} />
+              ),
+            )}
+          </MarkerClusterGroup>
         </MapContainer>
       )}
     </Box>
