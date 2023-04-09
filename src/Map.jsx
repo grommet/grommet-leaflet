@@ -1,10 +1,11 @@
-import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
-import { MapContainer, TileLayer } from 'react-leaflet';
+import React, { useEffect, useRef, useState } from 'react';
+import { MapContainer, TileLayer, ZoomControl } from 'react-leaflet';
 import { Box } from 'grommet';
 import { Grommet } from 'grommet-icons';
 
 import GrommetMarker from './GrommetMarker';
 import MarkerClusterGroup from './MarkerClusterGroup';
+import { FitLocations } from './FitLocations';
 import { generateLocations } from './utils/locations';
 
 const initialStyle = {
@@ -13,6 +14,9 @@ const initialStyle = {
 
 function Map() {
   const [geolocation, setGeolocation] = useState();
+  const [locations, setLocations] = useState(
+    generateLocations(50, { center: [40, -80], radius: 10 }),
+  );
   const containerRef = useRef();
   const mapContainerRef = useRef();
 
@@ -42,6 +46,7 @@ function Map() {
           ref={mapContainerRef}
           center={geolocation}
           zoom={6}
+          zoomControl={false}
           scrollWheelZoom={false}
           style={initialStyle}
         >
@@ -52,14 +57,14 @@ function Map() {
               &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors`}
             url="https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png"
           />
+          <ZoomControl position="bottomright" />
           <GrommetMarker position={geolocation} icon={<Grommet />} />
           <MarkerClusterGroup>
-            {generateLocations(50, { center: geolocation, radius: 5 }).map(
-              (location, index) => (
-                <GrommetMarker key={index} position={location} />
-              ),
-            )}
+            {locations.map((location, index) => (
+              <GrommetMarker key={index} position={location} />
+            ))}
           </MarkerClusterGroup>
+          <FitLocations locations={locations} />
         </MapContainer>
       )}
     </Box>
