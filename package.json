@@ -1,7 +1,7 @@
 {
   "name": "grommet-leaflet",
   "version": "0.1.0",
-  "description": "Example of using leafletjs.org maps with react and grommet",
+  "description": "Example of using leafletjs.com maps with react and grommet",
   "repository": "https://github.com/grommet/grommet-leaflet.git",
   "author": "Eric Soderberg <eric.soderberg@hpe.com>",
   "license": "Apache-2.0",
@@ -11,9 +11,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "grommet": "^2.30.0",
+    "grommet": "^2.31.0",
     "grommet-icons": "^4.10.0",
-    "grommet-theme-hpe": "^4.2.0",
+    "grommet-theme-hpe": "^5.0.2",
     "leaflet": "^1.9.3",
     "leaflet.markercluster": "^1.5.3",
     "react": "^18.2.0",
