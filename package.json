@@ -13,7 +13,7 @@
   "dependencies": {
     "grommet": "^2.31.0",
     "grommet-icons": "^4.10.0",
-    "grommet-theme-hpe": "^5.0.1",
+    "grommet-theme-hpe": "^5.0.2",
     "leaflet": "^1.9.3",
     "leaflet.markercluster": "^1.5.3",
     "react": "^18.2.0",
