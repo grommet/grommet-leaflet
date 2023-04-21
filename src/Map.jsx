@@ -7,18 +7,14 @@ import GrommetMarker from './GrommetMarker';
 import MarkerClusterGroup from './MarkerClusterGroup';
 import { generateLocations } from './utils/locations';
 
+const initialStyle = {
+  height: '100%',
+};
+
 function Map() {
   const [geolocation, setGeolocation] = useState();
   const containerRef = useRef();
   const mapContainerRef = useRef();
-
-  const adjustSize = () => {
-    const map = document.getElementById('map');
-    if (containerRef.current && map) {
-      const height = containerRef.current.getBoundingClientRect().height;
-      map.style.height = `${height}px`;
-    }
-  };
 
   // get the user's location
   useEffect(() => {
@@ -38,14 +34,6 @@ function Map() {
     );
   }, []);
 
-  // adjust the map size when the window is resized
-  useEffect(() => {
-    window.addEventListener('resize', adjustSize);
-    return () => window.removeEventListener('resize', adjustSize);
-  });
-
-  useLayoutEffect(adjustSize);
-
   return (
     <Box ref={containerRef} flex background="background-contrast">
       {geolocation && (
@@ -55,6 +43,7 @@ function Map() {
           center={geolocation}
           zoom={6}
           scrollWheelZoom={false}
+          style={initialStyle}
         >
           <TileLayer
             attribution={`
