@@ -567,10 +567,10 @@ grommet-styles@^0.2.0:
   resolved "https://registry.yarnpkg.com/grommet-styles/-/grommet-styles-0.2.0.tgz#b2eac2b7e2747cb523434d21728ce5234f8ce4f4"
   integrity sha512-0OMSYuGeyifYKpg4Gv2HzL8rUdd0ddnJ5LbCBKgDuloC71XIwr9g/Fxa6rs737MbPV7OZ4pEm4wvrjH4epzf1A==
 
-grommet-theme-hpe@^5.0.1:
-  version "5.0.1"
-  resolved "https://registry.yarnpkg.com/grommet-theme-hpe/-/grommet-theme-hpe-5.0.1.tgz#74383837b7c50d2a7172118404dfe37035c49363"
-  integrity sha512-mNa46PtZc6XMJT26SBwwWU8EmnVPkGzhepna3kaurPgiwjx6wESOagCTT3JwYQEKKZ9/USebX++Z1Eg6wghgUQ==
+grommet-theme-hpe@^5.0.2:
+  version "5.0.2"
+  resolved "https://registry.yarnpkg.com/grommet-theme-hpe/-/grommet-theme-hpe-5.0.2.tgz#307dd21166d6f3456727c93d9870dd7391c14b38"
+  integrity sha512-lUor9EhZfEmFhbBsJrSKoZAZufVAZzyKdLanVavefFO3c0th+UxqBe7F98G1QotjWHZIPWrJakGcXG1mA8/gCA==
 
 grommet@^2.31.0:
   version "2.31.0"
