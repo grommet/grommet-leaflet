@@ -56,7 +56,7 @@ function Map() {
           <MarkerClusterGroup>
             {generateLocations(50, { center: geolocation, radius: 5 }).map(
               (location, index) => (
-                <GrommetMarker key={index} position={location} />
+                <GrommetMarker key={index} position={location?.coord} status={location?.status} />
               ),
             )}
           </MarkerClusterGroup>
