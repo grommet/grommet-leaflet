@@ -10,6 +10,9 @@ export const geojsonLocations = {
         type: "Point",
         coordinates: [-104.99404, 39.75621],
       },
+      grommet: {
+        status: "critical",
+      }
     },
     {
       type: "Feature",
@@ -20,6 +23,9 @@ export const geojsonLocations = {
       properties: {
         name: "Colorado State University",
       },
+      grommet: {
+        status: "warning",
+      }
     },
     {
       type: "Feature",
@@ -30,6 +36,9 @@ export const geojsonLocations = {
       properties: {
         name: "Horsetooth Reservoir",
       },
+      grommet: {
+        status: "good",
+      }
     },
     {
       type: "Feature",
@@ -40,6 +49,9 @@ export const geojsonLocations = {
       properties: {
         name: "Lake Loveland",
       },
+      grommet: {
+        status: "good",
+      }
     },
     {
       type: "Feature",
@@ -50,6 +62,9 @@ export const geojsonLocations = {
       properties: {
         name: "Pearl Street",
       },
+      grommet: {
+        status: "warning",
+      }
     },
     {
       type: "Feature",
@@ -60,6 +75,9 @@ export const geojsonLocations = {
       properties: {
         name: "Denver International Airport",
       },
+      grommet: {
+        status: "critical",
+      }
     },
     {
       type: "Feature",
@@ -70,6 +88,9 @@ export const geojsonLocations = {
       properties: {
         name: "Garden of the Gods",
       },
+      grommet: {
+        status: "warning",
+      }
     },
   ],
 };
