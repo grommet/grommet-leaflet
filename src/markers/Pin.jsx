@@ -1,12 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Box } from 'grommet';
-import { adjustPadStyle, STATUS_MAP } from '../utils/styles';
+import { adjustPadStyle } from '../utils/styles';
+import { STATUS_MAP } from '../utils/status';
 
 const StyledBox = styled(Box)`
   // to create the pin shape
   border-bottom-right-radius: 0;
-  transform: rotate(45deg);
+  // translate to re-align with leaflet div
+  transform: rotate(45deg) translateX(-35%);
   &:hover {
     // TO DO revisit "hover" color with designers. Use of "background-layer-overlay" feels strange semantically
     border: ${props => `${props.theme?.global?.borderSize?.[props.border.size] || props.border.size} solid ${props.theme?.global?.colors?.['background-layer-overlay']}`};

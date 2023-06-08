@@ -1,17 +1,17 @@
 import React, { useMemo } from 'react';
 import styled from 'styled-components';
 import { Box, Text } from 'grommet';
-import { STATUS_MAP } from '../utils/styles';
+import { STATUS_MAP } from '../utils/status';
 
 const StyledBox = styled(Box)`
-  &:hover {
+// translate to re-align with leaflet div
+transform: translateX(-35%);
+&:hover {
     // TO DO revisit "hover" color with designers. Use of "background-layer-overlay" feels strange semantically
     border: ${props => `${props.theme?.global?.borderSize?.[props.border.size] || props.border.size} solid ${props.theme?.global?.colors?.['background-layer-overlay']}`};
-  }
+}
 `
 const StyledCount = styled(Text)`
-  // TO DO for some reason "Helvetica" was coming but not Metric?
-  font-family: Metric;
   // multiplier of font-size, for tighter alignment
   line-height: 1;
 `
