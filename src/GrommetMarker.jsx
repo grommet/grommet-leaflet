@@ -21,7 +21,7 @@ const StyledBox = styled(Box)`
   }
 `;
 
-const statuses = {
+export const statuses = {
   critical: {
     color: 'status-critical',
     icon: StatusCriticalSmall,
@@ -70,6 +70,8 @@ const createGrommetMarker = (
   const icon = L.divIcon({
     // 'grommet-marker' class prevents leaflet default divIcon styles
     className: 'grommet-marker',
+    // to be used my MarkerClusterGroup
+    status: status,
     html: ReactDOMServer.renderToString(iconProp || <StatusIcon status={status} theme={theme} />),
   });
   const options = { title, alt, icon };
