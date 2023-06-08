@@ -1,14 +1,15 @@
-import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
-import { MapContainer, TileLayer } from 'react-leaflet';
-import { Box } from 'grommet';
-import { Grommet } from 'grommet-icons';
+import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { MapContainer, TileLayer, GeoJSON } from "react-leaflet";
+import { Box } from "grommet";
+import { Grommet } from "grommet-icons";
 
-import GrommetMarker from './GrommetMarker';
-import MarkerClusterGroup from './MarkerClusterGroup';
-import { generateLocations } from './utils/locations';
+import GrommetMarker from "./GrommetMarker";
+import MarkerClusterGroup from "./MarkerClusterGroup";
+import { generateLocations } from "./utils/locations";
+import { geojsonLocations } from "./utils/geojson_data";
 
 const initialStyle = {
-  height: '100%',
+  height: "100%",
 };
 
 function Map() {
@@ -25,12 +26,12 @@ function Map() {
           position.coords.longitude,
         ];
         setGeolocation(nextLocation);
-        localStorage.setItem('geolocation', JSON.stringify(nextLocation));
+        localStorage.setItem("geolocation", JSON.stringify(nextLocation));
       },
       () => {
-        const stored = localStorage.getItem('geolocation');
+        const stored = localStorage.getItem("geolocation");
         if (stored) setGeolocation(JSON.parse(stored));
-      },
+      }
     );
   }, []);
 
@@ -57,8 +58,11 @@ function Map() {
             {generateLocations(50, { center: geolocation, radius: 5 }).map(
               (location, index) => (
                 <GrommetMarker key={index} position={location} />
-              ),
+              )
             )}
+          </MarkerClusterGroup>
+          <MarkerClusterGroup>
+            <GeoJSON key="my-geojson" data={geojsonLocations} />
           </MarkerClusterGroup>
         </MapContainer>
       )}
