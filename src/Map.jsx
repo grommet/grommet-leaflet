@@ -6,6 +6,7 @@ import { Grommet } from 'grommet-icons';
 import GrommetMarker from './GrommetMarker';
 import MarkerClusterGroup from './MarkerClusterGroup';
 import { generateLocations } from './utils/locations';
+import { Pin } from './markers';
 
 const initialStyle = {
   height: '100%',
@@ -56,7 +57,7 @@ function Map() {
           <MarkerClusterGroup>
             {generateLocations(50, { center: geolocation, radius: 5 }).map(
               (location, index) => (
-                <GrommetMarker key={index} position={location?.coord} status={location?.status} />
+                <GrommetMarker key={index} position={location?.coord} icon={<Pin status={location?.status} />} />
               ),
             )}
           </MarkerClusterGroup>
