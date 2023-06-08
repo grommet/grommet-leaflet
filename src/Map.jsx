@@ -61,7 +61,9 @@ function Map() {
               )
             )}
           </MarkerClusterGroup>
-          <GeoJSON key="my-geojson" data={geojsonLocations} />
+          <MarkerClusterGroup>
+            <GeoJSON key="my-geojson" data={geojsonLocations} />
+          </MarkerClusterGroup>
         </MapContainer>
       )}
     </Box>
