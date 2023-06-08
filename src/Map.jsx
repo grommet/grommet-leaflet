@@ -1,7 +1,7 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
-import { MapContainer, TileLayer, GeoJSON } from "react-leaflet";
-import { Box } from "grommet";
-import { Grommet } from "grommet-icons";
+import { MapContainer, TileLayer, GeoJSON, useMap } from "react-leaflet";
+import { Box, Button } from "grommet";
+import { Add, Grommet, Subtract, Waypoint } from "grommet-icons";
 
 import GrommetMarker from "./GrommetMarker";
 import MarkerClusterGroup from "./MarkerClusterGroup";
@@ -10,6 +10,42 @@ import { geojsonLocations } from "./utils/geojson_data";
 
 const initialStyle = {
   height: "100%",
+};
+
+const ZoomControl = ({ home }) => {
+  const map = useMap();
+  return (
+    <div className="leaflet-bottom leaflet-right">
+      <div className="leaflet-control">
+        <Box elevation="large" round="medium" background="background">
+          <Button
+            icon={<Add />}
+            onClick={() => {
+              map.zoomIn();
+            }}
+          />
+          <Button
+            icon={<Subtract />}
+            onClick={() => {
+              map.zoomOut();
+            }}
+          />
+          <Box
+            border={{
+              color: "border-weak",
+              side: "top",
+            }}
+          />
+          <Button
+            icon={<Waypoint />}
+            onClick={() => {
+              map.panTo(home);
+            }}
+          />
+        </Box>
+      </div>
+    </div>
+  );
 };
 
 function Map() {
@@ -45,6 +81,7 @@ function Map() {
           zoom={6}
           scrollWheelZoom={false}
           style={initialStyle}
+          zoomControl={false}
         >
           <TileLayer
             attribution={`
@@ -53,6 +90,7 @@ function Map() {
               &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors`}
             url="https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png"
           />
+          <ZoomControl home={geolocation} />
           <GrommetMarker position={geolocation} icon={<Grommet />} />
           <MarkerClusterGroup>
             {generateLocations(50, { center: geolocation, radius: 5 }).map(
