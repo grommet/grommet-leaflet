@@ -10,7 +10,7 @@ import L from 'leaflet';
 import { Pin } from './markers';
 
 const createGrommetMarker = (
-  { position, title, alt, icon: iconProp, status },
+  { position, title, alt, icon: iconProp },
   context,
 ) => {
   const theme = useContext(ThemeContext)
@@ -22,7 +22,9 @@ const createGrommetMarker = (
       theme: theme
     }) || <Pin status="unknown" theme={theme} />),
   });
-  const options = { title, alt, icon };
+
+  const status = iconProp ? iconProp.props.status : 'unknown';
+  const options = { title, alt, icon, status };
   const marker = new L.Marker(position, options);
   return createElementObject(
     marker,
