@@ -36,39 +36,6 @@ function Map() {
       }
     );
   }, []);
-
-
-  // useEffect(() => {
-  //   let map;
-  //   if (mapContainerRef?.current) map = mapContainerRef.current.leafletElement
-
-  //   console.log(map)
-  //   if ( !map ) return;
-
-  //   const icon = L.divIcon({
-  //     // 'grommet-marker' class prevents leaflet default divIcon styles
-  //     className: 'grommet-marker',
-  //     html: ReactDOMServer.renderToString(<Pin status="unknown" />),
-  //   });
-
-  //   const parksGeojson = new L.GeoJSON(geojsonLocations, {
-  //     pointToLayer: (feature, latlng) => {
-  //       return L.marker(latlng, {
-  //         icon: icon
-  //       });
-  //     },
-  //     // onEachFeature: (feature = {}, layer) => {
-  //     //   const { properties = {} } = feature;
-  //     //   const { Name } = properties;
-
-  //     //   if ( !Name ) return;
-
-  //     //   layer.bindPopup(`<p>${Name}</p>`);
-  //     // }
-  //   });
-
-  //   parksGeojson.addTo(map);
-  // }, [geolocation])
   
   return (
     <Box ref={containerRef} flex background="background-contrast">
