@@ -1,12 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Box } from 'grommet';
-import { adjustPadStyle, STATUS_MAP } from '../utils/styles';
+import { Box, Grommet } from 'grommet';
+import { hpe } from 'grommet-theme-hpe';
+import { STATUS_MAP } from '../utils/status';
 
 const StyledBox = styled(Box)`
   // to create the pin shape
   border-bottom-right-radius: 0;
-  transform: rotate(45deg);
+  // translate to re-align with leaflet div
+  transform: rotate(45deg) translateX(-35%);
   &:hover {
     // TO DO revisit "hover" color with designers. Use of "background-layer-overlay" feels strange semantically
     border: ${props => `${props.theme?.global?.borderSize?.[props.border.size] || props.border.size} solid ${props.theme?.global?.colors?.['background-layer-overlay']}`};
@@ -18,19 +20,24 @@ const Pin = ({ status, theme }) => {
   const StatusIcon = STATUS_MAP[status].icon;
 
   return (
-    <StyledBox 
-      background="background-front"
-      border={border}
-      elevation="medium"
-      flex={false}
-      pad={adjustPadStyle(theme.global.edgeSize.xsmall, theme.global.borderSize[border.size] || border.size)}
-      round
-      theme={theme}
-      width={{min: 'fit-content'}}
-    >
-      {/* style needed to offset for rotation of location pin so triangle is vertical still */}
-      <StatusIcon color={STATUS_MAP[status].color} size="small" style={status === 'warning' ? { transform: 'rotate(-45deg)' } : undefined} />
-    </StyledBox>
+    <Grommet theme={hpe} background="transparent">
+      <StyledBox 
+        background="background-front"
+        border={border}
+        elevation="medium"
+        flex={false}
+        round
+        align="center"
+        justify="center"
+        // TO DO revisit sizing with designers
+        width={{min: '25px', max: '25px'}}
+        height={{min: '25px', max: '25px'}}
+      >
+        {/* style needed to offset for rotation of location pin so triangle is vertical still */}
+        {/* TO DO revisit icon sizes with designers */}
+        <StatusIcon color={STATUS_MAP[status].color} size="13px" style={status === 'warning' || status === 'unknown' ? { transform: 'rotate(-45deg)' } : undefined} />
+      </StyledBox>
+    </Grommet>
   );
 }
 
