@@ -1,96 +1,96 @@
 export const geojsonLocations = {
-  type: "FeatureCollection",
+  type: 'FeatureCollection',
   features: [
     {
-      type: "Feature",
+      type: 'Feature',
       properties: {
-        name: "Coors Field",
+        name: 'Coors Field',
       },
       geometry: {
-        type: "Point",
+        type: 'Point',
         coordinates: [-104.99404, 39.75621],
       },
       grommet: {
-        status: "critical",
-      }
+        status: 'critical',
+      },
     },
     {
-      type: "Feature",
+      type: 'Feature',
       geometry: {
-        type: "Point",
+        type: 'Point',
         coordinates: [-105.089299, 40.573757],
       },
       properties: {
-        name: "Colorado State University",
+        name: 'Colorado State University',
       },
       grommet: {
-        status: "warning",
-      }
+        status: 'warning',
+      },
     },
     {
-      type: "Feature",
+      type: 'Feature',
       geometry: {
-        type: "Point",
+        type: 'Point',
         coordinates: [-105.155528, 40.555576],
       },
       properties: {
-        name: "Horsetooth Reservoir",
+        name: 'Horsetooth Reservoir',
       },
       grommet: {
-        status: "good",
-      }
+        status: 'good',
+      },
     },
     {
-      type: "Feature",
+      type: 'Feature',
       geometry: {
-        type: "Point",
+        type: 'Point',
         coordinates: [-105.087239, 40.412659],
       },
       properties: {
-        name: "Lake Loveland",
+        name: 'Lake Loveland',
       },
       grommet: {
-        status: "good",
-      }
+        status: 'good',
+      },
     },
     {
-      type: "Feature",
+      type: 'Feature',
       geometry: {
-        type: "Point",
+        type: 'Point',
         coordinates: [-105.279259, 40.017926],
       },
       properties: {
-        name: "Pearl Street",
+        name: 'Pearl Street',
       },
       grommet: {
-        status: "warning",
-      }
+        status: 'warning',
+      },
     },
     {
-      type: "Feature",
+      type: 'Feature',
       geometry: {
-        type: "Point",
+        type: 'Point',
         coordinates: [-104.661638, 39.858828],
       },
       properties: {
-        name: "Denver International Airport",
+        name: 'Denver International Airport',
       },
       grommet: {
-        status: "critical",
-      }
+        status: 'critical',
+      },
     },
     {
-      type: "Feature",
+      type: 'Feature',
       geometry: {
-        type: "Point",
+        type: 'Point',
         coordinates: [-104.888013, 38.871175],
       },
       properties: {
-        name: "Garden of the Gods",
+        name: 'Garden of the Gods',
       },
       grommet: {
-        status: "warning",
-      }
+        status: 'warning',
+      },
     },
   ],
 };
