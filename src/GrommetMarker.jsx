@@ -17,10 +17,7 @@ const createGrommetMarker = (
   const icon = L.divIcon({
     // 'grommet-marker' class prevents leaflet default divIcon styles
     className: 'grommet-marker',
-    html: ReactDOMServer.renderToString(React.cloneElement(iconProp, {
-      // necessary to pass theme prop for StyledBox in Pi
-      theme: theme
-    }) || <Pin status="unknown" theme={theme} />),
+    html: ReactDOMServer.renderToString(iconProp || <Pin status="unknown" theme={theme} />),
   });
 
   const status = iconProp ? iconProp.props.status : 'unknown';
