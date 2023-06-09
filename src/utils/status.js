@@ -1,7 +1,7 @@
 import {
   StatusCriticalSmall,
-  StatusGoodSmall,
   StatusWarningSmall,
+  StatusGoodSmall,
   StatusUnknownSmall,
 } from "grommet-icons";
 

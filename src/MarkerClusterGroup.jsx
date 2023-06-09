@@ -14,8 +14,6 @@ const createMarkerClusterGroup = (props, context) => {
     iconCreateFunction: (cluster) => {
       cluster.on('mouseover', (layer) => {
         layer.sourceTarget
-          // because we are rendering on the server, it seems the hpe theme hasn't been fed through yet.
-          // try passing hpe directly?
           .bindPopup(ReactDOMServer.renderToString(<Tip cluster={cluster} />), { closeButton: false })
           .openPopup();
       });
