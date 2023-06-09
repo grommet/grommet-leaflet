@@ -1,5 +1,3 @@
-// (C) Copyright 2022 Hewlett Packard Enterprise Development LP.
-
 module.exports = {
   parser: '@babel/eslint-parser',
   parserOptions: {
