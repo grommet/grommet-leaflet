@@ -30,12 +30,15 @@ export const STATUS_MAP = {
 };
 
 export const getStatusCounts = (markers) => {
+  const geoJSON = markers[0]?.feature;
   let critical = 0;
   let warning = 0;
   let good = 0;
   let unknown = 0;
   markers.forEach((marker) => {
-    const status = marker.options.status;
+    const status = geoJSON
+      ? marker.feature.grommet?.status
+      : marker.options.status;
     if (status === "critical") critical += 1;
     else if (status === "warning") warning += 1;
     else if (status === "good") good += 1;
