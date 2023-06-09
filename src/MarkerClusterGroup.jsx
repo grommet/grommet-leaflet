@@ -1,5 +1,4 @@
-import React, { useContext } from 'react'
-import  { ThemeContext } from 'styled-components';
+import React from 'react'
 import {
   createElementObject,
   createPathComponent,
@@ -11,14 +10,13 @@ import ReactDOMServer from 'react-dom/server';
 import { Cluster } from './markers';
 
 const createMarkerClusterGroup = (props, context) => {
-  const theme = useContext(ThemeContext)
   const markerClusterGroup = new L.MarkerClusterGroup({
     iconCreateFunction: (cluster) => {
-		  return L.divIcon({ 
+      return L.divIcon({ 
         // 'grommet-cluster-group' class prevents leaflet default divIcon styles
         className: 'grommet-cluster-group',
-        html:  ReactDOMServer.renderToString(<Cluster cluster={cluster} theme={theme} />) });
-	  }, 
+        html:  ReactDOMServer.renderToString(<Cluster cluster={cluster} />) });
+      },
     ...props});
   return createElementObject(
     markerClusterGroup,
