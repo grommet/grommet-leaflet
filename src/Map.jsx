@@ -1,15 +1,17 @@
-import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
-import { MapContainer, TileLayer } from 'react-leaflet';
-import { Box } from 'grommet';
-import { Grommet } from 'grommet-icons';
+import React, { useEffect, useRef, useState } from "react";
+import { MapContainer, TileLayer } from "react-leaflet";
+import { Box } from "grommet";
+import { Grommet } from "grommet-icons";
 
-import GrommetMarker from './GrommetMarker';
-import MarkerClusterGroup from './MarkerClusterGroup';
-import { generateLocations } from './utils/locations';
+import GrommetMarker from "./GrommetMarker";
+import MarkerClusterGroup from "./MarkerClusterGroup";
+import { GrommetGeoJSON } from "./GrommetGeoJSON";
 import { Pin } from './markers';
+import { generateLocations } from "./utils/locations";
+import { geojsonLocations } from "./utils/geojson_data";
 
 const initialStyle = {
-  height: '100%',
+  height: "100%",
 };
 
 function Map() {
@@ -26,15 +28,48 @@ function Map() {
           position.coords.longitude,
         ];
         setGeolocation(nextLocation);
-        localStorage.setItem('geolocation', JSON.stringify(nextLocation));
+        localStorage.setItem("geolocation", JSON.stringify(nextLocation));
       },
       () => {
-        const stored = localStorage.getItem('geolocation');
+        const stored = localStorage.getItem("geolocation");
         if (stored) setGeolocation(JSON.parse(stored));
-      },
+      }
     );
   }, []);
 
+
+  // useEffect(() => {
+  //   let map;
+  //   if (mapContainerRef?.current) map = mapContainerRef.current.leafletElement
+
+  //   console.log(map)
+  //   if ( !map ) return;
+
+  //   const icon = L.divIcon({
+  //     // 'grommet-marker' class prevents leaflet default divIcon styles
+  //     className: 'grommet-marker',
+  //     html: ReactDOMServer.renderToString(<Pin status="unknown" />),
+  //   });
+
+  //   const parksGeojson = new L.GeoJSON(geojsonLocations, {
+  //     pointToLayer: (feature, latlng) => {
+  //       return L.marker(latlng, {
+  //         icon: icon
+  //       });
+  //     },
+  //     // onEachFeature: (feature = {}, layer) => {
+  //     //   const { properties = {} } = feature;
+  //     //   const { Name } = properties;
+
+  //     //   if ( !Name ) return;
+
+  //     //   layer.bindPopup(`<p>${Name}</p>`);
+  //     // }
+  //   });
+
+  //   parksGeojson.addTo(map);
+  // }, [geolocation])
+  
   return (
     <Box ref={containerRef} flex background="background-contrast">
       {geolocation && (
@@ -60,6 +95,9 @@ function Map() {
                 <GrommetMarker key={index} position={location?.coord} icon={<Pin status={location?.status} />} />
               ),
             )}
+          </MarkerClusterGroup>
+          <MarkerClusterGroup>
+            <GrommetGeoJSON key="my-geojson" data={geojsonLocations} />
           </MarkerClusterGroup>
         </MapContainer>
       )}
