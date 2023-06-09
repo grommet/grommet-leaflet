@@ -28,12 +28,13 @@ const formatCount = (count) => count > threshold ? `${Math.round(count / thresho
 const getClusterStatus = (childMarkers) => {
     let mostSevere = 'good';
     let index = 0;
+    const geoJSON = childMarkers[0]?.feature;
     while (mostSevere !== 'critical' && index <= childMarkers.length - 1) {
-    const status = childMarkers[index].options.status
-    if (status === 'critical') mostSevere = 'critical';
-    else if (status === 'warning') mostSevere = 'warning';
-    else if (status === 'unknown') mostSevere = 'unknown';
-    index += 1;
+      const status = geoJSON ? childMarkers[index].feature.grommet.status : childMarkers[index].options.status
+      if (status === 'critical') mostSevere = 'critical';
+      else if (status === 'warning') mostSevere = 'warning';
+      else if (status === 'unknown') mostSevere = 'unknown';
+      index += 1;
     }
     return mostSevere;
 }
