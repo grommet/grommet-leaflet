@@ -55,7 +55,7 @@ function Map() {
               &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors`}
             url="https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png"
           />
-          <Controls home={geolocation} locations={geojsonLocations} />
+          <Controls locations={geojsonLocations} />
           <GrommetMarker position={geolocation} icon={<Grommet />} />
           <MarkerClusterGroup>
             {generateLocations(50, { center: geolocation, radius: 5 }).map(
