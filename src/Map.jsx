@@ -7,7 +7,7 @@ import GrommetMarker from "./GrommetMarker";
 import MarkerClusterGroup from "./MarkerClusterGroup";
 import { generateLocations } from "./utils/locations";
 import { geojsonLocations } from "./utils/geojson_data";
-import { Controls } from "./Controls";
+import { Controls, LocationBounds } from "./Controls";
 
 const initialStyle = {
   height: "100%",
@@ -42,7 +42,7 @@ function Map() {
         <MapContainer
           id="map"
           ref={mapContainerRef}
-          center={geolocation}
+          center={LocationBounds({ locations: geojsonLocations }).getCenter()}
           zoom={6}
           scrollWheelZoom={false}
           style={initialStyle}

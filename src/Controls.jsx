@@ -3,9 +3,7 @@ import { useMap } from "react-leaflet";
 import { Box, Button } from "grommet";
 import { Add, Subtract, Waypoint } from "grommet-icons";
 
-export const Controls = ({ locations }) => {
-  const map = useMap();
-
+export const LocationBounds = ({ locations }) => {
   const b = L.latLngBounds();
 
   // calculate the bounds of the locations
@@ -21,7 +19,13 @@ export const Controls = ({ locations }) => {
       b.extend([location[0], location[1]]);
     });
   }
-  const bounds = b;
+
+  return b;
+};
+
+export const Controls = ({ locations }) => {
+  const map = useMap();
+  const bounds = LocationBounds({ locations });
 
   return (
     // css classes are coming from https://github.com/Leaflet/Leaflet/blob/main/dist/leaflet.css
