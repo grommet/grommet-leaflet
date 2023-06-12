@@ -15,7 +15,7 @@ const GrommetGeoJSON = ({ data, ...rest }) => {
     })
 
     return (
-        <GeoJSON key="my-geojson" data={data} pointToLayer={pointToLayer} {...rest} />
+        <GeoJSON data={data} pointToLayer={pointToLayer} {...rest} />
     )
 }
 
