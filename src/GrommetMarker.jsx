@@ -17,7 +17,9 @@ const createGrommetMarker = (
     className: 'grommet-marker',
     html: ReactDOMServer.renderToString(iconProp || <Pin status="unknown" />),
   });
-  const options = { title, alt, icon };
+
+  const status = iconProp ? iconProp.props.status : 'unknown';
+  const options = { title, alt, icon, status };
   const marker = new L.Marker(position, options);
   return createElementObject(
     marker,
