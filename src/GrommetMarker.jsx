@@ -6,7 +6,7 @@ import {
   extendContext,
 } from '@react-leaflet/core';
 import L from 'leaflet';
-import { Location } from 'grommet-icons';
+import { Pin } from './markers';
 
 const createGrommetMarker = (
   { position, title, alt, icon: iconProp },
@@ -15,9 +15,11 @@ const createGrommetMarker = (
   const icon = L.divIcon({
     // 'grommet-marker' class prevents leaflet default divIcon styles
     className: 'grommet-marker',
-    html: ReactDOMServer.renderToString(iconProp || <Location />),
+    html: ReactDOMServer.renderToString(iconProp || <Pin status="unknown" />),
   });
-  const options = { title, alt, icon };
+
+  const status = iconProp ? iconProp.props.status : 'unknown';
+  const options = { title, alt, icon, status };
   const marker = new L.Marker(position, options);
   return createElementObject(
     marker,

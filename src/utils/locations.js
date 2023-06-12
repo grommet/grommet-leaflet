@@ -1,11 +1,16 @@
+const statuses = ['good', 'warning', 'critical'];
+
 export function generateLocations(n, options) {
   const { center, radius } = options;
   const locations = [];
   for (let i = 0; i < n; i += 1) {
-    locations.push([
-      center[0] - Math.random() * radius,
-      center[1] - Math.random() * radius,
-    ]);
+    locations.push({
+      coord: [
+        center[0] - Math.random() * radius,
+        center[1] - Math.random() * radius,
+      ],
+      status: statuses[Math.floor(Math.random() * statuses.length)],
+    });
   }
   return locations;
 }
