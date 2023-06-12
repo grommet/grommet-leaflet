@@ -1,7 +1,7 @@
 import React from "react";
 import { useMap } from "react-leaflet";
 import { Box, Button } from "grommet";
-import { Add, Subtract, Waypoint } from "grommet-icons";
+import { Add, Subtract, Globe, Target } from "grommet-icons";
 
 export const LocationBounds = ({ locations }) => {
   const b = L.latLngBounds();
@@ -23,7 +23,7 @@ export const LocationBounds = ({ locations }) => {
   return b;
 };
 
-export const Controls = ({ locations }) => {
+export const Controls = ({ locations, home }) => {
   const map = useMap();
   const bounds = LocationBounds({ locations });
 
@@ -33,6 +33,7 @@ export const Controls = ({ locations }) => {
       <Box className="leaflet-control">
         <Box elevation="large" round="medium" background="background">
           <Button
+            a11yTitle="Zoom in"
             icon={<Add />}
             onClick={(event) => {
               event.preventDefault();
@@ -40,6 +41,7 @@ export const Controls = ({ locations }) => {
             }}
           />
           <Button
+            a11yTitle="Zoom out"
             icon={<Subtract />}
             onClick={(event) => {
               event.preventDefault();
@@ -52,13 +54,25 @@ export const Controls = ({ locations }) => {
               side: "top",
             }}
           />
-          <Button
-            icon={<Waypoint />}
-            onClick={(event) => {
-              event.preventDefault();
-              map.flyToBounds(bounds, { duration: 1.5 });
-            }}
-          />
+          {home ? (
+            <Button
+              a11yTitle="Zoom to location"
+              icon={<Globe />}
+              onClick={(event) => {
+                event.preventDefault();
+                map.panTo(home);
+              }}
+            />
+          ) : (
+            <Button
+              a11yTitle="Zoom to data"
+              icon={<Target />}
+              onClick={(event) => {
+                event.preventDefault();
+                map.flyToBounds(bounds, { duration: 1.5 });
+              }}
+            />
+          )}
         </Box>
       </Box>
     </Box>
