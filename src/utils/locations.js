@@ -1,9 +1,9 @@
-const statuses = ["good", "warning", "critical"];
+const statuses = ['good', 'warning', 'critical'];
 
 export function generateLocations(n, options) {
   const { center, radius } = options;
-  var locations = [];
-  for (var i = 0; i < n; i++) {
+  const locations = [];
+  for (let i = 0; i < n; i += 1) {
     locations.push({
       coord: [
         center[0] - Math.random() * radius,
@@ -20,8 +20,8 @@ export function findCenter(bounds) {
 }
 
 export function findCenterOfGravity(locations) {
-  var center = [0, 0];
-  for (var i = 0; i < locations.length; i++) {
+  const center = [0, 0];
+  for (let i = 0; i < locations.length; i += 1) {
     center[0] += locations[i][0];
     center[1] += locations[i][1];
   }
