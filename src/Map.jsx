@@ -1,10 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
-import { MapContainer, TileLayer, GeoJSON } from "react-leaflet";
+import { MapContainer, TileLayer } from "react-leaflet";
 import { Box } from "grommet";
 import { Grommet } from "grommet-icons";
 
 import GrommetMarker from "./GrommetMarker";
 import MarkerClusterGroup from "./MarkerClusterGroup";
+import { GrommetGeoJSON } from "./GrommetGeoJSON";
+import { Pin } from './markers';
 import { generateLocations } from "./utils/locations";
 import { geojsonLocations } from "./utils/geojson_data";
 import { Controls, LocationBounds } from "./Controls";
@@ -35,7 +37,7 @@ function Map() {
       }
     );
   }, []);
-
+  
   return (
     <Box ref={containerRef} flex background="background-contrast">
       {geolocation && (
@@ -60,12 +62,12 @@ function Map() {
           <MarkerClusterGroup>
             {generateLocations(50, { center: geolocation, radius: 5 }).map(
               (location, index) => (
-                <GrommetMarker key={index} position={location} />
-              )
+                <GrommetMarker key={index} position={location?.coord} icon={<Pin status={location?.status} />} />
+              ),
             )}
           </MarkerClusterGroup>
           <MarkerClusterGroup>
-            <GeoJSON key="my-geojson" data={geojsonLocations} />
+            <GrommetGeoJSON key="my-geojson" data={geojsonLocations} />
           </MarkerClusterGroup>
         </MapContainer>
       )}
