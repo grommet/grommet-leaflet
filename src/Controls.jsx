@@ -53,26 +53,28 @@ export const Controls = ({ locations, home }) => {
               color: "border-weak",
               side: "top",
             }}
-          />
-          {home ? (
-            <Button
-              a11yTitle="Zoom to location"
-              icon={<Globe />}
-              onClick={(event) => {
-                event.preventDefault();
-                map.panTo(home);
-              }}
-            />
-          ) : (
-            <Button
-              a11yTitle="Zoom to data"
-              icon={<Target />}
-              onClick={(event) => {
-                event.preventDefault();
-                map.flyToBounds(bounds, { duration: 1.5 });
-              }}
-            />
-          )}
+          >
+            {home && (
+              <Button
+                a11yTitle="Zoom to location"
+                icon={<Globe />}
+                onClick={(event) => {
+                  event.preventDefault();
+                  map.panTo(home);
+                }}
+              />
+            )}
+            {locations && (
+              <Button
+                a11yTitle="Zoom to data"
+                icon={<Target />}
+                onClick={(event) => {
+                  event.preventDefault();
+                  map.flyToBounds(bounds, { duration: 1.5 });
+                }}
+              />
+            )}
+          </Box>
         </Box>
       </Box>
     </Box>
