@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import {
   createElementObject,
   createPathComponent,
@@ -9,25 +9,29 @@ import 'leaflet.markercluster';
 import ReactDOMServer from 'react-dom/server';
 import { Cluster, Tip } from './markers';
 
-const createMarkerClusterGroup = (props, context) => {
+const createMarkerClusterGroup = ({ tip, ...rest }, context) => {
   const markerClusterGroup = new L.MarkerClusterGroup({
-    iconCreateFunction: (cluster) => {
-      cluster.on('mouseover', (layer) => {
+    iconCreateFunction: cluster => {
+      cluster.on('mouseover', layer => {
         layer.sourceTarget
-          .bindPopup(ReactDOMServer.renderToString(<Tip cluster={cluster} />), { closeButton: false })
+          .bindPopup(ReactDOMServer.renderToString(<Tip>{tip(cluster)}</Tip>), {
+            closeButton: false,
+          })
           .openPopup();
       });
 
-      cluster.on('mouseout', (layer) => {
+      cluster.on('mouseout', layer => {
         layer.sourceTarget.closePopup();
       });
 
-      return L.divIcon({ 
+      return L.divIcon({
         // 'grommet-cluster-group' class prevents leaflet default divIcon styles
         className: 'grommet-cluster-group',
-        html:  ReactDOMServer.renderToString(<Cluster cluster={cluster} />) });
-      },
-    ...props});
+        html: ReactDOMServer.renderToString(<Cluster cluster={cluster} />),
+      });
+    },
+    ...rest,
+  });
   return createElementObject(
     markerClusterGroup,
     extendContext(context, { layerContainer: markerClusterGroup }),
