@@ -1,3 +1,3 @@
-export * from "./Cluster";
-export * from "./Pin";
-export * from "./Tip";
+export * from './Cluster';
+export * from './Pin';
+export * from './Popup';

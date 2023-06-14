@@ -2,7 +2,7 @@ import React from 'react';
 import { Box, Grommet } from 'grommet';
 import { hpe } from 'grommet-theme-hpe';
 
-const Tip = ({ ...rest }) => {
+const Popup = ({ ...rest }) => {
   return (
     <Grommet theme={hpe} background="transparent">
       <Box
@@ -19,4 +19,4 @@ const Tip = ({ ...rest }) => {
   );
 };
 
-export { Tip };
+export { Popup };

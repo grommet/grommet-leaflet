@@ -7,21 +7,18 @@ import {
 import L from 'leaflet';
 import 'leaflet.markercluster';
 import ReactDOMServer from 'react-dom/server';
-import { Cluster, Tip } from './markers';
+import { Cluster, Popup } from './markers';
 
-const createMarkerClusterGroup = ({ tip, ...rest }, context) => {
+const createMarkerClusterGroup = ({ popup: popupProp, ...rest }, context) => {
   const markerClusterGroup = new L.MarkerClusterGroup({
+    zoomToBoundsOnClick: false,
     iconCreateFunction: cluster => {
-      cluster.on('mouseover', layer => {
-        layer.sourceTarget
-          .bindPopup(ReactDOMServer.renderToString(<Tip>{tip(cluster)}</Tip>), {
-            closeButton: false,
-          })
-          .openPopup();
-      });
+      const popup = cluster.bindPopup(
+        ReactDOMServer.renderToString(<Popup>{popupProp(cluster)}</Popup>),
+      );
 
-      cluster.on('mouseout', layer => {
-        layer.sourceTarget.closePopup();
+      cluster.on('click', () => {
+        popup.openPopup();
       });
 
       return L.divIcon({
