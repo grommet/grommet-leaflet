@@ -8,8 +8,8 @@ import MarkerClusterGroup from './MarkerClusterGroup';
 import { GrommetGeoJSON } from './GrommetGeoJSON';
 import { Pin } from './markers';
 import { generateLocations } from './utils/locations';
-import { geojsonLocations } from './utils/geojson_data';
 import { ClusterPopup } from './ClusterPopup';
+import geojsonLocations from './utils/geojson_data.json';
 
 const initialStyle = {
   height: '100%',
