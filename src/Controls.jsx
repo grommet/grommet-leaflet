@@ -1,7 +1,7 @@
 import React from "react";
 import { useMap } from "react-leaflet";
 import { Box, Button } from "grommet";
-import { Add, Subtract, Globe, Target } from "grommet-icons";
+import { Add, Subtract, Target } from "grommet-icons";
 
 export const LocationBounds = ({ locations }) => {
   const b = L.latLngBounds();
@@ -23,7 +23,7 @@ export const LocationBounds = ({ locations }) => {
   return b;
 };
 
-export const Controls = ({ locations, home }) => {
+export const Controls = ({ locations }) => {
   const map = useMap();
   const bounds = LocationBounds({ locations });
 
@@ -54,16 +54,6 @@ export const Controls = ({ locations, home }) => {
               side: "top",
             }}
           >
-            {home && (
-              <Button
-                a11yTitle="Zoom to location"
-                icon={<Globe />}
-                onClick={(event) => {
-                  event.preventDefault();
-                  map.panTo(home);
-                }}
-              />
-            )}
             {locations && (
               <Button
                 a11yTitle="Zoom to data"
