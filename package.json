@@ -1,26 +1,22 @@
 {
   "name": "grommet-leaflet",
   "version": "0.1.0",
-  "description": "Example of using leafletjs.com maps with react and grommet",
+  "description": "Map for Grommet and React using LeafletJS",
   "repository": "https://github.com/grommet/grommet-leaflet.git",
-  "author": "Eric Soderberg <eric.soderberg@hpe.com>",
-  "license": "Apache-2.0",
+  "authors": [
+    "Eric Soderberg <eric.soderberg@hpe.com>",
+    "Matt Glissmann",
+    "Taylor Seamans",
+    "Jessica Filben"
+  ],
+  "license": "ISC",
+  "private": true,
+  "workspaces": [
+    "grommet-leaflet-core",
+    "demo-app"
+  ],
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "lint-fix": "eslint src --fix",
-    "preview": "vite preview"
-  },
-  "dependencies": {
-    "grommet": "^2.31.0",
-    "grommet-icons": "^4.10.0",
-    "grommet-theme-hpe": "^5.0.2",
-    "leaflet": "^1.9.3",
-    "leaflet.markercluster": "^1.5.3",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-leaflet": "^4.2.1",
-    "styled-components": "^5.3.8"
+    "lint-fix": "eslint src --fix"
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.19.1",

@@ -1,0 +1,28 @@
+{
+  "name": "grommet-leaflet-core",
+  "version": "0.1.0",
+  "description": "Mapping component for Grommet applications",
+  "authors": [
+    "Matt Glissmann",
+    "Taylor Seamans",
+    "Jessica Filben"
+  ],
+  "license": "ISC",
+  "main": "src/index.js",
+  "scripts": {
+    "lint-fix": "eslint src --fix"
+  },
+  "peerDependencies": {
+    "grommet": "^2.31.0",
+    "grommet-icons": "^4.10.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "styled-components": "^5.3.8"
+  },
+  "dependencies": {
+    "leaflet": "^1.9.3",
+    "leaflet.markercluster": "^1.5.3",
+    "react-leaflet": "^4.2.1",
+    "styled-components": "^5.3.8"
+  }
+}

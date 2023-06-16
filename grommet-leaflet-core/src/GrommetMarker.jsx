@@ -38,4 +38,4 @@ const GrommetMarker = createPathComponent(
   updateGrommetMarker,
 );
 
-export default GrommetMarker;
+export { GrommetMarker };
