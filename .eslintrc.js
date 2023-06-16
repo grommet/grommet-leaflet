@@ -72,5 +72,6 @@ module.exports = {
     'import/no-dynamic-require': 0,
     quotes: [2, 'single', { avoidEscape: true }],
     'arrow-body-style': 0,
+    allowElseIf: true,
   },
 };

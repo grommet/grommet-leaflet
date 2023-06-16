@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   Anchor,
   Footer,
@@ -6,10 +6,10 @@ import {
   Page,
   PageContent,
   PageHeader,
-} from "grommet";
-import { hpe } from "grommet-theme-hpe";
-import GlobalHeader from "./GlobalHeader";
-import Map from "./Map";
+} from 'grommet';
+import { hpe } from 'grommet-theme-hpe';
+import GlobalHeader from './GlobalHeader';
+import LocationsMap from './LocationsMap';
 
 function App() {
   return (
@@ -18,7 +18,7 @@ function App() {
         <GlobalHeader />
         <PageContent flex>
           <PageHeader title="Map" />
-          <Map />
+          <LocationsMap />
           <Footer pad="small">
             <Anchor href="">grommet-leaflet GitHub repository</Anchor>
           </Footer>
