@@ -2,11 +2,13 @@ import React, { useEffect, useRef, useState } from 'react';
 import { MapContainer, TileLayer } from 'react-leaflet';
 import { Box } from 'grommet';
 import { Grommet } from 'grommet-icons';
+import {
+  GrommetMarker,
+  GrommetGeoJSON,
+  MarkerClusterGroup,
+  Pin,
+} from 'grommet-leaflet-core';
 
-import GrommetMarker from './GrommetMarker';
-import MarkerClusterGroup from './MarkerClusterGroup';
-import { GrommetGeoJSON } from './GrommetGeoJSON';
-import { Pin } from './markers';
 import { generateLocations } from './utils/locations';
 import geojsonLocations from './utils/geojson_data.json';
 

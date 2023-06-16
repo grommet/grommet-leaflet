@@ -3,7 +3,7 @@ module.exports = {
     rollupOptions: {
       output: {
         manualChunks: {
-          leaflet: ["leaflet"],
+          leaflet: ['leaflet'],
         },
       },
     },
