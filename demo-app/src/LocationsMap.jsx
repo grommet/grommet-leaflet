@@ -5,6 +5,7 @@ import { Map, Marker, GeoJSON, MarkerCluster, Pin } from 'grommet-leaflet-core';
 
 import { generateLocations, userLocation } from './utils/locations';
 import geojsonLocations from './utils/geojson_data.json';
+import { ClusterPopup } from './ClusterPopup';
 
 function LocationsMap() {
   const [geolocation, setGeolocation] = useState();
@@ -21,7 +22,7 @@ function LocationsMap() {
       {geolocation && (
         <Map id="map" ref={mapContainerRef} center={geolocation} zoom={6}>
           <Marker position={geolocation} icon={<Grommet />} />
-          <MarkerCluster>
+          <MarkerCluster popup={cluster => <ClusterPopup cluster={cluster} />}>
             {generateLocations(250, { center: geolocation, radius: 6 }).map(
               (location, index) => (
                 <Marker
@@ -32,7 +33,7 @@ function LocationsMap() {
               ),
             )}
           </MarkerCluster>
-          <MarkerCluster>
+          <MarkerCluster popup={cluster => <ClusterPopup cluster={cluster} />}>
             <GeoJSON key="my-geojson" data={geojsonLocations} />
           </MarkerCluster>
         </Map>

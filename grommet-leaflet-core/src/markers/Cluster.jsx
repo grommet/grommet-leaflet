@@ -75,28 +75,28 @@ const Cluster = ({ cluster, ...rest }) => {
       : {};
 
   return (
-    // <Grommet theme={theme} background="transparent">
-    <StyledBox
-      align="center"
-      justify="center"
-      background="background-front"
-      border={border}
-      round="full"
-      width={{ min: dimension, max: dimension }}
-      height={{ min: dimension, max: dimension }}
-      {...rowClusterProps}
-      {...rest}
-    >
-      <StatusIcon color={STATUS_MAP[status].color} size="10px" />
-      <StyledCount
-        size={count >= 2 * threshold ? 'medium' : 'small'}
-        color="text-strong"
-        weight={500}
+    <Grommet theme={hpe} background="transparent">
+      <StyledBox
+        align="center"
+        justify="center"
+        background="background-front"
+        border={border}
+        round="full"
+        width={{ min: dimension, max: dimension }}
+        height={{ min: dimension, max: dimension }}
+        {...rowClusterProps}
+        {...rest}
       >
-        {formatCount(count)}
-      </StyledCount>
-    </StyledBox>
-    // </Grommet>
+        <StatusIcon color={STATUS_MAP[status].color} size="10px" />
+        <StyledCount
+          size={count >= 2 * threshold ? 'medium' : 'small'}
+          color="text-strong"
+          weight={500}
+        >
+          {formatCount(count)}
+        </StyledCount>
+      </StyledBox>
+    </Grommet>
   );
 };
 

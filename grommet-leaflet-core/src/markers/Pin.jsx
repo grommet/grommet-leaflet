@@ -20,7 +20,7 @@ const StyledBox = styled(Box)`
   }
 `;
 
-const Pin = ({ status, theme }) => {
+const Pin = ({ status }) => {
   const border = {
     color: STATUS_MAP[status].color,
     size: STATUS_MAP[status].borderSize || 'small',
