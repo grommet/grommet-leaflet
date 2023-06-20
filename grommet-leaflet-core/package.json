@@ -8,10 +8,7 @@
     "Jessica Filben"
   ],
   "license": "ISC",
-  "exports": {
-    ".": "./src/index.js",
-    "./css": "./src/grommet-leaflet-reset.css"
-  },
+  "main": "src/index.js",
   "scripts": {
     "lint-fix": "eslint src --fix"
   },

@@ -10,7 +10,6 @@ import {
 import { hpe } from 'grommet-theme-hpe';
 import GlobalHeader from './GlobalHeader';
 import LocationsMap from './LocationsMap';
-import 'grommet-leaflet-core/css';
 
 function App() {
   return (
