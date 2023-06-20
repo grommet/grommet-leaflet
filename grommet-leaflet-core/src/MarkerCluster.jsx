@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import {
   createElementObject,
   createPathComponent,
@@ -11,13 +11,15 @@ import { Cluster } from './markers';
 
 const createMarkerClusterGroup = (props, context) => {
   const markerClusterGroup = new L.MarkerClusterGroup({
-    iconCreateFunction: (cluster) => {
-      return L.divIcon({ 
+    iconCreateFunction: cluster => {
+      return L.divIcon({
         // 'grommet-cluster-group' class prevents leaflet default divIcon styles
         className: 'grommet-cluster-group',
-        html:  ReactDOMServer.renderToString(<Cluster cluster={cluster} />) });
-      },
-    ...props});
+        html: ReactDOMServer.renderToString(<Cluster cluster={cluster} />),
+      });
+    },
+    ...props,
+  });
   return createElementObject(
     markerClusterGroup,
     extendContext(context, { layerContainer: markerClusterGroup }),
@@ -31,9 +33,9 @@ const updateMarkerClusterGroup = (instance, props, prevProps) => {
   }
 };
 
-const MarkerClusterGroup = createPathComponent(
+const MarkerCluster = createPathComponent(
   createMarkerClusterGroup,
   updateMarkerClusterGroup,
 );
 
-export default MarkerClusterGroup;
+export { MarkerCluster };

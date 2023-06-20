@@ -33,9 +33,6 @@ const updateGrommetMarker = (instance, props, prevProps) => {
   }
 };
 
-const GrommetMarker = createPathComponent(
-  createGrommetMarker,
-  updateGrommetMarker,
-);
+const Marker = createPathComponent(createGrommetMarker, updateGrommetMarker);
 
-export default GrommetMarker;
+export { Marker };
