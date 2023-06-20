@@ -5,8 +5,6 @@ import {
   Controls,
   Map,
   Marker,
-  GeoJSON,
-  LocationBounds,
   MarkerCluster,
   Pin,
 } from 'grommet-leaflet-core';
@@ -16,12 +14,16 @@ import geojsonLocations from './utils/geojson_data.json';
 
 function LocationsMap() {
   const [geolocation, setGeolocation] = useState();
+  const [locations, setLocations] = useState();
   const containerRef = useRef();
   const mapContainerRef = useRef();
 
   // get the user's location
   useEffect(() => {
-    userLocation().then(location => setGeolocation(location));
+    userLocation().then(location => {
+      setGeolocation(location);
+      setLocations(generateLocations(250, { center: location, radius: 6 }));
+    });
   }, []);
 
   return (
@@ -34,21 +36,16 @@ function LocationsMap() {
           zoom={6}
           zoomControl={false}
         >
-          <Controls locations={geojsonLocations} />
+          <Controls locations={locations} />
           <Marker position={geolocation} icon={<Grommet />} />
           <MarkerCluster>
-            {generateLocations(250, { center: geolocation, radius: 6 }).map(
-              (location, index) => (
-                <Marker
-                  key={index}
-                  position={location?.coord}
-                  icon={<Pin status={location?.status} />}
-                />
-              ),
-            )}
-          </MarkerCluster>
-          <MarkerCluster>
-            <GeoJSON key="my-geojson" data={geojsonLocations} />
+            {locations.map((location, index) => (
+              <Marker
+                key={index}
+                position={location?.coord}
+                icon={<Pin status={location?.status} />}
+              />
+            ))}
           </MarkerCluster>
         </Map>
       )}

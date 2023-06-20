@@ -16,7 +16,7 @@ export const LocationBounds = ({ locations }) => {
     });
   } else {
     locations.forEach(location => {
-      b.extend([location[0], location[1]]);
+      b.extend([location?.coord?.[0], location?.coord?.[1]]);
     });
   }
 
