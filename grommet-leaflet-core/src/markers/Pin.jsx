@@ -47,11 +47,7 @@ const Pin = ({ status }) => {
         <StatusIcon
           color={STATUS_MAP[status].color}
           size="13px"
-          style={
-            status === 'warning' || status === 'unknown'
-              ? { transform: 'rotate(-45deg)' }
-              : undefined
-          }
+          style={{ transform: 'rotate(-45deg)' }}
         />
       </StyledBox>
     </Grommet>
