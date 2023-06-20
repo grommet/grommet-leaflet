@@ -1,3 +1,4 @@
+export * from './Controls';
 export * from './markers';
 export * from './GeoJSON';
 export * from './Map';
