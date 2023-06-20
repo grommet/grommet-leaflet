@@ -33,9 +33,9 @@ const updateMarkerClusterGroup = (instance, props, prevProps) => {
   }
 };
 
-const MarkerClusterGroup = createPathComponent(
+const MarkerCluster = createPathComponent(
   createMarkerClusterGroup,
   updateMarkerClusterGroup,
 );
 
-export { MarkerClusterGroup };
+export { MarkerCluster };

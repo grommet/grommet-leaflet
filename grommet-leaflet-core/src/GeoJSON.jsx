@@ -19,4 +19,4 @@ const GrommetGeoJSON = ({ data, ...rest }) => {
   return <GeoJSON data={data} pointToLayer={pointToLayer} {...rest} />;
 };
 
-export { GrommetGeoJSON };
+export { GrommetGeoJSON as GeoJSON };
