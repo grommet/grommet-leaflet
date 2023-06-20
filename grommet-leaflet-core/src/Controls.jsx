@@ -1,21 +1,21 @@
-import React from "react";
-import { useMap } from "react-leaflet";
-import { Box, Button } from "grommet";
-import { Add, Subtract, Target } from "grommet-icons";
+import React from 'react';
+import { useMap } from 'react-leaflet';
+import { Box, Button } from 'grommet';
+import { Add, Subtract, Globe } from 'grommet-icons';
 
 export const LocationBounds = ({ locations }) => {
   const b = L.latLngBounds();
 
   // calculate the bounds of the locations
   if (locations.features) {
-    locations.features.forEach((location) => {
+    locations.features.forEach(location => {
       b.extend([
         location.geometry?.coordinates[1],
         location.geometry?.coordinates[0],
       ]);
     });
   } else {
-    locations.forEach((location) => {
+    locations.forEach(location => {
       b.extend([location[0], location[1]]);
     });
   }
@@ -35,7 +35,7 @@ export const Controls = ({ locations }) => {
           <Button
             a11yTitle="Zoom in"
             icon={<Add />}
-            onClick={(event) => {
+            onClick={event => {
               event.preventDefault();
               map.zoomIn();
             }}
@@ -43,22 +43,22 @@ export const Controls = ({ locations }) => {
           <Button
             a11yTitle="Zoom out"
             icon={<Subtract />}
-            onClick={(event) => {
+            onClick={event => {
               event.preventDefault();
               map.zoomOut();
             }}
           />
           <Box
             border={{
-              color: "border-weak",
-              side: "top",
+              color: 'border-weak',
+              side: 'top',
             }}
           >
             {locations && (
               <Button
                 a11yTitle="Zoom to data"
-                icon={<Target />}
-                onClick={(event) => {
+                icon={<Globe />}
+                onClick={event => {
                   event.preventDefault();
                   map.flyToBounds(bounds, { duration: 1.5 });
                 }}
