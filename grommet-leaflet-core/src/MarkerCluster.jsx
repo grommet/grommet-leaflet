@@ -7,18 +7,27 @@ import {
 import L from 'leaflet';
 import 'leaflet.markercluster';
 import ReactDOMServer from 'react-dom/server';
-import { Cluster } from './markers';
+import { Cluster, Popup } from './markers';
 
-const createMarkerClusterGroup = (props, context) => {
+const createMarkerClusterGroup = ({ popup: popupProp, ...rest }, context) => {
   const markerClusterGroup = new L.MarkerClusterGroup({
+    zoomToBoundsOnClick: false,
     iconCreateFunction: cluster => {
+      const popup = cluster.bindPopup(
+        ReactDOMServer.renderToString(<Popup>{popupProp(cluster)}</Popup>),
+      );
+
+      cluster.on('click', () => {
+        popup.openPopup();
+      });
+
       return L.divIcon({
         // 'grommet-cluster-group' class prevents leaflet default divIcon styles
         className: 'grommet-cluster-group',
         html: ReactDOMServer.renderToString(<Cluster cluster={cluster} />),
       });
     },
-    ...props,
+    ...rest,
   });
   return createElementObject(
     markerClusterGroup,

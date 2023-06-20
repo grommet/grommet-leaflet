@@ -11,6 +11,7 @@ import {
 
 import { generateLocations, userLocation } from './utils/locations';
 import geojsonLocations from './utils/geojson_data.json';
+import { ClusterPopup } from './ClusterPopup';
 
 function LocationsMap() {
   const [geolocation, setGeolocation] = useState();
