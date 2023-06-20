@@ -10,7 +10,6 @@ import {
 } from 'grommet-leaflet-core';
 
 import { generateLocations, userLocation } from './utils/locations';
-import geojsonLocations from './utils/geojson_data.json';
 import { ClusterPopup } from './ClusterPopup';
 
 function LocationsMap() {
@@ -39,7 +38,7 @@ function LocationsMap() {
         >
           <Controls locations={locations} />
           <Marker position={geolocation} icon={<Grommet />} />
-          <MarkerCluster>
+          <MarkerCluster popup={cluster => <ClusterPopup cluster={cluster} />}>
             {locations.map((location, index) => (
               <Marker
                 key={index}
