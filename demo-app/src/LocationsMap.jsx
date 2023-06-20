@@ -30,7 +30,7 @@ function LocationsMap() {
         <Map
           id="map"
           ref={mapContainerRef}
-          center={LocationBounds({ locations: geojsonLocations }).getCenter()}
+          center={geolocation}
           zoom={6}
           zoomControl={false}
         >
