@@ -3,45 +3,45 @@ import {
   StatusWarningSmall,
   StatusGoodSmall,
   StatusUnknownSmall,
-} from "grommet-icons";
+} from 'grommet-icons';
 
 export const STATUS_MAP = {
   critical: {
-    color: "status-critical",
+    color: 'status-critical',
     icon: StatusCriticalSmall,
-    borderSize: "3px",
-    state: "Disconnected",
+    borderSize: '3px',
+    state: 'Disconnected',
   },
   warning: {
-    color: "status-warning",
+    color: 'status-warning',
     icon: StatusWarningSmall,
-    state: "Warning",
+    state: 'Warning',
   },
   good: {
-    color: "status-ok",
+    color: 'status-ok',
     icon: StatusGoodSmall,
-    state: "Connected",
+    state: 'Connected',
   },
   unknown: {
-    color: "status-unknown",
+    color: 'status-unknown',
     icon: StatusUnknownSmall,
-    state: "Unknown",
+    state: 'Unknown',
   },
 };
 
-export const getStatusCounts = (markers) => {
+export const getStatusCounts = markers => {
   const geoJSON = markers[0]?.feature;
   let critical = 0;
   let warning = 0;
   let good = 0;
   let unknown = 0;
-  markers.forEach((marker) => {
+  markers.forEach(marker => {
     const status = geoJSON
       ? marker.feature.grommet?.status
       : marker.options.status;
-    if (status === "critical") critical += 1;
-    else if (status === "warning") warning += 1;
-    else if (status === "good") good += 1;
+    if (status === 'critical') critical += 1;
+    else if (status === 'warning') warning += 1;
+    else if (status === 'good') good += 1;
     else unknown += 1;
   });
 

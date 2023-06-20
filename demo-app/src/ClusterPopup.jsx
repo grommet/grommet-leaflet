@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Box, Text } from 'grommet';
-import { getStatusCounts, STATUS_MAP } from './utils/status';
+import { getStatusCounts, STATUS_MAP } from 'grommet-leaflet-core';
 
 export const ClusterPopup = ({ cluster }) => {
   const statusCounts = getStatusCounts(cluster.getAllChildMarkers());

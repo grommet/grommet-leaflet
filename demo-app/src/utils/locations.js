@@ -1,5 +1,20 @@
 const statuses = ['good', 'warning', 'critical'];
 
+// get user location
+export function userLocation() {
+  return new Promise((resolve, reject) => {
+    navigator.geolocation.getCurrentPosition(
+      position => {
+        resolve([position.coords.latitude, position.coords.longitude]);
+      },
+      () => {
+        const stored = localStorage.getItem('geolocation');
+        if (stored) resolve(JSON.parse(stored));
+      },
+    );
+  });
+}
+
 export function generateLocations(n, options) {
   const { center, radius } = options;
   const locations = [];
