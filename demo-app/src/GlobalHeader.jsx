@@ -1,6 +1,7 @@
-import React from "react";
-import { Avatar, Box, Button, Header, Nav, Text } from "grommet";
-import { AppsRounded, HelpOption, Grommet, Notification } from "grommet-icons";
+import React from 'react';
+import { Avatar, Box, Button, Header, Nav, Text } from 'grommet';
+import { AppsRounded, HelpOption, Grommet, Notification } from 'grommet-icons';
+import { Link } from 'react-router-dom';
 
 function GlobalHeader() {
   return (
@@ -11,6 +12,9 @@ function GlobalHeader() {
       </Box>
       <Nav direction="row" justify="center">
         <Button label="Dashboard" />
+        <Link to="/devices">
+          <Button label="Devices" />
+        </Link>
         <Button label="Sites" />
         <Button label="Settings" />
       </Nav>
