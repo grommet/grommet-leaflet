@@ -26,3 +26,13 @@
     padding: 0px;
     box-shadow: none;
 }
+/* Ensure these are less than HPE theme for Drop and Layer z-index */
+.leaflet-pane {
+    z-index: 90;
+}
+.leaflet-control {
+    z-index: 91;
+}
+.leaflet-bottom {
+    z-index: 91;
+}

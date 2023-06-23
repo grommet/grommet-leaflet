@@ -90,8 +90,8 @@ const Cluster = ({ cluster, ...rest }) => {
         <StatusIcon color={STATUS_MAP[status].color} size="10px" />
         <StyledCount
           size={count >= 2 * threshold ? 'medium' : 'small'}
-          color="text-strong"
           weight={500}
+          color="text-strong"
         >
           {formatCount(count)}
         </StyledCount>

@@ -5,7 +5,11 @@ import { Link } from 'react-router-dom';
 
 function GlobalHeader() {
   return (
-    <Header pad="small" border="bottom">
+    <Header
+      background="background-front"
+      pad="small"
+      border={{ color: 'border-weak', side: 'bottom' }}
+    >
       <Box direction="row" align="center" gap="small">
         <Grommet />
         <Text>My Site</Text>

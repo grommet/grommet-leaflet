@@ -27,28 +27,32 @@ function LocationsMap() {
   }, []);
 
   return (
-    <Box ref={containerRef} flex background="background-contrast">
-      {geolocation && (
-        <Map
-          id="map"
-          ref={mapContainerRef}
-          center={geolocation}
-          zoom={6}
-          zoomControl={false}
-        >
-          <Controls locations={locations} />
-          <Marker position={geolocation} icon={<Grommet />} />
-          <MarkerCluster popup={cluster => <ClusterPopup cluster={cluster} />}>
-            {locations.map((location, index) => (
-              <Marker
-                key={index}
-                position={location?.coord}
-                icon={<Pin status={location?.status} />}
-              />
-            ))}
-          </MarkerCluster>
-        </Map>
-      )}
+    <Box height="medium">
+      <Box ref={containerRef} flex background="background-contrast">
+        {geolocation && (
+          <Map
+            id="map"
+            ref={mapContainerRef}
+            center={geolocation}
+            zoom={6}
+            zoomControl={false}
+          >
+            <Controls locations={locations} />
+            <Marker position={geolocation} icon={<Grommet />} />
+            <MarkerCluster
+              popup={cluster => <ClusterPopup cluster={cluster} />}
+            >
+              {locations.map((location, index) => (
+                <Marker
+                  key={index}
+                  position={location?.coord}
+                  icon={<Pin status={location?.status} />}
+                />
+              ))}
+            </MarkerCluster>
+          </Map>
+        )}
+      </Box>
     </Box>
   );
 }

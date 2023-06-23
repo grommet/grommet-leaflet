@@ -4,6 +4,8 @@ import { Box, Button } from 'grommet';
 import { Add, Subtract, Globe } from 'grommet-icons';
 
 export const LocationBounds = ({ locations }) => {
+  if (!locations) return undefined;
+
   const b = L.latLngBounds();
 
   // calculate the bounds of the locations
@@ -23,9 +25,9 @@ export const LocationBounds = ({ locations }) => {
   return b;
 };
 
-export const Controls = ({ locations }) => {
+export const Controls = ({ bounds: boundsProp, locations }) => {
   const map = useMap();
-  const bounds = LocationBounds({ locations });
+  const bounds = boundsProp || LocationBounds({ locations });
 
   return (
     // css classes are coming from https://github.com/Leaflet/Leaflet/blob/main/dist/leaflet.css
@@ -54,7 +56,7 @@ export const Controls = ({ locations }) => {
               side: 'top',
             }}
           >
-            {locations && (
+            {bounds && (
               <Button
                 a11yTitle="Zoom to data"
                 icon={<Globe />}
