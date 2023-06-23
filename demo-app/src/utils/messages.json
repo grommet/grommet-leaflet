@@ -2,7 +2,7 @@
   "servers": {
     "lostConnection": {
       "single": "server has lost connection",
-      "multiple": "server have lost connection"
+      "multiple": "servers have lost connection"
     }
   }
 }
