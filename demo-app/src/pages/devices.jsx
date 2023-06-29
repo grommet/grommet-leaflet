@@ -1,35 +1,33 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import {
   Anchor,
   Box,
-  Card,
-  CardBody,
   Data,
   DataSearch,
   DataFilters,
   DataSummary,
-  Toolbar,
   Grid,
   Heading,
   Menu,
   Page,
   PageContent,
   PageHeader,
-  Paragraph,
-  CardFooter,
+  ResponsiveContext,
+  Toolbar,
 } from 'grommet';
-import { LinkNext, Previous, StatusCriticalSmall } from 'grommet-icons';
+import { LinkNext, Previous } from 'grommet-icons';
 import {
   Container,
   DevicesMap,
+  DeviceGroups,
   RecentActivity,
-  TextEmphasis,
 } from '../components';
 import data from '../utils/devices.json';
-import messages from '../utils/messages.json';
 
 const Devices = () => {
+  const breakpoint = useContext(ResponsiveContext);
+
   return (
     <Page kind="full" pad={{ bottom: 'xlarge' }}>
       <PageContent>
@@ -42,13 +40,24 @@ const Devices = () => {
           }
         />
         <Grid
-          // TO DO responsive layout
-          columns={['flex', 'medium']}
+          columns={
+            !['xsmall', 'small', 'medium'].includes(breakpoint)
+              ? ['flex', 'medium']
+              : ['auto']
+          }
           gap="medium"
         >
           <Container gap="large">
             <DataView />
-            <DeviceGroups />
+            <Box gap="medium">
+              <Box direction="row" justify="between" gap="small">
+                <Heading level={2} margin="none">
+                  Device groups
+                </Heading>
+                <Anchor label="See all" icon={<LinkNext />} reverse />
+              </Box>
+            </Box>
+            <DeviceGroups max={4} />
           </Container>
           <RecentActivity />
         </Grid>
@@ -72,48 +81,4 @@ const DataView = () => (
       <DevicesMap />
     </Box>
   </Data>
-);
-
-const DeviceGroups = () => (
-  <Box gap="medium">
-    <Box direction="row" justify="between" gap="small">
-      <Heading level={2} margin="none">
-        Device groups
-      </Heading>
-      <Anchor label="See all" icon={<LinkNext />} reverse />
-    </Box>
-    <Grid columns="medium" gap="medium">
-      {data.groups?.items.map(item => (
-        <Card key={item}>
-          <CardBody gap="xsmall">
-            <Heading level={3} margin="none">
-              {item.displayName}
-            </Heading>
-            {item.description ? (
-              <Paragraph margin="none">{item.description}</Paragraph>
-            ) : null}
-          </CardBody>
-          {item.deviceCounts?.health?.['Critical'] > 0 ? (
-            <CardFooter
-              border={{ color: 'border-weak', side: 'top' }}
-              justify="start"
-              gap="xsmall"
-            >
-              <StatusCriticalSmall
-                color="status-critical"
-                size="small"
-                height="small"
-              />
-              <TextEmphasis size="small">
-                {item.deviceCounts?.health?.['Critical']}{' '}
-                {item.deviceCounts?.health?.['Critical'] > 1
-                  ? messages.servers.lostConnection.multiple
-                  : messages.servers.lostConnection.single}
-              </TextEmphasis>
-            </CardFooter>
-          ) : null}
-        </Card>
-      ))}
-    </Grid>
-  </Box>
 );
