@@ -9,7 +9,7 @@ import L from 'leaflet';
 import { Pin } from './markers';
 
 const createGrommetMarker = (
-  { position, title, alt, icon: iconProp },
+  { position, title, alt, icon: iconProp, popup },
   context,
 ) => {
   const icon = L.divIcon({
@@ -19,8 +19,15 @@ const createGrommetMarker = (
   });
 
   const status = iconProp ? iconProp.props.status : 'unknown';
-  const options = { title, alt, icon, status };
+  const options = {
+    title,
+    alt,
+    icon,
+    status,
+  };
   const marker = new L.Marker(position, options);
+  if (popup) marker.bindPopup(ReactDOMServer.renderToString(popup));
+
   return createElementObject(
     marker,
     extendContext(context, { overlayContainer: marker }),

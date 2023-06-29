@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Box, Grommet } from 'grommet';
+import { Box, Grommet, Text } from 'grommet';
 import { hpe } from 'grommet-theme-hpe';
 import { STATUS_MAP } from '../utils/status';
 
@@ -19,13 +19,25 @@ const StyledBox = styled(Box)`
       } solid ${props.theme?.global?.colors?.['background-layer-overlay']}`};
   }
 `;
+const PinContent = styled(Box)`
+  transform: rotate(-45deg);
+`;
 
-const Pin = ({ status }) => {
+const StyledText = styled(Text)`
+  // multiplier of font-size, for tighter alignment
+  line-height: 1rem;
+`;
+
+const Pin = ({ status, text }) => {
   const border = {
     color: STATUS_MAP[status].color,
     size: STATUS_MAP[status].borderSize || 'small',
   };
   const StatusIcon = STATUS_MAP[status].icon;
+
+  const pinSize = text
+    ? { min: '35px', max: '35px' }
+    : { min: '25px', max: '25px' };
 
   return (
     <Grommet theme={hpe} background="transparent">
@@ -38,17 +50,29 @@ const Pin = ({ status }) => {
         align="center"
         justify="center"
         // TO DO revisit sizing with designers
-        width={{ min: '25px', max: '25px' }}
-        height={{ min: '25px', max: '25px' }}
+        width={pinSize}
+        height={pinSize}
       >
         {/* style needed to offset for rotation of location pin so 
         triangle is vertical still */}
         {/* TO DO revisit icon sizes with designers */}
-        <StatusIcon
-          color={STATUS_MAP[status].color}
-          size="13px"
-          style={{ transform: 'rotate(-45deg)' }}
-        />
+        <PinContent alignContent="center">
+          <StatusIcon
+            color={STATUS_MAP[status].color}
+            size={text ? '10px' : '13px'}
+          />
+          {text && (
+            <StyledText
+              color="text-strong"
+              weight={500}
+              alignSelf="center"
+              textAlign="center"
+              size="xsmall"
+            >
+              {text}
+            </StyledText>
+          )}
+        </PinContent>
       </StyledBox>
     </Grommet>
   );
