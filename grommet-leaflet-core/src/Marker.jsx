@@ -6,7 +6,7 @@ import {
   extendContext,
 } from '@react-leaflet/core';
 import L from 'leaflet';
-import { Pin } from './markers';
+import { Pin, Popup } from './markers';
 
 const createGrommetMarker = (
   { position, title, alt, icon: iconProp, popup },
@@ -26,7 +26,8 @@ const createGrommetMarker = (
     status,
   };
   const marker = new L.Marker(position, options);
-  if (popup) marker.bindPopup(ReactDOMServer.renderToString(popup));
+  if (popup)
+    marker.bindPopup(ReactDOMServer.renderToString(<Popup>{popup}</Popup>));
 
   return createElementObject(
     marker,
