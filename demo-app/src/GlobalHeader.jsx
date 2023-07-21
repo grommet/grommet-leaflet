@@ -25,7 +25,7 @@ function GlobalHeader() {
       <Nav direction="row" justify="center" gap="xxsmall">
         <Button as={Link} label="Home" to="/" size="small" />
         <Button as={Link} label="Devices" to="/devices" size="small" />
-        <Button label="Sites" size="small" />
+        <Button as={Link} label="Sites" to="/sites" size="small" />
         <Button label="Settings" size="small" />
       </Nav>
       <Box flex />

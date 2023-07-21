@@ -1,5 +1,6 @@
 import React from 'react';
 import { useMap } from 'react-leaflet';
+import L from 'leaflet';
 import { Box, Button } from 'grommet';
 import { Add, Subtract, Globe } from 'grommet-icons';
 
@@ -23,9 +24,12 @@ export const LocationBounds = ({ locations }) => {
   return b;
 };
 
-export const Controls = ({ locations }) => {
+const Controls = ({ locations }) => {
   const map = useMap();
   const bounds = LocationBounds({ locations });
+
+  // on mount, zoom to the bounds of the locations
+  map.flyToBounds(bounds, { duration: 1.5 });
 
   return (
     // css classes are coming from https://github.com/Leaflet/Leaflet/blob/main/dist/leaflet.css
@@ -70,3 +74,5 @@ export const Controls = ({ locations }) => {
     </Box>
   );
 };
+
+export { Controls };

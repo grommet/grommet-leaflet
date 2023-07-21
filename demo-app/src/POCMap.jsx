@@ -34,13 +34,7 @@ function POCMap() {
       height={{ min: 'medium' }}
     >
       {geolocation && (
-        <Map
-          id="map"
-          ref={mapContainerRef}
-          center={geolocation}
-          zoom={6}
-          zoomControl={false}
-        >
+        <Map id="map" ref={mapContainerRef} center={geolocation}>
           <Controls locations={locations} />
           <Marker position={geolocation} icon={<Grommet />} />
           <MarkerCluster popup={cluster => <ClusterPopup cluster={cluster} />}>
