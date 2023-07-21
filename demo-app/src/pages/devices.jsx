@@ -1,19 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Anchor, Page, PageContent, PageHeader } from 'grommet';
-import { Previous } from 'grommet-icons';
+import { Page, PageContent, PageHeader } from 'grommet';
+
+import { ReverseAnchor } from '../components';
 
 const Devices = () => {
   return (
-    <Page kind="full" fill>
+    <Page fill>
       <PageContent flex>
         <PageHeader
           title="Devices"
-          parent={
-            <Link to="/">
-              <Anchor label="Dashboard" icon={<Previous />} />
-            </Link>
-          }
+          parent={<ReverseAnchor as={Link} label="Home" to="/" />}
         />
         placeholder
       </PageContent>

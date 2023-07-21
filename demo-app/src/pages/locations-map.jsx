@@ -1,8 +1,8 @@
 import React from 'react';
-import { Anchor, Box, Page, PageContent, PageHeader, Footer } from 'grommet';
+import { Anchor, Page, PageContent, PageHeader, Footer } from 'grommet';
 import POCMap from '../POCMap';
 
-const Index = () => {
+const BasicMap = () => {
   return (
     <Page fill>
       <PageContent flex>
@@ -16,4 +16,4 @@ const Index = () => {
   );
 };
 
-export default Index;
+export default BasicMap;

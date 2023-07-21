@@ -1,6 +1,6 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import { Grommet } from 'grommet';
+import { Box, Grommet } from 'grommet';
 import { hpe } from 'grommet-theme-hpe';
 import GlobalHeader from './GlobalHeader';
 
@@ -34,7 +34,7 @@ const router = routes.map(({ Element, ErrorBoundary, ...rest }) => ({
 
 const App = () => {
   return (
-    <Grommet theme={hpe} full>
+    <Grommet theme={hpe} background="background-back" full>
       <GlobalHeader />
       <Routes>
         {router.map((route, index) => (

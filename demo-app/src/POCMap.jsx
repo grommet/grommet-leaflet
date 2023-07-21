@@ -12,7 +12,7 @@ import {
 import { generateLocations, userLocation } from './utils/locations';
 import { ClusterPopup } from './ClusterPopup';
 
-function LocationsMap() {
+function POCMap() {
   const [geolocation, setGeolocation] = useState();
   const [locations, setLocations] = useState();
   const containerRef = useRef();
@@ -27,7 +27,12 @@ function LocationsMap() {
   }, []);
 
   return (
-    <Box ref={containerRef} flex background="background-contrast">
+    <Box
+      ref={containerRef}
+      flex="grow"
+      background="background-contrast"
+      height={{ min: 'medium' }}
+    >
       {geolocation && (
         <Map
           id="map"
@@ -53,4 +58,4 @@ function LocationsMap() {
   );
 }
 
-export default LocationsMap;
+export default POCMap;
