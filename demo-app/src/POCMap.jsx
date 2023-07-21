@@ -36,7 +36,10 @@ function POCMap() {
       {geolocation && (
         <Map id="map" ref={mapContainerRef} center={geolocation}>
           <Controls locations={locations} />
-          <Marker position={geolocation} icon={<Grommet />} />
+          <Marker
+            position={geolocation}
+            icon={<Grommet color="purple!" size="large" />}
+          />
           <MarkerCluster popup={cluster => <ClusterPopup cluster={cluster} />}>
             {locations.map((location, index) => (
               <Marker

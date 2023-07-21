@@ -1,6 +1,6 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import { Box, Grommet } from 'grommet';
+import { Grommet } from 'grommet';
 import { hpe } from 'grommet-theme-hpe';
 import GlobalHeader from './GlobalHeader';
 

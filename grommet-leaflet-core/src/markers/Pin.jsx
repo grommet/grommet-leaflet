@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Box, Grommet } from 'grommet';
+import { Box, Grommet, ThemeContext } from 'grommet';
 import { hpe } from 'grommet-theme-hpe';
 import { STATUS_MAP } from '../utils/status';
 
@@ -21,6 +21,7 @@ const StyledBox = styled(Box)`
 `;
 
 const Pin = ({ status }) => {
+  const theme = React.useContext(ThemeContext);
   const border = {
     color: STATUS_MAP[status].color,
     size: STATUS_MAP[status].borderSize || 'small',
@@ -28,7 +29,7 @@ const Pin = ({ status }) => {
   const StatusIcon = STATUS_MAP[status].icon;
 
   return (
-    <Grommet theme={hpe} background="transparent">
+    <Grommet theme={theme} background="transparent">
       <StyledBox
         background="background-front"
         border={border}

@@ -14,7 +14,7 @@ const StyledMapContainer = styled(MapContainer)`
 const Map = forwardRef(
   (
     {
-      center,
+      center = [0, 0],
       children,
       scrollWheelZoom,
       zoom = 1,
