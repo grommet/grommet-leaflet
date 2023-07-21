@@ -27,7 +27,7 @@
     padding: 0px;
     box-shadow: none;
 }
-/* Ensure these are less than HPE theme for Drop and Layer z-index */
+/* Ensure these are less than base theme for Drop and Layer z-index */
 .leaflet-pane {
     z-index: 90;
 }

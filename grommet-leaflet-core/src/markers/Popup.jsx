@@ -1,6 +1,5 @@
 import React from 'react';
 import { Box, Grommet, ThemeContext } from 'grommet';
-import { hpe } from 'grommet-theme-hpe';
 import '../grommet-leaflet-reset.css';
 
 const Popup = ({ ...rest }) => {

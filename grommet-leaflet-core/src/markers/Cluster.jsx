@@ -2,7 +2,6 @@ import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Box, Grommet, Text, ThemeContext } from 'grommet';
-import { hpe } from 'grommet-theme-hpe';
 import { STATUS_MAP } from '../utils/status';
 
 const StyledBox = styled(Box)`
