@@ -28,7 +28,7 @@ for (const path of Object.keys(pages)) {
 
 const router = routes.map(({ Element, ErrorBoundary, ...rest }) => ({
   ...rest,
-  element: <Element />,
+  element: Element && <Element />,
   ...(ErrorBoundary && { errorElement: <ErrorBoundary /> }),
 }));
 
