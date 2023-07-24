@@ -22,7 +22,7 @@ function POCMap() {
   useEffect(() => {
     userLocation().then(location => {
       setGeolocation(location);
-      setLocations(generateLocations(25, { center: location, radius: 6 }));
+      setLocations(generateLocations(250, { center: location, radius: 6 }));
     });
   }, []);
 

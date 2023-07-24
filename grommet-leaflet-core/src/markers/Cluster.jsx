@@ -55,10 +55,7 @@ const Cluster = ({ cluster, ...rest }) => {
   };
   let StatusIcon;
 
-  console.log(border);
-
   if (status) {
-    console.log(status);
     border = {
       color: STATUS_MAP[status].color,
       size: STATUS_MAP[status].borderSize || 'small',
