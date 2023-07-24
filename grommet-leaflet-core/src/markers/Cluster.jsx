@@ -9,13 +9,7 @@ const StyledBox = styled(Box)`
   // translate to re-align with leaflet div
   transform: translateX(-35%);
   &:hover {
-    // TO DO revisit "hover" color with designers. Use of
-    // "background-layer-overlay" feels strange semantically
-    border: ${props =>
-      `${
-        props.theme?.global?.borderSize?.[props.border.size] ||
-        props.border.size
-      } solid ${props.theme?.global?.colors?.['background-layer-overlay']}`};
+    transform: translateX(-35%) scale(1.2);
   }
 `;
 
@@ -35,7 +29,7 @@ const formatCount = count =>
 // 1 in a cluster of 20+) this logic can be changed depending on preference
 // decided later.
 const getClusterStatus = childMarkers => {
-  let mostSevere = 'good';
+  let mostSevere;
   let index = 0;
   const geoJSON = childMarkers[0]?.feature;
   while (mostSevere !== 'critical' && index <= childMarkers.length - 1) {
@@ -45,6 +39,7 @@ const getClusterStatus = childMarkers => {
     if (status === 'critical') mostSevere = 'critical';
     else if (status === 'warning') mostSevere = 'warning';
     else if (status === 'unknown') mostSevere = 'unknown';
+    else if (status === 'good') mostSevere = 'good';
     index += 1;
   }
   return mostSevere;
@@ -54,11 +49,19 @@ const Cluster = ({ cluster, ...rest }) => {
   const count = cluster.getChildCount();
   const status = getClusterStatus(cluster.getAllChildMarkers());
 
-  const border = {
-    color: STATUS_MAP[status].color,
-    size: STATUS_MAP[status].borderSize || 'small',
+  let border = {
+    color: 'border-strong',
+    size: 'small',
   };
-  const StatusIcon = STATUS_MAP[status].icon;
+  let StatusIcon;
+
+  if (status) {
+    border = {
+      color: STATUS_MAP[status].color,
+      size: STATUS_MAP[status].borderSize || 'small',
+    };
+    StatusIcon = STATUS_MAP[status].icon;
+  }
 
   const dimension = useMemo(() => {
     if (count >= 2 * threshold) return '54px';
@@ -87,7 +90,9 @@ const Cluster = ({ cluster, ...rest }) => {
         {...rowClusterProps}
         {...rest}
       >
-        <StatusIcon color={STATUS_MAP[status].color} size="10px" />
+        {StatusIcon && (
+          <StatusIcon color={STATUS_MAP[status].color} size="10px" />
+        )}
         <StyledCount
           size={count >= 2 * threshold ? 'medium' : 'small'}
           color="text-strong"
