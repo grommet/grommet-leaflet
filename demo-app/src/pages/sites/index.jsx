@@ -2,14 +2,14 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Page, PageContent, PageHeader } from 'grommet';
 
-import { ReverseAnchor } from '../components';
+import { ReverseAnchor } from '../../components';
 
-const Devices = () => {
+const Sites = () => {
   return (
     <Page fill>
       <PageContent flex>
         <PageHeader
-          title="Devices"
+          title="Sites"
           parent={<ReverseAnchor as={Link} label="Home" to="/" />}
         />
         placeholder
@@ -18,4 +18,4 @@ const Devices = () => {
   );
 };
 
-export default Devices;
+export default Sites;

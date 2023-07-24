@@ -12,7 +12,7 @@ import {
 import { generateLocations, userLocation } from './utils/locations';
 import { ClusterPopup } from './ClusterPopup';
 
-function LocationsMap() {
+function POCMap() {
   const [geolocation, setGeolocation] = useState();
   const [locations, setLocations] = useState();
   const containerRef = useRef();
@@ -22,22 +22,24 @@ function LocationsMap() {
   useEffect(() => {
     userLocation().then(location => {
       setGeolocation(location);
-      setLocations(generateLocations(250, { center: location, radius: 6 }));
+      setLocations(generateLocations(25, { center: location, radius: 6 }));
     });
   }, []);
 
   return (
-    <Box ref={containerRef} flex background="background-contrast">
+    <Box
+      ref={containerRef}
+      flex="grow"
+      background="background-contrast"
+      height={{ min: 'medium' }}
+    >
       {geolocation && (
-        <Map
-          id="map"
-          ref={mapContainerRef}
-          center={geolocation}
-          zoom={6}
-          zoomControl={false}
-        >
+        <Map id="map" ref={mapContainerRef} center={geolocation}>
           <Controls locations={locations} />
-          <Marker position={geolocation} icon={<Pin />} />
+          <Marker
+            position={geolocation}
+            icon={<Grommet color="purple!" size="large" />}
+          />
           <MarkerCluster popup={cluster => <ClusterPopup cluster={cluster} />}>
             {locations.map((location, index) => (
               <Marker
@@ -53,4 +55,4 @@ function LocationsMap() {
   );
 }
 
-export default LocationsMap;
+export default POCMap;

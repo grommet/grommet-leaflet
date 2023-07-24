@@ -1,28 +1,45 @@
 import React from 'react';
 import { Avatar, Box, Button, Header, Nav, Text } from 'grommet';
-import { AppsRounded, HelpOption, Grommet, Notification } from 'grommet-icons';
+import {
+  AppsRounded,
+  HelpOption,
+  Grommet,
+  Notification,
+  Search,
+} from 'grommet-icons';
 import { Link } from 'react-router-dom';
 
 function GlobalHeader() {
   return (
-    <Header pad="small" border="bottom">
-      <Box direction="row" align="center" gap="small">
-        <Grommet />
+    <Header
+      background="background-front"
+      border={{ color: 'border-weak', side: 'bottom' }}
+      pad={{ horizontal: 'large', vertical: 'small' }}
+      sticky="scrollup"
+    >
+      <Box direction="row" align="center" gap="small" flex>
+        <Grommet color="purple!" />
         <Text>My Site</Text>
       </Box>
-      <Nav direction="row" justify="center">
-        <Button label="Dashboard" />
-        <Link to="/devices">
-          <Button label="Devices" />
-        </Link>
-        <Button label="Sites" />
-        <Button label="Settings" />
+      <Box flex />
+      <Nav direction="row" justify="center" gap="xxsmall">
+        <Button as={Link} label="Home" to="/" size="small" />
+        <Button as={Link} label="Devices" to="/devices" size="small" />
+        <Button as={Link} label="Sites" to="/sites" size="small" />
+        <Button label="Settings" size="small" />
       </Nav>
+      <Box flex />
       <Box direction="row" align="center" gap="small">
-        <Button icon={<Notification />} />
-        <Button icon={<HelpOption />} />
-        <Button icon={<AppsRounded />} />
-        <Avatar src="https://avatars.githubusercontent.com/u/11637956?v=4" />
+        <Box direction="row" align="center" gap="xxsmall">
+          <Button icon={<Search />} />
+          <Button icon={<Notification />} />
+          <Button icon={<HelpOption />} />
+          <Button icon={<AppsRounded />} />
+        </Box>
+        <Avatar
+          src="https://avatars.githubusercontent.com/u/11637956?v=4"
+          size="36px"
+        />
       </Box>
     </Header>
   );

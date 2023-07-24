@@ -1,8 +1,7 @@
 import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { Box, Grommet, Text } from 'grommet';
-import { hpe } from 'grommet-theme-hpe';
+import { Box, Grommet, Text, ThemeContext } from 'grommet';
 import { STATUS_MAP } from '../utils/status';
 
 const StyledBox = styled(Box)`
@@ -46,16 +45,20 @@ const getClusterStatus = childMarkers => {
 };
 
 const Cluster = ({ cluster, ...rest }) => {
+  const theme = React.useContext(ThemeContext);
   const count = cluster.getChildCount();
   const status = getClusterStatus(cluster.getAllChildMarkers());
 
   let border = {
-    color: 'border-strong',
+    color: '#000000B8',
     size: 'small',
   };
   let StatusIcon;
 
+  console.log(border);
+
   if (status) {
+    console.log(status);
     border = {
       color: STATUS_MAP[status].color,
       size: STATUS_MAP[status].borderSize || 'small',
@@ -78,7 +81,7 @@ const Cluster = ({ cluster, ...rest }) => {
       : {};
 
   return (
-    <Grommet theme={hpe} background="transparent">
+    <Grommet theme={theme} background="transparent">
       <StyledBox
         align="center"
         justify="center"
