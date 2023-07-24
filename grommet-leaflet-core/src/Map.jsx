@@ -12,13 +12,24 @@ const StyledMapContainer = styled(MapContainer)`
 `;
 
 const Map = forwardRef(
-  ({ center, children, scrollWheelZoom, zoom, ...rest }, ref) => {
+  (
+    {
+      center = [0, 0],
+      children,
+      scrollWheelZoom,
+      zoom = 1,
+      zoomControl = false,
+      ...rest
+    },
+    ref,
+  ) => {
     return (
       <StyledMapContainer
         center={center}
         ref={ref}
         scrollWheelZoom={scrollWheelZoom}
         zoom={zoom}
+        zoomControl={zoomControl}
         {...rest}
       >
         <TileLayer

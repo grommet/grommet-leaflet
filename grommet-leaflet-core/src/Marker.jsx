@@ -6,16 +6,25 @@ import {
   extendContext,
 } from '@react-leaflet/core';
 import L from 'leaflet';
+import { Grommet, ThemeContext } from 'grommet';
 import { Pin } from './markers';
 
 const createGrommetMarker = (
   { position, title, alt, icon: iconProp },
   context,
 ) => {
+  const theme = React.useContext(ThemeContext);
+
   const icon = L.divIcon({
     // 'grommet-marker' class prevents leaflet default divIcon styles
     className: 'grommet-marker',
-    html: ReactDOMServer.renderToString(iconProp || <Pin status="unknown" />),
+    html: ReactDOMServer.renderToString(
+      (
+        <Grommet theme={theme} background="transparent">
+          {iconProp}
+        </Grommet>
+      ) || <Pin status="unknown" />,
+    ),
   });
 
   const status = iconProp ? iconProp.props.status : 'unknown';
