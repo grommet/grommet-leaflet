@@ -19,11 +19,13 @@ const createGrommetMarker = (
     // 'grommet-marker' class prevents leaflet default divIcon styles
     className: 'grommet-marker',
     html: ReactDOMServer.renderToString(
-      (
+      iconProp ? (
         <Grommet theme={theme} background="transparent">
           {iconProp}
         </Grommet>
-      ) || <Pin status="unknown" />,
+      ) : (
+        <Pin />
+      ),
     ),
   });
 

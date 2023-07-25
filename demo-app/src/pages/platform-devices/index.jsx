@@ -45,7 +45,7 @@ const PlatformDevices = () => {
                           <Marker
                             key={device.properties.serial_number}
                             position={device.geometry.coordinates}
-                            icon={<Pin />}
+                            // icon={<Pin />}
                           />
                         ) : null;
                       })
