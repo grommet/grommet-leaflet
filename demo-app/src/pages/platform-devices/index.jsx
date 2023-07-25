@@ -1,11 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Box, Data, Page, PageContent, PageHeader } from 'grommet';
-import { Controls, GeoJSON, Map, Marker, Pin } from 'grommet-leaflet-core';
+import {
+  Controls,
+  GeoJSON,
+  Map,
+  Marker,
+  MarkerCluster,
+  Pin,
+} from 'grommet-leaflet-core';
 import { PageSection, ReverseAnchor } from '../../components';
 import devices from './data/1073-devices-customer.geojson.json';
-
-const modifedDevices = { ...devices, features: devices.features.slice(0, 3) };
 
 const PlatformDevices = () => {
   return (
@@ -22,18 +27,24 @@ const PlatformDevices = () => {
               height={{ min: 'medium' }}
               // skeleton
             >
-              <Map id="map">
-                {/* <Controls locations={modifedDevices} /> */}
-                {/* <GeoJSON data={modifedDevices} /> */}
-                {modifedDevices
-                  ? modifedDevices.features.map(device => {
-                      console.log(device.geometry.coordinates);
-                      <Marker
-                        position={device.geometry.coordinates}
-                        icon={<Pin />}
-                      />;
-                    })
-                  : null}
+              <Map id="map" zoomControl>
+                {/* <Controls
+                  locations={devices.features.map(feature => {})}
+                /> */}
+                {/* <GeoJSON data={devices} /> */}
+                <MarkerCluster popup={() => {}}>
+                  {devices
+                    ? devices.features.map(device => {
+                        return device.geometry.coordinates[0] ? (
+                          <Marker
+                            key={device.properties.serial_number}
+                            position={device.geometry.coordinates}
+                            icon={<Pin status="warning" />}
+                          />
+                        ) : null;
+                      })
+                    : null}
+                </MarkerCluster>
               </Map>
             </Box>
           </Data>
