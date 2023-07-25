@@ -5,23 +5,23 @@ import { Box, Button } from 'grommet';
 import { Add, Subtract, Globe } from 'grommet-icons';
 
 export const LocationBounds = ({ locations }) => {
-  const b = L.latLngBounds();
+  const bounds = L.latLngBounds();
 
-  // calculate the bounds of the locations
+  // features property indicates GeoJSON
   if (locations.features) {
     locations.features.forEach(location => {
-      b.extend([
-        location.geometry?.coordinates[1],
+      bounds.extend([
         location.geometry?.coordinates[0],
+        location.geometry?.coordinates[1],
       ]);
     });
   } else {
     locations.forEach(location => {
-      b.extend([location?.coord?.[0], location?.coord?.[1]]);
+      bounds.extend([location?.coord?.[0], location?.coord?.[1]]);
     });
   }
 
-  return b;
+  return bounds;
 };
 
 const Controls = ({ locations }) => {

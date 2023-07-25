@@ -28,9 +28,7 @@ const PlatformDevices = () => {
               // skeleton
             >
               <Map id="map" zoomControl>
-                {/* <Controls
-                  locations={devices.features.map(feature => {})}
-                /> */}
+                <Controls locations={devices} />
                 {/* <GeoJSON data={devices} /> */}
                 <MarkerCluster>
                   {devices
