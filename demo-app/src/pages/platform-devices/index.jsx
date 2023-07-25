@@ -27,7 +27,7 @@ const PlatformDevices = () => {
               height={{ min: 'medium' }}
               // skeleton
             >
-              <Map id="map" zoomControl>
+              <Map id="map">
                 <Controls locations={devices} />
                 {/* <GeoJSON data={devices} /> */}
                 <MarkerCluster>
