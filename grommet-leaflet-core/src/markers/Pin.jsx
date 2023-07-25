@@ -19,8 +19,9 @@ const StyledBox = styled(Box)`
   }
 `;
 
-const Pin = ({ status }) => {
+const Pin = ({ status = 'unknown' }) => {
   const theme = React.useContext(ThemeContext);
+
   const border = {
     color: STATUS_MAP[status].color,
     size: STATUS_MAP[status].borderSize || 'small',

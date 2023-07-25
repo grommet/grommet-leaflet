@@ -13,6 +13,14 @@ import { PageSection, ReverseAnchor } from '../../components';
 import devices from './data/1073-devices-customer.geojson.json';
 
 const PlatformDevices = () => {
+  const [loading, setLoading] = React.useState(true);
+
+  React.useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+  }, []);
+
   return (
     <Page fill>
       <PageContent flex>
@@ -25,7 +33,7 @@ const PlatformDevices = () => {
             <Box
               background="background-contrast"
               height={{ min: 'medium' }}
-              // skeleton
+              skeleton={loading}
             >
               <Map id="map">
                 <Controls locations={devices} />
@@ -37,7 +45,7 @@ const PlatformDevices = () => {
                           <Marker
                             key={device.properties.serial_number}
                             position={device.geometry.coordinates}
-                            icon={<Pin status="warning" />}
+                            icon={<Pin />}
                           />
                         ) : null;
                       })
