@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { Box, Grommet, Text, ThemeContext } from 'grommet';
+import { Box, Grommet, Paragraph, ThemeContext } from 'grommet';
 import { STATUS_MAP } from '../utils/status';
 
 const StyledBox = styled(Box)`
@@ -18,7 +18,7 @@ const StyledBox = styled(Box)`
   }
 `;
 
-const StyledCount = styled(Text)`
+const StyledCount = styled(Paragraph)`
   // multiplier of font-size, for tighter alignment
   line-height: 1rem;
 `;
@@ -92,6 +92,7 @@ const Cluster = ({ cluster, ...rest }) => {
           size={count >= 2 * threshold ? 'medium' : 'small'}
           color="text-strong"
           weight={500}
+          margin="none"
         >
           {formatCount(count)}
         </StyledCount>
