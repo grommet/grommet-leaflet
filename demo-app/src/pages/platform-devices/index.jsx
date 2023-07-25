@@ -32,7 +32,7 @@ const PlatformDevices = () => {
                   locations={devices.features.map(feature => {})}
                 /> */}
                 {/* <GeoJSON data={devices} /> */}
-                <MarkerCluster popup={() => {}}>
+                <MarkerCluster>
                   {devices
                     ? devices.features.map(device => {
                         return device.geometry.coordinates[0] ? (

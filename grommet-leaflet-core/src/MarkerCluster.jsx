@@ -13,13 +13,15 @@ const createMarkerClusterGroup = ({ popup: popupProp, ...rest }, context) => {
   const markerClusterGroup = new L.MarkerClusterGroup({
     zoomToBoundsOnClick: false,
     iconCreateFunction: cluster => {
-      const popup = cluster.bindPopup(
-        ReactDOMServer.renderToString(<Popup>{popupProp(cluster)}</Popup>),
-      );
+      if (popupProp) {
+        const popup = cluster.bindPopup(
+          ReactDOMServer.renderToString(<Popup>{popupProp(cluster)}</Popup>),
+        );
 
-      cluster.on('click', () => {
-        popup.openPopup();
-      });
+        cluster.on('click', () => {
+          popup.openPopup();
+        });
+      }
 
       return L.divIcon({
         // 'grommet-cluster-group' class prevents leaflet default divIcon styles
