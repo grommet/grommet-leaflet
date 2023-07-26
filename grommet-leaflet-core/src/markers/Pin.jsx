@@ -11,6 +11,7 @@ const StyledBox = styled(Box)`
   transform: rotate(45deg) translateX(-35%);
   &:hover {
     transform: rotate(45deg) translateX(-35%) scale(1.1);
+    transition: transform 0.4s;
   }
 `;
 
