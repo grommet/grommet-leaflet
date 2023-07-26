@@ -1,4 +1,4 @@
-const statuses = ['good', 'warning', 'critical', undefined];
+const statuses = ['good', 'warning', 'critical'];
 
 // get user location
 export function userLocation() {

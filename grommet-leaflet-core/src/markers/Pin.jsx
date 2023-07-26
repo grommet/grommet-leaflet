@@ -10,13 +10,14 @@ const StyledBox = styled(Box)`
   transform: rotate(45deg) translateX(-35%);
   &:hover {
     transform: rotate(45deg) translateX(-35%) scale(1.1);
+    transition: transform 0.4s;
   }
 `;
 
 const Pin = ({ status }) => {
   const theme = React.useContext(ThemeContext);
   let border = {
-    color: theme.global.colors['border-strong'],
+    color: '#000000B8',
     size: 'small',
   };
   let StatusIcon;

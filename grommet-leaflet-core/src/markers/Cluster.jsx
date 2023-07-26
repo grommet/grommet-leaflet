@@ -8,7 +8,8 @@ const StyledBox = styled(Box)`
   // translate to re-align with leaflet div
   transform: translateX(-35%);
   &:hover {
-    transform: translateX(-35%) scale(1.2);
+    transform: translateX(-35%) scale(1.1);
+    transition: transform 0.4s;
   }
 `;
 
