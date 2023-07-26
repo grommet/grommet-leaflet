@@ -6,7 +6,7 @@ import {
   extendContext,
 } from '@react-leaflet/core';
 import L from 'leaflet';
-import { Grommet, ThemeContext } from 'grommet';
+import { ThemeContext } from 'grommet';
 import { Pin } from './markers';
 
 const createGrommetMarker = (
@@ -19,16 +19,14 @@ const createGrommetMarker = (
     // 'grommet-marker' class prevents leaflet default divIcon styles
     className: 'grommet-marker',
     html: ReactDOMServer.renderToString(
-      (
-        <Grommet theme={theme} background="transparent">
-          {iconProp}
-        </Grommet>
-      ) || <Pin status="unknown" />,
+      <ThemeContext.Provider value={theme}>
+        {iconProp || <Pin />}
+      </ThemeContext.Provider>,
     ),
   });
 
-  const status = iconProp ? iconProp.props.status : 'unknown';
-  const options = { title, alt, icon, status };
+  const kind = iconProp ? iconProp.props.kind : 'default';
+  const options = { title, alt, icon, kind };
   const marker = new L.Marker(position, options);
   return createElementObject(
     marker,
