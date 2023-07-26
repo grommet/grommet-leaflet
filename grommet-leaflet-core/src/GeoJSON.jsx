@@ -5,8 +5,10 @@ import L from 'leaflet';
 import { Pin } from './markers';
 
 const GrommetGeoJSON = ({ data, ...rest }) => {
-  const pointToLayer = (feature, latlng) =>
-    L.marker(latlng, {
+  const pointToLayer = (feature, latlng) => {
+    const { coordinates } = feature.geometry;
+
+    return L.marker(L.latLng(coordinates[0], coordinates[1]), {
       icon: L.divIcon({
         // 'grommet-marker' class prevents leaflet default divIcon styles
         className: 'grommet-marker',
@@ -15,6 +17,7 @@ const GrommetGeoJSON = ({ data, ...rest }) => {
         ),
       }),
     });
+  };
 
   return <GeoJSON data={data} pointToLayer={pointToLayer} {...rest} />;
 };
