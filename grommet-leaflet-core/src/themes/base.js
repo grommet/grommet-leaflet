@@ -33,9 +33,7 @@ const base = {
         },
         label: {
           // any text props
-          color: 'text-strong',
           size: 'small',
-          weight: 500,
         },
       },
       medium: {
@@ -46,7 +44,9 @@ const base = {
           width: { min: '48px', max: '48px' },
         },
         label: {
+          color: 'text-strong',
           size: 'medium',
+          weight: 500,
         },
       },
       large: {

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { ThemeContext } from 'styled-components';
 import { Box, Text } from 'grommet';
-import { deepMerge } from 'grommet/utils';
+import { normalizeTheme } from '../utils';
 
 const StyledContainer = styled(Box)`
   // translate to re-align with leaflet div
@@ -27,29 +27,22 @@ const Cluster = ({
   ...rest
 }) => {
   const theme = React.useContext(ThemeContext);
+  const normalizedTheme = normalizeTheme([
+    theme?.map?.cluster?.default,
+    theme?.map?.cluster?.[kind],
+    theme?.map?.cluster?.size?.medium,
+    theme?.map?.cluster?.size?.[size],
+  ]);
+
   const count = cluster.getChildCount();
 
   const icon = iconProp || theme?.map?.cluster?.[kind]?.icon;
   const label = labelProp || count;
 
-  // TO DO should we be deepMerging all of these?
   return (
-    <StyledContainer
-      {...deepMerge(
-        theme?.map?.cluster?.default?.container,
-        theme?.map?.cluster?.[kind]?.container,
-      )}
-      {...theme?.map?.cluster?.size?.small?.container}
-      {...theme?.map?.cluster?.size?.[size]?.container}
-      {...rest}
-    >
+    <StyledContainer {...normalizedTheme?.container} {...rest}>
       {icon}
-      <StyledLabel
-        {...theme?.map?.cluster?.size?.small?.label}
-        {...theme?.map?.cluster?.size?.[size]?.label}
-      >
-        {label}
-      </StyledLabel>
+      <StyledLabel {...normalizedTheme?.label}>{label}</StyledLabel>
     </StyledContainer>
   );
 };

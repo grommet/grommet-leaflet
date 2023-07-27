@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Box, ThemeContext } from 'grommet';
-import { deepMerge } from 'grommet/utils';
+import { normalizeTheme } from '../utils';
 
 const StyledBox = styled(Box)`
   // to create the pin shape
@@ -17,10 +17,10 @@ const StyledBox = styled(Box)`
 
 const Pin = ({ kind = 'default' }) => {
   const theme = React.useContext(ThemeContext);
-  const pinTheme = deepMerge(
+  const normalizedTheme = normalizeTheme([
     theme?.map?.pin?.default?.container,
     theme?.map?.pin?.[kind]?.container,
-  );
+  ]);
 
   let icon = theme?.map?.pin?.[kind]?.icon;
   if (icon) {
@@ -31,7 +31,7 @@ const Pin = ({ kind = 'default' }) => {
     });
   }
 
-  return <StyledBox {...pinTheme}>{icon}</StyledBox>;
+  return <StyledBox {...normalizedTheme}>{icon}</StyledBox>;
 };
 
 Pin.propTypes = {
