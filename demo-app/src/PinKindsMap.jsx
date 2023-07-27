@@ -3,62 +3,15 @@ import { Box } from 'grommet';
 import { Grommet } from 'grommet-icons';
 import {
   Controls,
-  Cluster,
   Map,
   Marker,
   MarkerCluster,
   Pin,
 } from 'grommet-leaflet-core';
-import { Cafeteria, Cart, Shop, AidOption, Java } from 'grommet-icons';
+import { Java } from 'grommet-icons';
 import { userLocation } from './utils/locations';
 import data from './data/sanfrancisco.json';
-
-const markerKinds = {
-  default: {
-    container: {
-      border: {
-        color: 'border-strong',
-      },
-    },
-  },
-  restaurant: {
-    container: {
-      background: 'orange',
-      border: { color: 'orange' },
-    },
-    icon: <Cafeteria color="text-strong" size="small" />,
-  },
-  hospital: {
-    container: {
-      background: 'red',
-      border: { color: 'red' },
-    },
-    icon: <AidOption color="text-strong" size="small" />,
-  },
-  grocery: {
-    container: {
-      background: 'blue',
-      border: { color: 'blue' },
-    },
-    icon: <Cart color="text-strong" size="small" />,
-  },
-  retail: {
-    container: {
-      background: 'blue',
-      border: { color: 'blue' },
-    },
-    icon: <Shop color="text-strong" size="small" />,
-  },
-};
-
-const genericMap = {
-  pin: {
-    ...markerKinds,
-  },
-  cluster: {
-    ...markerKinds,
-  },
-};
+import { generic } from './themes';
 
 const CoffeePin = () => (
   <Box
@@ -98,7 +51,7 @@ function PinKindsMap() {
           id="map"
           ref={mapContainerRef}
           center={geolocation}
-          theme={genericMap}
+          theme={generic}
         >
           <Controls locations={data} />
           <Marker
@@ -118,6 +71,7 @@ function PinKindsMap() {
                     <Pin kind={feature?.grommet?.kind} />
                   )
                 }
+                popup={<Box>{feature?.properties?.name}</Box>}
               />
             ))}
           </MarkerCluster>

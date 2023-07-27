@@ -26,7 +26,7 @@ export const LocationBounds = ({ locations }) => {
 
 const Controls = ({ locations }) => {
   const map = useMap();
-  const bounds = locations ? LocationBounds({ locations }) : undefined;
+  const bounds = locations && LocationBounds({ locations });
 
   // on mount, zoom to the bounds of the locations
   if (bounds) {
@@ -60,7 +60,7 @@ const Controls = ({ locations }) => {
               side: 'top',
             }}
           >
-            {locations && (
+            {bounds && (
               <Button
                 a11yTitle="Zoom to data"
                 icon={<Globe />}

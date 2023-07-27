@@ -23,7 +23,7 @@ const Cluster = ({
   kind = 'default',
   icon: iconProp,
   label: labelProp,
-  size = 'small',
+  size = 'medium',
   ...rest
 }) => {
   const theme = React.useContext(ThemeContext);

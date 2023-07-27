@@ -7,10 +7,10 @@ import {
 } from '@react-leaflet/core';
 import L from 'leaflet';
 import { ThemeContext } from 'grommet';
-import { Pin } from './markers';
+import { Pin, Popup } from './markers';
 
 const createGrommetMarker = (
-  { position, title, alt, icon: iconProp },
+  { position, title, alt, icon: iconProp, popup: popupProp },
   context,
 ) => {
   const theme = React.useContext(ThemeContext);
@@ -25,9 +25,24 @@ const createGrommetMarker = (
     ),
   });
 
-  const kind = iconProp ? iconProp.props.kind : 'default';
+  const kind = iconProp?.props?.kind;
   const options = { title, alt, icon, kind };
   const marker = new L.Marker(position, options);
+
+  if (popupProp) {
+    const popup = marker.bindPopup(
+      ReactDOMServer.renderToString(
+        <ThemeContext.Provider value={theme}>
+          <Popup>{popupProp}</Popup>
+        </ThemeContext.Provider>,
+      ),
+    );
+
+    marker.on('click', () => {
+      popup.openPopup();
+    });
+  }
+
   return createElementObject(
     marker,
     extendContext(context, { overlayContainer: marker }),
