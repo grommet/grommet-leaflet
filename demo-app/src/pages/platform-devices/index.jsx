@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import {
   Box,
@@ -7,16 +7,13 @@ import {
   Page,
   PageContent,
   PageHeader,
+  List,
+  DataTable,
+  DataContext,
 } from 'grommet';
-import {
-  Controls,
-  GeoJSON,
-  Map,
-  Marker,
-  MarkerCluster,
-} from 'grommet-leaflet-core';
 import { PageSection, ReverseAnchor } from '../../components';
 import devices from './data/1073-devices-customer.geojson.json';
+import { DevicesMap } from './DevicesMap/DevicesMap';
 
 const devicesWithLocation = {
   ...devices,
@@ -37,6 +34,7 @@ const devicesWithoutLocation = {
 };
 
 const PlatformDevices = () => {
+  const containerRef = React.useRef();
   const [loading, setLoading] = React.useState(true);
 
   React.useEffect(() => {
@@ -72,26 +70,16 @@ const PlatformDevices = () => {
                 />
               ) : null}
               <Box
+                ref={containerRef}
                 background="background-contrast"
                 height={{ min: 'medium' }}
+                round="small"
+                overflow="hidden"
                 skeleton={loading}
               >
-                <Map id="map">
-                  <Controls locations={devicesWithLocation} />
-                  {/* <GeoJSON data={devicesWithLocation} /> */}
-                  <MarkerCluster>
-                    {devicesWithLocation
-                      ? devicesWithLocation.features.map(device => {
-                          return device.geometry.coordinates[0] ? (
-                            <Marker
-                              key={device.properties.serial_number}
-                              position={device.geometry.coordinates}
-                            />
-                          ) : null;
-                        })
-                      : null}
-                  </MarkerCluster>
-                </Map>
+                {devicesWithLocation ? (
+                  <DevicesMap data={devicesWithLocation} />
+                ) : null}
               </Box>
             </Box>
           </Data>

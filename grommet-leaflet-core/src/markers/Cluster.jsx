@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { ThemeContext } from 'styled-components';
-import { Box, Text } from 'grommet';
+import { Box, Paragraph } from 'grommet';
 import { normalizeTheme } from '../utils';
 
 const StyledContainer = styled(Box)`
@@ -13,7 +13,7 @@ const StyledContainer = styled(Box)`
   }
 `;
 
-const StyledLabel = styled(Text)`
+const StyledLabel = styled(Paragraph)`
   // multiplier of font-size, for tighter alignment
   line-height: 1rem;
 `;
