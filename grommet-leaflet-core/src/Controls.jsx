@@ -26,10 +26,12 @@ export const LocationBounds = ({ locations }) => {
 
 const Controls = ({ locations }) => {
   const map = useMap();
-  const bounds = LocationBounds({ locations });
+  const bounds = locations && LocationBounds({ locations });
 
   // on mount, zoom to the bounds of the locations
-  map.flyToBounds(bounds, { duration: 1.5 });
+  if (bounds) {
+    map.flyToBounds(bounds, { duration: 1.5 });
+  }
 
   return (
     // css classes are coming from https://github.com/Leaflet/Leaflet/blob/main/dist/leaflet.css
@@ -58,7 +60,7 @@ const Controls = ({ locations }) => {
               side: 'top',
             }}
           >
-            {locations && (
+            {bounds && (
               <Button
                 a11yTitle="Zoom to data"
                 icon={<Globe />}
