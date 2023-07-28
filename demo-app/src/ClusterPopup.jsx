@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { ThemeContext } from 'styled-components';
 import PropTypes from 'prop-types';
 import { Box, Text } from 'grommet';
-import { getStatusCounts, STATUS_MAP } from 'grommet-leaflet-core';
+import { getStatusCounts, STATUS_MAP } from './utils/status';
 
 export const ClusterPopup = ({ cluster }) => {
+  const theme = useContext(ThemeContext);
   const statusCounts = getStatusCounts(cluster.getAllChildMarkers());
 
   return (
@@ -18,10 +20,10 @@ export const ClusterPopup = ({ cluster }) => {
         </Text>
       </Text>
       {Object.entries(statusCounts).map(([key, value]) => {
-        const StatusIcon = STATUS_MAP[key].icon;
+        const icon = theme?.map?.pin?.[key]?.icon;
         return value > 0 ? (
           <Box key={key} align="center" direction="row" gap="xsmall">
-            <StatusIcon color={STATUS_MAP[key].color} size="small" />
+            {icon}
             <Text color="text-strong" size="xsmall">
               {value} {STATUS_MAP[key].state}
             </Text>
