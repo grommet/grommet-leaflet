@@ -11,7 +11,7 @@ import {
 } from 'grommet-leaflet-core';
 
 import { userLocation } from '../../utils/locations';
-import { generateArubaLocations } from '../../utils/ArubaData';
+import { generateArubaLocations } from './ArubaData';
 import { ClusterPopup } from '../../ClusterPopup';
 import { ArubaPopup } from './ArubaPopup';
 import { hpeLeaflet } from '../../themes';

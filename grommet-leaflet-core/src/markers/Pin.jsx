@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { Box, Text, ThemeContext } from 'grommet';
+import { Box, ThemeContext } from 'grommet';
 import { normalizeTheme } from '../utils';
 
 const StyledBox = styled(Box)`
@@ -18,6 +18,8 @@ const StyledBox = styled(Box)`
 const StyledContent = styled(Box)`
   // multiplier of font-size, for tighter alignment
   line-height: 1rem;
+  // style needed to offset for rotation of location pin so
+  // icon is vertical
   transform: rotate(-45deg);
 `;
 

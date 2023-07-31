@@ -6,7 +6,6 @@ import {
   extendContext,
 } from '@react-leaflet/core';
 import L from 'leaflet';
-
 import { ThemeContext } from 'grommet';
 import { Pin, Popup } from './markers';
 
