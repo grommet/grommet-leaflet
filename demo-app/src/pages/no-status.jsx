@@ -7,7 +7,11 @@ import {
   MarkerCluster,
   Pin,
 } from 'grommet-leaflet-core';
-import { generateLocations, userLocation } from '../utils/locations';
+import {
+  formatLocationsToLatLng,
+  generateLocations,
+  userLocation,
+} from '../utils/locations';
 import { ClusterPopup } from '../ClusterPopup';
 
 const NoStatus = () => {
@@ -35,7 +39,7 @@ const NoStatus = () => {
         >
           {geolocation && (
             <Map id="map" ref={mapContainerRef} center={geolocation}>
-              <Controls locations={locations} />
+              <Controls locations={formatLocationsToLatLng(locations)} />
               <MarkerCluster
                 popup={cluster => <ClusterPopup cluster={cluster} />}
               >
