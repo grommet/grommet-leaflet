@@ -1,19 +1,24 @@
 import React from 'react';
 import { useMap } from 'react-leaflet';
+import L from 'leaflet';
 import { Box, Button } from 'grommet';
 import { Add, Subtract, Globe } from 'grommet-icons';
 
-export const LocationBounds = ({ locations }) => {
+export const LocationBounds = ({ locations, locationsKey }) => {
   if (!locations) return undefined;
 
   const b = L.latLngBounds();
 
   // calculate the bounds of the locations
-  if (locations.features) {
+  if (locationsKey) {
+    locations.forEach(location => {
+      b.extend([location?.[locationsKey]?.[0], location?.[locationsKey]?.[1]]);
+    });
+  } else if (locations.features) {
     locations.features.forEach(location => {
       b.extend([
-        location.geometry?.coordinates[1],
         location.geometry?.coordinates[0],
+        location.geometry?.coordinates[1],
       ]);
     });
   } else {
@@ -25,9 +30,14 @@ export const LocationBounds = ({ locations }) => {
   return b;
 };
 
-export const Controls = ({ bounds: boundsProp, locations }) => {
+const Controls = ({ locations, locationsKey }) => {
   const map = useMap();
-  const bounds = boundsProp || LocationBounds({ locations });
+  const bounds = locations && LocationBounds({ locations, locationsKey });
+
+  // on mount, zoom to the bounds of the locations
+  if (bounds) {
+    map.flyToBounds(bounds, { duration: 1.5 });
+  }
 
   return (
     // css classes are coming from https://github.com/Leaflet/Leaflet/blob/main/dist/leaflet.css
@@ -72,3 +82,5 @@ export const Controls = ({ bounds: boundsProp, locations }) => {
     </Box>
   );
 };
+
+export { Controls };

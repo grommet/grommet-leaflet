@@ -6,21 +6,43 @@ import {
   extendContext,
 } from '@react-leaflet/core';
 import L from 'leaflet';
-import { Pin } from './markers';
+import { ThemeContext } from 'grommet';
+import { Pin, Popup } from './markers';
 
 const createGrommetMarker = (
-  { position, title, alt, icon: iconProp },
+  { position, title, alt, icon: iconProp, popup: popupProp },
   context,
 ) => {
+  const theme = React.useContext(ThemeContext);
+
   const icon = L.divIcon({
     // 'grommet-marker' class prevents leaflet default divIcon styles
     className: 'grommet-marker',
-    html: ReactDOMServer.renderToString(iconProp || <Pin status="unknown" />),
+    html: ReactDOMServer.renderToString(
+      <ThemeContext.Provider value={theme}>
+        {iconProp || <Pin />}
+      </ThemeContext.Provider>,
+    ),
   });
 
-  const status = iconProp ? iconProp.props.status : 'unknown';
-  const options = { title, alt, icon, status };
+  const kind = iconProp?.props?.kind;
+  const options = { title, alt, icon, kind };
   const marker = new L.Marker(position, options);
+
+  if (popupProp) {
+    const popup = marker.bindPopup(
+      ReactDOMServer.renderToString(
+        <ThemeContext.Provider value={theme}>
+          <Popup>{popupProp}</Popup>
+        </ThemeContext.Provider>,
+      ),
+    );
+
+    marker.on('click', () => {
+      popup.openPopup();
+    });
+  }
+
   return createElementObject(
     marker,
     extendContext(context, { overlayContainer: marker }),

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Box, Text } from 'grommet';
-import { getStatusCounts } from 'grommet-leaflet-core';
+import { getStatusCounts } from '../../utils/status';
 import { Server, StatusCriticalSmall } from 'grommet-icons';
 import { TextEmphasis } from '../shared';
 import messages from '../../utils/messages.json';

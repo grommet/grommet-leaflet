@@ -1,16 +1,14 @@
 import React from 'react';
-import { Anchor, Page, PageContent, PageHeader, Footer } from 'grommet';
-import LocationsMap from '../LocationsMap';
+import { Anchor, Page, PageContent, PageHeader, Footer, Grid } from 'grommet';
+import POCMap from '../POCMap';
 
 const Index = () => {
   return (
-    <Page kind="full" fill>
+    <Page fill>
       <PageContent flex>
-        <PageHeader title="Map" />
-        <LocationsMap />
-        <Footer pad="small">
-          <Anchor href="">grommet-leaflet GitHub repository</Anchor>
-        </Footer>
+        <PageHeader title="Acme, Inc." />
+        <POCMap />
+        <Grid></Grid>
       </PageContent>
     </Page>
   );

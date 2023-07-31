@@ -3,6 +3,7 @@
 /* source code for leaflet css: https://github.com/Leaflet/Leaflet/blob/main/dist/leaflet.css */
 .leaflet-container {
 	font-family: "Metric", Arial, Helvetica, sans-serif;
+    z-index: 19;
 }
 .leaflet-popup-content-wrapper {
     background-color: transparent;
@@ -26,7 +27,7 @@
     padding: 0px;
     box-shadow: none;
 }
-/* Ensure these are less than HPE theme for Drop and Layer z-index */
+/* Ensure these are less than base theme for Drop and Layer z-index */
 .leaflet-pane {
     z-index: 90;
 }

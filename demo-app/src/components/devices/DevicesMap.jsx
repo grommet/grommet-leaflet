@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Box } from 'grommet';
 import { Grommet } from 'grommet-icons';
 import {
+  Cluster,
   Controls,
   Map,
   Marker,
@@ -10,8 +11,10 @@ import {
 } from 'grommet-leaflet-core';
 
 import { userLocation } from '../../utils/locations';
+import { getClusterSize, getClusterStatus } from '../../utils/status';
 import { DevicesClusterPopup } from './DevicesClusterPopup';
 import data from '../../utils/devices.json';
+import { hpeLeaflet } from '../../themes';
 
 export const DevicesMap = () => {
   const [geolocation, setGeolocation] = useState();
@@ -40,11 +43,21 @@ export const DevicesMap = () => {
           center={geolocation}
           zoom={6}
           zoomControl={false}
+          theme={hpeLeaflet}
         >
-          <Controls bounds={bounds} />
+          <Controls
+            bounds={bounds}
+            locations={servers}
+            locationsKey="location"
+          />
           <Marker position={geolocation} icon={<Grommet />} />
           <MarkerCluster
             popup={cluster => <DevicesClusterPopup cluster={cluster} />}
+            icon={cluster => {
+              const kind = getClusterStatus(cluster.getAllChildMarkers());
+              const size = getClusterSize(cluster);
+              return <Cluster kind={kind} size={size} />;
+            }}
           >
             {servers.map((server, index) => {
               let status = server?.hardware?.health?.summary?.toLowerCase();
@@ -54,7 +67,7 @@ export const DevicesMap = () => {
                 <Marker
                   key={index}
                   position={server?.location}
-                  icon={<Pin status={status} />}
+                  icon={<Pin kind={status} />}
                 />
               );
             })}

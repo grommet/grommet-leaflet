@@ -16,12 +16,13 @@ import {
   ResponsiveContext,
   Toolbar,
 } from 'grommet';
-import { LinkNext, Previous } from 'grommet-icons';
+import { LinkNext } from 'grommet-icons';
 import {
   Container,
   DevicesMap,
   DeviceGroups,
   RecentActivity,
+  ReverseAnchor,
 } from '../components';
 import data from '../utils/devices.json';
 
@@ -33,11 +34,7 @@ const Devices = () => {
       <PageContent>
         <PageHeader
           title="Devices"
-          parent={
-            <Link to="/">
-              <Anchor label="Dashboard" icon={<Previous />} />
-            </Link>
-          }
+          parent={<ReverseAnchor as={Link} label="Home" to="/" />}
         />
         <Grid
           columns={

@@ -1,22 +1,11 @@
-import React from 'react';
-import { Box, Grommet } from 'grommet';
-import { hpe } from 'grommet-theme-hpe';
+import React, { useContext } from 'react';
+import { ThemeContext } from 'styled-components';
+import { Box } from 'grommet';
 import '../grommet-leaflet-reset.css';
 
 const Popup = ({ ...rest }) => {
-  return (
-    <Grommet theme={hpe} background="transparent">
-      <Box
-        background="background-front"
-        border={{ color: 'border-weak', size: 'xsmall' }}
-        gap="xsmall"
-        margin="none"
-        pad="small"
-        round="xsmall"
-        {...rest}
-      />
-    </Grommet>
-  );
+  const theme = useContext(ThemeContext);
+  return <Box {...theme?.map?.popup} {...rest} />;
 };
 
 export { Popup };
