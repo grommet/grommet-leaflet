@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Box } from 'grommet';
+import { Box, Text } from 'grommet';
 import { Grommet } from 'grommet-icons';
 import {
+  Cluster,
   Controls,
   Map,
   Marker,
@@ -13,6 +14,8 @@ import { userLocation } from '../../utils/locations';
 import { generateArubaLocations } from '../../utils/ArubaData';
 import { ClusterPopup } from '../../ClusterPopup';
 import { ArubaPopup } from './ArubaPopup';
+import { hpeLeaflet } from '../../themes';
+import { getClusterStatus, getClusterSize } from '../../utils/status';
 
 function ArubaMap() {
   const [geolocation, setGeolocation] = useState();
@@ -37,12 +40,20 @@ function ArubaMap() {
           center={geolocation}
           zoom={6}
           zoomControl={false}
+          theme={hpeLeaflet}
         >
           <Controls locations={locations} />
           <Marker position={geolocation} icon={<Grommet />} />
-          <MarkerCluster popup={cluster => <ClusterPopup cluster={cluster} />}>
+          <MarkerCluster
+            popup={cluster => <ClusterPopup cluster={cluster} />}
+            icon={cluster => {
+              const kind = getClusterStatus(cluster.getAllChildMarkers());
+              const size = getClusterSize(cluster);
+
+              return <Cluster kind={kind} size={size} />;
+            }}
+          >
             {locations.map((location, index) => {
-              console.log(location.status.good);
               const total =
                 location.status.critical +
                 location.status.warning +
@@ -58,7 +69,21 @@ function ArubaMap() {
                   key={index}
                   position={location?.coord}
                   icon={
-                    <Pin status={status} text={location?.type.slice(0, 1)} />
+                    <Pin
+                      kind={status}
+                      text={
+                        <Text
+                          alignSelf="center"
+                          size="xsmall"
+                          color="text-strong"
+                          weight={500}
+                        >
+                          {location?.type.slice(0, 1)}
+                        </Text>
+                      }
+                      height={{ min: '35px', max: '35px' }}
+                      width={{ min: '35px', max: '35px' }}
+                    />
                   }
                   popup={<ArubaPopup location={location} />}
                 />

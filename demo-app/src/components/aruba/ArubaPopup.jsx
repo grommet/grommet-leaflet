@@ -1,12 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { ThemeContext } from 'styled-components';
 import { Box, Text } from 'grommet';
-import { STATUS_MAP } from 'grommet-leaflet-core';
 
-const StatusSummary = ({ status, location }) => {
-  const StatusIcon = STATUS_MAP[status]?.icon;
+const StatusSummary = ({ theme, status, location }) => {
+  const icon = theme?.map?.pin?.[status]?.icon;
   return (
     <Box align="center" direction="row" gap="xsmall">
-      <StatusIcon color={STATUS_MAP[status].color} size="small" />
+      {icon}
       <Text color="text-strong" size="xsmall">
         {location.status[status]} {status}
       </Text>
@@ -15,6 +15,7 @@ const StatusSummary = ({ status, location }) => {
 };
 
 export const ArubaPopup = ({ location }) => {
+  const theme = useContext(ThemeContext);
   return (
     <Box gap="xsmall">
       <Text color="text-strong" weight={500}>
@@ -34,13 +35,13 @@ export const ArubaPopup = ({ location }) => {
       </Text>
 
       {location.status.critical !== 0 && (
-        <StatusSummary status="critical" location={location} />
+        <StatusSummary theme={theme} status="critical" location={location} />
       )}
       {location.status.warning !== 0 && (
-        <StatusSummary status="warning" location={location} />
+        <StatusSummary theme={theme} status="warning" location={location} />
       )}
       {location.status.good !== 0 && (
-        <StatusSummary status="good" location={location} />
+        <StatusSummary theme={theme} status="good" location={location} />
       )}
     </Box>
   );

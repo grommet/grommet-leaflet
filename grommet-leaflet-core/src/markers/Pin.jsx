@@ -1,8 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { Box, Grommet, Text } from 'grommet';
-import { hpe } from 'grommet-theme-hpe';
-import { STATUS_MAP } from '../utils/status';
+import { Box, Text, ThemeContext } from 'grommet';
+import { normalizeTheme } from '../utils';
 
 const StyledBox = styled(Box)`
   // to create the pin shape
@@ -10,72 +10,38 @@ const StyledBox = styled(Box)`
   // translate to re-align with leaflet div
   transform: rotate(45deg) translateX(-35%);
   &:hover {
-    // TO DO revisit "hover" color with designers. Use of
-    // "background-layer-overlay" feels strange semantically
-    border: ${props =>
-      `${
-        props.theme?.global?.borderSize?.[props.border.size] ||
-        props.border.size
-      } solid ${props.theme?.global?.colors?.['background-layer-overlay']}`};
+    transform: rotate(45deg) translateX(-35%) scale(1.1);
+    transition: transform 0.4s;
   }
 `;
-const PinContent = styled(Box)`
+
+const StyledContent = styled(Box)`
+  // multiplier of font-size, for tighter alignment
+  line-height: 1rem;
   transform: rotate(-45deg);
 `;
 
-const StyledText = styled(Text)`
-  // multiplier of font-size, for tighter alignment
-  line-height: 1rem;
-`;
+const Pin = ({ kind = 'default', text, ...rest }) => {
+  const theme = React.useContext(ThemeContext);
+  const normalizedTheme = normalizeTheme([
+    theme?.map?.pin?.default?.container,
+    theme?.map?.pin?.[kind]?.container,
+  ]);
 
-const Pin = ({ status, text }) => {
-  const border = {
-    color: STATUS_MAP[status].color,
-    size: STATUS_MAP[status].borderSize || 'small',
-  };
-  const StatusIcon = STATUS_MAP[status].icon;
-
-  const pinSize = text
-    ? { min: '35px', max: '35px' }
-    : { min: '25px', max: '25px' };
+  let icon = theme?.map?.pin?.[kind]?.icon;
 
   return (
-    <Grommet theme={hpe} background="transparent">
-      <StyledBox
-        background="background-front"
-        border={border}
-        elevation="medium"
-        flex={false}
-        round
-        align="center"
-        justify="center"
-        // TO DO revisit sizing with designers
-        width={pinSize}
-        height={pinSize}
-      >
-        {/* style needed to offset for rotation of location pin so 
-        triangle is vertical still */}
-        {/* TO DO revisit icon sizes with designers */}
-        <PinContent alignContent="center">
-          <StatusIcon
-            color={STATUS_MAP[status].color}
-            size={text ? '10px' : '13px'}
-          />
-          {text && (
-            <StyledText
-              color="text-strong"
-              weight={500}
-              alignSelf="center"
-              textAlign="center"
-              size="xsmall"
-            >
-              {text}
-            </StyledText>
-          )}
-        </PinContent>
-      </StyledBox>
-    </Grommet>
+    <StyledBox {...normalizedTheme} {...rest}>
+      <StyledContent alignContent="center">
+        {icon}
+        {text}
+      </StyledContent>
+    </StyledBox>
   );
+};
+
+Pin.propTypes = {
+  kind: PropTypes.string,
 };
 
 export { Pin };

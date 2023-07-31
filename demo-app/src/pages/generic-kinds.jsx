@@ -1,21 +1,22 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Page, PageContent, PageHeader } from 'grommet';
-
+import PinKindsMap from '../PinKindsMap';
 import { ReverseAnchor } from '../components';
 
-const Devices = () => {
+const GenericKinds = () => {
   return (
     <Page fill>
       <PageContent flex>
         <PageHeader
-          title="Devices"
+          title="Pin kinds"
+          subtitle="A demo of various pin kinds"
           parent={<ReverseAnchor as={Link} label="Home" to="/" />}
         />
-        placeholder
+        <PinKindsMap />
       </PageContent>
     </Page>
   );
 };
 
-export default Devices;
+export default GenericKinds;

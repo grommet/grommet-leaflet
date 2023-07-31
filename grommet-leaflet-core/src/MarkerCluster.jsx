@@ -1,4 +1,5 @@
 import React from 'react';
+import { ThemeContext } from 'styled-components';
 import {
   createElementObject,
   createPathComponent,
@@ -9,22 +10,43 @@ import 'leaflet.markercluster';
 import ReactDOMServer from 'react-dom/server';
 import { Cluster, Popup } from './markers';
 
-const createMarkerClusterGroup = ({ popup: popupProp, ...rest }, context) => {
+const createMarkerClusterGroup = (
+  { icon: iconProp, popup: popupProp, ...rest },
+  context,
+) => {
+  const theme = React.useContext(ThemeContext);
+
   const markerClusterGroup = new L.MarkerClusterGroup({
     zoomToBoundsOnClick: false,
     iconCreateFunction: cluster => {
-      const popup = cluster.bindPopup(
-        ReactDOMServer.renderToString(<Popup>{popupProp(cluster)}</Popup>),
-      );
+      if (popupProp) {
+        const popup = cluster.bindPopup(
+          ReactDOMServer.renderToString(
+            <ThemeContext.Provider value={theme}>
+              <Popup>{popupProp(cluster)}</Popup>
+            </ThemeContext.Provider>,
+          ),
+        );
 
-      cluster.on('click', () => {
-        popup.openPopup();
-      });
+        cluster.on('click', () => {
+          popup.openPopup();
+        });
+      }
 
       return L.divIcon({
         // 'grommet-cluster-group' class prevents leaflet default divIcon styles
         className: 'grommet-cluster-group',
-        html: ReactDOMServer.renderToString(<Cluster cluster={cluster} />),
+        html: ReactDOMServer.renderToString(
+          <ThemeContext.Provider value={theme}>
+            {iconProp ? (
+              React.cloneElement(iconProp(cluster), {
+                cluster,
+              })
+            ) : (
+              <Cluster cluster={cluster} />
+            )}
+          </ThemeContext.Provider>,
+        ),
       });
     },
     ...rest,
