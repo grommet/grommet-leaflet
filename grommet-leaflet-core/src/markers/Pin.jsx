@@ -34,7 +34,7 @@ const Pin = ({ kind = 'default', text, ...rest }) => {
 
   return (
     <StyledBox {...normalizedTheme} {...rest}>
-      <StyledContent alignContent="center">
+      <StyledContent>
         {icon}
         {text}
       </StyledContent>
