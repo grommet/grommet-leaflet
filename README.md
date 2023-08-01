@@ -14,7 +14,7 @@ In addition, it also supports the following props:
 
 | Prop    | Type | Notes |
 | -------- | ------- |---|
-| `theme`  | `object` | See [theme structure]() |
+| `theme`  | `object` | See [theme structure](#theme-structure) |
 
 ### Marker
 
@@ -28,7 +28,7 @@ In addition, it also supports the following props:
 
 #### Customizing the marker
 
-Marker will render whatever is passed to its `icon` prop. By default, `grommet-leaflet-core` will render this as `<Pin />`. However, this can be customized by passing a `Pin` with a specific `kind` defined by the theme (see [Pin]() for details) or a custom element all together.
+Marker will render whatever is passed to its `icon` prop. By default, `grommet-leaflet-core` will render this as `<Pin />`. However, this can be customized by passing a `Pin` with a specific `kind` defined by the theme (see [Pin](#pin) for details) or a custom element all together.
 
 ```
 <Marker icon={<Pin kind="critical" />} />
@@ -52,7 +52,7 @@ In addition, it also supports the following props:
 
 #### Customizing the cluster
 
-MarkerCluster will render whatever is passed to its `icon` prop. By default, `grommet-leaflet-core` will render this as `<Cluster />`. However, this can be customized by passing a `Cluster` with property overrides (see [Cluster]() for details) or a custom element all together.
+MarkerCluster will render whatever is passed to its `icon` prop. By default, `grommet-leaflet-core` will render this as `<Cluster />`. However, this can be customized by passing a `Cluster` with property overrides (see [Cluster](#cluster) for details) or a custom element all together.
 
 ```
 <MarkerCluster
@@ -79,7 +79,7 @@ Pin supports the following props:
 
 | Prop    | Type | Default value | Notes | 
 | -------- | ------- | --- | --- |
-| `kind`  | `string` | `default` | `kind` can be any key in `marker`. See [theme structure]() for details. |
+| `kind`  | `string` | `default` | `kind` can be any key in `marker`. See [theme structure](#theme-structure) for details. |
 
 #### Pin theming
 
@@ -93,8 +93,8 @@ Cluster supports the following props:
 
 | Prop    | Type | Default value | Notes | 
 | -------- | ------- | --- | --- |
-| `kind`  | `string` | `default` | `kind` can be any key in `cluster`. See [theme structure]() for details. |
-| `size`  | `string` | `medium` | `size` can be any key in `cluster.size`. See [theme structure]() for details. |
+| `kind`  | `string` | `default` | `kind` can be any key in `cluster`. See [theme structure](#theme-structure) for details. |
+| `size`  | `string` | `medium` | `size` can be any key in `cluster.size`. See [theme structure](#theme-structure) for details. |
 
 
 #### Cluster theming
@@ -107,7 +107,7 @@ Popup provides additional details about a cluster of locations or an individual 
 
 Popup servers as a [Box](https://v2.grommet.io/box) that wraps around whatever is passed to `popup` prop on Marker or MarkerCluster.
 
-The default styling for Popup is defined in [`base.js`]().
+The default styling for Popup is defined in [`base.js`](https://github.com/grommet/grommet-leaflet/blob/main/grommet-leaflet-core/src/themes/base.js).
 
 #### Popup theming
 
@@ -119,4 +119,89 @@ Popup styles can be customized in a Map `theme` in `theme.popup`.
 
 ### Theme structure
 
-To be filled in.
+The default styling for `grommet-leaflet-core` is defined in [`base.js`](https://github.com/grommet/grommet-leaflet/blob/main/grommet-leaflet-core/src/themes/base.js).
+
+In the theme structure below, `[kind]` can be any string and there can be any number of kinds defined for `pin` or `cluster`. Additionally, `[size]` can be any string and there cann be any number of sizes defined in `cluster.size`.
+
+```
+{
+   cluster: {
+      default: {
+         container: { // any Grommet Box props },
+         icon: Element, commonly an icon from grommet-icons,
+      },
+      [kind]: {
+         container: { // any Grommet Box props },
+         icon: Element, commonly an icon from grommet-icons,
+      },
+      size: {
+         small: {
+            container: { // any Grommet Box props },
+            label: { // any Grommet Text props },
+         },
+         medium: {
+            container: { // any Grommet Box props },
+            label: { // any Grommet Text props },
+         },
+         large: {
+            container: { // any Grommet Box props },
+            label: { // any Grommet Text props },
+         },
+         [size]: {
+            container: { // any Grommet Box props },
+            label: { // any Grommet Text props },
+         },
+      }
+   },
+   pin: {
+      default: {
+         container: { // any Grommet Box props },
+         icon: Element, commonly an icon from grommet-icons
+      },
+      [kind]: {
+         container: { // any Grommet Box props },
+         icon: Element, commonly an icon from grommet-icons
+      },
+   },
+   popup: { // any Grommet Box props }
+}
+```
+
+#### Example custom theme
+
+```
+const myTheme = {
+   cluster: {
+      size: {
+         large: {
+            container: { border: { color: 'blue', size: 'medium' } },
+            label: { size: 'xlarge', weight: 'bold' },
+         },
+      }
+   },
+   pin: {
+      retail: {
+         container: { background: 'blue' },
+         icon: <Shop />
+      },
+   },
+}
+```
+
+To use the `retail` Pin kind, your code could look like:
+
+```
+<Map theme={myTheme} ...>
+   <Marker icon={<Pin kind="retail" ... />}
+</Map>
+```
+
+To use the `large` Cluster size, your code could look like:
+
+```
+<Map theme={myTheme} ...>
+   <MarkerCluster icon={() => <Cluster size="large" ... />}>
+      ...
+   </MarkerCluster>
+</Map>
+```
