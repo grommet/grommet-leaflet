@@ -35,10 +35,7 @@ export function formatLocationsToLatLng(locations) {
 }
 
 export function findCenter(bounds) {
-  return [
-    (bounds['_northEast'].lat + bounds['_southWest'].lat) / 2,
-    (bounds['_northEast'].lng + bounds['_southWest'].lng) / 2,
-  ];
+  return [(bounds[0][0] + bounds[1][0]) / 2, (bounds[0][1] + bounds[1][1]) / 2];
 }
 
 export function findCenterOfGravity(locations) {
