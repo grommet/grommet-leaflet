@@ -5,8 +5,6 @@ import { Box, Button } from 'grommet';
 import { Add, Subtract, Globe } from 'grommet-icons';
 
 export const LocationBounds = ({ locations }) => {
-  if (!locations) return undefined;
-
   const b = L.latLngBounds();
 
   // calculate the bounds of the locations

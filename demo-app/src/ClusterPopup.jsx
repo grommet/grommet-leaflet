@@ -3,7 +3,7 @@ import { ThemeContext } from 'styled-components';
 import PropTypes from 'prop-types';
 import { Box, Text } from 'grommet';
 import { TextEmphasis } from './components';
-import { getStatusCounts, STATUS_MAP } from './utils/status';
+import { getStatusCounts, STATUS_MAP } from './utils';
 
 export const ClusterPopup = ({ cluster }) => {
   const theme = useContext(ThemeContext);

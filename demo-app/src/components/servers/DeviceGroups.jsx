@@ -2,7 +2,7 @@ import React from 'react';
 import { Card, CardBody, Grid, Heading, Paragraph, CardFooter } from 'grommet';
 import { StatusCriticalSmall } from 'grommet-icons';
 import { TextEmphasis } from '../shared';
-import data from '../../utils/devices.json';
+import data from '../../data/servers.json';
 import messages from '../../utils/messages.json';
 
 export const DeviceGroups = ({ max }) => (

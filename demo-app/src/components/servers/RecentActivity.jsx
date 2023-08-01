@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Button, Heading, Text } from 'grommet';
-import data from '../../utils/devices.json';
+import data from '../../data/servers.json';
 import { Next } from 'grommet-icons';
 import { ContentContainer, TextEmphasis } from '../shared';
 

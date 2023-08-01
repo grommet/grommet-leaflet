@@ -10,10 +10,9 @@ import {
   Pin,
 } from 'grommet-leaflet-core';
 
-import { userLocation } from '../../utils/locations';
-import { getClusterSize, getClusterStatus } from '../../utils/status';
+import { getClusterSize, getClusterStatus, userLocation } from '../../utils';
 import { ServersClusterPopup } from './ServersClusterPopup';
-import data from '../../utils/devices.json';
+import data from '../../data/servers.json';
 import { hpeLeaflet } from '../../themes';
 
 export const ServersMap = () => {

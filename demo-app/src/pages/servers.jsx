@@ -24,7 +24,7 @@ import {
   RecentActivity,
   ReverseAnchor,
 } from '../components';
-import data from '../utils/devices.json';
+import data from '../data/servers.json';
 
 const Servers = () => {
   const breakpoint = useContext(ResponsiveContext);
