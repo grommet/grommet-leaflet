@@ -12,17 +12,14 @@ import {
 
 import { userLocation } from '../../utils/locations';
 import { getClusterSize, getClusterStatus } from '../../utils/status';
-import { DevicesClusterPopup } from './DevicesClusterPopup';
+import { ServersClusterPopup } from './ServersClusterPopup';
 import data from '../../utils/devices.json';
 import { hpeLeaflet } from '../../themes';
 
-export const DevicesMap = () => {
+export const ServersMap = () => {
   const [geolocation, setGeolocation] = useState();
   const servers = data.servers.items;
-  const bounds = L.latLngBounds();
-  servers.forEach(server => {
-    bounds.extend([server?.location?.[0], server?.location?.[1]]);
-  });
+
   const containerRef = useRef();
   const mapContainerRef = useRef();
 
@@ -45,14 +42,10 @@ export const DevicesMap = () => {
           zoomControl={false}
           theme={hpeLeaflet}
         >
-          <Controls
-            bounds={bounds}
-            locations={servers}
-            locationsKey="location"
-          />
+          <Controls locations={servers.map(server => server.location)} />
           <Marker position={geolocation} icon={<Grommet />} />
           <MarkerCluster
-            popup={cluster => <DevicesClusterPopup cluster={cluster} />}
+            popup={cluster => <ServersClusterPopup cluster={cluster} />}
             icon={cluster => {
               const kind = getClusterStatus(cluster.getAllChildMarkers());
               const size = getClusterSize(cluster);

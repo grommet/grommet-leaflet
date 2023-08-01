@@ -9,9 +9,14 @@ import {
   MarkerCluster,
   Pin,
 } from 'grommet-leaflet-core';
-import { generateLocations, userLocation } from './utils/locations';
+import {
+  generateLocations,
+  formatLocationsToLatLng,
+  userLocation,
+  getClusterStatus,
+  getClusterSize,
+} from './utils';
 import { ClusterPopup } from './ClusterPopup';
-import { getClusterStatus, getClusterSize } from './utils/status';
 import { hpeLeaflet } from './themes';
 
 function POCMap() {
@@ -42,7 +47,7 @@ function POCMap() {
           center={geolocation}
           theme={hpeLeaflet}
         >
-          <Controls locations={locations} />
+          <Controls locations={formatLocationsToLatLng(locations)} />
           <Marker
             position={geolocation}
             icon={<Grommet color="purple!" size="large" />}

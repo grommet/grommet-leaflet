@@ -6,7 +6,7 @@ import { Server, StatusCriticalSmall } from 'grommet-icons';
 import { TextEmphasis } from '../shared';
 import messages from '../../utils/messages.json';
 
-export const DevicesClusterPopup = ({ cluster }) => {
+export const ServersClusterPopup = ({ cluster }) => {
   const childMarkers = cluster.getAllChildMarkers();
   const statusCounts = getStatusCounts(childMarkers);
 
@@ -36,7 +36,7 @@ export const DevicesClusterPopup = ({ cluster }) => {
   );
 };
 
-DevicesClusterPopup.propTypes = {
+ServersClusterPopup.propTypes = {
   cluster: PropTypes.shape({
     getAllChildMarkers: PropTypes.func,
   }),

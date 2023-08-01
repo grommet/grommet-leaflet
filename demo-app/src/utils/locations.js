@@ -30,6 +30,10 @@ export function generateLocations(n, options) {
   return locations;
 }
 
+export function formatLocationsToLatLng(locations) {
+  return locations?.map(location => location.coord);
+}
+
 export function findCenter(bounds) {
   return [
     (bounds['_northEast'].lat + bounds['_southWest'].lat) / 2,

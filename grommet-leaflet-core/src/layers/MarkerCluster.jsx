@@ -8,7 +8,7 @@ import {
 import L from 'leaflet';
 import 'leaflet.markercluster';
 import ReactDOMServer from 'react-dom/server';
-import { Cluster, Popup } from './markers';
+import { Cluster, Popup } from '.';
 
 const createMarkerClusterGroup = (
   { icon: iconProp, popup: popupProp, ...rest },
