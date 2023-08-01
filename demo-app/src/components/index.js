@@ -1,1 +1,1 @@
-export * from './ReverseAnchor';
+export * from './shared';

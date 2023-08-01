@@ -17,12 +17,14 @@ export const LocationBounds = ({ locations }) => {
     });
   } else {
     locations.forEach(location => {
-      b.extend([location?.coord?.[0], location?.coord?.[1]]);
+      b.extend([location?.[0], location?.[1]]);
     });
   }
 
   return b;
 };
+
+const flyToBoundsDuration = 1.5;
 
 const Controls = ({ locations }) => {
   const map = useMap();
@@ -30,7 +32,7 @@ const Controls = ({ locations }) => {
 
   // on mount, zoom to the bounds of the locations
   if (bounds) {
-    map.flyToBounds(bounds, { duration: 1.5 });
+    map.flyToBounds(bounds, { duration: flyToBoundsDuration });
   }
 
   return (
