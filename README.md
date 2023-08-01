@@ -6,6 +6,8 @@ Docs for `grommet-leaflet-core` components.
 
 ### Map
 
+Map component is responsible for creating the [Leaflet Map](https://leafletjs.com/reference.html#map) instance.
+
 Map supports all [Leaflet Map](https://leafletjs.com/reference.html#map) and [React Leaflet MapContainer](https://react-leaflet.js.org/docs/api-map/#mapcontainer) properties. 
 
 In addition, it also supports the following props:
