@@ -26,6 +26,10 @@ const NoStatus = () => {
     });
   }, []);
 
+  React.useEffect(() => {
+    console.log('locations', locations);
+  }, [locations]);
+
   return (
     <Page fill pad={{ bottom: 'xlarge' }}>
       <PageContent flex>
@@ -43,7 +47,11 @@ const NoStatus = () => {
           >
             {geolocation && (
               <Map id="map" ref={mapContainerRef} center={geolocation}>
-                <Controls locations={locations} />
+                {locations ? (
+                  <Controls
+                    locations={locations.map(location => location.coord)}
+                  />
+                ) : null}
                 <MarkerCluster
                   popup={cluster => <ClusterPopup cluster={cluster} />}
                 >
