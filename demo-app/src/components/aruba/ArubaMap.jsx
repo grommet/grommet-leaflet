@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Box, Text } from 'grommet';
+import { Box } from 'grommet';
 import { Grommet } from 'grommet-icons';
 import {
   Cluster,
@@ -10,9 +10,10 @@ import {
   Pin,
 } from 'grommet-leaflet-core';
 
-import { userLocation } from '../../utils/locations';
+import { userLocation, formatLocationsToLatLng } from '../../utils/locations';
 import { generateArubaLocations } from './ArubaData';
 import { ClusterPopup } from '../../ClusterPopup';
+import { ArubaPin } from './ArubaPin';
 import { ArubaPopup } from './ArubaPopup';
 import { hpeLeaflet } from '../../themes';
 import { getClusterStatus, getClusterSize } from '../../utils/status';
@@ -42,7 +43,7 @@ function ArubaMap() {
           zoomControl={false}
           theme={hpeLeaflet}
         >
-          <Controls locations={locations} />
+          <Controls locations={formatLocationsToLatLng(locations)} />
           <Marker position={geolocation} icon={<Grommet />} />
           <MarkerCluster
             popup={cluster => <ClusterPopup cluster={cluster} />}
@@ -69,21 +70,7 @@ function ArubaMap() {
                   key={index}
                   position={location?.coord}
                   icon={
-                    <Pin
-                      kind={status}
-                      text={
-                        <Text
-                          alignSelf="center"
-                          size="xsmall"
-                          color="text-strong"
-                          weight={500}
-                        >
-                          {location?.type.slice(0, 1)}
-                        </Text>
-                      }
-                      height={{ min: '35px', max: '35px' }}
-                      width={{ min: '35px', max: '35px' }}
-                    />
+                    <ArubaPin kind={status} type={location?.type.slice(0, 1)} />
                   }
                   popup={<ArubaPopup location={location} />}
                 />

@@ -15,15 +15,7 @@ const StyledBox = styled(Box)`
   }
 `;
 
-const StyledContent = styled(Box)`
-  // multiplier of font-size, for tighter alignment
-  line-height: 1rem;
-  // style needed to offset for rotation of location pin so
-  // icon is vertical
-  transform: rotate(-45deg);
-`;
-
-const Pin = ({ kind = 'default', text, ...rest }) => {
+const Pin = ({ kind = 'default' }) => {
   const theme = React.useContext(ThemeContext);
   const normalizedTheme = normalizeTheme([
     theme?.map?.pin?.default?.container,
@@ -31,15 +23,15 @@ const Pin = ({ kind = 'default', text, ...rest }) => {
   ]);
 
   let icon = theme?.map?.pin?.[kind]?.icon;
+  if (icon) {
+    icon = React.cloneElement(icon, {
+      // style needed to offset for rotation of location pin so
+      // icon is vertical
+      style: { transform: 'rotate(-45deg)' },
+    });
+  }
 
-  return (
-    <StyledBox {...normalizedTheme} {...rest}>
-      <StyledContent>
-        {icon}
-        {text}
-      </StyledContent>
-    </StyledBox>
-  );
+  return <StyledBox {...normalizedTheme}>{icon}</StyledBox>;
 };
 
 Pin.propTypes = {
