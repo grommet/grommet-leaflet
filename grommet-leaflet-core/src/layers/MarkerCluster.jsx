@@ -17,6 +17,7 @@ const createMarkerClusterGroup = (
   const theme = React.useContext(ThemeContext);
 
   const markerClusterGroup = new L.MarkerClusterGroup({
+    showCoverageOnHover: false,
     zoomToBoundsOnClick: false,
     iconCreateFunction: cluster => {
       if (popupProp) {
