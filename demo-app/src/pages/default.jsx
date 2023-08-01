@@ -43,7 +43,11 @@ const NoStatus = () => {
           >
             {geolocation && (
               <Map id="map" ref={mapContainerRef} center={geolocation}>
-                <Controls locations={locations} />
+                {locations ? (
+                  <Controls
+                    locations={locations.map(location => location.coord)}
+                  />
+                ) : null}
                 <MarkerCluster
                   popup={cluster => <ClusterPopup cluster={cluster} />}
                 >

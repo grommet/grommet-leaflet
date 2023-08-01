@@ -35,9 +35,6 @@ const Controls = ({ locations }) => {
     map.flyToBounds(bounds, { duration: flyToBoundsDuration });
   }
 
-  // on mount, zoom to the bounds of the locations
-  map.flyToBounds(bounds, { duration: 1.5 });
-
   return (
     // css classes are coming from https://github.com/Leaflet/Leaflet/blob/main/dist/leaflet.css
     <Box className="leaflet-bottom leaflet-right">
