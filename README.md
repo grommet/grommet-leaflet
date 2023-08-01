@@ -83,7 +83,7 @@ Pin styles can be customized in a Map `theme` in `theme.pin`.
 
 ### Cluster
 
-Cluster is used to render a cluster of locations and is passed to the `icon` prop on [MarkerCluster](#markercluster).
+Cluster is used to render a cluster of locations and is passed to the `icon` prop on [MarkerCluster](#markercluster). Cluster will render the number of markers contained in the cluster and an icon associated with the marker `kind` if an icon for that kind has been specified in the theme.
 
 Cluster supports the following props:
 
