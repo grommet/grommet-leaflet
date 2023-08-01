@@ -121,7 +121,7 @@ Popup styles can be customized in a Map `theme` in `theme.popup`.
 
 The default styling for `grommet-leaflet-core` is defined in [`base.js`](https://github.com/grommet/grommet-leaflet/blob/main/grommet-leaflet-core/src/themes/base.js).
 
-In the theme structure below, `[kind]` can be any string and there can be any number of kinds defined for `pin` or `cluster`. Additionally, `[size]` can be any string and there cann be any number of sizes defined in `cluster.size`.
+In the theme structure below, `[kind]` can be any string and there can be any number of kinds defined for `pin` or `cluster`. Additionally, `[size]` can be any string and there can be any number of sizes defined in `cluster.size`.
 
 ```
 {
