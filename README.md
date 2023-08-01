@@ -6,7 +6,9 @@ Docs for `grommet-leaflet-core` components.
 
 ### Map
 
-Map supports all [Leaflet Map properties](https://leafletjs.com/reference.html#map). In addition, it also supports the following props:
+Map supports all [Leaflet Map](https://leafletjs.com/reference.html#map) and [React Leaflet MapContainer](https://react-leaflet.js.org/docs/api-map/#mapcontainer) properties. 
+
+In addition, it also supports the following props:
 
 | Prop    | Type | Notes |
 | -------- | ------- |---|
