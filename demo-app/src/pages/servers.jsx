@@ -53,8 +53,8 @@ const Servers = () => {
                 </Heading>
                 <Anchor label="See all" icon={<LinkNext />} reverse />
               </Box>
+              <DeviceGroups max={4} />
             </Box>
-            <DeviceGroups max={4} />
           </ContentContainer>
           <RecentActivity />
         </Grid>
