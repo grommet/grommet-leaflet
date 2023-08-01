@@ -26,10 +26,6 @@ const NoStatus = () => {
     });
   }, []);
 
-  React.useEffect(() => {
-    console.log('locations', locations);
-  }, [locations]);
-
   return (
     <Page fill pad={{ bottom: 'xlarge' }}>
       <PageContent flex>
