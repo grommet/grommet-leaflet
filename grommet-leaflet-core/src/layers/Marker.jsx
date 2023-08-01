@@ -7,10 +7,10 @@ import {
 } from '@react-leaflet/core';
 import L from 'leaflet';
 import { ThemeContext } from 'grommet';
-import { Pin, Popup } from './markers';
+import { Pin, Popup } from '.';
 
 const createGrommetMarker = (
-  { position, title, alt, icon: iconProp, popup: popupProp },
+  { position, icon: iconProp, popup: popupProp, ...rest },
   context,
 ) => {
   const theme = React.useContext(ThemeContext);
@@ -26,7 +26,7 @@ const createGrommetMarker = (
   });
 
   const kind = iconProp?.props?.kind;
-  const options = { title, alt, icon, kind };
+  const options = { icon, kind, ...rest };
   const marker = new L.Marker(position, options);
 
   if (popupProp) {

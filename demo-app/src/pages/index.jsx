@@ -6,11 +6,11 @@ import {
   Button,
   Card,
   CardBody,
+  Grid,
   Heading,
   Page,
   PageContent,
   PageHeader,
-  Grid,
   Paragraph,
 } from 'grommet';
 import { ContentContainer } from '../components';
