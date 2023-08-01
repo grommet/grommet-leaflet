@@ -4,17 +4,13 @@ import L from 'leaflet';
 import { Box, Button } from 'grommet';
 import { Add, Subtract, Globe } from 'grommet-icons';
 
-export const LocationBounds = ({ locations, locationsKey }) => {
+export const LocationBounds = ({ locations }) => {
   if (!locations) return undefined;
 
   const b = L.latLngBounds();
 
   // calculate the bounds of the locations
-  if (locationsKey) {
-    locations.forEach(location => {
-      b.extend([location?.[locationsKey]?.[0], location?.[locationsKey]?.[1]]);
-    });
-  } else if (locations.features) {
+  if (locations.features) {
     locations.features.forEach(location => {
       b.extend([
         location.geometry?.coordinates[0],
@@ -34,7 +30,7 @@ const flyToBoundsDuration = 1.5;
 
 const Controls = ({ locations }) => {
   const map = useMap();
-  const bounds = locations && LocationBounds({ locations, locationsKey });
+  const bounds = locations && LocationBounds({ locations });
 
   // on mount, zoom to the bounds of the locations
   if (bounds) {
