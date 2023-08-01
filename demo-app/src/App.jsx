@@ -34,7 +34,7 @@ const router = routes.map(({ Element, ErrorBoundary, ...rest }) => ({
 
 const App = () => {
   return (
-    <Grommet theme={hpe} background="background-back" full="min">
+    <Grommet theme={hpe} background="background-back" full>
       <GlobalHeader />
       <Routes>
         {router.map((route, index) => (
