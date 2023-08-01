@@ -1,7 +1,7 @@
 import React, { forwardRef, useContext } from 'react';
 import { MapContainer, TileLayer } from 'react-leaflet';
 import styled, { ThemeContext } from 'styled-components';
-import { base } from './themes/base';
+import { base } from '../themes';
 import { deepMerge } from 'grommet/utils';
 
 const StyledMapContainer = styled(MapContainer)`
