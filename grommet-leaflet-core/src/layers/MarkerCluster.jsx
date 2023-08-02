@@ -60,8 +60,10 @@ const createMarkerClusterGroup = (
 
 const updateMarkerClusterGroup = (instance, props, prevProps) => {
   if (props.children !== prevProps.children) {
-    instance.clearLayers();
-    instance.addLayers(props.children);
+    // TO DO revisit proper approach to update marker cluster group.
+    // https://github.com/grommet/grommet-leaflet/issues/21
+    // instance.clearLayers();
+    // instance.addLayers(props.children);
   }
 };
 

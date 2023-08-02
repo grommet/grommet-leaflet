@@ -38,7 +38,7 @@ function POCMap() {
       ref={containerRef}
       flex="grow"
       background="background-contrast"
-      height={{ min: 'medium' }}
+      height="medium"
     >
       {geolocation && (
         <Map

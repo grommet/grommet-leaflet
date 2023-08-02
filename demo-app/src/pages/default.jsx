@@ -8,11 +8,11 @@ import {
   MarkerCluster,
   Pin,
 } from 'grommet-leaflet-core';
-import { generateLocations, userLocation } from '../utils/locations';
+import { generateLocations, userLocation } from '../utils';
 import { ClusterPopup } from '../ClusterPopup';
 import { ContentContainer, ReverseAnchor } from '../components';
 
-const NoStatus = () => {
+const Default = () => {
   const [geolocation, setGeolocation] = useState();
   const [locations, setLocations] = useState();
   const containerRef = useRef();
@@ -68,4 +68,4 @@ const NoStatus = () => {
   );
 };
 
-export default NoStatus;
+export default Default;

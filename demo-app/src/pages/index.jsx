@@ -39,7 +39,7 @@ const pages = [
   {
     title: 'Network',
     description: 'Demo of network health.',
-    href: '/aruba',
+    href: '/network',
   },
 
   {
