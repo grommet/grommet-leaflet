@@ -62,6 +62,14 @@ const base = {
       },
     },
   },
+  popup: {
+    background: 'background-front',
+    border: { color: 'border-weak', size: 'xsmall' },
+    gap: 'xsmall',
+    margin: 'none',
+    pad: 'small',
+    round: 'xsmall',
+  },
 };
 
 export { base };

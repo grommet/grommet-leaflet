@@ -9,7 +9,7 @@ import {
   Pin,
 } from 'grommet-leaflet-core';
 import { Java } from 'grommet-icons';
-import { userLocation } from './utils/locations';
+import { userLocation } from './utils';
 import data from './data/sanfrancisco.json';
 import { generic } from './themes';
 
