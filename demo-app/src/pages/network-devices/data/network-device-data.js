@@ -1,6 +1,6 @@
 const type = ['Branch', 'Campus', 'Main', 'Data center'];
 
-export function generateArubaLocations(n, options) {
+export function generateNetworkLocations(n, options) {
   const { center, radius } = options;
   const locations = [];
   for (let i = 0; i < n; i += 1) {

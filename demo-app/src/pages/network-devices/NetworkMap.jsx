@@ -1,24 +1,22 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Box } from 'grommet';
-import { Grommet } from 'grommet-icons';
 import {
   Cluster,
   Controls,
   Map,
   Marker,
   MarkerCluster,
-  Pin,
 } from 'grommet-leaflet-core';
 
 import { userLocation, formatLocationsToLatLng } from '../../utils/locations';
-import { generateArubaLocations } from './ArubaData';
+import { NetworkPin } from './NetworkPin';
+import { NetworkPopup } from './NetworkPopup';
+import { generateNetworkLocations } from './data/network-device-data';
 import { ClusterPopup } from '../../ClusterPopup';
-import { ArubaPin } from './ArubaPin';
-import { ArubaPopup } from './ArubaPopup';
 import { hpeLeaflet } from '../../themes';
-import { getClusterStatus, getClusterSize } from '../../utils/status';
+import { getClusterStatus } from '../../utils/status';
 
-function ArubaMap() {
+const NetworkMap = () => {
   const [geolocation, setGeolocation] = useState();
   const [locations, setLocations] = useState();
   const containerRef = useRef();
@@ -28,30 +26,22 @@ function ArubaMap() {
   useEffect(() => {
     userLocation().then(location => {
       setGeolocation(location);
-      setLocations(generateArubaLocations(20, { center: location, radius: 6 }));
+      setLocations(
+        generateNetworkLocations(20, { center: location, radius: 6 }),
+      );
     });
   }, []);
 
   return (
     <Box ref={containerRef} flex background="background-contrast">
       {geolocation && (
-        <Map
-          id="map"
-          ref={mapContainerRef}
-          center={geolocation}
-          zoom={6}
-          zoomControl={false}
-          theme={hpeLeaflet}
-        >
+        <Map id="map" ref={mapContainerRef} theme={hpeLeaflet}>
           <Controls locations={formatLocationsToLatLng(locations)} />
-          <Marker position={geolocation} icon={<Grommet />} />
           <MarkerCluster
             popup={cluster => <ClusterPopup cluster={cluster} />}
             icon={cluster => {
               const kind = getClusterStatus(cluster.getAllChildMarkers());
-              const size = getClusterSize(cluster);
-
-              return <Cluster kind={kind} size={size} />;
+              return <Cluster kind={kind} size="medium" />;
             }}
           >
             {locations.map((location, index) => {
@@ -60,9 +50,10 @@ function ArubaMap() {
                 location.status.warning +
                 location.status.good;
               let status = 'good';
-              if (total * 0.15 < location.status.critical) {
+              const THRESHOLD = total * 0.15;
+              if (THRESHOLD < location.status.critical) {
                 status = 'critical';
-              } else if (total * 0.15 < location.status.warning) {
+              } else if (THRESHOLD < location.status.warning) {
                 status = 'warning';
               }
               return (
@@ -70,9 +61,12 @@ function ArubaMap() {
                   key={index}
                   position={location?.coord}
                   icon={
-                    <ArubaPin kind={status} type={location?.type.slice(0, 1)} />
+                    <NetworkPin
+                      kind={status}
+                      label={location?.type.slice(0, 1)}
+                    />
                   }
-                  popup={<ArubaPopup location={location} />}
+                  popup={<NetworkPopup location={location} />}
                 />
               );
             })}
@@ -81,6 +75,6 @@ function ArubaMap() {
       )}
     </Box>
   );
-}
+};
 
-export default ArubaMap;
+export { NetworkMap };

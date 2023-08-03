@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Text, ThemeContext } from 'grommet';
-import { normalizeTheme } from 'grommet-leaflet-core/src/utils';
+import { normalizeTheme } from 'grommet-leaflet-core';
 import styled from 'styled-components';
 
 const StyledBox = styled(Box)`
@@ -22,7 +22,7 @@ const StyledContent = styled(Box)`
   transform: rotate(-45deg);
 `;
 
-const ArubaPin = ({ kind = 'default', type }) => {
+const NetworkPin = ({ kind = 'default', label }) => {
   const theme = React.useContext(ThemeContext);
   const normalizedTheme = normalizeTheme([
     theme?.map?.pin?.default?.container,
@@ -40,11 +40,11 @@ const ArubaPin = ({ kind = 'default', type }) => {
       <StyledContent>
         {icon}
         <Text alignSelf="center" size="xsmall" color="text-strong" weight={500}>
-          {type}
+          {label}
         </Text>
       </StyledContent>
     </StyledBox>
   );
 };
 
-export { ArubaPin };
+export { NetworkPin };

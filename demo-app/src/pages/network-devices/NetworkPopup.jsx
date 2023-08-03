@@ -14,7 +14,7 @@ const StatusSummary = ({ theme, status, location }) => {
   );
 };
 
-export const ArubaPopup = ({ location }) => {
+export const NetworkPopup = ({ location }) => {
   const theme = useContext(ThemeContext);
   return (
     <Box gap="xsmall">
