@@ -22,8 +22,7 @@
   "dependencies": {
     "leaflet": "^1.9.3",
     "leaflet.markercluster": "^1.5.3",
-    "react-leaflet": "^4.2.1",
-    "styled-components": "^5.3.8"
+    "react-leaflet": "^4.2.1"
   },
   "devDependencies": {
     "prop-types": "^15.8.1"
