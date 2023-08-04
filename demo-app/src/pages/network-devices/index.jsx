@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Page, PageContent, PageHeader } from 'grommet';
-import { NetworkMap } from './NetworkMap';
+import { NetworkMap } from '../../components';
 import { ContentContainer, ReverseAnchor } from '../../components';
 
 const Index = () => {
