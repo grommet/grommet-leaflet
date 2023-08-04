@@ -9,8 +9,7 @@ import {
 } from 'grommet-leaflet-core';
 
 import { userLocation, formatLocationsToLatLng } from '../../utils/locations';
-import { NetworkPin } from './NetworkPin';
-import { NetworkPopup } from './NetworkPopup';
+import { NetworkPin, NetworkPopup } from '.';
 import { generateNetworkLocations } from './data/network-device-data';
 import { ClusterPopup } from '../../ClusterPopup';
 import { hpeLeaflet } from '../../themes';
