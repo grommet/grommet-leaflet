@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Text, ThemeContext } from 'grommet';
-import { normalizeTheme } from 'grommet-leaflet-core';
+import { normalizeTheme } from 'grommet-leaflet';
 import styled from 'styled-components';
 
 const StyledBox = styled(Box)`

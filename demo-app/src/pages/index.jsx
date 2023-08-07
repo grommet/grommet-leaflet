@@ -56,7 +56,7 @@ const Index = () => {
       <PageContent flex>
         <PageHeader
           title="Acme, Inc."
-          subtitle="A demo app for grommet-leaflet-core features and examples."
+          subtitle="A demo app for grommet-leaflet features and examples."
           actions={
             <Button
               label="View in Github"

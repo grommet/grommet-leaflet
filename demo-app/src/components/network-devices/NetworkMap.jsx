@@ -6,7 +6,7 @@ import {
   Map,
   Marker,
   MarkerCluster,
-} from 'grommet-leaflet-core';
+} from 'grommet-leaflet';
 
 import { userLocation, formatLocationsToLatLng } from '../../utils/locations';
 import { NetworkPin, NetworkPopup } from '.';

@@ -12,7 +12,7 @@
   "license": "ISC",
   "private": true,
   "workspaces": [
-    "grommet-leaflet-core",
+    "grommet-leaflet",
     "demo-app"
   ],
   "scripts": {
