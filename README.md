@@ -1,8 +1,8 @@
 [Netlify deploy](https://whimsical-moxie-6e43a0.netlify.app/)
 
-## grommet-leaflet-core
+## grommet-leaflet
 
-Docs for `grommet-leaflet-core` components.
+Docs for `grommet-leaflet` components.
 
 ### Map
 
@@ -22,7 +22,7 @@ A custom Leaflet marker for an individual location. Marker supports all [Leaflet
 
 #### Customizing the marker
 
-Marker will render whatever is passed to its `icon` prop. By default, `grommet-leaflet-core` will render this as `<Pin />`. However, this can be customized by passing a `Pin` with a specific `kind` defined by the theme (see [Pin](#pin) for details) or a custom element all together.
+Marker will render whatever is passed to its `icon` prop. By default, `grommet-leaflet` will render this as `<Pin />`. However, this can be customized by passing a `Pin` with a specific `kind` defined by the theme (see [Pin](#pin) for details) or a custom element all together.
 
 ```
 <Marker icon={<Pin kind="critical" />} />
@@ -56,7 +56,7 @@ In addition, it also supports the following props:
 
 #### Customizing the cluster
 
-MarkerCluster will render whatever is passed to its `icon` prop. By default, `grommet-leaflet-core` will render this as `<Cluster />`. However, this can be customized by passing a `Cluster` with property overrides (see [Cluster](#cluster) for details) or a custom element all together.
+MarkerCluster will render whatever is passed to its `icon` prop. By default, `grommet-leaflet` will render this as `<Cluster />`. However, this can be customized by passing a `Cluster` with property overrides (see [Cluster](#cluster) for details) or a custom element all together.
 
 ```
 <MarkerCluster
@@ -111,7 +111,7 @@ Popup provides additional details about a cluster of locations or an individual 
 
 Popup servers as a [Box](https://v2.grommet.io/box) that wraps around whatever is passed to `popup` prop on Marker or MarkerCluster.
 
-The default styling for Popup is defined in [`base.js`](https://github.com/grommet/grommet-leaflet/blob/main/grommet-leaflet-core/src/themes/base.js).
+The default styling for Popup is defined in [`base.js`](https://github.com/grommet/grommet-leaflet/blob/main/grommet-leaflet/src/themes/base.js).
 
 #### Popup theming
 
@@ -123,7 +123,7 @@ Popup styles can be customized in a Map `theme` in `theme.popup`.
 
 ### Theme structure
 
-The default styling for `grommet-leaflet-core` is defined in [`base.js`](https://github.com/grommet/grommet-leaflet/blob/main/grommet-leaflet-core/src/themes/base.js).
+The default styling for `grommet-leaflet` is defined in [`base.js`](https://github.com/grommet/grommet-leaflet/blob/main/grommet-leaflet/src/themes/base.js).
 
 In the theme structure below, `[kind]` can be any string and there can be any number of kinds defined for `pin` or `cluster`. Additionally, `[size]` can be any string and there can be any number of sizes defined in `cluster.size`.
 

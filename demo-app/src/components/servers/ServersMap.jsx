@@ -8,7 +8,7 @@ import {
   Marker,
   MarkerCluster,
   Pin,
-} from 'grommet-leaflet-core';
+} from 'grommet-leaflet';
 
 import { getClusterSize, getClusterStatus, userLocation } from '../../utils';
 import { ServersClusterPopup } from './ServersClusterPopup';

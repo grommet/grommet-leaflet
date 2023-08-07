@@ -7,7 +7,7 @@ import {
   Marker,
   MarkerCluster,
   Pin,
-} from 'grommet-leaflet-core';
+} from 'grommet-leaflet';
 import { generateLocations, userLocation } from '../utils';
 import { ClusterPopup } from '../ClusterPopup';
 import { ContentContainer, ReverseAnchor } from '../components';
