@@ -21,10 +21,10 @@ const StyledLabel = styled(Text)`
 const Cluster = ({ cluster, kind = 'default', size = 'medium', ...rest }) => {
   const theme = React.useContext(ThemeContext);
   const normalizedTheme = normalizeTheme([
-    theme?.map?.cluster?.default,
-    theme?.map?.cluster?.[kind],
     theme?.map?.cluster?.size?.medium,
     theme?.map?.cluster?.size?.[size],
+    theme?.map?.cluster?.default,
+    theme?.map?.cluster?.[kind],
   ]);
 
   const count = cluster.getChildCount();
