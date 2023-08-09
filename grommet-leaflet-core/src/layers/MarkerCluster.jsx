@@ -16,12 +16,14 @@ const createMarkerClusterGroup = ({ ...rest }, context) => {
     zoomToBoundsOnClick: false,
     ...rest,
   });
-  return createElementObject(
-    markerClusterGroup,
-    extendContext(context, { layerContainer: markerClusterGroup }),
-  );
+  return {
+    instance: markerClusterGroup,
+    context: extendContext(context, { layerContainer: markerClusterGroup }),
+  };
 };
 
+// The addLayers function here is expecting an array of Marker class elements,
+// but children is an array of React elements
 const updateMarkerClusterGroup = (instance, props, prevProps) => {
   if (props.children !== prevProps.children) {
     // TO DO revisit proper approach to update marker cluster group.

@@ -25,6 +25,7 @@ import {
   ReverseAnchor,
 } from '../components';
 import data from '../data/servers.json';
+import { ServersMapNative } from '../components/servers/ServersMapNative';
 
 const Servers = () => {
   const breakpoint = useContext(ResponsiveContext);
@@ -66,7 +67,10 @@ const Servers = () => {
 export default Servers;
 
 const DataView = () => (
-  <Data data={data.servers.items}>
+  <Data
+    data={data.servers.items}
+    properties={{ 'hardware.health.summary': { label: 'Status' } }}
+  >
     <Toolbar>
       <DataSearch responsive />
       <DataFilters layer />
@@ -76,6 +80,7 @@ const DataView = () => (
     <DataSummary />
     <Box height="medium">
       <ServersMap />
+      {/* <ServersMapNative /> */}
     </Box>
   </Data>
 );

@@ -18,7 +18,12 @@ const StyledLabel = styled(Text)`
   line-height: 1rem;
 `;
 
-const Cluster = ({ cluster, kind = 'default', size = 'medium', ...rest }) => {
+const Cluster = ({
+  cluster = {},
+  kind = 'default',
+  size = 'medium',
+  ...rest
+}) => {
   const theme = React.useContext(ThemeContext);
   const normalizedTheme = normalizeTheme([
     theme?.map?.cluster?.default,
@@ -41,7 +46,7 @@ const Cluster = ({ cluster, kind = 'default', size = 'medium', ...rest }) => {
 };
 
 Cluster.propTypes = {
-  cluster: PropTypes.object.isRequired,
+  cluster: PropTypes.object,
   kind: PropTypes.string,
 };
 
