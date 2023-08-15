@@ -17,13 +17,16 @@ for (const path of Object.keys(pages)) {
     ? fileName.replace('$', ':')
     : fileName.replace(/\/index/, '');
 
-  routes.push({
-    path: fileName === 'index' ? '/' : `/${normalizedPathName.toLowerCase()}`,
-    Element: pages[path].default,
-    loader: pages[path]?.loader,
-    action: pages[path]?.action,
-    ErrorBoundary: pages[path]?.ErrorBoundary,
-  });
+  // Only include files named as index as routes
+  if (fileName.includes('index')) {
+    routes.push({
+      path: fileName === 'index' ? '/' : `/${normalizedPathName.toLowerCase()}`,
+      Element: pages[path].default,
+      loader: pages[path]?.loader,
+      action: pages[path]?.action,
+      ErrorBoundary: pages[path]?.ErrorBoundary,
+    });
+  }
 }
 
 const router = routes.map(({ Element, ErrorBoundary, ...rest }) => ({
