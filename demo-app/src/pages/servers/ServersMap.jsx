@@ -9,11 +9,10 @@ import {
   MarkerCluster,
   Pin,
 } from 'grommet-leaflet';
-
+import { hpeLeaflet } from '../../themes';
 import { getClusterSize, getClusterStatus, userLocation } from '../../utils';
 import { ServersClusterPopup } from './ServersClusterPopup';
-import data from '../../data/servers.json';
-import { hpeLeaflet } from '../../themes';
+import data from './data/servers.json';
 
 export const ServersMap = () => {
   const [geolocation, setGeolocation] = useState();

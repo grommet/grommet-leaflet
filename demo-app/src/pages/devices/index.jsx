@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Page, PageContent, PageHeader } from 'grommet';
-import { ReverseAnchor } from '../components';
+import { ReverseAnchor } from '../../components';
 
 const Devices = () => {
   return (

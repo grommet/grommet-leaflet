@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Page, PageContent, PageHeader } from 'grommet';
-import { NetworkMap } from '../../components';
+import { NetworkMap } from './NetworkMap';
 import { ContentContainer, ReverseAnchor } from '../../components';
 
-const Index = () => {
+const Networks = () => {
   return (
     <Page fill pad={{ bottom: 'xlarge' }}>
       <PageContent flex>
@@ -20,4 +20,4 @@ const Index = () => {
   );
 };
 
-export default Index;
+export default Networks;

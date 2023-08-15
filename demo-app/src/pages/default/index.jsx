@@ -1,16 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Box, Page, PageContent, PageHeader } from 'grommet';
-import {
-  Controls,
-  Map,
-  Marker,
-  MarkerCluster,
-  Pin,
-} from 'grommet-leaflet';
-import { generateLocations, userLocation } from '../utils';
-import { ClusterPopup } from '../ClusterPopup';
-import { ContentContainer, ReverseAnchor } from '../components';
+import { Controls, Map, Marker, MarkerCluster, Pin } from 'grommet-leaflet';
+import { generateLocations, userLocation } from '../../utils';
+import { ClusterPopup } from '../../components';
+import { ContentContainer, ReverseAnchor } from '../../components';
 
 const Default = () => {
   const [geolocation, setGeolocation] = useState();

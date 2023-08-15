@@ -2,7 +2,7 @@ import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { Grommet } from 'grommet';
 import { hpe } from 'grommet-theme-hpe';
-import GlobalHeader from './GlobalHeader';
+import { GlobalHeader } from './components';
 
 const pages = import.meta.glob('./pages/**/*.jsx', { eager: true });
 
