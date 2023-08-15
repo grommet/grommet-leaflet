@@ -1,30 +1,41 @@
-const markerKinds = {
-  default: {
-    container: {
-      // any box props
-      align: 'center',
-      justify: 'center',
-      background: 'background-front',
-      border: {
-        color: 'border',
-        size: 'small',
-      },
-      elevation: 'medium',
-      flex: false,
-      round: 'full',
-      height: { min: '25px', max: '25px' },
-      width: { min: '25px', max: '25px' },
-    },
-    // icon: undefined,
-  },
-};
-
 const base = {
   pin: {
-    ...markerKinds,
+    default: {
+      container: {
+        // any box props
+        align: 'center',
+        justify: 'center',
+        background: 'background-front',
+        border: {
+          color: 'border',
+          size: 'small',
+        },
+        elevation: 'medium',
+        flex: false,
+        round: 'full',
+        height: { min: '25px', max: '25px' },
+        width: { min: '25px', max: '25px' },
+      },
+      // icon: undefined,
+    },
   },
   cluster: {
-    ...markerKinds,
+    default: {
+      container: {
+        // any box props
+        align: 'center',
+        justify: 'center',
+        background: 'background-front',
+        border: {
+          color: 'border',
+          size: 'small',
+        },
+        elevation: 'medium',
+        flex: false,
+        round: 'full',
+      },
+      // icon: undefined,
+    },
     size: {
       small: {
         container: {
