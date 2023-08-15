@@ -2,7 +2,8 @@ import React, { useContext } from 'react';
 import { ThemeContext } from 'styled-components';
 import PropTypes from 'prop-types';
 import { Box, Text } from 'grommet';
-import { getStatusCounts, STATUS_MAP } from './utils/status';
+import { TextEmphasis } from './components';
+import { getStatusCounts, STATUS_MAP } from './utils';
 
 export const ClusterPopup = ({ cluster }) => {
   const theme = useContext(ThemeContext);
@@ -10,15 +11,13 @@ export const ClusterPopup = ({ cluster }) => {
 
   return (
     <Box gap="xsmall">
-      <Text color="text-strong" weight={500}>
-        Device Summary
-      </Text>
-      <Text color="text-strong" weight={500} size="xsmall">
+      <TextEmphasis>Device Summary</TextEmphasis>
+      <TextEmphasis size="xsmall">
         Location:{' '}
         <Text size="xsmall" weight="normal">
           San Francisco, CA
         </Text>
-      </Text>
+      </TextEmphasis>
       {Object.entries(statusCounts).map(([key, value]) => {
         const icon = theme?.map?.pin?.[key]?.icon;
         return value > 0 ? (

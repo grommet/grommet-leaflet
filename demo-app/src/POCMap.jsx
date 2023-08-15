@@ -8,62 +8,16 @@ import {
   Marker,
   MarkerCluster,
   Pin,
-} from 'grommet-leaflet-core';
+} from 'grommet-leaflet';
 import {
-  StatusCriticalSmall,
-  StatusGoodSmall,
-  StatusWarningSmall,
-  StatusUnknownSmall,
-} from 'grommet-icons';
-import { generateLocations, userLocation } from './utils/locations';
+  generateLocations,
+  formatLocationsToLatLng,
+  userLocation,
+  getClusterStatus,
+  getClusterSize,
+} from './utils';
 import { ClusterPopup } from './ClusterPopup';
-import { getClusterStatus, getClusterSize } from './utils/status';
 import { hpeLeaflet } from './themes';
-
-// const markerKinds = {
-//   default: {
-//     container: {
-//       border: {
-//         color: 'border-strong',
-//         size: 'small',
-//       },
-//     },
-//   },
-//   critical: {
-//     container: {
-//       // any box props
-//       background: 'background-front',
-//       border: { color: 'status-critical', size: '3px' },
-//     },
-//     icon: <StatusCriticalSmall color="status-critical" size="13px" />,
-//   },
-//   warning: {
-//     container: {
-//       background: 'background-front',
-//       border: { color: 'status-warning' },
-//     },
-//     icon: <StatusWarningSmall color="status-warning" size="13px" />,
-//   },
-//   good: {
-//     container: {
-//       background: 'background-front',
-//       border: { color: 'status-ok' },
-//     },
-//     icon: <StatusGoodSmall color="status-ok" size="13px" />,
-//   },
-//   unknown: {
-//     container: {
-//       background: 'background-front',
-//       border: { color: 'status-unknown' },
-//     },
-//     icon: <StatusUnknownSmall color="status-unknown" size="13px" />,
-//   },
-// };
-
-// const hpeLeaflet = {
-//   pin: { ...markerKinds },
-//   cluster: { ...markerKinds },
-// };
 
 function POCMap() {
   const [geolocation, setGeolocation] = useState();
@@ -84,7 +38,7 @@ function POCMap() {
       ref={containerRef}
       flex="grow"
       background="background-contrast"
-      height={{ min: 'medium' }}
+      height="medium"
     >
       {geolocation && (
         <Map
@@ -93,7 +47,7 @@ function POCMap() {
           center={geolocation}
           theme={hpeLeaflet}
         >
-          <Controls locations={locations} />
+          <Controls locations={formatLocationsToLatLng(locations)} />
           <Marker
             position={geolocation}
             icon={<Grommet color="purple!" size="large" />}

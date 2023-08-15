@@ -12,11 +12,14 @@
   "license": "ISC",
   "private": true,
   "workspaces": [
-    "grommet-leaflet-core",
+    "grommet-leaflet",
     "demo-app"
   ],
   "scripts": {
     "lint-fix": "eslint src --fix"
+  },
+  "dependencies": {
+    "styled-components": "^5.3.10"
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.19.1",

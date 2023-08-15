@@ -18,26 +18,19 @@ const StyledLabel = styled(Paragraph)`
   line-height: 1rem;
 `;
 
-const Cluster = ({
-  cluster,
-  kind = 'default',
-  icon: iconProp,
-  label: labelProp,
-  size = 'medium',
-  ...rest
-}) => {
+const Cluster = ({ cluster, kind = 'default', size = 'medium', ...rest }) => {
   const theme = React.useContext(ThemeContext);
   const normalizedTheme = normalizeTheme([
-    theme?.map?.cluster?.default,
-    theme?.map?.cluster?.[kind],
     theme?.map?.cluster?.size?.medium,
     theme?.map?.cluster?.size?.[size],
+    theme?.map?.cluster?.default,
+    theme?.map?.cluster?.[kind],
   ]);
 
   const count = cluster.getChildCount();
 
-  const icon = iconProp || theme?.map?.cluster?.[kind]?.icon;
-  const label = labelProp || count;
+  const icon = theme?.map?.cluster?.[kind]?.icon;
+  const label = count;
 
   return (
     <StyledContainer {...normalizedTheme?.container} {...rest}>
@@ -50,8 +43,6 @@ const Cluster = ({
 Cluster.propTypes = {
   cluster: PropTypes.object.isRequired,
   kind: PropTypes.string,
-  icon: PropTypes.element,
-  label: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 };
 
 export { Cluster };
