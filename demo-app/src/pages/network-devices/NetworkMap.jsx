@@ -1,19 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Box } from 'grommet';
-import {
-  Cluster,
-  Controls,
-  Map,
-  Marker,
-  MarkerCluster,
-} from 'grommet-leaflet';
-
-import { userLocation, formatLocationsToLatLng } from '../../utils/locations';
-import { NetworkPin, NetworkPopup } from '.';
-import { generateNetworkLocations } from './data/network-device-data';
-import { ClusterPopup } from '../../ClusterPopup';
+import { Cluster, Controls, Map, Marker, MarkerCluster } from 'grommet-leaflet';
+import { ClusterPopup } from '../../components';
 import { hpeLeaflet } from '../../themes';
+import { userLocation, formatLocationsToLatLng } from '../../utils/locations';
 import { getClusterStatus } from '../../utils/status';
+import { NetworkPin } from './NetworkPin';
+import { NetworkPopup } from './NetworkPopup';
+import { generateNetworkLocations } from './data/network-device-data';
 
 const NetworkMap = () => {
   const [geolocation, setGeolocation] = useState();

@@ -45,4 +45,4 @@ function GlobalHeader() {
   );
 }
 
-export default GlobalHeader;
+export { GlobalHeader };

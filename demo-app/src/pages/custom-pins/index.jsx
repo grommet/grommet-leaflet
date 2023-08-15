@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Page, PageContent, PageHeader } from 'grommet';
-import PinKindsMap from '../PinKindsMap';
-import { ContentContainer, ReverseAnchor } from '../components';
+import { ContentContainer, ReverseAnchor } from '../../components';
+import PinKindsMap from './PinKindsMap';
 
 const GenericKinds = () => {
   return (

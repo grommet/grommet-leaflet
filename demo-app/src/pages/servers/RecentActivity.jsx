@@ -1,8 +1,8 @@
 import React from 'react';
 import { Box, Button, Heading, Text } from 'grommet';
-import data from '../../data/servers.json';
 import { Next } from 'grommet-icons';
-import { ContentContainer, TextEmphasis } from '../shared';
+import { ContentContainer, TextEmphasis } from '../../components';
+import data from './data/servers.json';
 
 export const RecentActivity = () => {
   return (

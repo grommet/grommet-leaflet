@@ -1,9 +1,9 @@
 import React from 'react';
 import { Card, CardBody, Grid, Heading, Paragraph, CardFooter } from 'grommet';
 import { StatusCriticalSmall } from 'grommet-icons';
-import { TextEmphasis } from '../shared';
-import data from '../../data/servers.json';
+import { TextEmphasis } from '../../components';
 import messages from '../../utils/messages.json';
+import data from './data/servers.json';
 
 export const DeviceGroups = ({ max }) => (
   <Grid columns="medium" gap="medium">

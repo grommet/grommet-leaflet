@@ -15,9 +15,9 @@ import {
   userLocation,
   getClusterStatus,
   getClusterSize,
-} from './utils';
-import { ClusterPopup } from './ClusterPopup';
-import { hpeLeaflet } from './themes';
+} from '../../utils';
+import { ClusterPopup } from '../../components/ClusterPopup/ClusterPopup';
+import { hpeLeaflet } from '../../themes';
 
 function POCMap() {
   const [geolocation, setGeolocation] = useState();
