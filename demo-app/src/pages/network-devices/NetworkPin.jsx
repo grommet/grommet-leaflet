@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Box, Text, ThemeContext } from 'grommet';
 import { normalizeTheme } from 'grommet-leaflet';
 import styled from 'styled-components';
@@ -29,7 +30,7 @@ const NetworkPin = ({ kind = 'default', label }) => {
     theme?.map?.pin?.[kind]?.container,
   ]);
 
-  let icon = theme?.map?.pin?.[kind]?.icon;
+  const icon = theme?.map?.pin?.[kind]?.icon;
 
   return (
     <StyledBox
@@ -45,6 +46,11 @@ const NetworkPin = ({ kind = 'default', label }) => {
       </StyledContent>
     </StyledBox>
   );
+};
+
+NetworkPin.propTypes = {
+  kind: PropTypes.string,
+  label: PropTypes.string,
 };
 
 export { NetworkPin };

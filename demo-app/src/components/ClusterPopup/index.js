@@ -1,1 +1,1 @@
-export * from './ClusterPopup.jsx';
+export * from './ClusterPopup';

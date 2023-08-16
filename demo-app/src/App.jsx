@@ -7,9 +7,11 @@ import { GlobalHeader } from './components';
 const pages = import.meta.glob('./pages/**/*.jsx', { eager: true });
 
 const routes = [];
+// eslint-disable-next-line no-restricted-syntax
 for (const path of Object.keys(pages)) {
   const fileName = path.match(/\.\/pages\/(.*)\.jsx$/)?.[1];
   if (!fileName) {
+    // eslint-disable-next-line no-continue
     continue;
   }
 

@@ -1,6 +1,6 @@
 /* 
-Ignore the useLayoutEffect warning from react. This warning should be removed in 
-the next react release and we can remove this code.
+Ignore the useLayoutEffect warning from react. This warning should 
+be removed in the next react release and we can remove this code.
 React PR to remove error: https://github.com/facebook/react/pull/26395.
 This solution came from a Stack overflow suggestion:
 https://stackoverflow.com/questions/64158705/ignore-certain-console-errors-warnings-in-react
