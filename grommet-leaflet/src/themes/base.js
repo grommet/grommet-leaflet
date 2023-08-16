@@ -1,41 +1,39 @@
-const base = {
-  pin: {
-    default: {
-      container: {
-        // any box props
-        align: 'center',
-        justify: 'center',
-        background: 'background-front',
-        border: {
-          color: 'border',
-          size: 'small',
-        },
-        elevation: 'medium',
-        flex: false,
-        round: 'full',
-        height: { min: '25px', max: '25px' },
-        width: { min: '25px', max: '25px' },
+import { deepMerge } from 'grommet/utils';
+
+const defaultKinds = {
+  default: {
+    container: {
+      // any box props
+      align: 'center',
+      justify: 'center',
+      background: 'background-front',
+      border: {
+        color: 'border',
+        size: 'small',
       },
-      // icon: undefined,
+      elevation: 'medium',
+      flex: false,
+      round: 'full',
+    },
+    // icon: undefined,
+  },
+};
+
+const markerKinds = deepMerge(defaultKinds, {
+  default: {
+    container: {
+      height: { min: '25px', max: '25px' },
+      width: { min: '25px', max: '25px' },
     },
   },
+});
+
+const base = {
+  pin: {
+    ...markerKinds,
+  },
   cluster: {
-    default: {
-      container: {
-        // any box props
-        align: 'center',
-        justify: 'center',
-        background: 'background-front',
-        border: {
-          color: 'border',
-          size: 'small',
-        },
-        elevation: 'medium',
-        flex: false,
-        round: 'full',
-      },
-      // icon: undefined,
-    },
+    ...defaultKinds,
     size: {
       small: {
         container: {
