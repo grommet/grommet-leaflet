@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import PropTypes from 'prop-types';
 import ReactDOMServer from 'react-dom/server';
 import { ThemeContext } from 'styled-components';
 import {
@@ -57,4 +58,10 @@ const Marker = ({ children, icon, ...rest }) => {
     </LeafletMarker>
   );
 };
+
+Marker.propTypes = {
+  children: PropTypes.any,
+  icon: PropTypes.node,
+};
+
 export { Marker };

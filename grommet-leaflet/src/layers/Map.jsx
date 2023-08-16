@@ -1,8 +1,9 @@
 import React, { forwardRef, useContext } from 'react';
+import PropTypes from 'prop-types';
 import { MapContainer, TileLayer } from 'react-leaflet';
 import styled, { ThemeContext } from 'styled-components';
-import { base } from '../themes';
 import { deepMerge } from 'grommet/utils';
+import { base } from '../themes';
 
 const StyledMapContainer = styled(MapContainer)`
   ${({ theme }) => {
@@ -54,5 +55,14 @@ const Map = forwardRef(
     );
   },
 );
+
+Map.propTypes = {
+  center: PropTypes.array,
+  children: PropTypes.any,
+  scrollWheelZoom: PropTypes.string || PropTypes.bool,
+  theme: PropTypes.object,
+  zoom: PropTypes.number,
+  zoomControl: PropTypes.bool,
+};
 
 export { Map };

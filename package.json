@@ -16,7 +16,8 @@
     "demo-app"
   ],
   "scripts": {
-    "lint-fix": "eslint src --fix"
+    "lint": "eslint demo-app/src/**/*.js demo-app/src/**/*.jsx grommet-leaflet/src/**/*.js grommet-leaflet/src/**/*.jsx",
+    "lint-fix": "eslint demo-app/src/**/*.js demo-app/src/**/*.jsx grommet-leaflet/src/**/*.js grommet-leaflet/src/**/*.jsx --fix"
   },
   "dependencies": {
     "styled-components": "^5.3.10"
