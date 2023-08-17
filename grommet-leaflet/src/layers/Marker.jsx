@@ -9,13 +9,16 @@ const Marker = ({ children, icon, popup: popupProp, ...rest }) => {
   const theme = useContext(ThemeContext);
   const kind = icon?.props?.kind;
 
-  const popup = (
-    <LeafletPopup {...popupProp.leafletProps}>
-      <Popup {...popupProp.boxProps}>
-        {typeof popupProp === 'function' ? popupProp() : popupProp.render()}
-      </Popup>
-    </LeafletPopup>
-  );
+  let popup;
+  if (popupProp) {
+    popup = (
+      <LeafletPopup {...popupProp.leafletProps}>
+        <Popup {...popupProp.boxProps}>
+          {typeof popupProp === 'function' ? popupProp() : popupProp.render()}
+        </Popup>
+      </LeafletPopup>
+    );
+  }
 
   return (
     <LeafletMarker
@@ -31,7 +34,7 @@ const Marker = ({ children, icon, popup: popupProp, ...rest }) => {
       kind={kind}
       {...rest}
     >
-      {popupProp ? popup : undefined}
+      {popup}
     </LeafletMarker>
   );
 };
