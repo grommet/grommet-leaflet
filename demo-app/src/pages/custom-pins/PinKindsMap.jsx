@@ -1,8 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Box } from 'grommet';
-import { Grommet } from 'grommet-icons';
+import { Grommet, Java } from 'grommet-icons';
 import { Controls, Map, Marker, MarkerCluster, Pin } from 'grommet-leaflet';
-import { Java } from 'grommet-icons';
 import { userLocation } from '../../utils';
 import data from '../../data/sanfrancisco.json';
 import { generic } from '../../themes';

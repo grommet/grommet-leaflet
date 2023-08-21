@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import PropTypes from 'prop-types';
 import ReactDOMServer from 'react-dom/server';
 import { ThemeContext } from 'styled-components';
 import { Marker as LeafletMarker, Popup as LeafletPopup } from 'react-leaflet';
@@ -38,4 +39,10 @@ const Marker = ({ children, icon, popup: popupProp, ...rest }) => {
     </LeafletMarker>
   );
 };
+
+Marker.propTypes = {
+  children: PropTypes.any,
+  icon: PropTypes.node,
+};
+
 export { Marker };

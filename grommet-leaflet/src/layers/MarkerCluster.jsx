@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import PropTypes from 'prop-types';
 import { ThemeContext } from 'styled-components';
 import {
   createElementObject,
@@ -49,7 +50,8 @@ const MarkerCluster = ({ icon: iconProp, popup: popupProp, ...rest }) => {
         }
 
         return L.divIcon({
-          // 'grommet-cluster-group' class prevents leaflet default divIcon styles
+          // 'grommet-cluster-group' class prevents
+          // leaflet default divIcon styles
           className: 'grommet-cluster-group',
           html: ReactDOMServer.renderToString(
             <ThemeContext.Provider value={theme}>
@@ -67,6 +69,11 @@ const MarkerCluster = ({ icon: iconProp, popup: popupProp, ...rest }) => {
       {...rest}
     />
   );
+};
+
+MarkerCluster.propTypes = {
+  icon: PropTypes.func,
+  popup: PropTypes.any,
 };
 
 export { MarkerCluster };
