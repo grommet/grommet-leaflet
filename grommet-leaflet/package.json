@@ -10,7 +10,8 @@
   "license": "ISC",
   "main": "src/index.js",
   "scripts": {
-    "lint-fix": "eslint src --fix"
+    "lint": "eslint . --ext .js --ext .jsx",
+    "lint-fix": "eslint . --ext .js --ext .jsx --fix"
   },
   "peerDependencies": {
     "grommet": "^2.31.0",

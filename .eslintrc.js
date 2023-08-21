@@ -5,6 +5,9 @@ module.exports = {
     babelOptions: {
       presets: ['@babel/preset-react'],
     },
+    ecmaFeatures: {
+      jsx: true,
+    },
   },
   extends: [
     'airbnb',
@@ -72,6 +75,6 @@ module.exports = {
     'import/no-dynamic-require': 0,
     quotes: [2, 'single', { avoidEscape: true }],
     'arrow-body-style': 0,
-    allowElseIf: true,
+    'no-else-return': 0,
   },
 };

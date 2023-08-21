@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import PropTypes from 'prop-types';
 import { ThemeContext } from 'styled-components';
 import { Box, Text } from 'grommet';
 
@@ -45,4 +46,20 @@ export const NetworkPopup = ({ location }) => {
       )}
     </Box>
   );
+};
+
+StatusSummary.propTypes = {
+  theme: PropTypes.object,
+  status: PropTypes.string,
+  location: PropTypes.shape({
+    type: PropTypes.string,
+    status: PropTypes.string,
+  }),
+};
+
+NetworkPopup.propTypes = {
+  location: PropTypes.shape({
+    type: PropTypes.string,
+    status: PropTypes.string,
+  }),
 };

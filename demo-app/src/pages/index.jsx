@@ -13,8 +13,8 @@ import {
   PageHeader,
   Paragraph,
 } from 'grommet';
-import { ContentContainer } from '../components';
 import { Github, LinkNext } from 'grommet-icons';
+import { ContentContainer } from '../components';
 
 const StyledLink = styled(Link)`
   text-decoration: none;

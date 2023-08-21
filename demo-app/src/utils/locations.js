@@ -2,7 +2,7 @@ const statuses = ['good', 'warning', 'critical', 'unknown'];
 
 // get user location
 export function userLocation() {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     navigator.geolocation.getCurrentPosition(
       position => {
         resolve([position.coords.latitude, position.coords.longitude]);

@@ -1,1 +1,1 @@
-export * from './GlobalHeader.jsx';
+export * from './GlobalHeader';
