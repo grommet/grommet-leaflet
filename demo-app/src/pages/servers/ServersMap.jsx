@@ -40,12 +40,12 @@ export const ServersMap = () => {
                 key={index}
                 position={server?.location}
                 icon={<Pin kind={status} />}
-                popup={() => (
+                popup={
                   <MarkerPopup
                     name={server.displayName}
                     model={server.hardware?.model}
                   />
-                )}
+                }
               />
             );
           })}

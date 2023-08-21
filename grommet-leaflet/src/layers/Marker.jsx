@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, isValidElement } from 'react';
 import PropTypes from 'prop-types';
 import ReactDOMServer from 'react-dom/server';
 import { ThemeContext } from 'styled-components';
@@ -12,11 +12,12 @@ const Marker = ({ children, icon, popup: popupProp, ...rest }) => {
 
   let popup;
   if (popupProp) {
+    let content;
+    if (isValidElement(popupProp)) content = popupProp;
+    else if (popupProp.render) content = popupProp.render();
     popup = (
       <LeafletPopup {...popupProp.leafletProps}>
-        <Popup {...popupProp.boxProps}>
-          {typeof popupProp === 'function' ? popupProp() : popupProp.render()}
-        </Popup>
+        <Popup {...popupProp.boxProps}>{content}</Popup>
       </LeafletPopup>
     );
   }
