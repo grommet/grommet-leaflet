@@ -1,5 +1,5 @@
-import React, { useRef } from 'react';
-import { Anchor, Box, Text } from 'grommet';
+import React, { useContext, useRef, useMemo } from 'react';
+import { Anchor, Box, DataContext, Text } from 'grommet';
 import {
   Cluster,
   Controls,
@@ -12,16 +12,17 @@ import { hpeLeaflet } from '../../themes';
 import { getClusterSize, getClusterStatus } from '../../utils';
 import { ServersClusterPopup } from './ServersClusterPopup';
 import { TextEmphasis } from '../../components';
-import data from './data/servers.json';
 
 export const ServersMap = () => {
+  const { data } = useContext(DataContext);
+  const locations = useMemo(() => data.map(server => server.location), [data]);
   const containerRef = useRef();
   const mapContainerRef = useRef();
 
   return (
     <Box ref={containerRef} flex background="background-contrast">
       <Map ref={mapContainerRef} theme={hpeLeaflet}>
-        <Controls locations={data.servers.items.map(item => item.location)} />
+        <Controls locations={locations} />
         <MarkerCluster
           popup={cluster => <ServersClusterPopup cluster={cluster} />}
           icon={cluster => {
@@ -31,10 +32,9 @@ export const ServersMap = () => {
           }}
           chunkedLoading
         >
-          {data.servers.items.map((server, index) => {
+          {data.map((server, index) => {
             let status = server?.hardware?.health?.summary?.toLowerCase();
             if (status === 'ok') status = 'good';
-
             return (
               <Marker
                 key={index}
