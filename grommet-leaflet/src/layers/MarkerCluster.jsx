@@ -34,14 +34,9 @@ const MarkerCluster = ({ icon: iconProp, popup: popupProp, ...rest }) => {
           const popup = cluster.bindPopup(
             ReactDOMServer.renderToString(
               <ThemeContext.Provider value={theme}>
-                <Popup {...popupProp.boxProps}>
-                  {typeof popupProp === 'function'
-                    ? popupProp(cluster)
-                    : popupProp.render(cluster)}
-                </Popup>
+                <Popup>{popupProp({ cluster })}</Popup>
               </ThemeContext.Provider>,
             ),
-            { ...popupProp.leafletProps },
           );
 
           cluster.on('click', () => {
@@ -56,7 +51,7 @@ const MarkerCluster = ({ icon: iconProp, popup: popupProp, ...rest }) => {
           html: ReactDOMServer.renderToString(
             <ThemeContext.Provider value={theme}>
               {iconProp ? (
-                React.cloneElement(iconProp(cluster), {
+                React.cloneElement(iconProp({ cluster }), {
                   cluster,
                 })
               ) : (

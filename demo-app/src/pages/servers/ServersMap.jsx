@@ -24,8 +24,8 @@ export const ServersMap = () => {
       <Map ref={mapContainerRef} theme={hpeLeaflet}>
         <Controls locations={locations} />
         <MarkerCluster
-          popup={cluster => <ServersClusterPopup cluster={cluster} />}
-          icon={cluster => {
+          popup={({ cluster }) => <ServersClusterPopup cluster={cluster} />}
+          icon={({ cluster }) => {
             const kind = getClusterStatus(cluster.getAllChildMarkers());
             const size = getClusterSize(cluster);
             return <Cluster kind={kind} size={size} />;

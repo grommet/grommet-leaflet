@@ -11,17 +11,11 @@ const Marker = ({ children, icon, popup: popupProp, ...rest }) => {
   const theme = useContext(ThemeContext);
   const kind = icon?.props?.kind;
 
-  let popup;
-  if (popupProp) {
-    let content;
-    if (isValidElement(popupProp)) content = popupProp;
-    else if (popupProp.render) content = popupProp.render();
-    popup = (
-      <LeafletPopup {...popupProp.leafletProps}>
-        <Popup {...popupProp.boxProps}>{content}</Popup>
-      </LeafletPopup>
-    );
-  }
+  const popup = popupProp ? (
+    <LeafletPopup>
+      <Popup>{popupProp}</Popup>
+    </LeafletPopup>
+  ) : undefined;
 
   return (
     <LeafletMarker
