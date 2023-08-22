@@ -20,6 +20,12 @@ In addition, it also supports the following props:
 
 A custom Leaflet marker for an individual location. Marker supports all [Leaflet Marker properties](https://leafletjs.com/reference.html#marker).
 
+In addition, it also supports the following props:
+
+| Prop    | Type      | Default value |
+| ------- | --------- | ------------- |
+| `popup` | `Element` | `undefined`   |
+
 #### Customizing the marker
 
 Marker will render whatever is passed to its `icon` prop. By default, `grommet-leaflet` will render this as `<Pin />`. However, this can be customized by passing a `Pin` with a specific `kind` defined by the theme (see [Pin](#pin) for details) or a custom element all together.
