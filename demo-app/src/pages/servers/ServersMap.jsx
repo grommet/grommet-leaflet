@@ -1,6 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { Box } from 'grommet';
-import { Grommet } from 'grommet-icons';
+import React, { useContext, useRef, useMemo } from 'react';
+import { Box, DataContext } from 'grommet';
 import {
   Cluster,
   Controls,
@@ -10,61 +9,41 @@ import {
   Pin,
 } from 'grommet-leaflet';
 import { hpeLeaflet } from '../../themes';
-import { getClusterSize, getClusterStatus, userLocation } from '../../utils';
+import { getClusterSize, getClusterStatus } from '../../utils';
 import { ServersClusterPopup } from './ServersClusterPopup';
-import data from './data/servers.json';
 
 export const ServersMap = () => {
-  const [geolocation, setGeolocation] = useState();
-  const servers = data.servers.items;
-
+  const { data } = useContext(DataContext);
+  const locations = useMemo(() => data.map(server => server.location), [data]);
   const containerRef = useRef();
   const mapContainerRef = useRef();
 
-  // TO DO -- should this still be the default center?
-  // get the user's location
-  useEffect(() => {
-    userLocation().then(location => {
-      setGeolocation(location);
-    });
-  }, []);
-
   return (
     <Box ref={containerRef} flex background="background-contrast">
-      {geolocation && (
-        <Map
-          id="map"
-          ref={mapContainerRef}
-          center={geolocation}
-          zoom={6}
-          zoomControl={false}
-          theme={hpeLeaflet}
+      <Map ref={mapContainerRef} theme={hpeLeaflet}>
+        <Controls locations={locations} />
+        <MarkerCluster
+          popup={cluster => <ServersClusterPopup cluster={cluster} />}
+          icon={cluster => {
+            const kind = getClusterStatus(cluster.getAllChildMarkers());
+            const size = getClusterSize(cluster);
+            return <Cluster kind={kind} size={size} />;
+          }}
+          chunkedLoading
         >
-          <Controls locations={servers.map(server => server.location)} />
-          <Marker position={geolocation} icon={<Grommet />} />
-          <MarkerCluster
-            popup={cluster => <ServersClusterPopup cluster={cluster} />}
-            icon={cluster => {
-              const kind = getClusterStatus(cluster.getAllChildMarkers());
-              const size = getClusterSize(cluster);
-              return <Cluster kind={kind} size={size} />;
-            }}
-          >
-            {servers.map((server, index) => {
-              let status = server?.hardware?.health?.summary?.toLowerCase();
-              if (status === 'ok') status = 'good';
-
-              return (
-                <Marker
-                  key={index}
-                  position={server?.location}
-                  icon={<Pin kind={status} />}
-                />
-              );
-            })}
-          </MarkerCluster>
-        </Map>
-      )}
+          {data.map((server, index) => {
+            let status = server?.hardware?.health?.summary?.toLowerCase();
+            if (status === 'ok') status = 'good';
+            return (
+              <Marker
+                key={index}
+                position={server?.location}
+                icon={<Pin kind={status} />}
+              />
+            );
+          })}
+        </MarkerCluster>
+      </Map>
     </Box>
   );
 };
