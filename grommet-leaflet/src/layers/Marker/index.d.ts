@@ -1,4 +1,5 @@
 import * as React from 'react';
+import * as L from 'leaflet';
 
 export interface MarkerProps {
   children?: any;
@@ -8,6 +9,7 @@ export interface MarkerProps {
 
 export interface MarkerExtendedProps
   extends MarkerProps,
+    L.MarkerOptions,
     Omit<JSX.IntrinsicElements['div'], keyof MarkerProps> {}
 
 declare const Marker: React.FC<MarkerExtendedProps>;

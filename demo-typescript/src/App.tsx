@@ -60,7 +60,12 @@ const App = () => {
               height={{ min: 'medium' }}
             >
               {geolocation && (
-                <Map id="map" ref={mapContainerRef} center={geolocation}>
+                <Map
+                  dragging={true}
+                  id="map"
+                  ref={mapContainerRef}
+                  center={geolocation}
+                >
                   {locations ? (
                     <Controls
                       locations={locations.map(
@@ -69,6 +74,7 @@ const App = () => {
                     />
                   ) : null}
                   <MarkerCluster
+                    zoomToBoundsOnClick={false}
                     popup={() => (
                       <Box gap="xsmall">
                         <Text>Device Summary</Text>
