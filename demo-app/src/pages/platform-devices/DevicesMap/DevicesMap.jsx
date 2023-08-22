@@ -7,19 +7,15 @@ export const DevicesMap = () => {
   const dataContext = useContext(DataContext);
   const { data } = dataContext;
   const locations = data.map(device => {
-    return { coord: device.geometry.coordinates };
+    return device.geometry.coordinates;
   });
 
-  // console.log(data);
-  console.log(locations);
-
   return (
-    <>
-      <Map id="map" ref={mapContainerRef}>
-        {data.length >= 1 ? (
-          <>
-            {/* <Controls locations={locations} /> */}
-            {/* <MarkerCluster> */}
+    <Map id="map" ref={mapContainerRef}>
+      {data.length >= 1 ? (
+        <>
+          <Controls locations={locations} />
+          <MarkerCluster>
             {data.map(device => {
               return (
                 <Marker
@@ -29,10 +25,9 @@ export const DevicesMap = () => {
                 />
               );
             })}
-            {/* </MarkerCluster> */}
-          </>
-        ) : null}
-      </Map>
-    </>
+          </MarkerCluster>
+        </>
+      ) : null}
+    </Map>
   );
 };
