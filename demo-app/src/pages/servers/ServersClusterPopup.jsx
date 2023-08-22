@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Box, Text } from 'grommet';
-import { getStatusCounts } from '../../utils';
 import { Server, StatusCriticalSmall } from 'grommet-icons';
-import { TextEmphasis } from '../shared';
+import { TextEmphasis } from '../../components';
+import { getStatusCounts } from '../../utils';
 import messages from '../../utils/messages.json';
 
 export const ServersClusterPopup = ({ cluster }) => {

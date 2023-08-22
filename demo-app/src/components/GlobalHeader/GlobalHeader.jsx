@@ -31,10 +31,13 @@ function GlobalHeader() {
       <Box flex />
       <Box direction="row" align="center" gap="small">
         <Box direction="row" align="center" gap="xxsmall">
-          <Button icon={<Search />} />
-          <Button icon={<Notification />} />
-          <Button icon={<HelpOption />} />
-          <Button icon={<AppsRounded />} />
+          <Button a11yTitle="global header search" icon={<Search />} />
+          <Button
+            a11yTitle="global header notifications"
+            icon={<Notification />}
+          />
+          <Button a11yTitle="global header help" icon={<HelpOption />} />
+          <Button a11yTitle="global header apps" icon={<AppsRounded />} />
         </Box>
         <Avatar
           src="https://avatars.githubusercontent.com/u/11637956?v=4"
@@ -45,4 +48,4 @@ function GlobalHeader() {
   );
 }
 
-export default GlobalHeader;
+export { GlobalHeader };

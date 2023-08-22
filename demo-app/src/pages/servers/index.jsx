@@ -17,14 +17,11 @@ import {
   Toolbar,
 } from 'grommet';
 import { LinkNext } from 'grommet-icons';
-import {
-  ContentContainer,
-  ServersMap,
-  DeviceGroups,
-  RecentActivity,
-  ReverseAnchor,
-} from '../components';
-import data from '../data/servers.json';
+import { ContentContainer, ReverseAnchor } from '../../components';
+import { DeviceGroups } from './DeviceGroups';
+import { RecentActivity } from './RecentActivity';
+import { ServersMap } from './ServersMap';
+import data from './data/servers.json';
 
 const Servers = () => {
   const breakpoint = useContext(ResponsiveContext);
@@ -66,7 +63,13 @@ const Servers = () => {
 export default Servers;
 
 const DataView = () => (
-  <Data data={data.servers.items}>
+  <Data
+    data={data.servers.items}
+    properties={{
+      'hardware.health.summary': { label: 'Status' },
+      'host.osName': { label: 'Host OS name' },
+    }}
+  >
     <Toolbar>
       <DataSearch responsive />
       <DataFilters layer />

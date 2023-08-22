@@ -43,6 +43,7 @@ const Cluster = ({ cluster, kind = 'default', size = 'medium', ...rest }) => {
 Cluster.propTypes = {
   cluster: PropTypes.object.isRequired,
   kind: PropTypes.string,
+  size: PropTypes.string,
 };
 
 export { Cluster };

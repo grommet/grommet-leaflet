@@ -1,4 +1,6 @@
-const markerKinds = {
+import { deepMerge } from 'grommet/utils';
+
+const defaultKinds = {
   default: {
     container: {
       // any box props
@@ -12,19 +14,26 @@ const markerKinds = {
       elevation: 'medium',
       flex: false,
       round: 'full',
-      height: { min: '25px', max: '25px' },
-      width: { min: '25px', max: '25px' },
     },
     // icon: undefined,
   },
 };
+
+const markerKinds = deepMerge(defaultKinds, {
+  default: {
+    container: {
+      height: { min: '25px', max: '25px' },
+      width: { min: '25px', max: '25px' },
+    },
+  },
+});
 
 const base = {
   pin: {
     ...markerKinds,
   },
   cluster: {
-    ...markerKinds,
+    ...defaultKinds,
     size: {
       small: {
         container: {

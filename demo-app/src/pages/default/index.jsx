@@ -1,16 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Box, Page, PageContent, PageHeader } from 'grommet';
+import { Controls, Map, Marker, MarkerCluster, Pin } from 'grommet-leaflet';
+import { generateLocations, userLocation } from '../../utils';
 import {
-  Controls,
-  Map,
-  Marker,
-  MarkerCluster,
-  Pin,
-} from 'grommet-leaflet';
-import { generateLocations, userLocation } from '../utils';
-import { ClusterPopup } from '../ClusterPopup';
-import { ContentContainer, ReverseAnchor } from '../components';
+  ClusterPopup,
+  ContentContainer,
+  ReverseAnchor,
+} from '../../components';
 
 const Default = () => {
   const [geolocation, setGeolocation] = useState();
@@ -32,6 +29,7 @@ const Default = () => {
         <PageHeader
           parent={<ReverseAnchor as={Link} to="/" label="Home" />}
           title="Default pins and clusters"
+          // eslint-disable-next-line max-len
           subtitle="This is the default pin and cluster behavior when no `kind` has been specified on the individual Pin or Cluster."
         />
         <ContentContainer fill>

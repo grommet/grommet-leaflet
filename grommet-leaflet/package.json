@@ -10,7 +10,8 @@
   "license": "ISC",
   "main": "src/index.js",
   "scripts": {
-    "lint-fix": "eslint src --fix"
+    "lint": "eslint . --ext .js --ext .jsx",
+    "lint-fix": "eslint . --ext .js --ext .jsx --fix"
   },
   "peerDependencies": {
     "grommet": "^2.31.0",
@@ -22,7 +23,8 @@
   "dependencies": {
     "leaflet": "^1.9.3",
     "leaflet.markercluster": "^1.5.3",
-    "react-leaflet": "^4.2.1"
+    "react-leaflet": "^4.2.1",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "prop-types": "^15.8.1"

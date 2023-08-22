@@ -1,6 +1,6 @@
 import React from 'react';
 import { Anchor, Page, PageContent, PageHeader, Footer } from 'grommet';
-import POCMap from '../POCMap';
+import POCMap from './POCMap';
 
 const BasicMap = () => {
   return (
