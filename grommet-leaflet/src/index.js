@@ -20,3 +20,4 @@ console.error = function filterWarnings(msg, ...args) {
 
 export * from './layers';
 export * from './utils';
+export * from './themes';

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { ThemeContext } from 'styled-components';
 import { Box, Text } from 'grommet';
-import { normalizeTheme } from '../utils';
+import { normalizeTheme } from '../../utils';
 
 const StyledContainer = styled(Box)`
   // translate to re-align with leaflet div
@@ -41,7 +41,7 @@ const Cluster = ({ cluster, kind = 'default', size = 'medium', ...rest }) => {
 };
 
 Cluster.propTypes = {
-  cluster: PropTypes.object.isRequired,
+  cluster: PropTypes.object,
   kind: PropTypes.string,
   size: PropTypes.string,
 };
