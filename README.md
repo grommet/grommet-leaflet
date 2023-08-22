@@ -54,6 +54,8 @@ In addition, it also supports the following props:
 | `icon`  | `(cluster) => Element` | `(cluster) => <Cluster cluster={cluster} />` |
 | `popup`  | `(cluster) => Element` | `undefined` |
 
+For large datasets, it can be beneficial to apply `chunkedLoading` to MarkerCluster. See [leaflet.markercluster docs](https://github.com/Leaflet/Leaflet.markercluster#chunked-addlayers-options) for additional details.
+
 #### Customizing the cluster
 
 MarkerCluster will render whatever is passed to its `icon` prop. By default, `grommet-leaflet` will render this as `<Cluster />`. However, this can be customized by passing a `Cluster` with property overrides (see [Cluster](#cluster) for details) or a custom element all together.

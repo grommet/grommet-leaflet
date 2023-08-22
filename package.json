@@ -16,7 +16,8 @@
     "demo-app"
   ],
   "scripts": {
-    "lint-fix": "eslint src --fix"
+    "lint": "eslint . --ext .js --ext .jsx",
+    "lint-fix": "eslint . --ext .js --ext .jsx --fix"
   },
   "dependencies": {
     "styled-components": "^5.3.10"

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Card, CardBody, Grid, Heading, Paragraph, CardFooter } from 'grommet';
 import { StatusCriticalSmall } from 'grommet-icons';
 import { TextEmphasis } from '../../components';
@@ -17,7 +18,7 @@ export const DeviceGroups = ({ max }) => (
             <Paragraph margin="none">{item.description}</Paragraph>
           ) : null}
         </CardBody>
-        {item.deviceCounts?.health?.['Critical'] > 0 ? (
+        {item.deviceCounts?.health?.Critical > 0 ? (
           <CardFooter
             border={{ color: 'border-weak', side: 'top' }}
             justify="start"
@@ -29,8 +30,8 @@ export const DeviceGroups = ({ max }) => (
               height="small"
             />
             <TextEmphasis size="small">
-              {item.deviceCounts?.health?.['Critical']}{' '}
-              {item.deviceCounts?.health?.['Critical'] > 1
+              {item.deviceCounts?.health?.Critical}{' '}
+              {item.deviceCounts?.health?.Critical > 1
                 ? messages.servers.lostConnection.multiple
                 : messages.servers.lostConnection.single}
             </TextEmphasis>
@@ -40,3 +41,7 @@ export const DeviceGroups = ({ max }) => (
     ))}
   </Grid>
 );
+
+DeviceGroups.propTypes = {
+  max: PropTypes.number,
+};

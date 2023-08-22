@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { useMap } from 'react-leaflet';
 import L from 'leaflet';
 import { Box, Button } from 'grommet';
@@ -77,6 +78,10 @@ const Controls = ({ locations }) => {
       </Box>
     </Box>
   );
+};
+
+Controls.propTypes = {
+  locations: PropTypes.array,
 };
 
 export { Controls };
