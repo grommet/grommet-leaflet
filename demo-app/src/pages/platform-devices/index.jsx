@@ -9,11 +9,15 @@ import {
   PageHeader,
   List,
   DataTable,
-  DataContext,
+  DataFilters,
+  DataFilter,
+  DataSearch,
+  DataSort,
+  Toolbar,
 } from 'grommet';
 import { ContentContainer, ReverseAnchor } from '../../components';
 import devices from './data/1073-devices-customer.geojson.json';
-import { DevicesMap } from './DevicesMap/DevicesMap';
+import { DevicesMap } from './DevicesMap';
 
 const devicesWithLocation = {
   ...devices,
@@ -22,6 +26,7 @@ const devicesWithLocation = {
       return device;
     }
   }),
+  // .slice(0, 20),
 };
 
 const devicesWithoutLocation = {
@@ -35,13 +40,36 @@ const devicesWithoutLocation = {
 
 const PlatformDevices = () => {
   const containerRef = React.useRef();
-  const [loading, setLoading] = React.useState(true);
+  // const [loading, setLoading] = React.useState(true);
 
-  React.useEffect(() => {
-    setTimeout(() => {
-      setLoading(false);
-    }, 1000);
-  }, []);
+  // React.useEffect(() => {
+  //   setTimeout(() => {
+  //     setLoading(false);
+  //   }, 1000);
+  // }, []);
+
+  const properties = {
+    'properties.serial_number': {
+      label: 'Serial number',
+      search: true,
+    },
+    'properties.device_type': {
+      label: 'Device type',
+      search: true,
+    },
+    'properties.geo.city': {
+      label: 'City',
+      search: true,
+    },
+    'properties.geo.state': {
+      label: 'State',
+      search: true,
+    },
+    'properties.geo.country': {
+      label: 'Country',
+      search: true,
+    },
+  };
 
   return (
     <Page fill>
@@ -50,8 +78,19 @@ const PlatformDevices = () => {
           title="HPE GreenLake Devices"
           parent={<ReverseAnchor as={Link} label="Home" to="/" />}
         />
-        <ContentContainer>
-          <Data data={devicesWithLocation.features} toolbar>
+        <ContentContainer flex={false}>
+          <Data
+            data={devicesWithLocation.features}
+            toolbar
+            properties={properties}
+          >
+            {/* <Toolbar> */}
+            {/* <DataSearch /> */}
+            {/* <DataFilters layer heading="Device filters"> */}
+            {/* <DataFilter property="properties.geo.city" /> */}
+            {/* <DataSort /> */}
+            {/* </DataFilters> */}
+            {/* </Toolbar> */}
             <Box gap="small">
               {devicesWithoutLocation.features.length > 0 ? (
                 <Notification
@@ -75,15 +114,19 @@ const PlatformDevices = () => {
                 height={{ min: 'medium' }}
                 round="small"
                 overflow="hidden"
-                skeleton={loading}
+                // skeleton={loading}
               >
                 {/* {devicesWithLocation ? (
                   <DevicesMap data={devicesWithLocation} />
                 ) : null} */}
+                <DevicesMap />
               </Box>
             </Box>
           </Data>
         </ContentContainer>
+        <Box height="medium" background="blue" flex={false}>
+          fddf
+        </Box>
       </PageContent>
     </Page>
   );

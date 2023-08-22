@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { Controls, Map, Marker, MarkerCluster } from 'grommet-leaflet';
 import { DataContext } from 'grommet';
 
-export const DevicesMap = ({ data: devicesWithLocation }) => {
+export const DevicesMap = () => {
   const mapContainerRef = React.useRef();
   const dataContext = useContext(DataContext);
   const { data } = dataContext;
@@ -10,18 +10,22 @@ export const DevicesMap = ({ data: devicesWithLocation }) => {
     return { coord: device.geometry.coordinates };
   });
 
+  // console.log(data);
+  console.log(locations);
+
   return (
     <>
       <Map id="map" ref={mapContainerRef}>
-        {data ? (
+        {data.length >= 1 ? (
           <>
-            <Controls locations={locations} />
+            {/* <Controls locations={locations} /> */}
             {/* <MarkerCluster> */}
             {data.map(device => {
               return (
                 <Marker
                   key={device.properties.serial_number}
                   position={device.geometry.coordinates}
+                  popup={device.properties.serial_number}
                 />
               );
             })}
