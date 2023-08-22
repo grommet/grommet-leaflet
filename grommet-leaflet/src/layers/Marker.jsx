@@ -7,7 +7,7 @@ import { Marker as LeafletMarker, Popup as LeafletPopup } from 'react-leaflet';
 import L from 'leaflet';
 import { Pin, Popup } from '.';
 
-const Marker = ({ children, icon, popup: popupProp, ...rest }) => {
+const Marker = ({ icon, popup: popupProp, ...rest }) => {
   const theme = useContext(ThemeContext);
   const kind = icon?.props?.kind;
 
@@ -43,8 +43,8 @@ const Marker = ({ children, icon, popup: popupProp, ...rest }) => {
 };
 
 Marker.propTypes = {
-  children: PropTypes.any,
   icon: PropTypes.node,
+  popup: PropTypes.node,
 };
 
 export { Marker };

@@ -68,7 +68,7 @@ const MarkerCluster = ({ icon: iconProp, popup: popupProp, ...rest }) => {
 
 MarkerCluster.propTypes = {
   icon: PropTypes.func,
-  popup: PropTypes.any,
+  popup: PropTypes.func,
 };
 
 export { MarkerCluster };
