@@ -63,7 +63,13 @@ const Servers = () => {
 export default Servers;
 
 const DataView = () => (
-  <Data data={data.servers.items}>
+  <Data
+    data={data.servers.items}
+    properties={{
+      'hardware.health.summary': { label: 'Status' },
+      'host.osName': { label: 'Host OS name' },
+    }}
+  >
     <Toolbar>
       <DataSearch responsive />
       <DataFilters layer />
