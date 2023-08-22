@@ -1,11 +1,5 @@
 import React, { useContext } from 'react';
-import {
-  Controls,
-  GeoJSON,
-  Map,
-  Marker,
-  MarkerCluster,
-} from 'grommet-leaflet-core';
+import { Controls, Map, Marker, MarkerCluster } from 'grommet-leaflet';
 import { DataContext } from 'grommet';
 
 export const DevicesMap = ({ data: devicesWithLocation }) => {
@@ -22,7 +16,6 @@ export const DevicesMap = ({ data: devicesWithLocation }) => {
         {data ? (
           <>
             <Controls locations={locations} />
-            {/* <GeoJSON data={devicesWithLocation} /> */}
             {/* <MarkerCluster> */}
             {data.map(device => {
               return (

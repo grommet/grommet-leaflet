@@ -1,4 +1,3 @@
-export * from './PageSection';
 export * from './ClusterPopup';
 export * from './ContentContainer';
 export * from './GlobalHeader';

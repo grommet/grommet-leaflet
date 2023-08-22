@@ -11,7 +11,7 @@ import {
   DataTable,
   DataContext,
 } from 'grommet';
-import { PageSection, ReverseAnchor } from '../../components';
+import { ContentContainer, ReverseAnchor } from '../../components';
 import devices from './data/1073-devices-customer.geojson.json';
 import { DevicesMap } from './DevicesMap/DevicesMap';
 
@@ -50,7 +50,7 @@ const PlatformDevices = () => {
           title="HPE GreenLake Devices"
           parent={<ReverseAnchor as={Link} label="Home" to="/" />}
         />
-        <PageSection>
+        <ContentContainer>
           <Data data={devicesWithLocation.features} toolbar>
             <Box gap="small">
               {devicesWithoutLocation.features.length > 0 ? (
@@ -77,13 +77,13 @@ const PlatformDevices = () => {
                 overflow="hidden"
                 skeleton={loading}
               >
-                {devicesWithLocation ? (
+                {/* {devicesWithLocation ? (
                   <DevicesMap data={devicesWithLocation} />
-                ) : null}
+                ) : null} */}
               </Box>
             </Box>
           </Data>
-        </PageSection>
+        </ContentContainer>
       </PageContent>
     </Page>
   );
