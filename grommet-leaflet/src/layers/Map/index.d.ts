@@ -1,13 +1,10 @@
 import * as React from 'react';
 import * as L from 'leaflet';
+import { GrommetLeafletThemeType } from 'grommet-leaflet';
 
 export interface MapProps {
-  center?: number[];
   children?: any;
-  scrollWheelZoom?: string | boolean;
-  theme?: any;
-  zoom?: number;
-  zoomControl?: boolean;
+  theme?: GrommetLeafletThemeType;
 }
 
 export interface MapExtendedProps

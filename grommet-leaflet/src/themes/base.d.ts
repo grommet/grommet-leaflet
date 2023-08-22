@@ -1,8 +1,8 @@
 import { BoxProps, TextProps } from 'grommet';
 
-export interface LeafletThemeType {
+export interface GrommetLeafletThemeType {
   pin?: {
-    [x: string]: {
+    [kind: string]: {
       container?: BoxProps;
     };
   };
@@ -13,7 +13,7 @@ export interface LeafletThemeType {
         label?: TextProps;
       };
     };
-    [x: string]:
+    [kind: string]:
       | {
           container?: BoxProps;
         }

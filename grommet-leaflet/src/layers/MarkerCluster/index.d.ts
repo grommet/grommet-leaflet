@@ -3,8 +3,8 @@ import * as L from 'leaflet';
 import 'leaflet.markercluster';
 
 export interface MarkerClusterProps {
-  icon?: () => any;
-  popup?: any;
+  icon?: (any) => JSX.Element;
+  popup?: (any) => JSX.Element;
 }
 
 export interface MarkerClusterExtendedProps

@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 import { Grommet, Box, Text, Page, PageContent } from 'grommet';
 import { hpe } from 'grommet-theme-hpe';
 import { Controls, Map, Marker, MarkerCluster, Pin } from 'grommet-leaflet';
+import { hpeLeaflet } from './hpeLeaflet';
 
 const statuses = ['good', 'warning', 'critical', 'unknown'];
 
