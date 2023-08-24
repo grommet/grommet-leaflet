@@ -14,12 +14,31 @@ import {
   DataSearch,
   Toolbar,
   DataSummary,
-  Button,
 } from 'grommet';
 import { ToolbarRegion, ViewToggle } from '../../components/DataAndFriends';
 import { ContentContainer, ReverseAnchor } from '../../components';
-import devices from './data/1073-devices-customer.geojson.json';
+import devicesOriginal from './data/1073-devices-customer.geojson.json';
 import { DevicesMap } from './DevicesMap';
+
+const devices = {
+  ...devicesOriginal,
+  features: devicesOriginal.features.map(feature => {
+    return {
+      ...feature,
+      properties: {
+        ...feature.properties,
+        location: [
+          feature.properties.name,
+          feature.properties.geo?.city,
+          feature.properties.geo?.state,
+          feature.properties.geo?.country,
+        ]
+          .filter(Boolean)
+          .join(', '),
+      },
+    };
+  }),
+};
 
 const devicesWithLocation = {
   ...devices,
@@ -29,6 +48,8 @@ const devicesWithLocation = {
     }
   }),
 };
+
+console.log(devicesWithLocation.features[0]);
 
 const devicesWithoutLocation = {
   ...devices,
@@ -48,6 +69,22 @@ const properties = {
     label: 'Device type',
     search: true,
   },
+  'properties.name': {
+    label: 'Name',
+    search: true,
+  },
+  'properties.ip_address': {
+    label: 'IP address',
+    search: true,
+  },
+  'properties.mac': {
+    label: 'MAC address',
+    search: true,
+  },
+  'properties.part_number': {
+    label: 'Part number',
+    search: true,
+  },
   'properties.geo.city': {
     label: 'City',
     search: true,
@@ -60,6 +97,10 @@ const properties = {
     label: 'Country',
     search: true,
   },
+  'properties.location': {
+    label: 'Location',
+    search: true,
+  },
 };
 
 const columns = [
@@ -67,28 +108,13 @@ const columns = [
     property: 'properties.serial_number',
     header: 'Serial number',
     primary: true,
-    search: true,
   },
   {
     property: 'properties.device_type',
     header: 'Device type',
-    search: true,
   },
-  {
-    property: 'properties.geo.city',
-    header: 'City',
-    search: true,
-  },
-  {
-    property: 'properties.geo.state',
-    header: 'State',
-    search: true,
-  },
-  {
-    property: 'properties.geo.country',
-    header: 'Country',
-    search: true,
-  },
+  { property: 'properties.name', header: 'Location name' },
+  { property: 'properties.location', header: 'Location' },
 ];
 
 const noLocationMessage = `${new Intl.NumberFormat(navigator.language).format(
@@ -138,8 +164,8 @@ const PlatformDevices = () => {
                   <ToolbarRegion gap="small">
                     <DataSearch />
                     <DataFilters layer heading="Device filters">
-                      <DataFilter property="properties.geo.city" />
-                      <DataFilter property="properties.geo.city" />
+                      <DataFilter property="properties.location" />
+                      <DataFilter property="properties.device_type" />
                     </DataFilters>
                   </ToolbarRegion>
                   <ToolbarRegion gap="small">
