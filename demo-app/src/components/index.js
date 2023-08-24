@@ -3,3 +3,4 @@ export * from './ContentContainer';
 export * from './GlobalHeader';
 export * from './ReverseAnchor';
 export * from './TextEmphasis';
+export * from './ToggleButtonGroup';
