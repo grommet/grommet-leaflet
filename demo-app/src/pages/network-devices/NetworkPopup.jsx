@@ -60,6 +60,6 @@ StatusSummary.propTypes = {
 NetworkPopup.propTypes = {
   location: PropTypes.shape({
     type: PropTypes.string,
-    status: PropTypes.string,
+    status: PropTypes.object,
   }),
 };

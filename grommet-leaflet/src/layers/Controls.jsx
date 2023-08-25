@@ -81,7 +81,7 @@ const Controls = ({ locations }) => {
 };
 
 Controls.propTypes = {
-  locations: PropTypes.array,
+  locations: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
 };
 
 export { Controls };
