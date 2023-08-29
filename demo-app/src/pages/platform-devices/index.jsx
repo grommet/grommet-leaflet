@@ -49,8 +49,6 @@ const devicesWithLocation = {
   }),
 };
 
-console.log(devicesWithLocation.features[0]);
-
 const devicesWithoutLocation = {
   ...devices,
   features: devices.features.filter(device => {
@@ -146,7 +144,7 @@ const PlatformDevices = () => {
     <Page fill>
       <PageContent flex>
         <PageHeader
-          title="HPE GreenLake Devices"
+          title="Acme, Inc. Devices"
           parent={<ReverseAnchor as={Link} label="Home" to="/" />}
         />
         <ContentContainer flex={false}>
@@ -205,10 +203,10 @@ const PlatformDevices = () => {
                   columns={columns}
                   alignSelf="start"
                   fill="vertical"
-                  sort={{
-                    property: 'properties.serial_number',
-                    direction: 'asc',
-                  }}
+                  // sort={{
+                  //   property: 'properties.serial_number',
+                  //   direction: 'asc',
+                  // }}
                   sortable
                   verticalAlign="top"
                 />
