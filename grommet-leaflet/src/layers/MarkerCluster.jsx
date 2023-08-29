@@ -23,19 +23,7 @@ const createMarkerClusterGroup = ({ ...rest }, context) => {
   );
 };
 
-const updateMarkerClusterGroup = (instance, props, prevProps) => {
-  if (props.children !== prevProps.children) {
-    // TO DO revisit proper approach to update marker cluster group.
-    // https://github.com/grommet/grommet-leaflet/issues/21
-    // instance.clearLayers();
-    // instance.addLayers(props.children);
-  }
-};
-
-const LeafletMarkerCluster = createPathComponent(
-  createMarkerClusterGroup,
-  updateMarkerClusterGroup,
-);
+const LeafletMarkerCluster = createPathComponent(createMarkerClusterGroup);
 
 const MarkerCluster = ({ icon: iconProp, popup: popupProp, ...rest }) => {
   const theme = useContext(ThemeContext);
@@ -46,7 +34,7 @@ const MarkerCluster = ({ icon: iconProp, popup: popupProp, ...rest }) => {
           const popup = cluster.bindPopup(
             ReactDOMServer.renderToString(
               <ThemeContext.Provider value={theme}>
-                <Popup>{popupProp(cluster)}</Popup>
+                <Popup>{popupProp({ cluster })}</Popup>
               </ThemeContext.Provider>,
             ),
           );
@@ -63,7 +51,7 @@ const MarkerCluster = ({ icon: iconProp, popup: popupProp, ...rest }) => {
           html: ReactDOMServer.renderToString(
             <ThemeContext.Provider value={theme}>
               {iconProp ? (
-                React.cloneElement(iconProp(cluster), {
+                React.cloneElement(iconProp({ cluster }), {
                   cluster,
                 })
               ) : (
@@ -80,7 +68,7 @@ const MarkerCluster = ({ icon: iconProp, popup: popupProp, ...rest }) => {
 
 MarkerCluster.propTypes = {
   icon: PropTypes.func,
-  popup: PropTypes.any,
+  popup: PropTypes.func,
 };
 
 export { MarkerCluster };

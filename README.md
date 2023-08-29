@@ -20,6 +20,12 @@ In addition, it also supports the following props:
 
 A custom Leaflet marker for an individual location. Marker supports all [Leaflet Marker properties](https://leafletjs.com/reference.html#marker).
 
+In addition, it also supports the following props:
+
+| Prop    | Type      | Default value |
+| ------- | --------- | ------------- |
+| `popup` | `Element` | `undefined`   |
+
 #### Customizing the marker
 
 Marker will render whatever is passed to its `icon` prop. By default, `grommet-leaflet` will render this as `<Pin />`. However, this can be customized by passing a `Pin` with a specific `kind` defined by the theme (see [Pin](#pin) for details) or a custom element all together.
@@ -50,10 +56,11 @@ A custom Leaflet marker cluster for a cluster of multiple locations. MarkerClust
 
 In addition, it also supports the following props:
 
-| Prop    | Type                   | Default value                                |
-| ------- | ---------------------- | -------------------------------------------- |
-| `icon`  | `(cluster) => Element` | `(cluster) => <Cluster cluster={cluster} />` |
-| `popup` | `(cluster) => Element` | `undefined`                                  |
+| Prop    | Type                       | Default value                                    |
+| ------- | -------------------------- | ------------------------------------------------ |
+| `icon`  | `({ cluster }) => Element` | `({ cluster }) => <Cluster cluster={cluster} />` |
+| `popup` | `({ cluster }) => Element` | `undefined`                                      |
+
 
 For large datasets, it can be beneficial to apply `chunkedLoading` to MarkerCluster. See [leaflet.markercluster docs](https://github.com/Leaflet/Leaflet.markercluster#chunked-addlayers-options) for additional details.
 
@@ -63,7 +70,7 @@ MarkerCluster will render whatever is passed to its `icon` prop. By default, `gr
 
 ```
 <MarkerCluster
-   icon={(cluster) => {
+   icon={({ cluster }) => {
       const kind = myKindLogic(cluster);
       const size = mySizeLogic(cluster);
       return <Cluster kind={kind} size={size} />
@@ -75,7 +82,7 @@ OR
 
 ```
 <MarkerCluster
-   icon={(cluster) => <MyCluster cluster={cluster} />}
+   icon={({ cluster }) => <MyCluster cluster={cluster} />}
 />
 ```
 
