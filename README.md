@@ -61,6 +61,7 @@ In addition, it also supports the following props:
 | `icon`  | `({ cluster }) => Element` | `({ cluster }) => <Cluster cluster={cluster} />` |
 | `popup` | `({ cluster }) => Element` | `undefined`                                      |
 
+
 For large datasets, it can be beneficial to apply `chunkedLoading` to MarkerCluster. See [leaflet.markercluster docs](https://github.com/Leaflet/Leaflet.markercluster#chunked-addlayers-options) for additional details.
 
 #### Customizing the cluster
@@ -101,7 +102,7 @@ Pin styles can be customized in a Map `theme` in `theme.pin`.
 
 ### Cluster
 
-Cluster is used to render a cluster of locations and is passed to the `icon` prop on [MarkerCluster](#markercluster). Cluster will render the number of markers contained in the cluster and an icon associated with the marker `kind` if an icon for that kind has been specified in the theme.
+Cluster is used to render a cluster of locations and is passed to the `icon` prop on [MarkerCluster](#markercluster). Cluster will render the number of markers contained in the cluster and an icon associated with the marker `kind` if an icon for that kind has been specified in the theme. Cluster can accept any [Box](https://v2.grommet.io/box) props.
 
 Cluster supports the following props:
 
@@ -129,6 +130,16 @@ Popup styles can be customized in a Map `theme` in `theme.popup`.
 | Theme object | Type     | Notes                                      |
 | ------------ | -------- | ------------------------------------------ |
 | `popup`      | `object` | Any [Box](https://v2.grommet.io/box) props |
+
+#### Controls
+
+Controls provides zoom in, zoom out, and center on data controls for the map.
+
+Controls supports the following props:
+
+| Prop        | Type                      | Notes                                                                                                                                                                    |
+| ----------- | ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `locations` | `array` or geojson object | `array` should be an array of arrays of lat, lng values. If a geojson object is passed it should have coordinates defined within `features[index].geometry.coordinates`. |
 
 ### Theme structure
 
