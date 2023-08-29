@@ -53,8 +53,8 @@ function POCMap() {
             icon={<Grommet color="purple!" size="large" />}
           />
           <MarkerCluster
-            popup={cluster => <ClusterPopup cluster={cluster} />}
-            icon={cluster => {
+            popup={({ cluster }) => <ClusterPopup cluster={cluster} />}
+            icon={({ cluster }) => {
               const kind = getClusterStatus(cluster.getAllChildMarkers());
               const size = getClusterSize(cluster);
 

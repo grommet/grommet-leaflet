@@ -9,9 +9,9 @@ export interface MarkerProps {
 
 export interface MarkerExtendedProps
   extends MarkerProps,
-    L.MarkerOptions,
-    ReactMarkerProps,
-    Omit<JSX.IntrinsicElements['div'], keyof MarkerProps> {}
+    Omit<L.MarkerOptions, 'icon'>,
+    Omit<ReactMarkerProps, 'icon' | 'children'>,
+    Omit<JSX.IntrinsicElements['div'], keyof MarkerProps | 'draggable'> {}
 
 declare const Marker: React.FC<MarkerExtendedProps>;
 

@@ -37,3 +37,6 @@
 .leaflet-bottom {
     z-index: 91;
 }
+.leaflet-container a {
+    color: inherit;
+}
