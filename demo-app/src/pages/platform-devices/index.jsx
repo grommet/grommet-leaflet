@@ -113,8 +113,12 @@ const columns = [
     property: 'properties.device_type',
     header: 'Device type',
   },
+  { property: 'properties.mac', header: 'MAC address' },
+  { property: 'properties.ip_address', header: 'IP address' },
   { property: 'properties.name', header: 'Location name' },
-  { property: 'properties.location', header: 'Location' },
+  { property: 'properties.geo.city', header: 'City' },
+  { property: 'properties.geo.state', header: 'State' },
+  { property: 'properties.geo.country', header: 'Country' },
 ];
 
 const noLocationMessage = `${new Intl.NumberFormat(navigator.language).format(
@@ -146,18 +150,7 @@ const PlatformDevices = () => {
           parent={<ReverseAnchor as={Link} label="Home" to="/" />}
         />
         <ContentContainer flex={false}>
-          <Data
-            data={devicesWithLocation.features}
-            properties={properties}
-            // views={[
-            //   {
-            //     name: 'My preferred view',
-            //     properties: {
-            //       'properties.geo.city': ['Paris'],
-            //     },
-            //   },
-            // ]}
-          >
+          <Data data={devicesWithLocation.features} properties={properties}>
             <Box gap="small">
               <Toolbar direction="column" gap="xsmall">
                 <ToolbarRegion>
@@ -166,11 +159,13 @@ const PlatformDevices = () => {
                     <DataFilters layer heading="Device filters">
                       <DataFilter property="properties.location" />
                       <DataFilter property="properties.device_type" />
+                      <DataFilter property="properties.name" />
+                      <DataFilter property="properties.part_number" />
                     </DataFilters>
                   </ToolbarRegion>
                   <ToolbarRegion gap="small">
                     <ViewToggle
-                      options={['list', 'map', 'table']}
+                      options={['map', 'table']}
                       view={view}
                       setView={value => {
                         console.log(value);
@@ -205,13 +200,23 @@ const PlatformDevices = () => {
                   </Box>
                 </Box>
               ) : null}
-              {view === 'table' ? <DataTable columns={columns} /> : null}
+              {view === 'table' ? (
+                <DataTable
+                  columns={columns}
+                  alignSelf="start"
+                  fill="vertical"
+                  sort={{
+                    property: 'properties.serial_number',
+                    direction: 'asc',
+                  }}
+                  sortable
+                  verticalAlign="top"
+                />
+              ) : null}
             </Box>
           </Data>
         </ContentContainer>
-        <Box height="medium" background="blue" flex={false}>
-          fddf
-        </Box>
+        <Box height="small" flex={false} />
       </PageContent>
     </Page>
   );

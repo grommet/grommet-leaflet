@@ -33,7 +33,13 @@ const Controls = ({ locations }) => {
 
   // on mount, zoom to the bounds of the locations
   if (bounds) {
-    map.flyToBounds(bounds, { duration: flyToBoundsDuration });
+    if (
+      JSON.stringify(bounds._northEast) === JSON.stringify(bounds._southWest)
+    ) {
+      // if the bounds are the same, zoom to the bounds of the locations
+    } else {
+      map.flyToBounds(bounds, { duration: flyToBoundsDuration });
+    }
   }
 
   return (
