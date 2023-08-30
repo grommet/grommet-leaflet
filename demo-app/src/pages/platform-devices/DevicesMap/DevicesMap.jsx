@@ -11,26 +11,20 @@ import {
 
 const ClusterDetail = ({ cluster }) => {
   const childMarkers = cluster.getAllChildMarkers();
-  const locations = {};
-  const deviceTypes = {};
-  const parts = {};
-  childMarkers.forEach(marker => {
-    if (locations[marker.options.detail.properties.location]) {
-      locations[marker.options.detail.properties.location] += 1;
-    } else {
-      locations[marker.options.detail.properties.location] = 1;
-    }
-    if (deviceTypes[marker.options.detail.properties.device_type]) {
-      deviceTypes[marker.options.detail.properties.device_type] += 1;
-    } else {
-      deviceTypes[marker.options.detail.properties.device_type] = 1;
-    }
-    if (parts[marker.options.detail.properties.part]) {
-      parts[marker.options.detail.properties.part] += 1;
-    } else {
-      parts[marker.options.detail.properties.part] = 1;
-    }
-  });
+  const clusterSummary = childMarkers.reduce(
+    (summary, marker) => {
+      const { device_type, location, part } = marker.options.data.properties;
+      summary.device_types.add(device_type);
+      summary.locations.add(location);
+      summary.parts.add(part);
+      return summary;
+    },
+    {
+      device_types: new Set(),
+      locations: new Set(),
+      parts: new Set(),
+    },
+  );
 
   return (
     <Box gap="small">
@@ -38,13 +32,13 @@ const ClusterDetail = ({ cluster }) => {
         <Text>{childMarkers.length} devices</Text>
         <NameValueList nameProps={{ width: 'xsmall' }}>
           <NameValuePair name="Locations">
-            {Object.entries(locations).length}
+            {clusterSummary.locations.size}
           </NameValuePair>
           <NameValuePair name="Device types">
-            {Object.entries(deviceTypes).length}
+            {clusterSummary.device_types.size}
           </NameValuePair>
           <NameValuePair name="Parts">
-            {Object.entries(parts).length}
+            {clusterSummary.parts.size}
           </NameValuePair>
         </NameValueList>
       </Box>
@@ -55,15 +49,12 @@ const ClusterDetail = ({ cluster }) => {
 
 export const DevicesMap = () => {
   const mapContainerRef = React.useRef();
-  const dataContext = useContext(DataContext);
-  const { data } = dataContext;
-  const locations = data.map(device => {
-    return device.geometry.coordinates;
-  });
+  const { data } = useContext(DataContext);
+  const locations = data.map(device => device.geometry.coordinates);
 
   return (
     <Map id="map" ref={mapContainerRef}>
-      {data.length >= 1 ? (
+      {data.length ? (
         <>
           <Controls locations={locations} />
           <MarkerCluster popup={cluster => <ClusterDetail cluster={cluster} />}>
@@ -71,9 +62,8 @@ export const DevicesMap = () => {
               return (
                 <Marker
                   key={device.properties.serial_number}
+                  data={device}
                   position={device.geometry.coordinates}
-                  // popup={device.properties.serial_number}
-                  detail={device}
                 />
               );
             })}

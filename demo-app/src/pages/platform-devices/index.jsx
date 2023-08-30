@@ -111,6 +111,10 @@ const columns = [
     property: 'properties.device_type',
     header: 'Device type',
   },
+  {
+    property: 'properties.part_number',
+    header: 'Part number',
+  },
   { property: 'properties.mac', header: 'MAC address' },
   { property: 'properties.ip_address', header: 'IP address' },
   { property: 'properties.name', header: 'Location name' },
@@ -131,18 +135,15 @@ const noLocationMessage = `${new Intl.NumberFormat(navigator.language).format(
 
 const PlatformDevices = () => {
   const containerRef = React.useRef();
-  // const [loading, setLoading] = React.useState(true);
-  const [view, setView] = React.useState('map');
-
-  // React.useEffect(() => {
-  //   setTimeout(() => {
-  //     setLoading(false);
-  //   }, 1000);
-  // }, []);
+  const [view, setView] = React.useState('table');
+  const [sort, setSort] = React.useState({
+    property: 'properties.serial_number',
+    direction: 'asc',
+  });
 
   return (
     <Page fill>
-      <PageContent flex>
+      <PageContent>
         <PageHeader
           title="Acme, Inc. Devices"
           parent={<ReverseAnchor as={Link} label="Home" to="/" />}
@@ -166,7 +167,6 @@ const PlatformDevices = () => {
                       options={['map', 'table']}
                       view={view}
                       setView={value => {
-                        console.log(value);
                         setView(value);
                       }}
                     />
@@ -192,7 +192,6 @@ const PlatformDevices = () => {
                     height={{ min: 'medium' }}
                     round="small"
                     overflow="hidden"
-                    // skeleton={loading}
                   >
                     <DevicesMap />
                   </Box>
@@ -203,10 +202,8 @@ const PlatformDevices = () => {
                   columns={columns}
                   alignSelf="start"
                   fill="vertical"
-                  // sort={{
-                  //   property: 'properties.serial_number',
-                  //   direction: 'asc',
-                  // }}
+                  sort={sort}
+                  onSort={setSort}
                   sortable
                   verticalAlign="top"
                 />
