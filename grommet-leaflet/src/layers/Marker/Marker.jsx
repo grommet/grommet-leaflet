@@ -5,7 +5,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { ThemeContext } from 'styled-components';
 import { Marker as LeafletMarker, Popup as LeafletPopup } from 'react-leaflet';
 import L from 'leaflet';
-import { Pin, Popup } from '.';
+import { Pin, Popup } from '..';
 
 const Marker = ({ icon, popup: popupProp, ...rest }) => {
   const theme = useContext(ThemeContext);
