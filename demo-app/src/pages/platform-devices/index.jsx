@@ -15,6 +15,7 @@ import {
   Pagination,
   Text,
   Toolbar,
+  DataTableColumns,
 } from 'grommet';
 import { ToolbarRegion, ViewToggle } from '../../components/DataAndFriends';
 import { ContentContainer, ReverseAnchor } from '../../components';
@@ -141,7 +142,7 @@ const noLocationMessage = `${new Intl.NumberFormat(navigator.language).format(
 
 const PlatformDevices = () => {
   const containerRef = React.useRef();
-  const [view, setView] = React.useState('map');
+  const [view, setView] = React.useState('table');
   const [sort, setSort] = React.useState({
     property: 'properties.serial_number',
     direction: 'asc',
@@ -182,6 +183,15 @@ const PlatformDevices = () => {
                         setView(value);
                       }}
                     />
+                    {view === 'table' ? (
+                      <DataTableColumns
+                        drop
+                        options={columns.map(({ header, property }) => ({
+                          property,
+                          label: header,
+                        }))}
+                      />
+                    ) : null}
                   </ToolbarRegion>
                 </ToolbarRegion>
                 <DataSummary />
