@@ -11,26 +11,32 @@ import {
 
 const ClusterDetail = ({ cluster }) => {
   const childMarkers = cluster.getAllChildMarkers();
-  const clusterSummary = childMarkers.reduce(
-    (summary, marker) => {
-      const { device_type, location, part } = marker.options.data.properties;
-      summary.device_types.add(device_type);
-      summary.locations.add(location);
-      summary.parts.add(part);
-      return summary;
-    },
-    {
-      device_types: new Set(),
-      locations: new Set(),
-      parts: new Set(),
-    },
+  const clusterSummary = React.useMemo(() =>
+    childMarkers.reduce(
+      (summary, marker) => {
+        const { device_type, location, part } = marker.options.data.properties;
+        summary.device_types.add(device_type);
+        summary.locations.add(location);
+        summary.parts.add(part);
+        return summary;
+      },
+      {
+        device_types: new Set(),
+        locations: new Set(),
+        parts: new Set(),
+      },
+    ),
   );
 
   return (
-    <Box gap="small">
+    <Box gap="small" width={{ min: 'small' }}>
       <Box gap="xsmall">
-        <Text>{childMarkers.length} devices</Text>
-        <NameValueList nameProps={{ width: 'xsmall' }}>
+        <Text>Devices summary</Text>
+        <NameValueList
+          gap="xsmall"
+          nameProps={{ width: 'xsmall' }}
+          valueProps={{ align: 'end' }}
+        >
           <NameValuePair name="Locations">
             {clusterSummary.locations.size}
           </NameValuePair>
@@ -57,7 +63,9 @@ export const DevicesMap = () => {
       {data.length ? (
         <>
           <Controls locations={locations} />
-          <MarkerCluster popup={cluster => <ClusterDetail cluster={cluster} />}>
+          <MarkerCluster
+            popup={({ cluster }) => <ClusterDetail cluster={cluster} />}
+          >
             {data.map(device => {
               return (
                 <Marker

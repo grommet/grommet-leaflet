@@ -135,7 +135,7 @@ const noLocationMessage = `${new Intl.NumberFormat(navigator.language).format(
 
 const PlatformDevices = () => {
   const containerRef = React.useRef();
-  const [view, setView] = React.useState('table');
+  const [view, setView] = React.useState('map');
   const [sort, setSort] = React.useState({
     property: 'properties.serial_number',
     direction: 'asc',
