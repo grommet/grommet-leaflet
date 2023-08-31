@@ -118,16 +118,36 @@ const columns = [
     header: 'Part number',
   },
   { property: 'properties.mac', header: 'MAC address' },
-  { property: 'properties.ip_address', header: 'IP address' },
+  {
+    property: 'properties.ip_address',
+    header: 'IP address',
+    render: datum =>
+      datum.properties.ip_address || <Text a11yTitle="No value">--</Text>,
+  },
   {
     property: 'properties.name',
     header: 'Location name',
     render: datum =>
       datum.properties.name || <Text a11yTitle="No value">--</Text>,
   },
-  { property: 'properties.geo.city', header: 'City' },
-  { property: 'properties.geo.state', header: 'State' },
-  { property: 'properties.geo.country', header: 'Country' },
+  {
+    property: 'properties.geo.city',
+    header: 'City',
+    render: datum =>
+      datum.properties.geo?.city || <Text a11yTitle="No value">--</Text>,
+  },
+  {
+    property: 'properties.geo.state',
+    header: 'State',
+    render: datum =>
+      datum.properties.geo?.state || <Text a11yTitle="No value">--</Text>,
+  },
+  {
+    property: 'properties.geo.country',
+    header: 'Country',
+    render: datum =>
+      datum.properties.geo?.country || <Text a11yTitle="No value">--</Text>,
+  },
 ];
 
 const noLocationMessage = `${new Intl.NumberFormat(navigator.language).format(
@@ -142,14 +162,14 @@ const noLocationMessage = `${new Intl.NumberFormat(navigator.language).format(
 
 const PlatformDevices = () => {
   const containerRef = React.useRef();
-  const [view, setView] = React.useState('table');
+  const [view, setView] = React.useState('map');
   const [sort, setSort] = React.useState({
     property: 'properties.serial_number',
     direction: 'asc',
   });
   const [page, setPage] = React.useState(1);
-  const numberItems = devices.features.length;
   const limit = 25;
+  const numberItems = devices.features.length;
   const pageResultStart = (page - 1) * limit + 1;
   const pageResultEnd = Math.min(page * limit, numberItems);
 
@@ -162,7 +182,7 @@ const PlatformDevices = () => {
           parent={<ReverseAnchor as={Link} label="Home" to="/" />}
         />
         <ContentContainer flex={false}>
-          <Data data={devicesWithLocation.features} properties={properties}>
+          <Data data={devices.features} properties={properties}>
             <Box gap="small">
               <Toolbar direction="column" gap="xsmall">
                 <ToolbarRegion>
@@ -179,9 +199,7 @@ const PlatformDevices = () => {
                     <ViewToggle
                       options={['map', 'table']}
                       view={view}
-                      setView={value => {
-                        setView(value);
-                      }}
+                      setView={value => setView(value)}
                     />
                     {view === 'table' ? (
                       <DataTableColumns

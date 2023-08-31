@@ -56,17 +56,26 @@ const ClusterDetail = ({ cluster }) => {
 export const DevicesMap = () => {
   const mapContainerRef = React.useRef();
   const { data } = useContext(DataContext);
-  const locations = data.map(device => device.geometry.coordinates);
+  console.log(data.length);
+  const devicesWithLocation = data.filter(device => {
+    if (device.geometry.coordinates[0] !== null) {
+      return device;
+    }
+  });
+
+  const locations = devicesWithLocation.map(
+    device => device.geometry.coordinates,
+  );
 
   return (
     <Map id="map" ref={mapContainerRef}>
-      {data.length ? (
+      {devicesWithLocation.length ? (
         <>
           <Controls locations={locations} />
           <MarkerCluster
             popup={({ cluster }) => <ClusterDetail cluster={cluster} />}
           >
-            {data.map(device => {
+            {devicesWithLocation.map(device => {
               return (
                 <Marker
                   key={device.properties.serial_number}
