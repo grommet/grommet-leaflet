@@ -3,17 +3,18 @@ import { Link } from 'react-router-dom';
 import {
   Box,
   Data,
-  Notification,
-  Page,
-  PageContent,
-  PageHeader,
-  List,
   DataTable,
   DataFilters,
   DataFilter,
   DataSearch,
-  Toolbar,
   DataSummary,
+  Notification,
+  Page,
+  PageContent,
+  PageHeader,
+  Pagination,
+  Text,
+  Toolbar,
 } from 'grommet';
 import { ToolbarRegion, ViewToggle } from '../../components/DataAndFriends';
 import { ContentContainer, ReverseAnchor } from '../../components';
@@ -117,7 +118,12 @@ const columns = [
   },
   { property: 'properties.mac', header: 'MAC address' },
   { property: 'properties.ip_address', header: 'IP address' },
-  { property: 'properties.name', header: 'Location name' },
+  {
+    property: 'properties.name',
+    header: 'Location name',
+    render: datum =>
+      datum.properties.name || <Text a11yTitle="No value">--</Text>,
+  },
   { property: 'properties.geo.city', header: 'City' },
   { property: 'properties.geo.state', header: 'State' },
   { property: 'properties.geo.country', header: 'Country' },
@@ -140,11 +146,17 @@ const PlatformDevices = () => {
     property: 'properties.serial_number',
     direction: 'asc',
   });
+  const [page, setPage] = React.useState(1);
+  const numberItems = devices.features.length;
+  const limit = 25;
+  const pageResultStart = (page - 1) * limit + 1;
+  const pageResultEnd = Math.min(page * limit, numberItems);
 
   return (
     <Page fill>
       <PageContent>
         <PageHeader
+          id="devices-data-collection"
           title="Acme, Inc. Devices"
           parent={<ReverseAnchor as={Link} label="Home" to="/" />}
         />
@@ -174,7 +186,6 @@ const PlatformDevices = () => {
                 </ToolbarRegion>
                 <DataSummary />
               </Toolbar>
-
               {view === 'map' ? (
                 <Box gap="small">
                   {devicesWithoutLocation.features.length > 0 ? (
@@ -198,15 +209,40 @@ const PlatformDevices = () => {
                 </Box>
               ) : null}
               {view === 'table' ? (
-                <DataTable
-                  columns={columns}
-                  alignSelf="start"
-                  fill="vertical"
-                  sort={sort}
-                  onSort={setSort}
-                  sortable
-                  verticalAlign="top"
-                />
+                <Box gap="xsmall">
+                  <DataTable
+                    aria-describedby="devices-data-collection"
+                    columns={columns}
+                    alignSelf="start"
+                    fill="vertical"
+                    sort={sort}
+                    onSort={setSort}
+                    pin
+                    sortable
+                    verticalAlign="top"
+                  />
+                  {numberItems > limit && (
+                    <Box
+                      direction="row"
+                      fill="horizontal"
+                      border="top"
+                      justify="end"
+                    >
+                      <Text>
+                        Showing {pageResultStart}-{pageResultEnd} of{' '}
+                        {numberItems}
+                      </Text>
+                      <Pagination
+                        step={limit}
+                        numberItems={numberItems}
+                        page={page}
+                        onChange={({ page }) => setPage(page)}
+                        direction="row"
+                        flex={false}
+                      />
+                    </Box>
+                  )}
+                </Box>
               ) : null}
             </Box>
           </Data>
