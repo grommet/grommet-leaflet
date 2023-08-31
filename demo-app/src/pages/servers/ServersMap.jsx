@@ -1,5 +1,5 @@
 import React, { useContext, useRef, useMemo } from 'react';
-import { Box, DataContext } from 'grommet';
+import { Anchor, Box, DataContext, Text } from 'grommet';
 import {
   Cluster,
   Controls,
@@ -11,6 +11,7 @@ import {
 import { hpeLeaflet } from '../../themes';
 import { getClusterSize, getClusterStatus } from '../../utils';
 import { ServersClusterPopup } from './ServersClusterPopup';
+import { TextEmphasis } from '../../components';
 
 export const ServersMap = () => {
   const { data } = useContext(DataContext);
@@ -23,8 +24,8 @@ export const ServersMap = () => {
       <Map ref={mapContainerRef} theme={hpeLeaflet}>
         <Controls locations={locations} />
         <MarkerCluster
-          popup={cluster => <ServersClusterPopup cluster={cluster} />}
-          icon={cluster => {
+          popup={({ cluster }) => <ServersClusterPopup cluster={cluster} />}
+          icon={({ cluster }) => {
             const kind = getClusterStatus(cluster.getAllChildMarkers());
             const size = getClusterSize(cluster);
             return <Cluster kind={kind} size={size} />;
@@ -39,6 +40,12 @@ export const ServersMap = () => {
                 key={index}
                 position={server?.location}
                 icon={<Pin kind={status} />}
+                popup={
+                  <MarkerPopup
+                    name={server.displayName}
+                    model={server.hardware?.model}
+                  />
+                }
               />
             );
           })}
@@ -47,3 +54,13 @@ export const ServersMap = () => {
     </Box>
   );
 };
+
+const MarkerPopup = ({ name, model }) => (
+  <Box gap="xsmall" pad={{ right: 'xsmall' }}>
+    <Box>
+      <TextEmphasis>{name}</TextEmphasis>
+      <Text size="small">{model}</Text>
+    </Box>
+    <Anchor label="View details" size="small" />
+  </Box>
+);

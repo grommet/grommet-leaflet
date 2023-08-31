@@ -47,7 +47,7 @@ const Default = () => {
                   />
                 ) : null}
                 <MarkerCluster
-                  popup={cluster => <ClusterPopup cluster={cluster} />}
+                  popup={({ cluster }) => <ClusterPopup cluster={cluster} />}
                 >
                   {locations.map((location, index) => (
                     <Marker

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Box, ThemeContext } from 'grommet';
-import { normalizeTheme } from '../utils';
+import { normalizeTheme } from '../../utils';
 
 const StyledBox = styled(Box)`
   // to create the pin shape

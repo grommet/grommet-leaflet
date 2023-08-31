@@ -31,8 +31,8 @@ const NetworkMap = () => {
         <Map id="map" ref={mapContainerRef} theme={hpeLeaflet}>
           <Controls locations={formatLocationsToLatLng(locations)} />
           <MarkerCluster
-            popup={cluster => <ClusterPopup cluster={cluster} />}
-            icon={cluster => {
+            popup={({ cluster }) => <ClusterPopup cluster={cluster} />}
+            icon={({ cluster }) => {
               const kind = getClusterStatus(cluster.getAllChildMarkers());
               return <Cluster kind={kind} size="medium" />;
             }}

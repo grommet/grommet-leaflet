@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { MapContainer, TileLayer } from 'react-leaflet';
 import styled, { ThemeContext } from 'styled-components';
 import { deepMerge } from 'grommet/utils';
-import { base } from '../themes';
+import { base } from '../../themes';
 
 const StyledMapContainer = styled(MapContainer)`
   ${({ theme }) => {

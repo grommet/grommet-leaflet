@@ -3,13 +3,19 @@ import PropTypes from 'prop-types';
 import ReactDOMServer from 'react-dom/server';
 import { v4 as uuidv4 } from 'uuid';
 import { ThemeContext } from 'styled-components';
-import { Popup as LeafletPopup, Marker as LeafletMarker } from 'react-leaflet';
+import { Marker as LeafletMarker, Popup as LeafletPopup } from 'react-leaflet';
 import L from 'leaflet';
-import { Pin, Popup } from '.';
+import { Pin, Popup } from '..';
 
-const Marker = ({ children, icon, ...rest }) => {
+const Marker = ({ icon, popup: popupProp, ...rest }) => {
   const theme = useContext(ThemeContext);
   const kind = icon?.props?.kind;
+
+  const popup = popupProp ? (
+    <LeafletPopup>
+      <Popup>{popupProp}</Popup>
+    </LeafletPopup>
+  ) : undefined;
 
   return (
     <LeafletMarker
@@ -31,18 +37,14 @@ const Marker = ({ children, icon, ...rest }) => {
       kind={kind}
       {...rest}
     >
-      {children && (
-        <LeafletPopup>
-          <Popup>{children}</Popup>
-        </LeafletPopup>
-      )}
+      {popup}
     </LeafletMarker>
   );
 };
 
 Marker.propTypes = {
-  children: PropTypes.any,
   icon: PropTypes.node,
+  popup: PropTypes.node,
 };
 
 export { Marker };
