@@ -211,7 +211,6 @@ const PlatformDevices = () => {
             </Box>
           </Data>
         </ContentContainer>
-        <Box height="small" flex={false} />
       </PageContent>
     </Page>
   );
