@@ -55,9 +55,7 @@ const ClusterDetail = ({ cluster }) => {
 
 export const DevicesMap = () => {
   const mapContainerRef = React.useRef();
-  const dataContext = useContext(DataContext);
-  console.log('dataContext', dataContext);
-  const { data, view, onView } = useContext(DataContext);
+  const { data } = useContext(DataContext);
 
   const devicesWithLocation = data.filter(device => {
     if (device.geometry.coordinates[0] !== null) {
