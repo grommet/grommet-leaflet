@@ -20,6 +20,7 @@ import { ToolbarRegion, ViewToggle } from '../../components/DataAndFriends';
 import { ContentContainer, ReverseAnchor } from '../../components';
 import devicesOriginal from './data/1073-devices-customer.geojson.json';
 import { MapView } from './MapView';
+import { TableView } from './TableView';
 
 const devices = {
   ...devicesOriginal,
@@ -150,16 +151,16 @@ const columns = [
 ];
 
 const PlatformDevices = () => {
-  const [visualization, setVisualization] = React.useState('map');
-  const [sort, setSort] = React.useState({
-    property: 'properties.serial_number',
-    direction: 'asc',
-  });
-  const [page, setPage] = React.useState(1);
-  const limit = 25;
-  const numberItems = devices.features.length;
-  const pageResultStart = (page - 1) * limit + 1;
-  const pageResultEnd = Math.min(page * limit, numberItems);
+  const [visualization, setVisualization] = React.useState('table');
+  // const [sort, setSort] = React.useState({
+  //   property: 'properties.serial_number',
+  //   direction: 'asc',
+  // });
+  // const [page, setPage] = React.useState(1);
+  // const limit = 25;
+  // const numberItems = devices.features.length;
+  // const pageResultStart = (page - 1) * limit + 1;
+  // const pageResultEnd = Math.min(page * limit, numberItems);
 
   return (
     <Page fill>
@@ -209,40 +210,11 @@ const PlatformDevices = () => {
                 />
               ) : null}
               {visualization === 'table' ? (
-                <Box gap="xsmall">
-                  <DataTable
-                    aria-describedby="devices-data-collection"
-                    columns={columns}
-                    alignSelf="start"
-                    fill="vertical"
-                    sort={sort}
-                    onSort={setSort}
-                    pin
-                    sortable
-                    verticalAlign="top"
-                  />
-                  {numberItems > limit && (
-                    <Box
-                      direction="row"
-                      fill="horizontal"
-                      border="top"
-                      justify="end"
-                    >
-                      <Text>
-                        Showing {pageResultStart}-{pageResultEnd} of{' '}
-                        {numberItems}
-                      </Text>
-                      <Pagination
-                        step={limit}
-                        numberItems={numberItems}
-                        page={page}
-                        onChange={({ page }) => setPage(page)}
-                        direction="row"
-                        flex={false}
-                      />
-                    </Box>
-                  )}
-                </Box>
+                <TableView
+                  ariaDescribedBy="devices-data-collection"
+                  columns={columns}
+                  devices={devices}
+                />
               ) : null}
             </Box>
           </Data>
