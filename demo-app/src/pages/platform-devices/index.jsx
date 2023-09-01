@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import {
   Box,
   Data,
-  DataTable,
   DataFilters,
   DataFilter,
   DataSearch,
@@ -11,7 +10,6 @@ import {
   Page,
   PageContent,
   PageHeader,
-  Pagination,
   Text,
   Toolbar,
   DataTableColumns,
@@ -108,6 +106,7 @@ const columns = [
     property: 'properties.serial_number',
     header: 'Serial number',
     primary: true,
+    pin: true,
   },
   {
     property: 'properties.device_type',
@@ -152,15 +151,6 @@ const columns = [
 
 const PlatformDevices = () => {
   const [visualization, setVisualization] = React.useState('table');
-  // const [sort, setSort] = React.useState({
-  //   property: 'properties.serial_number',
-  //   direction: 'asc',
-  // });
-  // const [page, setPage] = React.useState(1);
-  // const limit = 25;
-  // const numberItems = devices.features.length;
-  // const pageResultStart = (page - 1) * limit + 1;
-  // const pageResultEnd = Math.min(page * limit, numberItems);
 
   return (
     <Page fill>

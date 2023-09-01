@@ -16,7 +16,7 @@ export const PaginationControls = ({
       align="center"
       justify="between"
       border="top"
-      fill="horizontal"
+      fill
       gap="small"
       pad={{ vertical: 'xsmall' }}
       wrap

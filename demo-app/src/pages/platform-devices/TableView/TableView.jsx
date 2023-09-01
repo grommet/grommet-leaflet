@@ -12,18 +12,19 @@ export const TableView = ({ ariaDescribedBy, columns, devices }) => {
   const numberItems = devices.features.length;
 
   return (
-    <Box gap="xsmall">
-      <DataTable
-        aria-describedby={ariaDescribedBy}
-        columns={columns}
-        alignSelf="start"
-        fill="vertical"
-        sort={sort}
-        onSort={setSort}
-        pin
-        sortable
-        verticalAlign="top"
-      />
+    <Box gap="xsmall" alignSelf="start">
+      <Box flex={false} overflow={{ horizontal: 'auto' }}>
+        <DataTable
+          aria-describedby={ariaDescribedBy}
+          columns={columns}
+          fill="vertical"
+          sort={sort}
+          onSort={setSort}
+          pin
+          sortable
+          verticalAlign={{ body: 'top' }}
+        />
+      </Box>
       {numberItems > step && (
         <PaginationControls
           numberItems={numberItems}
