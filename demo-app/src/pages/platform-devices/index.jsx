@@ -8,7 +8,6 @@ import {
   DataFilter,
   DataSearch,
   DataSummary,
-  Notification,
   Page,
   PageContent,
   PageHeader,
@@ -20,7 +19,7 @@ import {
 import { ToolbarRegion, ViewToggle } from '../../components/DataAndFriends';
 import { ContentContainer, ReverseAnchor } from '../../components';
 import devicesOriginal from './data/1073-devices-customer.geojson.json';
-import { DevicesMap } from './DevicesMap';
+import { MapView } from './MapView';
 
 const devices = {
   ...devicesOriginal,
@@ -150,18 +149,7 @@ const columns = [
   },
 ];
 
-const noLocationMessage = `${new Intl.NumberFormat(navigator.language).format(
-  devicesWithoutLocation.features.length,
-)} devices do not have location specified. ${new Intl.NumberFormat(
-  navigator.language,
-).format(devicesWithLocation.features.length)} of ${new Intl.NumberFormat(
-  navigator.language,
-).format(
-  devicesWithLocation.features.length + devicesWithoutLocation.features.length,
-)} devices displayed.`;
-
 const PlatformDevices = () => {
-  const containerRef = React.useRef();
   const [visualization, setVisualization] = React.useState('map');
   const [sort, setSort] = React.useState({
     property: 'properties.serial_number',
@@ -215,26 +203,10 @@ const PlatformDevices = () => {
                 <DataSummary />
               </Toolbar>
               {visualization === 'map' ? (
-                <Box gap="small">
-                  {devicesWithoutLocation.features.length > 0 ? (
-                    <Notification
-                      status="info"
-                      message={noLocationMessage}
-                      actions={[
-                        { label: 'Assign locations', onClick: () => {} },
-                      ]}
-                    />
-                  ) : null}
-                  <Box
-                    ref={containerRef}
-                    background="background-contrast"
-                    height={{ min: 'medium' }}
-                    round="small"
-                    overflow="hidden"
-                  >
-                    <DevicesMap />
-                  </Box>
-                </Box>
+                <MapView
+                  withLocation={devicesWithLocation}
+                  withoutLocation={devicesWithoutLocation}
+                />
               ) : null}
               {visualization === 'table' ? (
                 <Box gap="xsmall">
