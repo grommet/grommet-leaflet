@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Notification } from 'grommet';
-import { DevicesMap } from '../DevicesMap';
+import { DevicesMap } from './DevicesMap';
 
 const noLocationMessage = ({ withLocation, withoutLocation }) =>
   `${new Intl.NumberFormat(navigator.language).format(
