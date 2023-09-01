@@ -16,7 +16,7 @@ const radioButtonReset = {
   },
 };
 
-export const ToggleButtonGroup = ({ options, value, setValue, ...rest }) => {
+export const ToggleButtonGroup = ({ options, value, onChange, ...rest }) => {
   return (
     <ThemeContext.Extend value={radioButtonReset}>
       <RadioButtonGroup
@@ -27,7 +27,7 @@ export const ToggleButtonGroup = ({ options, value, setValue, ...rest }) => {
         border
         round={toggleButtonStyle.round}
         value={value}
-        onChange={event => setValue(event.target.value)}
+        onChange={onChange}
         {...rest}
       >
         {(option, { checked }) => {

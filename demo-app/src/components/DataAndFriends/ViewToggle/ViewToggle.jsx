@@ -1,4 +1,5 @@
 import React from 'react';
+import { DataContext } from 'grommet';
 import { List, MapLocation, Table } from 'grommet-icons';
 import { ToggleButtonGroup } from '../../ToggleButtonGroup';
 
@@ -23,7 +24,8 @@ const OPTIONS_MAP = {
   },
 };
 
-export const ViewToggle = ({ options: optionsProp, view, setView }) => {
+export const ViewToggle = ({ options: optionsProp, active, setActive }) => {
+  const { view, onView } = React.useContext(DataContext);
   const options = [];
 
   optionsProp.forEach(option => {
@@ -32,11 +34,18 @@ export const ViewToggle = ({ options: optionsProp, view, setView }) => {
     }
   });
 
+  const handleClick = event => {
+    if (event.target.value === 'map' && onView) {
+      onView({ ...view, page: undefined, step: undefined });
+    }
+    setActive(event.target.value);
+  };
+
   return (
     <ToggleButtonGroup
       options={options.sort((a, b) => (a.order > b.order ? 1 : -1))}
-      value={view}
-      setValue={setView}
+      value={active}
+      onChange={handleClick}
     />
   );
 };

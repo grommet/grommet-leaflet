@@ -162,7 +162,7 @@ const noLocationMessage = `${new Intl.NumberFormat(navigator.language).format(
 
 const PlatformDevices = () => {
   const containerRef = React.useRef();
-  const [view, setView] = React.useState('map');
+  const [visualization, setVisualization] = React.useState('map');
   const [sort, setSort] = React.useState({
     property: 'properties.serial_number',
     direction: 'asc',
@@ -198,10 +198,10 @@ const PlatformDevices = () => {
                   <ToolbarRegion gap="small">
                     <ViewToggle
                       options={['map', 'table']}
-                      view={view}
-                      setView={value => setView(value)}
+                      active={visualization}
+                      setActive={value => setVisualization(value)}
                     />
-                    {view === 'table' ? (
+                    {visualization === 'table' ? (
                       <DataTableColumns
                         drop
                         options={columns.map(({ header, property }) => ({
@@ -214,7 +214,7 @@ const PlatformDevices = () => {
                 </ToolbarRegion>
                 <DataSummary />
               </Toolbar>
-              {view === 'map' ? (
+              {visualization === 'map' ? (
                 <Box gap="small">
                   {devicesWithoutLocation.features.length > 0 ? (
                     <Notification
@@ -236,7 +236,7 @@ const PlatformDevices = () => {
                   </Box>
                 </Box>
               ) : null}
-              {view === 'table' ? (
+              {visualization === 'table' ? (
                 <Box gap="xsmall">
                   <DataTable
                     aria-describedby="devices-data-collection"
