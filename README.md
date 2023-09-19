@@ -4,6 +4,9 @@
 
 Docs for `grommet-leaflet` components.
 
+**Accessibility note:** Map should be a supplementary data visualization. A data table or list view should also be provided for a more comprehensive, accessible experience for users that navigate with keyboard or rely on assistive technologies.
+
+
 ### Map
 
 Map component is responsible for creating the [Leaflet Map](https://leafletjs.com/reference.html#map) instance.
