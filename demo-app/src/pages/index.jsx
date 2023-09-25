@@ -28,8 +28,8 @@ const pages = [
   },
   {
     title: 'Devices',
-    description: 'Demo of device health.',
-    href: '/devices',
+    description: 'Demo of device inventory.',
+    href: '/platform-devices',
   },
   {
     title: 'Servers',
