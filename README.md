@@ -82,9 +82,7 @@ A popup is a container in which to present addtional information about a locatio
 To add a popup, pass an element as a child to the marker. For ease and consistency, Marker will automatically wrap your element in the required Leaflet Popup component and a themed Popup container. The grommet-leaflet Popup styling is defined in `theme.popup`.
 
 ```
-<Marker>
-   <MyCustomPopup />
-</Marker>
+<Marker position={{ lat: 40.532, lng: -105.18 }} popup={<MyCustomPopup />} />
 ```
 
 ### MarkerCluster
