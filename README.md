@@ -1,11 +1,34 @@
-[Netlify deploy](https://whimsical-moxie-6e43a0.netlify.app/)
+** Demo application **
+[![Netlify Status](https://api.netlify.com/api/v1/badges/113af057-88eb-4de2-be8b-64d71fea855b/deploy-status)](https://app.netlify.com/sites/whimsical-moxie-6e43a0/deploys) - https://whimsical-moxie-6e43a0.netlify.app/
 
-## grommet-leaflet
+# grommet-leaflet
 
-Docs for `grommet-leaflet` components.
+A map for Grommet and React using LeafletJS.
+## Contents
 
-**Accessibility note:** Map should be a supplementary data visualization. A data table or list view should also be provided for a more comprehensive, accessible experience for users that navigate with keyboard or rely on assistive technologies.
+- [Installation](#installation)
+- [Getting started](#getting-started)
+- [Component docs](#component-docs)
+  - [Map](#map)
+  - [Marker](#marker)
+  - [MarkerCluster](#markercluster)
+  - [Controls](#controls)
+  - [Pin](#pin)
+  - [Cluster](#cluster)
+  - [Popup](#popup)
+- [Theming](#theming)
 
+**Accessibility notice:** Map should be a supplementary data visualization. A table or list view should also be provided for a more comprehensive, accessible experience for users that navigate with keyboard or rely on assistive technologies.
+
+## Installation
+
+```
+npm install grommet-leaflet
+```
+
+## Getting started
+
+## Component Docs
 
 ### Map
 
@@ -21,41 +44,51 @@ In addition, it also supports the following props:
 
 ### Marker
 
-A custom Leaflet marker for an individual location. Marker supports all [Leaflet Marker properties](https://leafletjs.com/reference.html#marker).
+A customizable Leaflet marker for an individual location.
+
+Marker supports all [Leaflet Marker properties](https://leafletjs.com/reference.html#marker).
 
 In addition, it also supports the following props:
 
 | Prop    | Type      | Default value |
 | ------- | --------- | ------------- |
+| `icon`  | `Element` | `undefined`   |
 | `popup` | `Element` | `undefined`   |
 
 #### Customizing the marker
 
-Marker will render whatever is passed to its `icon` prop. By default, `grommet-leaflet` will render this as `<Pin />`. However, this can be customized by passing a `Pin` with a specific `kind` defined by the theme (see [Pin](#pin) for details) or a custom element all together.
+Marker will render whatever is passed to its `icon` prop. By default, `grommet-leaflet` will render this as [Pin](#pin). However, this can be customized by passing a `Pin` with a specific `kind` defined by the theme or a custom element.
 
+##### Default marker
 ```
-<Marker icon={<Pin kind="critical" />} />
+<Marker position={{ lat: 40.532, lng: -105.18 }} />
 ```
 
-OR
-
+##### Theme defined marker
 ```
-<Marker icon={<MyCustomPin />} />
+<Marker position={{ lat: 40.532, lng: -105.18 }} icon={<Pin kind="critical" />} />
+```
+
+
+##### Custom marker
+```
+<Marker position={{ lat: 40.532, lng: -105.18 }} icon={<MyCustomPin />} />
 ```
 
 #### Adding a popup to the marker
 
-A popup appears when a marker is clicked. To add a popup, pass an element as a child to the marker. For ease and consistency, Marker will automatically wrap your element in the required Leaflet Popup component and a themed Popup container. The grommet-leaflet Popup styling is defined in `theme.popup`.
+A popup is a container in which to present addtional information about a location. A popup appears when a marker is clicked.
+
+To add a popup, pass an element as a child to the marker. For ease and consistency, Marker will automatically wrap your element in the required Leaflet Popup component and a themed Popup container. The grommet-leaflet Popup styling is defined in `theme.popup`.
 
 ```
-<Marker>
-   <MyCustomPopup />
-</Marker>
+<Marker position={{ lat: 40.532, lng: -105.18 }} popup={<MyCustomPopup />} />
 ```
 
 ### MarkerCluster
 
-A custom Leaflet marker cluster for a cluster of multiple locations. MarkerCluster supports all [Leaflet.markercluster properties](https://github.com/Leaflet/Leaflet.markercluster).
+A custom Leaflet marker cluster for a cluster of multiple locations. 
+MarkerCluster supports all [Leaflet.markercluster properties](https://github.com/Leaflet/Leaflet.markercluster).
 
 In addition, it also supports the following props:
 
@@ -144,7 +177,9 @@ Controls supports the following props:
 | ----------- | ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `locations` | `array` or geojson object | `array` should be an array of arrays of lat, lng values. If a geojson object is passed it should have coordinates defined within `features[index].geometry.coordinates`. |
 
-### Theme structure
+### Theming
+
+#### Theme structure
 
 The default styling for `grommet-leaflet` is defined in [`base.js`](https://github.com/grommet/grommet-leaflet/blob/main/grommet-leaflet/src/themes/base.js).
 
