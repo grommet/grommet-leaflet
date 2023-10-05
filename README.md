@@ -3,6 +3,7 @@
 
 # grommet-leaflet
 
+A map for Grommet and React using LeafletJS.
 ## Contents
 
 - [Installation](#installation)
