@@ -4,8 +4,12 @@ module.exports = {
       output: {
         manualChunks: {
           leaflet: ['leaflet'],
+          grommet: ['grommet'],
         },
       },
     },
+  },
+  resolve: {
+    mainFields: ['jsnext', 'module', 'main'],
   },
 };
