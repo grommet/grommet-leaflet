@@ -9,4 +9,7 @@ module.exports = {
       },
     },
   },
+  resolve: {
+    mainFields: ['module', 'jsnext:main', 'jsnext', 'local'],
+  },
 };
