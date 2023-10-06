@@ -22,11 +22,33 @@ A map for Grommet and React using LeafletJS.
 
 ## Installation
 
+Using npm:
+
 ```
 npm install grommet-leaflet
 ```
 
+Using yarn:
+
+```
+yarn add grommet-leaflet
+```
+
+Using pnpm:
+
+```
+pnpm add grommet-leaflet
+```
+
+
 ## Getting started
+
+The getting started guide shows how to add `grommet-leaflet` to an existing Grommet application and provides orientation for its fundamental concepts. For more detailed information on the components and ability to customize, see the [Component docs](#component-docs).
+
+If you do not have an existing Grommet application, you can follow the [Grommet installation instructions](https://github.com/grommet/grommet-starter-new-app) to create one, then continue on from this point.
+
+Go to [Getting Started](https://github.com/grommet/grommet/blob/master/GettingStarted.md).
+
 
 ## Component Docs
 
@@ -175,7 +197,7 @@ Controls supports the following props:
 
 | Prop        | Type                      | Notes                                                                                                                                                                    |
 | ----------- | ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `locations` | `array` or geojson object | `array` should be an array of arrays of lat, lng values. If a geojson object is passed it should have coordinates defined within `features[index].geometry.coordinates`. |
+| `locations` | `array` or GeoJSON object | `array` should be an array of arrays of lat, lng pairs (e.g. [[0, 0], [10, -10]]). If a geojson object is passed it should have coordinates defined within `features[index].geometry.coordinates`. |
 
 ### Theming
 
