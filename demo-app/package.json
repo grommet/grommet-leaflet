@@ -3,7 +3,12 @@
   "version": "0.1.0",
   "description": "Example of using leafletjs.com maps with react and grommet",
   "repository": "https://github.com/grommet/grommet-leaflet.git",
-  "author": "Eric Soderberg <eric.soderberg@hpe.com>",
+  "authors": [
+    "Eric Soderberg <eric.soderberg@hpe.com>",
+    "Matt Glissmann",
+    "Taylor Seamans",
+    "Jessica Filben"
+  ],
   "license": "ISC",
   "scripts": {
     "dev": "vite",
