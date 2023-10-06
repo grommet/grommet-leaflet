@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "test package",
   "main": "dist/index.cjs.js",
-  "module": "index.esm.js",
+  "module": "src/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "npm run clean && node ./tools/build.js --outDir dist",
