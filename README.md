@@ -1,4 +1,5 @@
 ** Demo application **
+
 [![Netlify Status](https://api.netlify.com/api/v1/badges/113af057-88eb-4de2-be8b-64d71fea855b/deploy-status)](https://app.netlify.com/sites/whimsical-moxie-6e43a0/deploys) - https://whimsical-moxie-6e43a0.netlify.app/
 
 # grommet-leaflet
