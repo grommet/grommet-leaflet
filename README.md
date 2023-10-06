@@ -47,7 +47,7 @@ The getting started guide shows how to add `grommet-leaflet` to an existing Grom
 
 If you do not have an existing Grommet application, you can follow the [Grommet installation instructions](https://github.com/grommet/grommet-starter-new-app) to create one, then continue on from this point.
 
-Go to [Getting Started](https://github.com/grommet/grommet/blob/master/GettingStarted.md).
+Go to [Getting Started](https://github.com/grommet/grommet-leaflet/blob/master/GettingStarted.md).
 
 
 ## Component Docs
