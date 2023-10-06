@@ -4,7 +4,7 @@
   "description": "test package",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
-  "local": "src/index.js",
+  "jsnext": "src/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "npm run clean && node ./tools/build.js --outDir dist",
