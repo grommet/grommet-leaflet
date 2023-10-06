@@ -9,10 +9,4 @@ module.exports = {
       },
     },
   },
-  // resolve: {
-  //   // alias: {
-  //   //   'grommet-leaflet': 'grommet-leaflet/dist/index.esm.js',
-  //   // },
-  //   // mainFields: ['module', 'main'],
-  // },
 };
