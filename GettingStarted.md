@@ -39,7 +39,7 @@ Next, include the Leaflet JavaScript file **after** Leaflet's CSS.
 
 Give your map a place to live by adding a Grommet `Box` with some initial dimensions.
 
-```diff-javascript
+```diff
 // App.js - or any child of Grommet's <Grommet /> component
 
 - import { Grommet } from 'grommet';
@@ -59,7 +59,7 @@ export default App;
 
 Now, add the `Map` component to your application. The map will fill the dimensions of its parent container.
 
-```diff-javascript
+```diff
 import { Grommet, Box } from 'grommet';
 import { Map } from 'grommet-leaflet';
 
@@ -77,7 +77,7 @@ const App = () => {
 
 Next, add some location `Marker`s to your map.
 
-```diff-javascript
+```diff
 import { Grommet, Box } from 'grommet';
 - import { Map } from 'grommet-leaflet';
 + import { Map, Marker } from 'grommet-leaflet';
@@ -99,7 +99,7 @@ const App = () => {
 
 Let's refactor our code a bit to make it easier to add more locations in the future. We'll create an array of locations and map over them to create our `Marker`s.
 
-```diff-javascript
+```diff
 import { Grommet, Box } from 'grommet';
 import { Map, Marker } from 'grommet-leaflet';
 
@@ -130,7 +130,7 @@ const App = () => {
 
 Now, let's enable the user to zoom in and out.
 
-```diff-javascript
+```diff
 import { Grommet, Box } from 'grommet';
 - import { Map, Marker } from 'grommet-leaflet';
 + import { Controls, Map, Marker } from 'grommet-leaflet';
@@ -159,7 +159,7 @@ const App = () => {
 
 And, the ability to center the map and fit it to the data.
 
-```diff-javascript
+```diff
 import { Grommet, Box } from 'grommet';
 import { Controls, Map, Marker } from 'grommet-leaflet';
 
@@ -190,7 +190,7 @@ Notice the world icon is added to the map's zoom controls. This allows users eas
 
 Lastly, let's add the ability to cluster our locations. This helps visualize dense areas of data.
 
-```diff-javascript
+```diff
 import { Grommet, Box } from 'grommet';
 - import { Controls, Map, Marker } from 'grommet-leaflet';
 + import { Controls, Map, Marker, MarkerCluster } from 'grommet-leaflet';
@@ -227,7 +227,7 @@ The `Map` component will fill the dimensions of its parent container.
 
 Let's alter our `Box` dimensions to take advantage of the screen's real estate.
 
-```diff-javascript
+```diff
 import { Grommet, Box } from 'grommet';
 import { Controls, Map, Marker, MarkerCluster } from 'grommet-leaflet';
 
