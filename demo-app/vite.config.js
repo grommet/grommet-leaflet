@@ -9,7 +9,4 @@ module.exports = {
       },
     },
   },
-  resolve: {
-    mainFields: ['jsnext', 'module', 'main'],
-  },
 };
