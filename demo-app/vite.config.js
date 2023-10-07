@@ -9,7 +9,7 @@ module.exports = {
       },
     },
   },
-  resolve: {
-    mainFields: ['jsnext', 'module', 'main'],
-  },
+  // resolve: {
+  //   mainFields: ['jsnext', 'module', 'main'],
+  // },
 };
