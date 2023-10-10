@@ -19,7 +19,7 @@ const Map = forwardRef(
     {
       center = [0, 0],
       children,
-      scrollWheelZoom,
+      scrollWheelZoom = true,
       theme,
       zoom = 1,
       zoomControl = false,
