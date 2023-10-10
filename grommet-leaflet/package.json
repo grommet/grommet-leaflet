@@ -6,7 +6,8 @@
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
   "exports": {
-    "development": "./src/index.js"
+    "development": "./src/index.js",
+    "production": "./dist/index.esm.js"
   },
   "scripts": {
     "build": "npm run clean && node ./tools/build.js --outDir dist",
