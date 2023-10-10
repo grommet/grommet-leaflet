@@ -5,6 +5,9 @@
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
+  "exports": {
+    "development": "./src/index.js"
+  },
   "scripts": {
     "build": "npm run clean && node ./tools/build.js --outDir dist",
     "clean": "rm -rf dist",

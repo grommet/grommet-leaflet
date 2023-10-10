@@ -1,6 +1,6 @@
 import React, { forwardRef, useContext } from 'react';
 import PropTypes from 'prop-types';
-import { MapContainer, TileLayer } from 'react-leaflet';
+import { MapContainer, TileLayer, AttributionControl } from 'react-leaflet';
 import styled, { ThemeContext } from 'styled-components';
 import { deepMerge } from 'grommet/utils';
 import { base } from '../../themes';
@@ -35,6 +35,7 @@ const Map = forwardRef(
     return (
       <ThemeContext.Provider value={mapTheme}>
         <StyledMapContainer
+          attributionControl={false}
           center={center}
           ref={ref}
           scrollWheelZoom={scrollWheelZoom}
@@ -42,11 +43,12 @@ const Map = forwardRef(
           zoomControl={zoomControl}
           {...rest}
         >
+          <AttributionControl position="bottomright" prefix={false} />
           <TileLayer
             attribution={`
-          &copy; <a href="https://stadiamaps.com/">Stadia Maps</a>,
-          &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a>
-          &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors`}
+            &copy; <a href="https://stadiamaps.com/">Stadia Maps</a>,
+            &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a>,
+            &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors`}
             url="https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png"
           />
           {children}
