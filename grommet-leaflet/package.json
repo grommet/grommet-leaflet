@@ -1,6 +1,6 @@
 {
   "name": "grommet-leaflet",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Map for Grommet and React using LeafletJS",
   "main": "dist/index.esm.js",
   "types": "dist/index.d.ts",
