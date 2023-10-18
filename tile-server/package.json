@@ -1,0 +1,13 @@
+{
+  "name": "tile-server",
+  "description": "Self-hosted server for OpenStreetMap and vector tiles.",
+  "scripts": {
+    "dev": "tileserver-gl"
+  },
+  "dependencies": {
+    "tileserver-gl": "^4.5.0"
+  },
+  "engines": {
+    "node": ">=14.20.0 <19"
+  }
+}

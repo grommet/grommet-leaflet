@@ -1,0 +1,46 @@
+{
+  "options": {
+    "paths": {
+      "root": "",
+      "fonts": "fonts",
+      "sprites": "sprites",
+      "styles": "styles",
+      "mbtiles": ""
+    },
+    "domains": ["localhost:8080", "127.0.0.1:8080"],
+    "formatQuality": {
+      "jpeg": 80,
+      "webp": 90
+    },
+    "maxScaleFactor": 3,
+    "maxSize": 2048,
+    "pbfAlias": "pbf",
+    "serveAllFonts": false,
+    "serveAllStyles": false,
+    "serveStaticMaps": true,
+    "tileMargin": 0
+  },
+  "styles": {
+    "basic-preview": {
+      "style": "basic-preview/style.json"
+    },
+    "positron": {
+      "style": "positron-gl-style/style.json",
+      "serve_rendered": true,
+      "serve_data": true,
+      "tilejson": {
+        "format": "png"
+      }
+    },
+    "osm-bright": {
+      "style": "osm-bright-gl-style-1.9/style.json",
+      "serve_rendered": true,
+      "serve_data": true
+    }
+  },
+  "data": {
+    "v3": {
+      "mbtiles": "maptiler-osm-2020-02-10-v3.11-planet.mbtiles"
+    }
+  }
+}
