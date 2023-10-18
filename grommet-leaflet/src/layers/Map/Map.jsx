@@ -5,6 +5,25 @@ import styled, { ThemeContext } from 'styled-components';
 import { deepMerge } from 'grommet/utils';
 import { base } from '../../themes';
 
+const PORT = 8080;
+
+const TILE_STYLES = {
+  hosted: {
+    alidade_smooth:
+      'https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png',
+    alidade_smooth_dark:
+      'https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png',
+  },
+  local: {
+    'basic-preview': `http://localhost:${PORT}/styles/basic-preview/{z}/{x}/{y}.png`,
+    positron: `http://localhost:${PORT}/styles/positron/{z}/{x}/{y}.png`,
+    'osm-bright': `http://localhost:${PORT}/styles/osm-bright/{z}/{x}/{y}.png`,
+  },
+};
+
+const tileServer = TILE_STYLES.local['basic-preview'];
+// const tileServer = TILE_STYLES.hosted['alidade_smooth'];
+
 const StyledMapContainer = styled(MapContainer)`
   ${({ theme }) => {
     return `
@@ -44,10 +63,10 @@ const Map = forwardRef(
         >
           <TileLayer
             attribution={`
-          &copy; <a href="https://stadiamaps.com/">Stadia Maps</a>,
-          &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a>
-          &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors`}
-            url="https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png"
+              &copy; <a href="https://stadiamaps.com/">Stadia Maps</a>,
+              &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a>
+                &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors`}
+            url={tileServer}
           />
           {children}
         </StyledMapContainer>

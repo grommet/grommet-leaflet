@@ -2,7 +2,7 @@
   "name": "grommet-leaflet",
   "version": "0.1.0",
   "description": "test package",
-  "main": "dist/index.cjs.js",
+  "main": "dist/index.esm.js",
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
   "scripts": {
