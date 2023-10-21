@@ -6,10 +6,10 @@ This is a self-hosted tile server for [OpenStreetMap](https://www.openstreetmap.
 
 ### Prerequisites
 
-- [Docker](https://docs.docker.com/install/)
-- [Docker Compose](https://docs.docker.com/compose/install/)
-- [Make](https://www.gnu.org/software/make/)
-- [Node.js](https://nodejs.org/en/) (for `make install`)
+- Node
+- Can be run on Docker
+
+.mbtiles file is not included. Need to download separately.
 
 ### Installation
 
