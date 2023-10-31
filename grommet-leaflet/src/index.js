@@ -1,3 +1,5 @@
+'use client';
+
 /* 
 Ignore the useLayoutEffect warning from react. This warning should 
 be removed in the next react release and we can remove this code.
