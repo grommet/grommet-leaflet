@@ -28,7 +28,16 @@ const NetworkMap = () => {
   return (
     <Box ref={containerRef} flex background="background-contrast">
       {geolocation && (
-        <Map id="map" ref={mapContainerRef} theme={hpeLeaflet}>
+        <Map
+          id="map"
+          ref={mapContainerRef}
+          theme={hpeLeaflet}
+          tileLayer={{
+            url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+            attribution: `
+            &copy; <a href="https://openstreetmap.org">OpenStreetMap</a> contributors`,
+          }}
+        >
           <Controls locations={formatLocationsToLatLng(locations)} />
           <MarkerCluster
             popup={({ cluster }) => <ClusterPopup cluster={cluster} />}

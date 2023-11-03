@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import PropTypes from 'prop-types';
 import { Controls, Map, Marker, MarkerCluster } from 'grommet-leaflet';
 import {
   Anchor,
@@ -11,21 +12,23 @@ import {
 
 const ClusterDetail = ({ cluster }) => {
   const childMarkers = cluster.getAllChildMarkers();
-  const clusterSummary = React.useMemo(() =>
-    childMarkers.reduce(
-      (summary, marker) => {
-        const { device_type, location, part } = marker.options.data.properties;
-        summary.device_types.add(device_type);
-        summary.locations.add(location);
-        summary.parts.add(part);
-        return summary;
-      },
-      {
-        device_types: new Set(),
-        locations: new Set(),
-        parts: new Set(),
-      },
-    ),
+  const clusterSummary = React.useMemo(
+    () =>
+      childMarkers.reduce(
+        (summary, marker) => {
+          const { deviceType, location, part } = marker.options.data.properties;
+          summary.deviceTypes.add(deviceType);
+          summary.locations.add(location);
+          summary.parts.add(part);
+          return summary;
+        },
+        {
+          deviceTypes: new Set(),
+          locations: new Set(),
+          parts: new Set(),
+        },
+      ),
+    [childMarkers],
   );
 
   return (
@@ -41,7 +44,7 @@ const ClusterDetail = ({ cluster }) => {
             {clusterSummary.locations.size}
           </NameValuePair>
           <NameValuePair name="Device types">
-            {clusterSummary.device_types.size}
+            {clusterSummary.deviceTypes.size}
           </NameValuePair>
           <NameValuePair name="Parts">
             {clusterSummary.parts.size}
@@ -57,18 +60,26 @@ export const DevicesMap = () => {
   const mapContainerRef = React.useRef();
   const { data } = useContext(DataContext);
 
-  const devicesWithLocation = data.filter(device => {
-    if (device.geometry.coordinates[0] !== null) {
-      return device;
-    }
-  });
+  const devicesWithLocation = data.filter(
+    device => device.geometry.coordinates[0] !== null,
+  );
 
   const locations = devicesWithLocation.map(
     device => device.geometry.coordinates,
   );
 
   return (
-    <Map id="map" ref={mapContainerRef}>
+    <Map
+      id="map"
+      ref={mapContainerRef}
+      tileLayer={{
+        url: 'https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png',
+        attribution: `
+          &copy; <a href="https://stadiamaps.com/">Stadia Maps</a>,
+          &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a>,
+          &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors`,
+      }}
+    >
       {devicesWithLocation.length ? (
         <>
           <Controls locations={locations} />
@@ -89,4 +100,8 @@ export const DevicesMap = () => {
       ) : null}
     </Map>
   );
+};
+
+ClusterDetail.propTypes = {
+  cluster: PropTypes.object,
 };
