@@ -4,6 +4,7 @@ import { MapContainer, TileLayer, AttributionControl } from 'react-leaflet';
 import styled, { ThemeContext } from 'styled-components';
 import { deepMerge } from 'grommet/utils';
 import { base } from '../../themes';
+import { ProtomapsTileLayer } from '../ProtomapsTileLayer';
 
 const StyledMapContainer = styled(MapContainer)`
   ${({ theme }) => {
@@ -22,6 +23,7 @@ const Map = forwardRef(
       scrollWheelZoom = true,
       tileLayer,
       theme,
+      maxZoom = 18,
       zoom = 1,
       zoomControl = false,
       ...rest
@@ -40,12 +42,17 @@ const Map = forwardRef(
           center={center}
           ref={ref}
           scrollWheelZoom={scrollWheelZoom}
+          maxZoom={maxZoom}
           zoom={zoom}
           zoomControl={zoomControl}
           {...rest}
         >
           <AttributionControl position="bottomright" prefix={false} />
-          <TileLayer attribution={tileLayer.attribution} url={tileLayer.url} />
+          {/* <TileLayer attribution={tileLayer.attribution} url={tileLayer.url} /> */}
+          <ProtomapsTileLayer
+            attribution={tileLayer.attribution}
+            url={tileLayer.url}
+          />
           {children}
         </StyledMapContainer>
       </ThemeContext.Provider>
@@ -57,6 +64,7 @@ Map.propTypes = {
   center: PropTypes.array,
   children: PropTypes.any,
   scrollWheelZoom: PropTypes.string || PropTypes.bool,
+  maxZoom: PropTypes.number,
   tileLayer: PropTypes.shape({
     attribution: PropTypes.string,
     url: PropTypes.string.isRequired,
