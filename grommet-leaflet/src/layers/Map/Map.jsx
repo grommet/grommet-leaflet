@@ -1,10 +1,10 @@
 import React, { forwardRef, useContext } from 'react';
 import PropTypes from 'prop-types';
-import { MapContainer, TileLayer, AttributionControl } from 'react-leaflet';
+import { MapContainer, AttributionControl } from 'react-leaflet';
 import styled, { ThemeContext } from 'styled-components';
 import { deepMerge } from 'grommet/utils';
 import { base } from '../../themes';
-import { ProtomapsTileLayer } from '../ProtomapsTileLayer';
+import { TileLayer } from '../TileLayer/TileLayer';
 
 const StyledMapContainer = styled(MapContainer)`
   ${({ theme }) => {
@@ -48,10 +48,11 @@ const Map = forwardRef(
           {...rest}
         >
           <AttributionControl position="bottomright" prefix={false} />
-          {/* <TileLayer attribution={tileLayer.attribution} url={tileLayer.url} /> */}
-          <ProtomapsTileLayer
+          <TileLayer
             attribution={tileLayer.attribution}
             url={tileLayer.url}
+            format={tileLayer.format}
+            {...tileLayer}
           />
           {children}
         </StyledMapContainer>
@@ -68,6 +69,7 @@ Map.propTypes = {
   tileLayer: PropTypes.shape({
     attribution: PropTypes.string,
     url: PropTypes.string.isRequired,
+    format: PropTypes.oneOf(['pmtiles']),
   }).isRequired,
   theme: PropTypes.object,
   zoom: PropTypes.number,
