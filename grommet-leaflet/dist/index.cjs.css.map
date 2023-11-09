@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../src/grommet-leaflet-reset.css"],
-  "sourcesContent": ["/* remove leaflet styling from popup to allow Grommet theme to drive */\n/* thinking we might want to host this somewhere for people to import similar to leaflet's css */\n/* source code for leaflet css: https://github.com/Leaflet/Leaflet/blob/main/dist/leaflet.css */\n.leaflet-container {\n\tfont-family: \"Metric\", Arial, Helvetica, sans-serif;\n    z-index: 19;\n}\n.leaflet-container a {\n    color: initial;\n    font-size: initial;\n}\n.leaflet-popup-content-wrapper {\n    background-color: transparent;\n    padding: 0px;\n    box-shadow: none;\n}\n.leaflet-popup-content {\n    padding: 0px;\n    margin: 0px;\n}\n.leaflet-popup-content p {\n    margin: 0;\n}\n.leaflet-popup-tip-container {\n    width: 0px;\n    height: 0px;\n}\n.leaflet-popup-tip {\n    width: 0px;\n    height: 0px;\n    padding: 0px;\n    box-shadow: none;\n}\n/* Ensure these are less than base theme for Drop and Layer z-index */\n.leaflet-pane {\n    z-index: 90;\n}\n.leaflet-control {\n    z-index: 91;\n}\n.leaflet-bottom {\n    z-index: 91;\n}\n\n"],
-  "mappings": "AAGA,CAAC,kBACA,YAAa,MAAQ,CAAE,KAAK,CAAE,SAAS,CAAE,WACtC,QAAS,EACb,CACA,CAJC,kBAIkB,EACf,MAAO,QACP,UAAW,OACf,CACA,CAAC,8BACG,iBAAkB,YAZtB,QAaa,EACT,WAAY,IAChB,CACA,CAAC,sBAhBD,QAiBa,EAjBb,OAkBY,CACZ,CACA,CAJC,sBAIsB,EApBvB,OAqBY,CACZ,CACA,CAAC,4BACG,MAAO,IACP,OAAQ,GACZ,CACA,CAAC,kBACG,MAAO,IACP,OAAQ,IA7BZ,QA8Ba,EACT,WAAY,IAChB,CAEA,CAAC,aACG,QAAS,EACb,CACA,CAAC,gBAGD,CAAC,eAFG,QAAS,EACb",
-  "names": []
-}

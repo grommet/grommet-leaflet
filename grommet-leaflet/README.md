@@ -58,11 +58,10 @@ Map supports all [Leaflet Map](https://leafletjs.com/reference.html#map) and [Re
 
 In addition, it also supports the following props:
 
-| Prop                                                                          | Type     | Default value | Notes                                                                                                                 |
-| ----------------------------------------------------------------------------- | -------- | ------------- | --------------------------------------------------------------------------------------------------------------------- |
-| `tileLayer`                                                                   | `object` | `undefined`   | { url: `string` in the form of `'https://{s}.somedomain.com/blabla/{z}/{x}/{y}{r}.png'`, attribution: `string` e.g. ` |
-| `&copy; <a href="https://openstreetmap.org">OpenStreetMap</a> contributors` } |
-| `theme`                                                                       | `object` |               | See [theme structure](#theme-structure)                                                                               |
+| Prop        | Type     | Default value | Required | Notes                                                                                                                                                                                                                   |
+| ----------- | -------- | ------------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `tileLayer` | `object` | `undefined`   | `true`   | { <br / >url: `string` in the form of `'https://{s}.somedomain.com/blabla/{z}/{x}/{y}{r}.png'`, <br /> attribution?: `string` e.g. `&copy; <a href="https://openstreetmap.org">OpenStreetMap</a> contributors` <br /> } |
+| `theme`     | `object` |               |          | See [theme structure](#theme-structure)                                                                                                                                                                                 |
 
 ### Marker
 

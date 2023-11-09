@@ -21,7 +21,7 @@
   "dependencies": {
     "grommet": "^2.32.2",
     "grommet-icons": "^4.11.0",
-    "grommet-leaflet": "^0.2.0",
+    "grommet-leaflet": "*",
     "grommet-theme-hpe": "^5.0.3",
     "pmtiles": "^2.11.0",
     "protomaps": "^1.23.1",
