@@ -1,4 +1,5 @@
 const { build } = require('esbuild');
+const { sassPlugin } = require('esbuild-sass-plugin');
 const { dependencies } = require('../package.json');
 
 const entryFile = 'src/index.js';
@@ -8,6 +9,7 @@ const shared = {
   entryPoints: [entryFile],
   // treating dependencies as external to keep the bundle size minimal
   external: Object.keys(dependencies),
+  plugins: [sassPlugin({ type: 'style' })],
   logLevel: 'info',
   minify: true,
   sourcemap: true,
