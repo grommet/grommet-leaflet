@@ -11,7 +11,7 @@
   ],
   "license": "ISC",
   "scripts": {
-    "dev": "vite",
+    "dev": "yarn build-grommet-leaflet && vite",
     "build": "yarn build-grommet-leaflet && vite build",
     "build-grommet-leaflet": "yarn --cwd ../grommet-leaflet build",
     "lint": "eslint . --ext .js --ext .jsx",
@@ -21,7 +21,7 @@
   "dependencies": {
     "grommet": "^2.32.2",
     "grommet-icons": "^4.11.0",
-    "grommet-leaflet": "^0.2.0",
+    "grommet-leaflet": "*",
     "grommet-theme-hpe": "^5.0.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

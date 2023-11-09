@@ -40,7 +40,18 @@ const Default = () => {
             height={{ min: 'medium' }}
           >
             {geolocation && (
-              <Map id="map" ref={mapContainerRef} center={geolocation}>
+              <Map
+                id="map"
+                ref={mapContainerRef}
+                center={geolocation}
+                tileLayer={{
+                  url: 'https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png',
+                  attribution: `
+                  &copy; <a href="https://stadiamaps.com/">Stadia Maps</a>,
+                  &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a>,
+                  &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors`,
+                }}
+              >
                 {locations ? (
                   <Controls
                     locations={locations.map(location => location.coord)}

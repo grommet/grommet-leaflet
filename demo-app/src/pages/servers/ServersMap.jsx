@@ -1,4 +1,5 @@
 import React, { useContext, useRef, useMemo } from 'react';
+import PropTypes from 'prop-types';
 import { Anchor, Box, DataContext, Text } from 'grommet';
 import {
   Cluster,
@@ -21,7 +22,15 @@ export const ServersMap = () => {
 
   return (
     <Box ref={containerRef} flex background="background-contrast">
-      <Map ref={mapContainerRef} theme={hpeLeaflet}>
+      <Map
+        ref={mapContainerRef}
+        theme={hpeLeaflet}
+        tileLayer={{
+          url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+          attribution: `
+        &copy; <a href="https://openstreetmap.org">OpenStreetMap</a> contributors`,
+        }}
+      >
         <Controls locations={locations} />
         <MarkerCluster
           popup={({ cluster }) => <ServersClusterPopup cluster={cluster} />}
@@ -64,3 +73,8 @@ const MarkerPopup = ({ name, model }) => (
     <Anchor label="View details" size="small" />
   </Box>
 );
+
+MarkerPopup.propTypes = {
+  name: PropTypes.string.isRequired,
+  model: PropTypes.string.isRequired,
+};

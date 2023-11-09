@@ -20,6 +20,7 @@ const Map = forwardRef(
       center = [0, 0],
       children,
       scrollWheelZoom = true,
+      tileLayer,
       theme,
       zoom = 1,
       zoomControl = false,
@@ -44,13 +45,7 @@ const Map = forwardRef(
           {...rest}
         >
           <AttributionControl position="bottomright" prefix={false} />
-          <TileLayer
-            attribution={`
-            &copy; <a href="https://stadiamaps.com/">Stadia Maps</a>,
-            &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a>,
-            &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors`}
-            url="https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png"
-          />
+          <TileLayer attribution={tileLayer.attribution} url={tileLayer.url} />
           {children}
         </StyledMapContainer>
       </ThemeContext.Provider>
@@ -62,6 +57,10 @@ Map.propTypes = {
   center: PropTypes.array,
   children: PropTypes.any,
   scrollWheelZoom: PropTypes.string || PropTypes.bool,
+  tileLayer: PropTypes.shape({
+    attribution: PropTypes.string,
+    url: PropTypes.string.isRequired,
+  }).isRequired,
   theme: PropTypes.object,
   zoom: PropTypes.number,
   zoomControl: PropTypes.bool,

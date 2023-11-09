@@ -3,6 +3,7 @@
 # grommet-leaflet
 
 A map for Grommet and React using LeafletJS.
+
 ## Contents
 
 - [Installation](#installation)
@@ -39,7 +40,6 @@ Using pnpm:
 pnpm add grommet-leaflet
 ```
 
-
 ## Getting started
 
 The getting started guide shows how to add `grommet-leaflet` to an existing Grommet application and provides orientation for its fundamental concepts. For more detailed information on the components and ability to customize, see the [Component docs](#component-docs).
@@ -47,7 +47,6 @@ The getting started guide shows how to add `grommet-leaflet` to an existing Grom
 If you do not have an existing Grommet application, you can follow the [Grommet installation instructions](https://github.com/grommet/grommet-starter-new-app) to create one, then continue on from this point.
 
 Go to [Getting Started](https://github.com/grommet/grommet-leaflet/blob/master/GettingStarted.md).
-
 
 ## Component Docs
 
@@ -59,9 +58,10 @@ Map supports all [Leaflet Map](https://leafletjs.com/reference.html#map) and [Re
 
 In addition, it also supports the following props:
 
-| Prop    | Type     | Notes                                   |
-| ------- | -------- | --------------------------------------- |
-| `theme` | `object` | See [theme structure](#theme-structure) |
+| Prop        | Type     | Default value | Required | Notes                                                                                                                                                                                                                   |
+| ----------- | -------- | ------------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `tileLayer` | `object` | `undefined`   | `true`   | { <br / >url: `string` in the form of `'https://{s}.somedomain.com/blabla/{z}/{x}/{y}{r}.png'`, <br /> attribution?: `string` e.g. `&copy; <a href="https://openstreetmap.org">OpenStreetMap</a> contributors` <br /> } |
+| `theme`     | `object` |               |          | See [theme structure](#theme-structure)                                                                                                                                                                                 |
 
 ### Marker
 
@@ -81,17 +81,19 @@ In addition, it also supports the following props:
 Marker will render whatever is passed to its `icon` prop. By default, `grommet-leaflet` will render this as [Pin](#pin). However, this can be customized by passing a `Pin` with a specific `kind` defined by the theme or a custom element.
 
 ##### Default marker
+
 ```
 <Marker position={{ lat: 40.532, lng: -105.18 }} />
 ```
 
 ##### Theme defined marker
+
 ```
 <Marker position={{ lat: 40.532, lng: -105.18 }} icon={<Pin kind="critical" />} />
 ```
 
-
 ##### Custom marker
+
 ```
 <Marker position={{ lat: 40.532, lng: -105.18 }} icon={<MyCustomPin />} />
 ```
@@ -108,7 +110,7 @@ To add a popup, pass an element as a child to the marker. For ease and consisten
 
 ### MarkerCluster
 
-A custom Leaflet marker cluster for a cluster of multiple locations. 
+A custom Leaflet marker cluster for a cluster of multiple locations.
 MarkerCluster supports all [Leaflet.markercluster properties](https://github.com/Leaflet/Leaflet.markercluster).
 
 In addition, it also supports the following props:
@@ -117,7 +119,6 @@ In addition, it also supports the following props:
 | ------- | -------------------------- | ------------------------------------------------ |
 | `icon`  | `({ cluster }) => Element` | `({ cluster }) => <Cluster cluster={cluster} />` |
 | `popup` | `({ cluster }) => Element` | `undefined`                                      |
-
 
 For large datasets, it can be beneficial to apply `chunkedLoading` to MarkerCluster. See [leaflet.markercluster docs](https://github.com/Leaflet/Leaflet.markercluster#chunked-addlayers-options) for additional details.
 
@@ -194,8 +195,8 @@ Controls provides zoom in, zoom out, and center on data controls for the map.
 
 Controls supports the following props:
 
-| Prop        | Type                      | Notes                                                                                                                                                                    |
-| ----------- | ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Prop        | Type                      | Notes                                                                                                                                                                                              |
+| ----------- | ------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `locations` | `array` or GeoJSON object | `array` should be an array of arrays of lat, lng pairs (e.g. [[0, 0], [10, -10]]). If a geojson object is passed it should have coordinates defined within `features[index].geometry.coordinates`. |
 
 ### Theming
