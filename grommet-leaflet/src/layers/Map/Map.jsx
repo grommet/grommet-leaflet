@@ -1,9 +1,10 @@
 import React, { forwardRef, useContext } from 'react';
 import PropTypes from 'prop-types';
-import { MapContainer, TileLayer, AttributionControl } from 'react-leaflet';
+import { MapContainer, AttributionControl } from 'react-leaflet';
 import styled, { ThemeContext } from 'styled-components';
 import { deepMerge } from 'grommet/utils';
 import { base } from '../../themes';
+import { TileLayer } from '../TileLayer';
 
 const StyledMapContainer = styled(MapContainer)`
   ${({ theme }) => {
@@ -19,6 +20,9 @@ const Map = forwardRef(
     {
       center = [0, 0],
       children,
+      // level 20 is the highest zoom level per OpenStreetMap docs
+      // (https://wiki.openstreetmap.org/wiki/Zoom_levels)
+      maxZoom = 20,
       scrollWheelZoom = true,
       tileLayer,
       theme,
@@ -40,12 +44,18 @@ const Map = forwardRef(
           center={center}
           ref={ref}
           scrollWheelZoom={scrollWheelZoom}
+          maxZoom={maxZoom}
           zoom={zoom}
           zoomControl={zoomControl}
           {...rest}
         >
           <AttributionControl position="bottomright" prefix={false} />
-          <TileLayer attribution={tileLayer.attribution} url={tileLayer.url} />
+          <TileLayer
+            attribution={tileLayer.attribution}
+            url={tileLayer.url}
+            format={tileLayer.format}
+            {...tileLayer}
+          />
           {children}
         </StyledMapContainer>
       </ThemeContext.Provider>
@@ -57,9 +67,11 @@ Map.propTypes = {
   center: PropTypes.array,
   children: PropTypes.any,
   scrollWheelZoom: PropTypes.string || PropTypes.bool,
+  maxZoom: PropTypes.number,
   tileLayer: PropTypes.shape({
     attribution: PropTypes.string,
     url: PropTypes.string.isRequired,
+    format: PropTypes.oneOf(['pmtiles']),
   }).isRequired,
   theme: PropTypes.object,
   zoom: PropTypes.number,

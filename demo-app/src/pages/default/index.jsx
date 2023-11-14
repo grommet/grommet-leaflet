@@ -9,6 +9,30 @@ import {
   ReverseAnchor,
 } from '../../components';
 
+const hostedConfig = {
+  url: 'https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png',
+  attribution: `
+    &copy; <a href="https://stadiamaps.com/">Stadia Maps</a>,
+    &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a>
+    &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors`,
+};
+
+// eslint-disable-next-line no-unused-vars
+const pmtilesConfig = {
+  format: 'pmtiles',
+  // TODO: Add PMtiles file to CDN and update URL
+  url: 'http://localhost:8080/planet/{z}/{x}/{y}.mvt',
+  attribution: `
+    &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors`,
+};
+
+// Showing how a hosted tile server can be swapped out for PMTiles distributed
+// hosted on a CDN or local server.
+const tileLayer = {
+  ...hostedConfig,
+  // ...pmtilesConfig,
+};
+
 const Default = () => {
   const [geolocation, setGeolocation] = useState();
   const [locations, setLocations] = useState();
@@ -44,13 +68,7 @@ const Default = () => {
                 id="map"
                 ref={mapContainerRef}
                 center={geolocation}
-                tileLayer={{
-                  url: 'https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png',
-                  attribution: `
-                  &copy; <a href="https://stadiamaps.com/">Stadia Maps</a>,
-                  &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a>,
-                  &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors`,
-                }}
+                tileLayer={tileLayer}
               >
                 {locations ? (
                   <Controls
