@@ -148,7 +148,13 @@ const ThemeDesigner = () => {
           <Box>
             <Form value={value} onChange={nextValue => setValue(nextValue)}>
               {Object.keys(tiles).map(key => (
-                <Box key={key} direction="row" gap="small" align="end">
+                <Box
+                  key={key}
+                  direction="row"
+                  gap="small"
+                  align="end"
+                  margin={{ bottom: 'xsmall' }}
+                >
                   <FormField
                     label={key}
                     name={key}
