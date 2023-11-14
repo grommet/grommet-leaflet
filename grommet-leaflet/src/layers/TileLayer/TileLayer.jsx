@@ -45,6 +45,6 @@ export const TileLayer = ({ attribution, url, format, ...rest }) => {
 
 TileLayer.propTypes = {
   attribution: PropTypes.string,
-  url: PropTypes.string,
+  url: PropTypes.string.isRequired,
   format: PropTypes.oneOf(['pmtiles']),
 };

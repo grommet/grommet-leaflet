@@ -4,7 +4,7 @@ import { MapContainer, AttributionControl } from 'react-leaflet';
 import styled, { ThemeContext } from 'styled-components';
 import { deepMerge } from 'grommet/utils';
 import { base } from '../../themes';
-import { TileLayer } from '../TileLayer/TileLayer';
+import { TileLayer } from '../TileLayer';
 
 const StyledMapContainer = styled(MapContainer)`
   ${({ theme }) => {
@@ -20,10 +20,12 @@ const Map = forwardRef(
     {
       center = [0, 0],
       children,
+      // level 20 is the highest zoom level per OpenStreetMap docs
+      // (https://wiki.openstreetmap.org/wiki/Zoom_levels)
+      maxZoom = 20,
       scrollWheelZoom = true,
       tileLayer,
       theme,
-      maxZoom = 18,
       zoom = 1,
       zoomControl = false,
       ...rest
