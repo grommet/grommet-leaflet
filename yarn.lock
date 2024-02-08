@@ -1755,15 +1755,30 @@ grommet-icons@^4.10.0, grommet-icons@^4.11.0:
   resolved "https://registry.yarnpkg.com/grommet-icons/-/grommet-icons-4.11.0.tgz#8cb97d24e84a02c1fb23f84c776ffc46b61ae29d"
   integrity sha512-ArXf2XyXmpk5JsQ8NudzNz3mbWv+TeZkPiyog2s9yoNAWTlIr3vzNjr97uon/Xm4Uiq2kiHkvO4i2fG1u6EaDg==
 
-grommet-theme-hpe@^5.0.3:
-  version "5.1.1"
-  resolved "https://registry.yarnpkg.com/grommet-theme-hpe/-/grommet-theme-hpe-5.1.1.tgz#d2c7479e9ce800206ff819f785a947632fa62e53"
-  integrity sha512-cVNxiLrvXCU54zi3s2OAgemjVR0UKRKdV9umGxNxObz5bKpVv/PKvelvtQkhVmaxlG2SI6Gl/s/oaMAY67SC5A==
+grommet-icons@^4.12.0:
+  version "4.12.0"
+  resolved "https://registry.yarnpkg.com/grommet-icons/-/grommet-icons-4.12.0.tgz#122c1f09c100f2ea6321c401107038caeda8a6b8"
+  integrity sha512-aPFVjdCBLbaUOpxzrNakxYz6DNYxS5lJeLP4tI6nZFfOzLhWH5LBf+tfkL/ZkLMNZC1Uqsw9awPvyvT03xLOsA==
 
-grommet@^2.32.0, grommet@^2.32.2:
+grommet-theme-hpe@^5.2.0:
+  version "5.2.0"
+  resolved "https://registry.yarnpkg.com/grommet-theme-hpe/-/grommet-theme-hpe-5.2.0.tgz#2f520dec4f4ee102916ff80e9b602e1f20e0c71f"
+  integrity sha512-x/OD+3rxGAfUh9CE4tDCF7zx2vYSyIf/AsIVEA/JnXt+UflLnugl6bCoxpZvbfZct/HovikxiCJcJYTmCPiskQ==
+
+grommet@^2.32.0:
   version "2.34.0"
   resolved "https://registry.yarnpkg.com/grommet/-/grommet-2.34.0.tgz#3db6f0f08cf3dfdd21d944d2e4ba36ffc7514514"
   integrity sha512-ggXZvxgVMrGYY9MhlLPY7ikUeY+Na1y6Z8qxnNRb/hUMhS7kVOdvUs8TViN8sQKIQPKHLBYPl7tb5figDE8jQg==
+  dependencies:
+    grommet-icons "^4.10.0"
+    hoist-non-react-statics "^3.2.0"
+    markdown-to-jsx "^7.2.0"
+    prop-types "^15.8.1"
+
+grommet@^2.35.0:
+  version "2.35.0"
+  resolved "https://registry.yarnpkg.com/grommet/-/grommet-2.35.0.tgz#c735a5cf6fc6d4a814d952b431fdad9ab9902432"
+  integrity sha512-5NoYnLGhRXTGa48v+BRohu6oRUr86ZXg+z4QDSpIhXPaqUuCjZ72oSa6/3JBnwqKODuwos9LSovKxt3U/qgSAw==
   dependencies:
     grommet-icons "^4.10.0"
     hoist-non-react-statics "^3.2.0"
