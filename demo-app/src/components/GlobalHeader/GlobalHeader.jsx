@@ -15,7 +15,7 @@ function GlobalHeader() {
       background="background-front"
       border={{ color: 'border-weak', side: 'bottom' }}
       pad={{ horizontal: 'large', vertical: 'small' }}
-      sticky="scrollup"
+      // sticky="scrollup"
     >
       <Box direction="row" align="center" gap="small" flex>
         <Grommet color="purple!" />

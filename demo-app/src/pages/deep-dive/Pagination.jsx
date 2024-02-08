@@ -1,10 +1,16 @@
 import React, { useContext, useMemo } from 'react';
-import { Box, Pagination, DataContext, Select, Text } from 'grommet';
+import {
+  Box,
+  Pagination as GrommetPagination,
+  DataContext,
+  Select,
+  Text,
+} from 'grommet';
 
 const step = 10;
 
 // TO DO include step selector
-const PaginationControls = () => {
+const Pagination = () => {
   const { filteredTotal, view } = useContext(DataContext);
 
   const pageBounds = useMemo(() => {
@@ -32,7 +38,7 @@ const PaginationControls = () => {
         </Text>
       </Box>
       <StepSelector />
-      <Pagination alignSelf="end" />
+      <GrommetPagination alignSelf="end" />
     </Box>
   );
 };
@@ -45,4 +51,4 @@ const StepSelector = () => (
     </Box>
   </Box>
 );
-export { PaginationControls };
+export { Pagination };
