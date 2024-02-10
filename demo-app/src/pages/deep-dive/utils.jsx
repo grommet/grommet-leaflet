@@ -40,7 +40,7 @@ export const fetchLaunches = async (url, view) => {
         },
       ],
       sort,
-      select: ['name', 'failures', 'success', 'date_utc'],
+      select: ['name', 'failures', 'success', 'date_utc', 'cores', 'links'],
       //   limit: view?.step || 10,
       limit: 300, // for demo purposes
       page: view?.page || 1,
@@ -78,6 +78,9 @@ export const formatData = data =>
     rocket: datum.rocket.name,
     success: datum.success ? 'Successful' : 'Failed',
     failures: datum.failures?.map(({ reason }) => reason),
+    failureTime: Math.max(datum.failures?.[0]?.time || 0, 0),
+    failureAltitude: datum.failures?.[0]?.altitude || 0,
+    cores: datum.cores.length,
   }));
 
 export const columns = [
@@ -91,9 +94,13 @@ export const columns = [
     header: 'Rocket',
   },
   {
+    property: 'cores',
+    header: 'Cores',
+    align: 'end',
+  },
+  {
     property: 'success',
     header: 'Success',
-    // TO DO use typical icons, add words
     render: datum => {
       const icon =
         datum.success === 'Failed' ? (
@@ -121,24 +128,30 @@ export const columns = [
       }).format(new Date(datum.date_utc)),
   },
   {
+    property: 'failureAltitude',
+    header: 'Failure altitude',
+    align: 'end',
+  },
+  {
     property: 'failures',
     header: 'Reason for failure',
     sortable: false,
     render: datum => {
       if (datum.failures.length) {
         return datum.failures?.map(reason => (
-          // TO DO add "View more" to expand
           <>
             <Paragraph key={reason} margin="none" maxLines={2}>
               {reason}
             </Paragraph>
-            <Button alignSelf="start" label="View more" pad="none" />
+            {reason.length > 50 ? (
+              <Button alignSelf="start" label="View more" pad="none" />
+            ) : undefined}
           </>
         ));
       }
       return '--';
     },
-    size: 'medium',
+    size: 'small',
   },
 ];
 

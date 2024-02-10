@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, DataTable } from 'grommet';
-import { PaginationControls } from '../../../components/DataAndFriends';
+import { Pagination } from '../../../components/DataAndFriends';
 
 export const TableView = ({ ariaDescribedBy, columns, devices }) => {
   const [sort, setSort] = React.useState({
@@ -25,15 +25,7 @@ export const TableView = ({ ariaDescribedBy, columns, devices }) => {
           verticalAlign={{ body: 'top' }}
         />
       </Box>
-      {numberItems > step && (
-        <PaginationControls
-          numberItems={numberItems}
-          page={page}
-          setPage={setPage}
-          step={step}
-          setStep={setStep}
-        />
-      )}
+      {numberItems > step && <Pagination step={step} setStep={setStep} />}
     </Box>
   );
 };

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Box, Button, List, Text } from 'grommet';
+import { Box, Button, Image, List, Text } from 'grommet';
 import { More, StatusCriticalSmall, StatusGoodSmall } from 'grommet-icons';
 
 export const ListView = () => {
@@ -12,15 +12,24 @@ export const ListView = () => {
           success={datum.success}
           rocket={datum.rocket}
           date={datum.date_utc}
+          src={datum.links?.patch?.small}
         />
       )}
     </List>
   );
 };
 
-const ListItem = ({ name, success, rocket, date }) => {
+const ListItem = ({ name, success, rocket, date, src }) => {
   return (
-    <Box direction="row" gap="small" align="start">
+    <Box direction="row" gap="medium" align="start">
+      <Box
+        height="xxsmall"
+        width="xxsmall"
+        background={!src ? 'background-contrast' : undefined}
+        round="small"
+      >
+        {src ? <Image src={src} alt={name} fit="contain" /> : undefined}
+      </Box>
       <Box gap="xsmall" flex>
         <Box direction="row" gap="small">
           <Text color="text-strong" weight={500}>
@@ -57,4 +66,5 @@ ListItem.propTypes = {
   name: PropTypes.string,
   success: PropTypes.string,
   rocket: PropTypes.string,
+  src: PropTypes.string,
 };

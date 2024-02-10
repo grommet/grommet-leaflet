@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Box, Select, Text } from 'grommet';
 
 export const StepSelector = ({
@@ -13,11 +14,17 @@ export const StepSelector = ({
         <Select
           value={step}
           options={options}
-          onChange={({ value, option }) => {
+          onChange={({ option }) => {
             setStep(option);
           }}
         />
       </Box>
     </Box>
   );
+};
+
+StepSelector.propTypes = {
+  step: PropTypes.number,
+  setStep: PropTypes.func,
+  options: PropTypes.arrayOf(PropTypes.number),
 };

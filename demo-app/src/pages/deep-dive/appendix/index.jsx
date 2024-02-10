@@ -16,7 +16,7 @@ import { fetchLaunches, fetchRockets } from './utils';
 import { columns, options, formatData } from '../utils';
 // import { ListView } from '../ListView';
 // import { CardView } from '../CardView';
-import { Pagination } from '../Pagination';
+import { Pagination } from '../../../components/DataAndFriends';
 import { PageWrapper } from '../PageWrapper';
 
 const defaultView = {

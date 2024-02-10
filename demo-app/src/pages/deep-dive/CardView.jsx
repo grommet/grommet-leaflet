@@ -6,6 +6,7 @@ import {
   Cards,
   Card as GrommetCard,
   CardBody,
+  Image,
   Text,
   Heading,
 } from 'grommet';
@@ -20,17 +21,26 @@ export const CardView = () => {
           success={datum.success}
           rocket={datum.rocket}
           date={datum.date_utc}
+          src={datum.links?.patch?.small}
         />
       )}
     </Cards>
   );
 };
 
-const Card = ({ name, success, rocket, date }) => {
+const Card = ({ name, success, rocket, date, src }) => {
   return (
     <GrommetCard>
       <CardBody gap="medium">
         <Box gap="xsmall">
+          <Box
+            height="xxsmall"
+            width="xxsmall"
+            background={!src ? 'background-contrast' : undefined}
+            round="small"
+          >
+            {src ? <Image src={src} alt={name} fit="contain" /> : undefined}
+          </Box>
           <Heading level={2} margin="none">
             {name}
           </Heading>
@@ -62,4 +72,5 @@ Card.propTypes = {
   name: PropTypes.string,
   success: PropTypes.string,
   rocket: PropTypes.string,
+  src: PropTypes.string,
 };
