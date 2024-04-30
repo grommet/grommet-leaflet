@@ -9,6 +9,7 @@ import {
   ReverseAnchor,
 } from '../../components';
 
+// eslint-disable-next-line no-unused-vars
 const hostedConfig = {
   url: 'https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png',
   attribution: `
@@ -20,8 +21,7 @@ const hostedConfig = {
 // eslint-disable-next-line no-unused-vars
 const pmtilesConfig = {
   format: 'pmtiles',
-  // TODO: Add PMtiles file to CDN and update URL
-  url: 'http://localhost:8080/planet/{z}/{x}/{y}.mvt',
+  url: import.meta.env.VITE_TILE_LAYER_URL,
   attribution: `
     &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors`,
 };
@@ -29,8 +29,8 @@ const pmtilesConfig = {
 // Showing how a hosted tile server can be swapped out for PMTiles distributed
 // hosted on a CDN or local server.
 const tileLayer = {
-  ...hostedConfig,
-  // ...pmtilesConfig,
+  // ...hostedConfig,
+  ...pmtilesConfig,
 };
 
 const Default = () => {
@@ -53,8 +53,8 @@ const Default = () => {
         <PageHeader
           parent={<ReverseAnchor as={Link} to="/" label="Home" />}
           title="Default pins and clusters"
-          // eslint-disable-next-line max-len
-          subtitle="This is the default pin and cluster behavior when no `kind` has been specified on the individual Pin or Cluster."
+          subtitle={`This is the default pin and cluster behavior when no 
+          'kind' has been specified on the individual Pin or Cluster.`}
         />
         <ContentContainer fill>
           <Box
