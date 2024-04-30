@@ -49,7 +49,7 @@ function PinKindsMap() {
             format: 'pmtiles',
             url: import.meta.env.VITE_TILE_LAYER_URL,
             attribution: `
-              &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors`,
+              &copy; <a href="https://openstreetmap.org">OpenStreetMap</a> contributors`,
           }}
         >
           <Controls locations={data} />
