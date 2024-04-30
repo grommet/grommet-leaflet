@@ -73,10 +73,9 @@ export const DevicesMap = () => {
       id="map"
       ref={mapContainerRef}
       tileLayer={{
-        url: 'https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png',
+        format: 'pmtiles',
+        url: import.meta.env.VITE_TILE_LAYER_URL,
         attribution: `
-          &copy; <a href="https://stadiamaps.com/">Stadia Maps</a>,
-          &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a>,
           &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors`,
       }}
     >

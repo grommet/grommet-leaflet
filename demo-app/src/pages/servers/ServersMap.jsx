@@ -76,5 +76,5 @@ const MarkerPopup = ({ name, model }) => (
 
 MarkerPopup.propTypes = {
   name: PropTypes.string.isRequired,
-  model: PropTypes.string.isRequired,
+  model: PropTypes.string,
 };
