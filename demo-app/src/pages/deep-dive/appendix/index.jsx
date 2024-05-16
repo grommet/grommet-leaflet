@@ -1,22 +1,22 @@
 /* eslint-disable grommet/datatable-aria-describedby */
 import React, { useEffect, useState } from 'react';
 import {
-  Box,
   DataTable,
   Data,
   DataSearch,
   DataFilters,
   DataSort,
   Toolbar,
-  Menu,
   DataTableColumns,
+  // DataView,
   DataSummary,
+  Pagination,
 } from 'grommet';
 import { fetchLaunches, fetchRockets } from './utils';
 import { columns, options, formatData } from '../utils';
 // import { ListView } from '../ListView';
 // import { CardView } from '../CardView';
-import { Pagination } from '../../../components/DataAndFriends';
+// import { Pagination } from '../../../components/DataAndFriends';
 import { PageWrapper } from '../PageWrapper';
 
 const defaultView = {
@@ -59,7 +59,6 @@ const Default = () => {
     <PageWrapper>
       <Data
         data={result.data}
-        // toolbar
         properties={{
           name: { filter: false },
           rocket: { label: 'Rocket', options: rockets },
@@ -72,33 +71,20 @@ const Default = () => {
         view={view}
         onView={setView}
       >
-        <Toolbar gap="medium">
-          <Toolbar>
-            <DataSearch />
-            <DataSort drop />
-            <DataFilters layer />
-          </Toolbar>
+        <Toolbar>
+          <DataSearch />
+          <DataSort drop />
+          <DataFilters layer />
           <DataTableColumns options={options} drop />
-          <Box flex align="end">
-            <Menu
-              label="Actions"
-              kind="toolbar"
-              items={[
-                {
-                  label: 'Export to CSV',
-                },
-                {
-                  label: 'Add launch',
-                },
-              ]}
-            />
-          </Box>
         </Toolbar>
         <DataSummary />
-        <DataTable columns={columns} verticalAlign="top" sortable />
-        {/* <ListView /> */}
-        {/* <CardView /> */}
-        <Pagination />
+        <DataTable columns={columns} />
+        <Pagination
+          summary
+          stepOptions
+          border="top"
+          pad={{ vertical: 'xsmall', horizontal: 'small' }}
+        />
       </Data>
     </PageWrapper>
   );

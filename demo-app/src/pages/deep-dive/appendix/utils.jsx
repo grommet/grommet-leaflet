@@ -10,7 +10,7 @@ const buildQuery = view => {
         break;
       case 'rocket':
         query.rocket = {
-          $in: properties.rocket,
+          $in: properties.rocket?.map(rocket => rocket),
         };
         break;
       default:
@@ -36,7 +36,7 @@ export const fetchLaunches = async (url, view) => {
         },
       ],
       sort,
-      select: ['name', 'failures', 'success', 'date_utc'],
+      select: ['name', 'failures', 'success', 'date_utc', 'cores', 'links'],
       limit: view?.step || 10,
       page: view?.page || 1,
     },

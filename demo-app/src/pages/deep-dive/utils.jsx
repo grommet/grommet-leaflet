@@ -164,4 +164,5 @@ export const defaultView = {
 export const options = columns.map(column => ({
   property: column.property,
   label: column.header,
+  disabled: column.property === 'name',
 }));

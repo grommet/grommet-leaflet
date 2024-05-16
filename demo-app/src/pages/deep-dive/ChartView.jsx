@@ -38,7 +38,7 @@ export const ChartView = () => {
             label: 'Date',
             render: date => (
               <Text margin={{ horizontal: 'xsmall' }}>
-                {Intl.DateTimeFormat(undefined, {
+                {Intl.DateTimeFormat('en-US', {
                   month: 'short',
                   year: 'numeric',
                 }).format(new Date(date))}
@@ -62,7 +62,7 @@ export const ChartView = () => {
           {
             property: [{ property: 'count', color: 'graph-1' }],
             type: 'bars',
-            thickness: 'small',
+            thickness: 'xsmall',
           },
         ]}
         axis={{ x: { property: 'date', granularity: 'medium' }, y: true }}

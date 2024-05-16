@@ -9,8 +9,7 @@ export const PageWrapper = ({ ...rest }) => (
       <PageHeader
         parent={<ReverseAnchor as={Link} to="/" label="Home" />}
         title="Data + friends"
-        subtitle={`Providing turn-key components for implementation of 
-  presentation and management of data collections.`}
+        subtitle="Turnkey presentation and manipulation of data collections."
       />
       <ContentContainer {...rest} />
     </PageContent>
