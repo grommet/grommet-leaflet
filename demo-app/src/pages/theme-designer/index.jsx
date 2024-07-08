@@ -11,14 +11,7 @@ import {
   PageHeader,
   TextInput,
 } from 'grommet';
-import {
-  Controls,
-  Map,
-  Marker,
-  MarkerCluster,
-  Pin,
-  base,
-} from 'grommet-leaflet';
+import { Controls, Map, Marker, MarkerCluster, base } from 'grommet-leaflet';
 import { deepMerge } from 'grommet/utils';
 import { Copy } from 'grommet-icons';
 import { generateLocations, userLocation } from '../../utils';
@@ -129,11 +122,7 @@ const ThemeDesigner = () => {
                     popup={({ cluster }) => <ClusterPopup cluster={cluster} />}
                   >
                     {locations.map((location, index) => (
-                      <Marker
-                        key={index}
-                        position={location?.coord}
-                        icon={<Pin />}
-                      />
+                      <Marker key={index} position={location?.coord} />
                     ))}
                   </MarkerCluster>
                 </Map>

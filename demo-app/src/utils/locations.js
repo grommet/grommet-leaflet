@@ -2,7 +2,7 @@ const statuses = ['good', 'warning', 'critical', 'unknown'];
 
 // get user location
 export function userLocation() {
-  return new Promise((resolve) => {
+  return new Promise(resolve => {
     navigator.geolocation.getCurrentPosition(
       position => {
         resolve([position.coords.latitude, position.coords.longitude]);
@@ -21,8 +21,8 @@ export function generateLocations(n, options) {
   for (let i = 0; i < n; i += 1) {
     locations.push({
       coord: [
-        center[0] - Math.random() * radius,
-        center[1] - Math.random() * radius,
+        center[0] - (Math.random() - 0.5) * radius,
+        center[1] - (Math.random() - 0.5) * radius,
       ],
       status: statuses[Math.floor(Math.random() * statuses.length)],
     });
