@@ -20,10 +20,11 @@ const Marker = ({ icon, popup: popupProp, ...rest }) => {
   return (
     <LeafletMarker
       // https://react-leaflet.js.org/docs/start-introduction/#limitations
-      // The components exposed are abstractions for Leaflet layers, not DOM elements.
-      // Some of them have properties that can be updated directly by calling the setters exposed by Leaflet while others
-      // should be completely replaced, by setting an unique value on their key property so they are properly
-      // handled by React's algorithm.
+      // The components exposed are abstractions for Leaflet layers, not DOM
+      // elements. Some of them have properties that can be updated directly
+      // by calling the setters exposed by Leaflet while others should be
+      // completely replaced, by setting an unique value on their key property
+      // so they are properly handled by React's algorithm.
       key={uuidv4()}
       icon={L.divIcon({
         // 'grommet-marker' class prevents leaflet default divIcon styles
