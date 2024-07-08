@@ -41,12 +41,16 @@ const pages = [
     description: 'Demo of network health.',
     href: '/network-devices',
   },
-
   {
     title: 'Custom pin kinds',
     description:
       'Demo of custom pin kinds such as restaurants, retail, hospitals, etc.',
     href: '/custom-pins',
+  },
+  {
+    title: 'Tile theme designer',
+    description: 'Ability to design your own tile theme.',
+    href: '/theme-designer',
   },
 ];
 
