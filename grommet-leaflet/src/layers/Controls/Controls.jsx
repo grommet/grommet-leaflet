@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useMap } from 'react-leaflet';
 import L from 'leaflet';
@@ -30,17 +30,24 @@ const flyToBoundsDuration = 1.5;
 const Controls = ({ locations }) => {
   const map = useMap();
   const bounds = locations && LocationBounds({ locations });
+  const [mounted, setMounted] = React.useState(false);
 
   // on mount, zoom to the bounds of the locations
-  if (bounds) {
-    if (
-      JSON.stringify(bounds._northEast) === JSON.stringify(bounds._southWest)
-    ) {
-      // if the bounds are the same, zoom to the bounds of the locations
-    } else {
-      map.flyToBounds(bounds, { duration: flyToBoundsDuration });
+  useEffect(() => {
+    if (bounds && !mounted) {
+      if (
+        JSON.stringify(bounds._northEast) === JSON.stringify(bounds._southWest)
+      ) {
+        // if the bounds are the same, zoom to the bounds of the locations
+      } else {
+        map.flyToBounds(bounds, { duration: flyToBoundsDuration });
+      }
     }
-  }
+  }, [bounds, map, mounted]);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   return (
     // css classes are coming from https://github.com/Leaflet/Leaflet/blob/main/dist/leaflet.css

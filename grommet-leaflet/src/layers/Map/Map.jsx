@@ -27,6 +27,7 @@ const Map = forwardRef(
       // level 20 is the highest zoom level per OpenStreetMap docs
       // (https://wiki.openstreetmap.org/wiki/Zoom_levels)
       maxZoom = 20,
+      minZoom = 2,
       scrollWheelZoom = true,
       tileLayer,
       theme,
@@ -49,6 +50,7 @@ const Map = forwardRef(
           ref={ref}
           scrollWheelZoom={scrollWheelZoom}
           maxZoom={maxZoom}
+          minZoom={minZoom}
           zoom={zoom}
           zoomControl={zoomControl}
           {...rest}
@@ -72,6 +74,7 @@ Map.propTypes = {
   children: PropTypes.any,
   scrollWheelZoom: PropTypes.string || PropTypes.bool,
   maxZoom: PropTypes.number,
+  minZoom: PropTypes.number,
   tileLayer: PropTypes.shape({
     attribution: PropTypes.string,
     url: PropTypes.string.isRequired,
