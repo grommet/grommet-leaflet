@@ -79,8 +79,19 @@ const base = {
     pad: 'small',
     round: 'xsmall',
   },
+  tiles: {
+    // water: 'purple',
+    // majorRoad: 'transparent',
+    // buildings: 'darkgray',
+    // park: 'gray',
+    // mediumRoad: '#FFF2C8',
+    // minorRoad: '#ffffff',
+    // boundaries: '#9e9e9e',
+  },
+  // TODO: define tile API, considering dark/light with flexible theming
   // tiles: {
-  // Protomaps [basemap layers](https://docs.protomaps.com/basemaps/layers#basemap-layers) derived from OpenStreetMap.
+  // Colors and feature mapping from Protomaps [basemap layers]
+  // (https://docs.protomaps.com/basemaps/layers#basemap-layers) derived from OpenStreetMap.
   // earth: '#FFFBF6',
   // glacier: '#ffffff',
   // residential: '#F4F4F8',

@@ -46,9 +46,10 @@ function PinKindsMap() {
           center={geolocation}
           theme={generic}
           tileLayer={{
-            url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+            format: 'pmtiles',
+            url: import.meta.env.VITE_TILE_LAYER_URL,
             attribution: `
-            &copy; <a href="https://openstreetmap.org">OpenStreetMap</a> contributors`,
+              &copy; <a href="https://openstreetmap.org">OpenStreetMap</a> contributors`,
           }}
         >
           <Controls locations={data} />

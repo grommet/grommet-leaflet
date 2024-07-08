@@ -9,16 +9,28 @@ import {
   ReverseAnchor,
 } from '../../components';
 
-const tileLayer = {
-  // url: 'https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png',
-  // attribution: `
-  //   &copy; <a href="https://stadiamaps.com/">Stadia Maps</a>,
-  //   &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a>
-  //   &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors`,
-  format: 'pmtiles',
-  url: 'http://localhost:8080/planet/{z}/{x}/{y}.mvt',
+// eslint-disable-next-line no-unused-vars
+const hostedConfig = {
+  url: 'https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png',
   attribution: `
+    &copy; <a href="https://stadiamaps.com/">Stadia Maps</a>,
+    &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a>
     &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors`,
+};
+
+// eslint-disable-next-line no-unused-vars
+const pmtilesConfig = {
+  format: 'pmtiles',
+  url: import.meta.env.VITE_TILE_LAYER_URL,
+  attribution: `
+    &copy; <a href="https://openstreetmap.org">OpenStreetMap</a> contributors`,
+};
+
+// Showing how a hosted tile server can be swapped out for PMTiles distributed
+// hosted on a CDN or local server.
+const tileLayer = {
+  // ...hostedConfig,
+  ...pmtilesConfig,
 };
 
 const Default = () => {
@@ -41,8 +53,8 @@ const Default = () => {
         <PageHeader
           parent={<ReverseAnchor as={Link} to="/" label="Home" />}
           title="Default pins and clusters"
-          // eslint-disable-next-line max-len
-          subtitle="This is the default pin and cluster behavior when no `kind` has been specified on the individual Pin or Cluster."
+          subtitle={`This is the default pin and cluster behavior when no 
+          'kind' has been specified on the individual Pin or Cluster.`}
         />
         <ContentContainer fill>
           <Box
