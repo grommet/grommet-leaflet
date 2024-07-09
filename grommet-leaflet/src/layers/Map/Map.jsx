@@ -27,7 +27,7 @@ const Map = forwardRef(
       // level 20 is the highest zoom level per OpenStreetMap docs
       // (https://wiki.openstreetmap.org/wiki/Zoom_levels)
       maxZoom = 20,
-      minZoom = 2,
+      minZoom = 3,
       scrollWheelZoom = true,
       tileLayer,
       theme,
