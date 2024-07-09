@@ -12,7 +12,6 @@ import {
   TextInput,
 } from 'grommet';
 import { Controls, Map, Marker, MarkerCluster, base } from 'grommet-leaflet';
-import { deepMerge } from 'grommet/utils';
 import { Copy } from 'grommet-icons';
 import { generateLocations, userLocation } from '../../utils';
 import {
@@ -29,38 +28,38 @@ const tileLayer = {
 };
 
 const tiles = {
-  earth: '#FFFBF6',
-  glacier: '#ffffff',
-  residential: '#F4F4F8',
-  hospital: '#FFF6F6',
-  cemetery: '#EFF2EE',
-  school: '#F7F6FF',
-  industrial: '#FFF9EF',
-  wood: '#F4F9EF',
-  grass: '#EBF9E3',
-  park: '#E5F9D5',
-  water: '#B7DFF2',
-  sand: '#ebebeb',
-  buildings: '#F2EDE8',
-  highwayCasing: '#FFC3C3',
-  majorRoadCasing: '#FFB9B9',
-  mediumRoadCasing: '#FFCE8E',
-  minorRoadCasing: '#cccccc',
-  highway: '#FFCEBB',
-  majorRoad: '#FFE4B3',
-  mediumRoad: '#FFF2C8',
-  minorRoad: '#ffffff',
-  boundaries: '#9e9e9e',
-  mask: '#dddddd',
-  countryLabel: '#aaaaaa',
-  cityLabel: '#6C6C6C',
-  stateLabel: '#999999',
-  neighbourhoodLabel: '#888888',
-  landuseLabel: '#898989',
-  waterLabel: '#41ABDC',
-  naturalLabel: '#4B8F14',
-  roadsLabel: '#888888',
-  poisLabel: '#606060',
+  earth: '#CFCFCF',
+  glacier: '#ffffff4A',
+  residential: 'transparent',
+  hospital: 'transparent',
+  cemetery: 'transparent',
+  school: 'transparent',
+  industrial: 'transparent',
+  wood: '#17EBA01A',
+  grass: '#17EBA01A',
+  park: '#17EBA01A',
+  water: '#00C8FF1A',
+  sand: 'transparent',
+  buildings: '#0000001A',
+  highwayCasing: '#CFCFCF',
+  majorRoadCasing: '#CFCFCF',
+  mediumRoadCasing: '#CFCFCF',
+  minorRoadCasing: '#CFCFCF',
+  highway: '#0000002A',
+  majorRoad: '#0000001F',
+  mediumRoad: '#0000001C',
+  minorRoad: '#0000000A',
+  boundaries: '#0000002C',
+  mask: '#7630EA',
+  countryLabel: '#333333',
+  cityLabel: '#333333',
+  stateLabel: '#333333',
+  neighbourhoodLabel: '#333333',
+  landuseLabel: '#333333',
+  waterLabel: '#333333',
+  naturalLabel: '#333333',
+  roadsLabel: '#333333',
+  poisLabel: '#F740FF',
 };
 
 const ThemeDesigner = () => {
@@ -77,8 +76,20 @@ const ThemeDesigner = () => {
     });
   }, []);
 
-  const [value, setValue] = useState(tiles);
-  const theme = deepMerge(base, value);
+  const [tileValues, setTileValues] = useState(tiles);
+  const [theme, setTheme] = useState(null);
+  const [redraw, setRedraw] = useState(false);
+
+  useEffect(() => {
+    setTheme({ ...base, tiles: tileValues });
+    setRedraw(true);
+  }, [tileValues]);
+
+  useEffect(() => {
+    if (redraw) {
+      setRedraw(false);
+    }
+  }, [redraw]);
 
   return (
     <Page pad={{ bottom: 'xlarge' }}>
@@ -93,7 +104,7 @@ const ThemeDesigner = () => {
               icon={<Copy />}
               reverse
               onClick={() =>
-                navigator.clipboard.writeText(JSON.stringify(value))
+                navigator.clipboard.writeText(JSON.stringify(tileValues))
               }
             />
           }
@@ -105,7 +116,7 @@ const ThemeDesigner = () => {
               background="background-contrast"
               height="large"
             >
-              {geolocation && (
+              {geolocation && !redraw && (
                 <Map
                   id="map"
                   ref={mapContainerRef}
@@ -130,7 +141,10 @@ const ThemeDesigner = () => {
             </Box>
           </ContentContainer>
           <Box>
-            <Form value={value} onChange={nextValue => setValue(nextValue)}>
+            <Form
+              value={tileValues}
+              onChange={nextValue => setTileValues(nextValue)}
+            >
               {Object.keys(tiles).map(key => (
                 <Box
                   key={key}
@@ -148,7 +162,7 @@ const ThemeDesigner = () => {
                     <TextInput id={key} name={key} />
                   </FormField>
                   <Box
-                    background={value[key]}
+                    background={tileValues[key]}
                     width="36px"
                     height="36px"
                     round="xsmall"
