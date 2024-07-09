@@ -11,15 +11,7 @@ import {
   PageHeader,
   TextInput,
 } from 'grommet';
-import {
-  Controls,
-  Map,
-  Marker,
-  MarkerCluster,
-  Pin,
-  base,
-} from 'grommet-leaflet';
-import { deepMerge } from 'grommet/utils';
+import { Controls, Map, Marker, MarkerCluster, base } from 'grommet-leaflet';
 import { Copy } from 'grommet-icons';
 import { generateLocations, userLocation } from '../../utils';
 import {
@@ -36,38 +28,38 @@ const tileLayer = {
 };
 
 const tiles = {
-  earth: '#FFFBF6',
-  glacier: '#ffffff',
-  residential: '#F4F4F8',
-  hospital: '#FFF6F6',
-  cemetery: '#EFF2EE',
-  school: '#F7F6FF',
-  industrial: '#FFF9EF',
-  wood: '#F4F9EF',
-  grass: '#EBF9E3',
-  park: '#E5F9D5',
-  water: '#B7DFF2',
-  sand: '#ebebeb',
-  buildings: '#F2EDE8',
-  highwayCasing: '#FFC3C3',
-  majorRoadCasing: '#FFB9B9',
-  mediumRoadCasing: '#FFCE8E',
-  minorRoadCasing: '#cccccc',
-  highway: '#FFCEBB',
-  majorRoad: '#FFE4B3',
-  mediumRoad: '#FFF2C8',
-  minorRoad: '#ffffff',
-  boundaries: '#9e9e9e',
-  mask: '#dddddd',
-  countryLabel: '#aaaaaa',
-  cityLabel: '#6C6C6C',
-  stateLabel: '#999999',
-  neighbourhoodLabel: '#888888',
-  landuseLabel: '#898989',
-  waterLabel: '#41ABDC',
-  naturalLabel: '#4B8F14',
-  roadsLabel: '#888888',
-  poisLabel: '#606060',
+  earth: '#DFDFDF',
+  glacier: '#ffffff4A',
+  residential: 'transparent',
+  hospital: 'transparent',
+  cemetery: 'transparent',
+  school: 'transparent',
+  industrial: 'transparent',
+  wood: '#17EBA015',
+  grass: '#17EBA015',
+  park: '#17EBA015',
+  water: '#00C8FF1A',
+  sand: 'transparent',
+  buildings: '#0000002A',
+  highwayCasing: '#CFCFCF',
+  majorRoadCasing: '#CFCFCF',
+  mediumRoadCasing: '#CFCFCF',
+  minorRoadCasing: '#CFCFCF',
+  highway: '#0000000C',
+  majorRoad: '#00000009',
+  mediumRoad: '#00000005',
+  minorRoad: '#00000001',
+  boundaries: '#0000002C',
+  mask: '#7630EA',
+  countryLabel: '#333333',
+  cityLabel: '#333333',
+  stateLabel: '#333333',
+  neighbourhoodLabel: '#333333',
+  landuseLabel: '#333333',
+  waterLabel: '#333333',
+  naturalLabel: '#333333',
+  roadsLabel: '#333333',
+  poisLabel: '#F740FF',
 };
 
 const ThemeDesigner = () => {
@@ -84,8 +76,20 @@ const ThemeDesigner = () => {
     });
   }, []);
 
-  const [value, setValue] = useState(tiles);
-  const theme = deepMerge(base, value);
+  const [tileValues, setTileValues] = useState(tiles);
+  const [theme, setTheme] = useState(null);
+  const [redraw, setRedraw] = useState(false);
+
+  useEffect(() => {
+    setTheme({ ...base, tiles: tileValues });
+    setRedraw(true);
+  }, [tileValues]);
+
+  useEffect(() => {
+    if (redraw) {
+      setRedraw(false);
+    }
+  }, [redraw]);
 
   return (
     <Page pad={{ bottom: 'xlarge' }}>
@@ -100,7 +104,7 @@ const ThemeDesigner = () => {
               icon={<Copy />}
               reverse
               onClick={() =>
-                navigator.clipboard.writeText(JSON.stringify(value))
+                navigator.clipboard.writeText(JSON.stringify(tileValues))
               }
             />
           }
@@ -112,7 +116,7 @@ const ThemeDesigner = () => {
               background="background-contrast"
               height="large"
             >
-              {geolocation && (
+              {geolocation && !redraw && (
                 <Map
                   id="map"
                   ref={mapContainerRef}
@@ -129,11 +133,7 @@ const ThemeDesigner = () => {
                     popup={({ cluster }) => <ClusterPopup cluster={cluster} />}
                   >
                     {locations.map((location, index) => (
-                      <Marker
-                        key={index}
-                        position={location?.coord}
-                        icon={<Pin />}
-                      />
+                      <Marker key={index} position={location?.coord} />
                     ))}
                   </MarkerCluster>
                 </Map>
@@ -141,7 +141,10 @@ const ThemeDesigner = () => {
             </Box>
           </ContentContainer>
           <Box>
-            <Form value={value} onChange={nextValue => setValue(nextValue)}>
+            <Form
+              value={tileValues}
+              onChange={nextValue => setTileValues(nextValue)}
+            >
               {Object.keys(tiles).map(key => (
                 <Box
                   key={key}
@@ -159,7 +162,7 @@ const ThemeDesigner = () => {
                     <TextInput id={key} name={key} />
                   </FormField>
                   <Box
-                    background={value[key]}
+                    background={tileValues[key]}
                     width="36px"
                     height="36px"
                     round="xsmall"
