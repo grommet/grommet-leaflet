@@ -9,7 +9,11 @@ import { TileLayer } from '../TileLayer';
 const StyledMapContainer = styled(MapContainer)`
   ${({ theme }) => {
     return `
-      font-family: ${theme.global.font.family};
+      ${
+        theme?.global?.font?.family
+          ? `font-family: ${theme.global.font.family};`
+          : ''
+      }
       height: 100%;
     `;
   }}
