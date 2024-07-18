@@ -21,12 +21,12 @@ jobs:
 
       - name: Install dependencies
         run: yarn install
-        working-directory: design-tokens
+        working-directory: grommet-leaflet
 
       - name: Build
         run: yarn build
         working-directory: grommet-leaflet
-        
+
       - name: Update grommet-leaflet-stable
         run: |
           git config --global user.name "Grommet Community Bot"
