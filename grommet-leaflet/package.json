@@ -10,6 +10,7 @@
     "lint": "eslint . --ext .js --ext .jsx",
     "lint-fix": "eslint . --ext .js --ext .jsx --fix",
     "prepublishOnly": "npm run build",
+    "release-stable": "node ./tools/release-stable.mjs",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "authors": [

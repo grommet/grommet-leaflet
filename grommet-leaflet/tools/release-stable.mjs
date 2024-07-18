@@ -1,17 +1,17 @@
-import del from 'del';
+import { deleteSync } from 'del';
 import fs from 'fs-extra';
 import git from 'simple-git';
 import path from 'path';
 import 'dotenv/config';
 
-const repoURL = `https://${process.env.GH_TOKEN}@github.com/grommet/hpe-design-system.git`;
+const repoURL = `https://${process.env.GH_TOKEN}@github.com/grommet/grommet-leaflet.git`;
 const localFolder = path.resolve('.tmp/grommet-leaflet');
 const localDist = path.resolve('dist');
 
 const BRANCH = 'grommet-leaflet-stable';
 
 if (process.env.CI) {
-  del(localFolder).then(() => {
+  deleteSync(localFolder).then(() => {
     git()
       .clone(repoURL, localFolder)
       .then(() => git(localFolder).checkout(BRANCH))
