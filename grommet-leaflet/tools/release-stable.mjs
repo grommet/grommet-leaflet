@@ -1,4 +1,4 @@
-import { deleteASync } from 'del';
+import { deleteAsync } from 'del';
 import fs from 'fs-extra';
 import git from 'simple-git';
 import path from 'path';
@@ -11,7 +11,7 @@ const localDist = path.resolve('dist');
 const BRANCH = 'grommet-leaflet-stable';
 
 if (process.env.CI) {
-  deleteASync(localFolder).then(() => {
+  deleteAsync(localFolder).then(() => {
     git()
       .clone(repoURL, localFolder)
       .then(() => git(localFolder).checkout(BRANCH))
