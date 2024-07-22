@@ -23,7 +23,7 @@ if (process.env.CI) {
         deleteAsync([
           `${localFolder}/**/*`,
           // `${localFolder}/.*`,
-          // ...packageInfo,
+          ...packageInfo,
         ]),
       )
       .then(() => fs.copy(localDist, `${localFolder}/dist`))
