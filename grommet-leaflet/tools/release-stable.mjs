@@ -1,4 +1,4 @@
-import { deleteAsync } from 'del';
+import { deleteAsync, deleteSync } from 'del';
 import fs from 'fs-extra';
 import git from 'simple-git';
 import path from 'path';
@@ -19,7 +19,7 @@ if (process.env.CI) {
       .clone(repoURL, localFolder)
       .then(() => git(localFolder).checkout(BRANCH))
       .then(() =>
-        deleteAsync([
+        deleteSync([
           `${localFolder}/**/*`,
           `${localFolder}/.*`,
           ...packageInfo,
