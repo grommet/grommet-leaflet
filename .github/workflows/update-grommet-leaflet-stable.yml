@@ -1,4 +1,4 @@
-name: Update design-tokens-alpha-stable
+name: Update grommet-leaflet-stable
 on:
   push:
     branches:
