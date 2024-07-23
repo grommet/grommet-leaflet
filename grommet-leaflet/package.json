@@ -2,16 +2,18 @@
   "name": "grommet-leaflet",
   "version": "0.3.0",
   "description": "Map for Grommet and React using LeafletJS",
-  "main": "dist/index.esm.js",
-  "types": "dist/index.d.ts",
-  "scripts": {
-    "build": "npm run clean && node ./tools/build.js --outDir dist",
-    "clean": "cp ../README.md . && rm -rf dist",
-    "lint": "eslint . --ext .js --ext .jsx",
-    "lint-fix": "eslint . --ext .js --ext .jsx --fix",
-    "prepublishOnly": "npm run build",
-    "release-stable": "node ./tools/release-stable.mjs",
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "type": "module",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "main": "./dist/grommet-leaflet.umd.cjs",
+  "module": "./dist/grommet-leaflet.js",
+  "exports": {
+    ".": {
+      "import": "./dist/grommet-leaflet.js",
+      "require": "./dist/grommet-leaflet.umd.cjs"
+    }
   },
   "authors": [
     "Matt Glissmann",
@@ -19,32 +21,44 @@
     "Jessica Filben"
   ],
   "license": "ISC",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint . --ext ts,tsx,js,jsx --report-unused-disable-directives --max-warnings 0",
+    "lint-fix": "eslint . --ext ts,tsx,js,jsx --fix",
+    "prepublishOnly": "npm run build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "peerDependencies": {
+    "grommet": "^2.32.0",
+    "react": "^16.6.1 || ^17.0.0 || ^18.0.0",
+    "react-dom": "^16.6.1 || ^17.0.0 || ^18.0.0",
+    "styled-components": "^5.1.0"
+  },
   "dependencies": {
     "@react-leaflet/core": "^2.1.0",
-    "grommet": "^2.32.0",
     "grommet-icons": "^4.11.0",
     "leaflet": "^1.9.4",
     "leaflet.markercluster": "^1.5.3",
     "prop-types": "^15.8.1",
-    "react": "^16.6.1 || ^17.0.0 || ^18.0.0",
-    "react-dom": "^16.6.1 || ^17.0.0 || ^18.0.0",
     "react-leaflet": "^4.2.1",
-    "styled-components": "^5.1.0",
     "uuid": "^9.0.1"
   },
   "devDependencies": {
     "@types/leaflet": "^1.9.6",
     "@types/leaflet.markercluster": "^1.5.2",
     "@types/react": "^18.2.23",
-    "del": "^7.1.0",
-    "dotenv": "^16.4.5",
-    "esbuild": "^0.19.4",
-    "esbuild-sass-plugin": "^2.16.0",
-    "fs-extra": "^11.2.0",
-    "simple-git": "^3.25.0"
-  },
-  "files": [
-    "dist",
-    "src"
-  ]
+    "@vitejs/plugin-react": "^4.2.1",
+    "eslint": "^8.57.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.6",
+    "grommet": "^2.32.0",
+    "react": "^16.6.1 || ^17.0.0 || ^18.0.0",
+    "react-dom": "^16.6.1 || ^17.0.0 || ^18.0.0",
+    "path": "^0.12.7",
+    "styled-components": "^5.1.0",
+    "typescript": "^5.2.2",
+    "vite": "^5.2.0"
+  }
 }
