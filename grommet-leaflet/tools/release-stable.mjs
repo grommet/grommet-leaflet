@@ -16,14 +16,9 @@ if (process.env.CI) {
       .clone(repoURL, localFolder)
       .then(() => git(localFolder).checkout(BRANCH))
       .then(() =>
-        deleteAsync([
-          `${localFolder}/*/*`,
-        ]),
+        deleteAsync([`${localFolder}/**/*`, `!${localFolder}/package.json`]),
       )
-      .then(() => {
-        console.log(`Copying ${localDist} to ${localFolder}`);
-        fs.copy(localDist, `${localFolder}/dist`);
-      })
+      .then(() => fs.copy(localDist, `${localFolder}/dist`))
       .then(() => git(localFolder).add(['--all', '.']))
       .then(() => git(localFolder).commit(`${BRANCH} updated`))
       .then(() => git(localFolder).push('origin', BRANCH))
