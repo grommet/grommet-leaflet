@@ -1,15 +1,15 @@
-import { jsxs as w, jsx as i } from "/home/runner/work/grommet-leaflet/grommet-leaflet/node_modules/react/jsx-runtime.js";
+import { jsxs as w, jsx as i } from "react/jsx-runtime";
 import b, { useEffect as N, useContext as h, forwardRef as X } from "react";
 import a from "prop-types";
 import C, { ThemeContext as p } from "styled-components";
-import { Box as f, Text as _, Button as T } from "/home/runner/work/grommet-leaflet/grommet-leaflet/node_modules/grommet/es6/index.js";
-import { deepMerge as y } from "/home/runner/work/grommet-leaflet/grommet-leaflet/node_modules/grommet/utils/index.js";
+import { Box as f, Text as _, Button as T } from "grommet";
+import { deepMerge as y } from "grommet/utils";
 import { useMap as q, TileLayer as A, MapContainer as J, AttributionControl as K, Marker as F, Popup as H } from "/home/runner/work/grommet-leaflet/grommet-leaflet/node_modules/react-leaflet/lib/index.js";
 import v from "/home/runner/work/grommet-leaflet/grommet-leaflet/node_modules/leaflet/dist/leaflet-src.js";
 import { Add as U, Subtract as Q, Globe as V } from "/home/runner/work/grommet-leaflet/grommet-leaflet/node_modules/grommet-icons/es6/index.js";
 import { leafletLayer as Y, paintRules as ee, light as re } from "/home/runner/work/grommet-leaflet/grommet-leaflet/node_modules/protomaps/dist/protomaps.module.js";
 import { createTileLayerComponent as te, updateGridLayer as oe, createElementObject as j, createPathComponent as ne, extendContext as ae } from "/home/runner/work/grommet-leaflet/grommet-leaflet/node_modules/@react-leaflet/core/lib/index.js";
-import k from "/home/runner/work/grommet-leaflet/grommet-leaflet/node_modules/react-dom/server.browser.js";
+import k from "react-dom/server";
 import { v4 as ie } from "/home/runner/work/grommet-leaflet/grommet-leaflet/node_modules/uuid/dist/esm-browser/index.js";
 import "/home/runner/work/grommet-leaflet/grommet-leaflet/node_modules/leaflet.markercluster/dist/leaflet.markercluster-src.js";
 const D = (t) => {
