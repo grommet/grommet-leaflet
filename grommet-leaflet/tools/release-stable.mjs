@@ -16,7 +16,8 @@ if (process.env.CI) {
     git()
       .clone(repoURL, localFolder)
       .then(() => git(localFolder).checkout(BRANCH))
-      .then(() => deleteAsync([`${localFolder}/**/*`, `${localFolder}/.*`]))
+      .then(() => deleteAsync([`${localFolder}/**/*`]))
+      .then(() => deleteAsync([`${localFolder}/.*`]))
       .then(() => fs.copy(localDist, `${localFolder}/dist`))
       .then(() =>
         packageInfo.forEach(file => fs.copy(file, `${localFolder}/${file}`)),
