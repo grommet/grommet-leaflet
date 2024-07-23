@@ -16,9 +16,16 @@ if (process.env.CI) {
       .clone(repoURL, localFolder)
       .then(() => git(localFolder).checkout(BRANCH))
       .then(() =>
-        deleteAsync([`${localFolder}/**/*`, `!${localFolder}/package.json`]),
+        deleteAsync([
+          `${localFolder}/**/*`,
+          `!${localFolder}/grommet-leaflet`,
+          `!${localFolder}/*/package.json`,
+        ]),
       )
-      .then(() => fs.copy(localDist, `${localFolder}/dist`))
+      .then(() => {
+        fs.copy(`${localFolder}/grommet-leaflet`, localFolder);
+        fs.copy(localDist, `${localFolder}/dist`);
+      })
       .then(() => git(localFolder).add(['--all', '.']))
       .then(() => git(localFolder).commit(`${BRANCH} updated`))
       .then(() => git(localFolder).push('origin', BRANCH))
