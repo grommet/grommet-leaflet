@@ -15,8 +15,8 @@ if (process.env.CI) {
   deleteAsync(localFolder).then(() => {
     git()
       .clone(repoURL, localFolder)
-      .then(() => git(localFolder).checkout(BRANCH))
       .then(() => fs.move('package.json', `${localLibrary}/package.json`))
+      .then(() => git(localFolder).checkout(BRANCH))
       .then(() => deleteAsync([`${localFolder}/**/*`]))
       .then(() => {
         fs.copy(localLibrary, localFolder);
