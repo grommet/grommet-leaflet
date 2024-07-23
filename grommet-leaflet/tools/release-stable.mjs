@@ -23,7 +23,6 @@ if (process.env.CI) {
         ]),
       )
       .then(() => {
-        fs.copy(`${localFolder}/grommet-leaflet`, localFolder);
         fs.copy(localDist, `${localFolder}/dist`);
       })
       .then(() => git(localFolder).add(['--all', '.']))
