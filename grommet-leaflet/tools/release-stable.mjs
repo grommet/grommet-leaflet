@@ -21,10 +21,13 @@ if (process.env.CI) {
       .then(() =>
         deleteAsync([
           `${localFolder}/**/*`,
-          ...packageInfo,
+          `!${localFolder}/package.json`,
         ]),
       )
-      .then(() => fs.copy(localDist, `${localFolder}/dist`))
+      .then(() => {
+        console.log(`Copying ${localDist} to ${localFolder}`);
+        fs.copy(localDist, `${localFolder}/dist`);
+      })
       .then(() => git(localFolder).add(['--all', '.']))
       .then(() => git(localFolder).commit(`${BRANCH} updated`))
       .then(() => git(localFolder).push('origin', BRANCH))
