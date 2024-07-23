@@ -7,6 +7,7 @@ import 'dotenv/config';
 const repoURL = `https://${process.env.GH_TOKEN}@github.com/grommet/grommet-leaflet.git`;
 const localFolder = path.resolve('.tmp/grommet-leaflet');
 const localDist = path.resolve('dist');
+const localLibrary = path.resolve('lib');
 
 const BRANCH = 'grommet-leaflet-stable';
 
@@ -15,14 +16,10 @@ if (process.env.CI) {
     git()
       .clone(repoURL, localFolder)
       .then(() => git(localFolder).checkout(BRANCH))
-      .then(() =>
-        deleteAsync([
-          `${localFolder}/**/*`,
-          `!${localFolder}/grommet-leaflet`,
-          `!${localFolder}/*/package.json`,
-        ]),
-      )
+      .then(() => fs.move('package.json', `${localLibrary}/package.json`))
+      .then(() => deleteAsync([`${localFolder}/**/*`]))
       .then(() => {
+        fs.copy(localLibrary, localFolder);
         fs.copy(localDist, `${localFolder}/dist`);
       })
       .then(() => git(localFolder).add(['--all', '.']))
