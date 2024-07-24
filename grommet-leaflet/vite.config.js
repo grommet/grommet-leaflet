@@ -11,7 +11,7 @@ export default defineConfig({
       entry: resolve(__dirname, 'src/index.js'),
       name: 'grommet-leaflet',
       fileName: 'grommet-leaflet',
-      formats: ['es', 'cjs', 'umd'],
+      formats: ['es', 'cjs'],
     },
     rollupOptions: {
       // externalize deps that shouldn't be bundled with library
