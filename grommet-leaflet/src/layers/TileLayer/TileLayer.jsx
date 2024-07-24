@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { ThemeContext } from 'styled-components';
 import { TileLayer as LeafletTileLayer } from 'react-leaflet';
-import { leafletLayer, paintRules, light as defaultStyle } from 'protomaps';
+import { leafletLayer, paintRules } from 'protomaps-leaflet';
 import {
   createElementObject,
   createTileLayerComponent,
@@ -31,10 +31,7 @@ export const TileLayer = ({ attribution, url, format, ...rest }) => {
       <ProtomapsTileLayer
         attribution={attribution}
         url={url}
-        paintRules={
-          theme.map?.tiles &&
-          paintRules({ ...defaultStyle, ...theme.map.tiles })
-        }
+        paintRules={theme.map?.tiles && paintRules({ ...theme.map.tiles })}
         {...rest}
       />
     );
