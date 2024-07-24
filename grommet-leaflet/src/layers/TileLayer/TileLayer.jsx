@@ -21,8 +21,6 @@ const ProtomapsTileLayer = createTileLayerComponent(
 
 export const TileLayer = ({ attribution, url, format, ...rest }) => {
   const theme = useContext(ThemeContext);
-  console.log('theme:', theme);
-  console.log('paintRules:', paintRules);
 
   let tileLayer = (
     <LeafletTileLayer attribution={attribution} url={url} {...rest} />
