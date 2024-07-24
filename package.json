@@ -10,10 +10,6 @@
   ],
   "license": "ISC",
   "private": true,
-  "workspaces": [
-    "grommet-leaflet",
-    "demo-app"
-  ],
   "scripts": {
     "lint": "eslint . --ext .js --ext .jsx",
     "lint-fix": "eslint . --ext .js --ext .jsx --fix"

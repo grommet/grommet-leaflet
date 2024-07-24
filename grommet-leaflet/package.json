@@ -47,7 +47,6 @@
     "uuid": "^9.0.1"
   },
   "devDependencies": {
-    "@rollup/plugin-commonjs": "^26.0.1",
     "@types/leaflet": "^1.9.6",
     "@types/leaflet.markercluster": "^1.5.2",
     "@types/react": "^18.2.23",
@@ -66,6 +65,17 @@
     "simple-git": "^3.25.0",
     "styled-components": "^5.1.0",
     "typescript": "^5.2.2",
-    "vite": "^5.2.0"
+    "vite": "^5.2.0",
+    "@babel/eslint-parser": "^7.19.1",
+    "@babel/preset-react": "^7.18.6",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-grommet": "https://github.com/grommet/eslint-plugin-grommet/tarball/stable",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jsx": "^0.1.0",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.31.11",
+    "prettier": "^2.8.8"
   }
 }
