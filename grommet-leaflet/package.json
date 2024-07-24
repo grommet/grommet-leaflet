@@ -7,12 +7,12 @@
     "dist",
     "src"
   ],
-  "main": "./dist/grommet-leaflet.cjs",
+  "main": "./dist/grommet-leaflet.umd.cjs",
   "module": "./dist/grommet-leaflet.js",
   "exports": {
     ".": {
       "import": "./dist/grommet-leaflet.js",
-      "require": "./dist/grommet-leaflet.cjs"
+      "require": "./dist/grommet-leaflet.umd.cjs"
     }
   },
   "authors": [
@@ -47,6 +47,7 @@
     "uuid": "^9.0.1"
   },
   "devDependencies": {
+    "@rollup/plugin-commonjs": "^26.0.1",
     "@types/leaflet": "^1.9.6",
     "@types/leaflet.markercluster": "^1.5.2",
     "@types/react": "^18.2.23",
