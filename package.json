@@ -7,12 +7,12 @@
     "dist",
     "src"
   ],
-  "main": "./dist/grommet-leaflet.umd.cjs",
+  "main": "./dist/grommet-leaflet.cjs",
   "module": "./dist/grommet-leaflet.js",
   "exports": {
     ".": {
       "import": "./dist/grommet-leaflet.js",
-      "require": "./dist/grommet-leaflet.umd.cjs"
+      "require": "./dist/grommet-leaflet.cjs"
     }
   },
   "authors": [
