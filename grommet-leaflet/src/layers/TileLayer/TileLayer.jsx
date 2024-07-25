@@ -3,11 +3,14 @@ import PropTypes from 'prop-types';
 import { ThemeContext } from 'styled-components';
 import { TileLayer as LeafletTileLayer } from 'react-leaflet';
 import { leafletLayer, paintRules } from 'protomaps-leaflet';
+import themes from 'protomaps-leaflet/dist/default_style/themes';
 import {
   createElementObject,
   createTileLayerComponent,
   updateGridLayer,
 } from '@react-leaflet/core';
+
+const { light } = themes;
 
 const leafletElement = ({ ...options }, context) => {
   const layer = leafletLayer({ paint_rules: options.paintRules, ...options });
@@ -31,7 +34,9 @@ export const TileLayer = ({ attribution, url, format, ...rest }) => {
       <ProtomapsTileLayer
         attribution={attribution}
         url={url}
-        paintRules={theme.map?.tiles && paintRules({ ...theme.map.tiles })}
+        paintRules={
+          theme.map?.tiles && paintRules({ ...light, ...theme.map.tiles })
+        }
         {...rest}
       />
     );
