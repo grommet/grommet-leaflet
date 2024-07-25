@@ -4,27 +4,27 @@ import a from "prop-types";
 import C, { ThemeContext as p } from "styled-components";
 import { Box as f, Text as _, Button as T } from "grommet";
 import { deepMerge as y } from "grommet/utils";
-import { useMap as q, TileLayer as A, MapContainer as J, AttributionControl as K, Marker as F, Popup as H } from "/home/runner/work/grommet-leaflet/grommet-leaflet/node_modules/react-leaflet/lib/index.js";
-import v from "/home/runner/work/grommet-leaflet/grommet-leaflet/node_modules/leaflet/dist/leaflet-src.js";
-import { Add as U, Subtract as Q, Globe as V } from "/home/runner/work/grommet-leaflet/grommet-leaflet/node_modules/grommet-icons/es6/index.js";
-import { leafletLayer as Y, paintRules as ee, light as re } from "/home/runner/work/grommet-leaflet/grommet-leaflet/node_modules/protomaps/dist/protomaps.module.js";
-import { createTileLayerComponent as te, updateGridLayer as oe, createElementObject as j, createPathComponent as ne, extendContext as ae } from "/home/runner/work/grommet-leaflet/grommet-leaflet/node_modules/@react-leaflet/core/lib/index.js";
+import { useMap as q, TileLayer as A, MapContainer as J, AttributionControl as K, Marker as F, Popup as H } from "/home/runner/work/grommet-leaflet/grommet-leaflet/grommet-leaflet/node_modules/react-leaflet/lib/index.js";
+import v from "/home/runner/work/grommet-leaflet/grommet-leaflet/grommet-leaflet/node_modules/leaflet/dist/leaflet-src.js";
+import { Add as U, Subtract as Q, Globe as V } from "/home/runner/work/grommet-leaflet/grommet-leaflet/grommet-leaflet/node_modules/grommet-icons/es6/index.js";
+import { leafletLayer as Y, paintRules as ee } from "/home/runner/work/grommet-leaflet/grommet-leaflet/grommet-leaflet/node_modules/protomaps-leaflet/dist/protomaps-leaflet.module.js";
+import { createTileLayerComponent as re, updateGridLayer as te, createElementObject as j, createPathComponent as oe, extendContext as ne } from "/home/runner/work/grommet-leaflet/grommet-leaflet/grommet-leaflet/node_modules/@react-leaflet/core/lib/index.js";
 import k from "react-dom/server";
-import { v4 as ie } from "/home/runner/work/grommet-leaflet/grommet-leaflet/node_modules/uuid/dist/esm-browser/index.js";
-import "/home/runner/work/grommet-leaflet/grommet-leaflet/node_modules/leaflet.markercluster/dist/leaflet.markercluster-src.js";
+import { v4 as ae } from "/home/runner/work/grommet-leaflet/grommet-leaflet/grommet-leaflet/node_modules/uuid/dist/esm-browser/index.js";
+import "/home/runner/work/grommet-leaflet/grommet-leaflet/grommet-leaflet/node_modules/leaflet.markercluster/dist/leaflet.markercluster-src.js";
 const D = (t) => {
   let e = {};
   return t.forEach((r) => {
     e = y(e, r);
   }), e;
-}, se = C(f)`
+}, ie = C(f)`
   // translate to re-align with leaflet div
   transform: translateX(-35%);
   &:hover {
     transform: translateX(-35%) scale(1.1);
     transition: transform 0.4s;
   }
-`, le = C(_)`
+`, se = C(_)`
   // multiplier of font-size, for tighter alignment
   line-height: 1rem;
 `, G = ({ cluster: t, kind: e = "default", size: r = "medium", ...s }) => {
@@ -35,9 +35,9 @@ const D = (t) => {
     (E = (M = o == null ? void 0 : o.map) == null ? void 0 : M.cluster) == null ? void 0 : E.default,
     (P = (L = o == null ? void 0 : o.map) == null ? void 0 : L.cluster) == null ? void 0 : P[e]
   ]), l = t.getChildCount(), g = (B = (O = (R = o == null ? void 0 : o.map) == null ? void 0 : R.cluster) == null ? void 0 : O[e]) == null ? void 0 : B.icon, x = l;
-  return /* @__PURE__ */ w(se, { ...n == null ? void 0 : n.container, ...s, children: [
+  return /* @__PURE__ */ w(ie, { ...n == null ? void 0 : n.container, ...s, children: [
     g,
-    /* @__PURE__ */ i(le, { ...n == null ? void 0 : n.label, children: x })
+    /* @__PURE__ */ i(se, { ...n == null ? void 0 : n.label, children: x })
   ] });
 };
 G.propTypes = {
@@ -45,7 +45,7 @@ G.propTypes = {
   kind: a.string,
   size: a.string
 };
-const pe = ({ locations: t }) => {
+const le = ({ locations: t }) => {
   const e = v.latLngBounds();
   return t.features ? t.features.forEach((r) => {
     var s, o;
@@ -56,10 +56,10 @@ const pe = ({ locations: t }) => {
   }) : t.forEach((r) => {
     e.extend([r == null ? void 0 : r[0], r == null ? void 0 : r[1]]);
   }), e;
-}, ce = 1.5, ue = ({ locations: t }) => {
-  const e = q(), r = t && pe({ locations: t }), [s, o] = b.useState(!1);
+}, pe = 1.5, ce = ({ locations: t }) => {
+  const e = q(), r = t && le({ locations: t }), [s, o] = b.useState(!1);
   return N(() => {
-    r && !s && (JSON.stringify(r._northEast) === JSON.stringify(r._southWest) || e.flyToBounds(r, { duration: ce }));
+    r && !s && (JSON.stringify(r._northEast) === JSON.stringify(r._southWest) || e.flyToBounds(r, { duration: pe }));
   }, [r, e, s]), N(() => {
     o(!0);
   }, []), // css classes are coming from https://github.com/Leaflet/Leaflet/blob/main/dist/leaflet.css
@@ -105,7 +105,7 @@ const pe = ({ locations: t }) => {
     )
   ] }) }) });
 };
-ue.propTypes = {
+ce.propTypes = {
   locations: a.oneOfType([a.array, a.object])
 };
 const Z = {
@@ -125,16 +125,16 @@ const Z = {
     }
     // icon: undefined,
   }
-}, me = y(Z, {
+}, ue = y(Z, {
   default: {
     container: {
       height: { min: "25px", max: "25px" },
       width: { min: "25px", max: "25px" }
     }
   }
-}), de = {
+}), me = {
   pin: {
-    ...me
+    ...ue
   },
   cluster: {
     ...Z,
@@ -229,22 +229,22 @@ const Z = {
   // roadsLabel: '#888888',
   // poisLabel: '#606060',
   // },
-}, fe = ({ ...t }, e) => {
+}, de = ({ ...t }, e) => {
   const r = Y({ paint_rules: t.paintRules, ...t });
   return j(r, e);
-}, ge = te(
-  fe,
-  oe
+}, fe = re(
+  de,
+  te
 ), $ = ({ attribution: t, url: e, format: r, ...s }) => {
   var l;
   const o = h(p);
   let n = /* @__PURE__ */ i(A, { attribution: t, url: e, ...s });
   return r === "pmtiles" && (n = /* @__PURE__ */ i(
-    ge,
+    fe,
     {
       attribution: t,
       url: e,
-      paintRules: ((l = o.map) == null ? void 0 : l.tiles) && ee({ ...re, ...o.map.tiles }),
+      paintRules: ((l = o.map) == null ? void 0 : l.tiles) && ee({ ...o.map.tiles }),
       ...s
     }
   )), n;
@@ -254,7 +254,7 @@ $.propTypes = {
   url: a.string.isRequired,
   format: a.oneOf(["pmtiles"])
 };
-const xe = C(J)`
+const ge = C(J)`
   ${({ theme: t }) => {
   var e, r;
   return `
@@ -262,7 +262,7 @@ const xe = C(J)`
       height: 100%;
     `;
 }}
-`, be = X(
+`, xe = X(
   ({
     center: t = [0, 0],
     children: e,
@@ -277,9 +277,9 @@ const xe = C(J)`
     zoomControl: x = !1,
     ...c
   }, u) => {
-    const m = h(p), d = y(m, { map: y(de, l) });
+    const m = h(p), d = y(m, { map: y(me, l) });
     return /* @__PURE__ */ i(p.Provider, { value: d, children: /* @__PURE__ */ w(
-      xe,
+      ge,
       {
         attributionControl: !1,
         center: t,
@@ -307,7 +307,7 @@ const xe = C(J)`
     ) });
   }
 );
-be.propTypes = {
+xe.propTypes = {
   center: a.array,
   children: a.any,
   scrollWheelZoom: a.string || a.bool,
@@ -322,7 +322,7 @@ be.propTypes = {
   zoom: a.number,
   zoomControl: a.bool
 };
-const he = ({ icon: t, popup: e, ...r }) => {
+const be = ({ icon: t, popup: e, ...r }) => {
   var l;
   const s = h(p), o = (l = t == null ? void 0 : t.props) == null ? void 0 : l.kind, n = e ? /* @__PURE__ */ i(H, { children: /* @__PURE__ */ i(W, { children: e }) }) : void 0;
   return /* @__PURE__ */ i(
@@ -339,14 +339,14 @@ const he = ({ icon: t, popup: e, ...r }) => {
       ...r,
       children: n
     },
-    ie()
+    ae()
   );
 };
-he.propTypes = {
+be.propTypes = {
   icon: a.node,
   popup: a.node
 };
-const ye = ({ ...t }, e) => {
+const he = ({ ...t }, e) => {
   const r = new v.MarkerClusterGroup({
     showCoverageOnHover: !1,
     zoomToBoundsOnClick: !1,
@@ -354,12 +354,12 @@ const ye = ({ ...t }, e) => {
   });
   return j(
     r,
-    ae(e, { layerContainer: r })
+    ne(e, { layerContainer: r })
   );
-}, Ce = ne(ye), ve = ({ icon: t, popup: e, ...r }) => {
+}, ye = oe(he), Ce = ({ icon: t, popup: e, ...r }) => {
   const s = h(p);
   return /* @__PURE__ */ i(
-    Ce,
+    ye,
     {
       iconCreateFunction: (o) => {
         if (e) {
@@ -387,11 +387,11 @@ const ye = ({ ...t }, e) => {
     }
   );
 };
-ve.propTypes = {
+Ce.propTypes = {
   icon: a.func,
   popup: a.func
 };
-const Te = C(f)`
+const ve = C(f)`
   // to create the pin shape
   border-bottom-right-radius: 0;
   // translate to re-align with leaflet div
@@ -411,7 +411,7 @@ const Te = C(f)`
     // style needed to offset for rotation of location pin so
     // icon is vertical
     style: { transform: "rotate(-45deg)" }
-  })), /* @__PURE__ */ i(Te, { ...r, children: s });
+  })), /* @__PURE__ */ i(ve, { ...r, children: s });
 };
 I.propTypes = {
   kind: a.string
@@ -422,21 +422,21 @@ const W = ({ ...t }) => {
   return /* @__PURE__ */ i(f, { ...(r = e == null ? void 0 : e.map) == null ? void 0 : r.popup, ...t });
 };
 window.console = console;
-const ke = console.error, we = [
+const Te = console.error, ke = [
   "useLayoutEffect does nothing on the server, because its effect cannot"
 ];
 console.error = function(e, ...r) {
-  we.some((s) => e.includes(s)) || ke(e, ...r);
+  ke.some((s) => e.includes(s)) || Te(e, ...r);
 };
 export {
   G as Cluster,
-  ue as Controls,
-  pe as LocationBounds,
-  be as Map,
-  he as Marker,
-  ve as MarkerCluster,
+  ce as Controls,
+  le as LocationBounds,
+  xe as Map,
+  be as Marker,
+  Ce as MarkerCluster,
   I as Pin,
   W as Popup,
-  de as base,
+  me as base,
   D as normalizeTheme
 };
