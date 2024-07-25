@@ -14,13 +14,14 @@ export default defineConfig({
     },
     rollupOptions: {
       // externalize deps that shouldn't be bundled with library
-      external: ['react', 'styled-components', 'prop-types', /node_modules/],
+      external: ['react', 'react-dom', 'styled-components', 'grommet'],
       output: {
         // global variables to use in the UMD build for externalized deps
         globals: {
           react: 'React',
           'styled-components': 'styled',
-          'prop-types': 'PropTypes',
+          'react-dom': 'ReactDOM',
+          grommet: 'grommet',
         },
       },
     },
