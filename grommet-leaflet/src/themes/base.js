@@ -1,4 +1,4 @@
-import { deepMerge } from 'grommet/utils';
+import { deepMerge } from 'grommet';
 
 const defaultKinds = {
   default: {
