@@ -12921,7 +12921,7 @@ Ru.propTypes = {
   icon: mt.func,
   popup: mt.func
 };
-const Du = mi(be)`
+const Du = mi.default, ju = Du(be)`
   // to create the pin shape
   border-bottom-right-radius: 0;
   // translate to re-align with leaflet div
@@ -12941,7 +12941,7 @@ const Du = mi(be)`
     // style needed to offset for rotation of location pin so
     // icon is vertical
     style: { transform: "rotate(-45deg)" }
-  })), /* @__PURE__ */ pt(Du, { ...r, children: a });
+  })), /* @__PURE__ */ pt(ju, { ...r, children: a });
 };
 Ps.propTypes = {
   kind: mt.string
@@ -12952,11 +12952,11 @@ const Ts = ({ ...i }) => {
   return /* @__PURE__ */ pt(be, { ...(r = s == null ? void 0 : s.map) == null ? void 0 : r.popup, ...i });
 };
 window.console = console;
-const ju = console.error, Nu = [
+const Nu = console.error, Fu = [
   "useLayoutEffect does nothing on the server, because its effect cannot"
 ];
 console.error = function(s, ...r) {
-  Nu.some((a) => s.includes(a)) || ju(s, ...r);
+  Fu.some((a) => s.includes(a)) || Nu(s, ...r);
 };
 export {
   Zo as Cluster,
