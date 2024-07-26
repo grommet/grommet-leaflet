@@ -30,7 +30,7 @@ export default defineConfig({
           'react-dom': 'ReactDOM',
           grommet: 'grommet',
           // 'react-dom/server': 'ReactDOMServer',
-          // 'react/jsx-runtime': 'react/jsx-runtime',
+          'react/jsx-runtime': 'react/jsx-runtime.js',
         },
       },
     },
