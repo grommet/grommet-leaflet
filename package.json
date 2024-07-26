@@ -1,0 +1,82 @@
+{
+  "name": "grommet-leaflet",
+  "version": "0.3.0",
+  "description": "Map for Grommet and React using LeafletJS",
+  "type": "module",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "main": "./dist/grommet-leaflet.umd.cjs",
+  "module": "./dist/grommet-leaflet.js",
+  "exports": {
+    ".": {
+      "import": "./dist/grommet-leaflet.js",
+      "require": "./dist/grommet-leaflet.umd.cjs"
+    }
+  },
+  "authors": [
+    "Matt Glissmann",
+    "Taylor Seamans",
+    "Jessica Filben"
+  ],
+  "license": "ISC",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint . --ext ts,tsx,js,jsx --report-unused-disable-directives --max-warnings 0",
+    "lint-fix": "eslint . --ext ts,tsx,js,jsx --fix",
+    "prepublishOnly": "npm run build",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "release-stable": "node ./tools/release-stable.mjs"
+  },
+  "peerDependencies": {
+    "grommet": "^2.32.0",
+    "react": "^16.6.1 || ^17.0.0 || ^18.0.0",
+    "react-dom": "^16.6.1 || ^17.0.0 || ^18.0.0",
+    "styled-components": "^5.1.0"
+  },
+  "dependencies": {
+    "@react-leaflet/core": "^1.1.0",
+    "grommet-icons": "^4.11.0",
+    "leaflet": "1.7.1",
+    "leaflet.markercluster": "^1.5.3",
+    "prop-types": "^15.8.1",
+    "protomaps-leaflet": "^2.0.1",
+    "react-leaflet": "^3.2.5",
+    "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "@babel/eslint-parser": "^7.19.1",
+    "@babel/preset-react": "^7.18.6",
+    "@types/leaflet": "^1.9.6",
+    "@types/leaflet.markercluster": "^1.5.2",
+    "@types/react": "^18.2.23",
+    "@vitejs/plugin-react": "^4.2.1",
+    "del": "^7.1.0",
+    "dotenv": "^16.4.5",
+    "eslint": "^8.57.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-grommet": "https://github.com/grommet/eslint-plugin-grommet/tarball/stable",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jsx": "^0.1.0",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.31.11",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.6",
+    "fs-extra": "^11.2.0",
+    "grommet": "^2.32.0",
+    "path": "^0.12.7",
+    "prettier": "^2.8.8",
+    "react": "^16.6.1 || ^17.0.0 || ^18.0.0",
+    "react-dom": "^16.6.1 || ^17.0.0 || ^18.0.0",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "simple-git": "^3.25.0",
+    "styled-components": "^5.1.0",
+    "typescript": "^5.2.2",
+    "vite": "^5.2.0"
+  }
+}
