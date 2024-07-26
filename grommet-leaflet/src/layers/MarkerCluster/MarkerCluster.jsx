@@ -2,14 +2,19 @@ import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { ThemeContext } from 'styled-components';
 import {
-  createElementObject,
+  // createElementObject,
   createPathComponent,
-  extendContext,
+  // extendContext,
 } from '@react-leaflet/core';
 import L from 'leaflet';
 import 'leaflet.markercluster';
 import ReactDOMServer from 'react-dom/server';
 import { Cluster, Popup } from '..';
+
+const createElementObject = (instance, context, container) =>
+  Object.freeze({ instance, context, container });
+
+const extendContext = (source, extra) => Object.freeze({ ...source, ...extra });
 
 const createMarkerClusterGroup = ({ ...rest }, context) => {
   const markerClusterGroup = new L.MarkerClusterGroup({
