@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { ThemeContext } from 'styled-components';
-import { useMap } from 'react-leaflet';
 import {
   // createElementObject,
   createPathComponent,
@@ -33,11 +32,9 @@ const LeafletMarkerCluster = createPathComponent(createMarkerClusterGroup);
 
 const MarkerCluster = ({ icon: iconProp, popup: popupProp, ...rest }) => {
   const theme = useContext(ThemeContext);
-  const map = useMap();
 
   return (
     <LeafletMarkerCluster
-      {...map}
       iconCreateFunction={cluster => {
         if (popupProp) {
           const popup = cluster.bindPopup(
