@@ -40,11 +40,11 @@
   "dependencies": {
     "@react-leaflet/core": "^1.1.0",
     "grommet-icons": "^4.11.0",
-    "leaflet": "^1.9.4",
+    "leaflet": "1.7.1",
     "leaflet.markercluster": "^1.5.3",
     "prop-types": "^15.8.1",
     "protomaps-leaflet": "^2.0.1",
-    "react-leaflet": "^4.2.1",
+    "react-leaflet": "^3.2.5",
     "uuid": "^9.0.1"
   },
   "devDependencies": {
