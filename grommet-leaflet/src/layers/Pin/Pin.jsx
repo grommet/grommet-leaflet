@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled, { ThemeContext } from 'styled-components';
+import _styled, { ThemeContext } from 'styled-components';
 import { Box } from 'grommet';
 import { normalizeTheme } from '../../utils';
 
+const styled = _styled.default;
 const StyledBox = styled(Box)`
   // to create the pin shape
   border-bottom-right-radius: 0;
