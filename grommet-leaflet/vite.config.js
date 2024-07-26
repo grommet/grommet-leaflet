@@ -16,9 +16,9 @@ export default defineConfig({
       // externalize deps that shouldn't be bundled with library
       external: [
         'react',
-        'react/jsx-runtime',
+        // 'react/jsx-runtime',
         'react-dom',
-        'react-dom/server',
+        // 'react-dom/server',
         'styled-components',
         'grommet',
       ],
@@ -29,8 +29,8 @@ export default defineConfig({
           'styled-components': 'styled',
           'react-dom': 'ReactDOM',
           grommet: 'grommet',
-          'react-dom/server': 'ReactDOMServer',
-          'react/jsx-runtime': 'react/jsx-runtime',
+          // 'react-dom/server': 'ReactDOMServer',
+          // 'react/jsx-runtime': 'react/jsx-runtime',
         },
       },
     },

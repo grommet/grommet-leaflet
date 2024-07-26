@@ -49,15 +49,17 @@ const MarkerCluster = ({ icon: iconProp, popup: popupProp, ...rest }) => {
           // leaflet default divIcon styles
           className: 'grommet-cluster-group',
           html: ReactDOMServer.renderToString(
-            <ThemeContext.Provider value={theme}>
-              {iconProp ? (
-                React.cloneElement(iconProp({ cluster }), {
-                  cluster,
-                })
-              ) : (
-                <Cluster cluster={cluster} />
-              )}
-            </ThemeContext.Provider>,
+            // <ThemeContext.Provider value={theme}>
+            // {
+            iconProp ? (
+              React.cloneElement(iconProp({ cluster }), {
+                cluster,
+              })
+            ) : (
+              <Cluster cluster={cluster} />
+            ),
+            // }
+            // </ThemeContext.Provider>,
           ),
         });
       }}
