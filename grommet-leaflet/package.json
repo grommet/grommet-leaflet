@@ -38,7 +38,7 @@
     "styled-components": "^5.1.0"
   },
   "dependencies": {
-    "@react-leaflet/core": "^2.1.0",
+    "@react-leaflet/core": "^1.1.0",
     "grommet-icons": "^4.11.0",
     "leaflet": "^1.9.4",
     "leaflet.markercluster": "^1.5.3",
