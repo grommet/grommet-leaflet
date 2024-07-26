@@ -5,12 +5,15 @@ import { TileLayer as LeafletTileLayer } from 'react-leaflet';
 import { leafletLayer, paintRules } from 'protomaps-leaflet';
 import themes from 'protomaps-leaflet/dist/default_style/themes';
 import {
-  createElementObject,
+  // createElementObject,
   createTileLayerComponent,
   updateGridLayer,
 } from '@react-leaflet/core';
 
 const { light } = themes;
+
+const createElementObject = (instance, context, container) =>
+  Object.freeze({ instance, context, container });
 
 const leafletElement = ({ ...options }, context) => {
   const layer = leafletLayer({ paint_rules: options.paintRules, ...options });
