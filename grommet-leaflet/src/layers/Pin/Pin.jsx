@@ -31,7 +31,7 @@ const Pin = ({ kind = 'default' }) => {
     });
   }
 
-  return <StyledBox {...normalizedTheme}>{icon}</StyledBox>;
+  return <Box {...normalizedTheme}>{icon}</Box>;
 };
 
 Pin.propTypes = {
