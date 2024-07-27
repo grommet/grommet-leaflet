@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Box } from 'grommet';
-import styled, { ThemeContext } from './my-styled-components';
+import styled, { ThemeContext } from 'styled-components';
 import { normalizeTheme } from '../../utils';
 
 const StyledBox = styled(Box)`
