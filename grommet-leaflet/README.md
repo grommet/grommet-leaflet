@@ -60,7 +60,7 @@ In addition, it also supports the following props:
 
 | Prop        | Type     | Default value | Required | Notes                                                                                                                                                                                                                   |
 | ----------- | -------- | ------------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `tileLayer` | `object` | `undefined`   | `true`   | { <br / >url: `string` in the form of `'https://{s}.somedomain.com/blabla/{z}/{x}/{y}{r}.png'`, <br /> attribution?: `string` e.g. `&copy; <a href="https://openstreetmap.org">OpenStreetMap</a> contributors` <br /> } |
+| `tileLayer` | `object` | `undefined`   | `true`   | { <br />&nbsp;&nbsp;&nbsp;&nbsp;url: `string` in the form of `'https://{s}.somedomain.com/blabla/{z}/{x}/{y}{r}.png'`, <br />&nbsp;&nbsp;&nbsp;&nbsp;attribution?: `string` e.g. `&copy; <a href="https://openstreetmap.org">OpenStreetMap</a> contributors` <br /> } |
 | `theme`     | `object` |               |          | See [theme structure](#theme-structure)                                                                                                                                                                                 |
 
 ### Marker
@@ -189,7 +189,7 @@ Popup styles can be customized in a Map `theme` in `theme.popup`.
 | ------------ | -------- | ------------------------------------------ |
 | `popup`      | `object` | Any [Box](https://v2.grommet.io/box) props |
 
-#### Controls
+### Controls
 
 Controls provides zoom in, zoom out, and center on data controls for the map.
 
