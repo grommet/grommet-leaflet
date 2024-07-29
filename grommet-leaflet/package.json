@@ -38,16 +38,17 @@
     "styled-components": "^5.1.0"
   },
   "dependencies": {
-    "@react-leaflet/core": "^1.1.0",
+    "@react-leaflet/core": "^2.1.0",
     "grommet-icons": "^4.11.0",
-    "leaflet": "1.7.1",
+    "leaflet": "^1.9.4",
     "leaflet.markercluster": "^1.5.3",
     "prop-types": "^15.8.1",
     "protomaps-leaflet": "^2.0.1",
-    "react-leaflet": "^3.2.5",
+    "react-leaflet": "^4.2.1",
     "uuid": "^9.0.1"
   },
   "devDependencies": {
+    "@babel/core": "^7.11.0",
     "@babel/eslint-parser": "^7.19.1",
     "@babel/preset-react": "^7.18.6",
     "@types/leaflet": "^1.9.6",
@@ -73,6 +74,8 @@
     "prettier": "^2.8.8",
     "react": "^16.6.1 || ^17.0.0 || ^18.0.0",
     "react-dom": "^16.6.1 || ^17.0.0 || ^18.0.0",
+    "react-is": "^16.8.0",
+    "rollup": "^4.19.1",
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "simple-git": "^3.25.0",
     "styled-components": "^5.1.0",
