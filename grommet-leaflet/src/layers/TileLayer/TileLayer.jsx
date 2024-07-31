@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { ThemeContext } from 'styled-components';
 import { TileLayer as LeafletTileLayer } from 'react-leaflet';
-import { leafletLayer, paintRules } from 'protomaps-leaflet';
+import { leafletLayer, paintRules, labelRules } from 'protomaps-leaflet';
 import themes from 'protomaps-leaflet/dist/default_style/themes';
 import {
   // createElementObject,
@@ -16,7 +16,11 @@ const createElementObject = (instance, context, container) =>
   Object.freeze({ instance, context, container });
 
 const leafletElement = ({ ...options }, context) => {
-  const layer = leafletLayer({ paint_rules: options.paintRules, ...options });
+  const layer = leafletLayer({
+    paint_rules: options.paintRules,
+    label_rules: options.labelRules,
+    ...options,
+  });
   return createElementObject(layer, context);
 };
 
@@ -39,6 +43,9 @@ export const TileLayer = ({ attribution, url, format, ...rest }) => {
         url={url}
         paintRules={
           theme.map?.tiles && paintRules({ ...light, ...theme.map.tiles })
+        }
+        labelRules={
+          theme.map?.labels && labelRules({ ...light, ...theme.map.tiles })
         }
         {...rest}
       />
