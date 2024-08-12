@@ -9,14 +9,17 @@
   ],
   "main": "./dist/grommet-leaflet.umd.cjs",
   "module": "./dist/grommet-leaflet.js",
-  "types": "./dist/index.d.ts",
+  "types": "./src/index.d.ts",
   "exports": {
     ".": {
       "import": {
         "default": "./dist/grommet-leaflet.js",
-        "types": "./dist/index.d.ts"
+        "types": "./src/index.d.ts"
       },
-      "require": "./dist/grommet-leaflet.umd.cjs"
+      "require": {
+        "default": "./dist/grommet-leaflet.umd.cjs",
+        "types": "./src/index.d.ts"
+      }
     }
   },
   "authors": [
