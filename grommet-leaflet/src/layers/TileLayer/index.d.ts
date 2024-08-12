@@ -9,8 +9,8 @@ export interface TileLayerProps {
 
 export interface TileLayerExtendedProps
   extends TileLayerProps,
-    L.TileLayer,
-    Omit<JSX.IntrinsicElements['div'], keyof TileLayerProps> {}
+  L.TileLayer,
+  Omit<JSX.IntrinsicElements['div'], keyof TileLayerProps> { }
 
 declare const TileLayer: React.FC<TileLayerExtendedProps>;
 

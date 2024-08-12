@@ -9,9 +9,13 @@
   ],
   "main": "./dist/grommet-leaflet.umd.cjs",
   "module": "./dist/grommet-leaflet.js",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/grommet-leaflet.js",
+      "import": {
+        "default": "./dist/grommet-leaflet.js",
+        "types": "./dist/index.d.ts"
+      },
       "require": "./dist/grommet-leaflet.umd.cjs"
     }
   },
@@ -43,7 +47,7 @@
     "leaflet": "^1.9.4",
     "leaflet.markercluster": "^1.5.3",
     "prop-types": "^15.8.1",
-    "protomaps-leaflet": "^2.0.1",
+    "protomaps-leaflet": "^4.0.0",
     "react-leaflet": "^4.2.1",
     "uuid": "^9.0.1"
   },
