@@ -7496,7 +7496,8 @@ const Dh = ({ locations: r }) => {
 }, Rh = 1.5, Fh = ({ locations: r }) => {
   const i = wh(), n = r && Dh({ locations: r }), [a, l] = zt.useState(!1);
   return Gt(() => {
-    n && !a && (JSON.stringify(n._northEast) === JSON.stringify(n._southWest) || i.flyToBounds(n, { duration: Rh }));
+    n && !a && // eslint-disable-next-line no-underscore-dangle
+    (JSON.stringify(n._northEast) === JSON.stringify(n._southWest) || i.flyToBounds(n, { duration: Rh }));
   }, [n, i, a]), Gt(() => {
     l(!0);
   }, []), // css classes are coming from https://github.com/Leaflet/Leaflet/blob/main/dist/leaflet.css
@@ -12605,7 +12606,7 @@ const wf = (r, i, n) => Object.freeze({ instance: r, context: i, container: n })
     Tf,
     {
       iconCreateFunction: (l) => {
-        if (i) {
+        if (i({ cluster: l })) {
           const s = l.bindPopup(
             Hn.renderToString(
               /* @__PURE__ */ ut(Ft.Provider, { value: a, children: /* @__PURE__ */ ut(Ta, { children: i({ cluster: l }) }) })
