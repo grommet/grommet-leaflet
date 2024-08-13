@@ -7,7 +7,7 @@
     "dist",
     "src"
   ],
-  "main": "./dist/grommet-leaflet.umd.cjs",
+  "main": "./dist/grommet-leaflet.cjs",
   "module": "./dist/grommet-leaflet.js",
   "types": "./src/index.d.ts",
   "exports": {
@@ -17,7 +17,7 @@
         "types": "./src/index.d.ts"
       },
       "require": {
-        "default": "./dist/grommet-leaflet.umd.cjs",
+        "default": "./dist/grommet-leaflet.cjs",
         "types": "./src/index.d.ts"
       }
     }
