@@ -58,10 +58,10 @@ Map supports all [Leaflet Map](https://leafletjs.com/reference.html#map) and [Re
 
 In addition, it also supports the following props:
 
-| Prop        | Type     | Default value | Required | Notes                                                                                                                                                                                                                   |
-| ----------- | -------- | ------------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Prop        | Type     | Default value | Required | Notes                                                                                                                                                                                                                                                                 |
+| ----------- | -------- | ------------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `tileLayer` | `object` | `undefined`   | `true`   | { <br />&nbsp;&nbsp;&nbsp;&nbsp;url: `string` in the form of `'https://{s}.somedomain.com/blabla/{z}/{x}/{y}{r}.png'`, <br />&nbsp;&nbsp;&nbsp;&nbsp;attribution?: `string` e.g. `&copy; <a href="https://openstreetmap.org">OpenStreetMap</a> contributors` <br /> } |
-| `theme`     | `object` |               |          | See [theme structure](#theme-structure)                                                                                                                                                                                 |
+| `theme`     | `object` |               |          | See [theme structure](#theme-structure)                                                                                                                                                                                                                               |
 
 ### Marker
 
@@ -115,10 +115,10 @@ MarkerCluster supports all [Leaflet.markercluster properties](https://github.com
 
 In addition, it also supports the following props:
 
-| Prop    | Type                       | Default value                                    |
-| ------- | -------------------------- | ------------------------------------------------ |
-| `icon`  | `({ cluster }) => Element` | `({ cluster }) => <Cluster cluster={cluster} />` |
-| `popup` | `({ cluster }) => Element` | `undefined`                                      |
+| Prop    | Type                                                     | Default value                                    |
+| ------- | -------------------------------------------------------- | ------------------------------------------------ |
+| `icon`  | `({ cluster }) => Element`                               | `({ cluster }) => <Cluster cluster={cluster} />` |
+| `popup` | `({ cluster }) => Element \| null \| false \| undefined` | `undefined`                                      |
 
 For large datasets, it can be beneficial to apply `chunkedLoading` to MarkerCluster. See [leaflet.markercluster docs](https://github.com/Leaflet/Leaflet.markercluster#chunked-addlayers-options) for additional details.
 
