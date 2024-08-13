@@ -2998,7 +2998,7 @@ protocol-buffers-schema@^3.3.1:
   resolved "https://registry.yarnpkg.com/protocol-buffers-schema/-/protocol-buffers-schema-3.6.0.tgz#77bc75a48b2ff142c1ad5b5b90c94cd0fa2efd03"
   integrity sha512-TdDRD+/QNdrCGCE7v8340QyuXd4kIWIgapsE2+n/SaGiSSbomYl4TjHlvIoCWRpE7wFt02EpB35VVA2ImcBVqw==
 
-protomaps-leaflet@^4.0.1:
+protomaps-leaflet@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/protomaps-leaflet/-/protomaps-leaflet-4.0.0.tgz#99e21e6a6d4d517d02b497e705109a78e380c620"
   integrity sha512-AE9P2+ks/HxjshX9gHFUVUQ2MfTIDP52jKfweVF9nxCFWNNO6qknHQGCk/v39o0oSEEwkpuASl+xn9SVF/tEbg==

@@ -12,6 +12,7 @@ export default defineConfig({
       entry: resolve(__dirname, 'src/index.js'),
       name: 'grommet-leaflet',
       fileName: 'grommet-leaflet',
+      formats: ['es', 'cjs'],
     },
     rollupOptions: {
       // externalize deps that shouldn't be bundled with library
@@ -27,12 +28,13 @@ export default defineConfig({
         // global variables to use in the UMD build for externalized deps
         globals: {
           react: 'React',
-          // 'styled-components': 'styled',
+          'styled-components': 'styled',
           'react-dom': 'ReactDOM',
           grommet: 'grommet',
           // 'react-dom/server': 'ReactDOMServer',
           'react/jsx-runtime': 'react/jsx-runtime.js',
         },
+        interop: 'auto',
       },
     },
   },
