@@ -36,6 +36,7 @@ const Controls = ({ locations }) => {
   useEffect(() => {
     if (bounds && !mounted) {
       if (
+        // eslint-disable-next-line no-underscore-dangle
         JSON.stringify(bounds._northEast) === JSON.stringify(bounds._southWest)
       ) {
         // if the bounds are the same, zoom to the bounds of the locations
