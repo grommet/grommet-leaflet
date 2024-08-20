@@ -1,5 +1,6 @@
 declare module 'grommet-leaflet';
 
+export * from './hooks';
 export * from './layers/Cluster';
 export * from './layers/Controls';
 export * from './layers/Map';

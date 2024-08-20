@@ -20,6 +20,7 @@ console.error = function filterWarnings(msg, ...args) {
   }
 };
 
+export * from './hooks';
 export * from './layers';
 export * from './utils';
 export * from './themes';
