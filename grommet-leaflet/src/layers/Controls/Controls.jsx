@@ -16,9 +16,13 @@ export const LocationBounds = ({ locations }) => {
         location.geometry?.coordinates[1],
       ]);
     });
-  } else {
+  } else if (Array.isArray(locations[0])) {
     locations.forEach(location => {
       bounds.extend([location?.[0], location?.[1]]);
+    });
+  } else {
+    locations.forEach(location => {
+      bounds.extend([location?.lat, location?.lng]);
     });
   }
 
@@ -95,7 +99,18 @@ const Controls = ({ locations }) => {
 };
 
 Controls.propTypes = {
-  locations: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
+  locations: PropTypes.oneOfType([
+    PropTypes.arrayOf(
+      PropTypes.oneOfType([
+        PropTypes.arrayOf(PropTypes.number),
+        PropTypes.shape({
+          lat: PropTypes.number,
+          lng: PropTypes.number,
+        }),
+      ]),
+    ),
+    PropTypes.object,
+  ]),
 };
 
 export { Controls };
