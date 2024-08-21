@@ -1,11 +1,10 @@
 {
   "name": "grommet-leaflet",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Map for Grommet and React using LeafletJS",
   "type": "module",
   "files": [
-    "dist",
-    "src"
+    "dist"
   ],
   "main": "./dist/grommet-leaflet.cjs",
   "module": "./dist/grommet-leaflet.js",
