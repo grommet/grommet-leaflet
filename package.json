@@ -12,12 +12,12 @@
   "exports": {
     ".": {
       "import": {
-        "default": "./dist/grommet-leaflet.js",
-        "types": "./src/index.d.ts"
+        "types": "./src/index.d.ts",
+        "default": "./dist/grommet-leaflet.js"
       },
       "require": {
-        "default": "./dist/grommet-leaflet.cjs",
-        "types": "./src/index.d.ts"
+        "types": "./src/index.d.ts",
+        "default": "./dist/grommet-leaflet.cjs"
       }
     }
   },

@@ -12642,7 +12642,7 @@ const wf = (r, i, n) => Object.freeze({ instance: r, context: i, container: n })
     Tf,
     {
       iconCreateFunction: (l) => {
-        if (i({ cluster: l })) {
+        if (i && i({ cluster: l })) {
           const s = l.bindPopup(
             Hn.renderToString(
               /* @__PURE__ */ ut(jt.Provider, { value: a, children: /* @__PURE__ */ ut(ka, { children: i({ cluster: l }) }) })
