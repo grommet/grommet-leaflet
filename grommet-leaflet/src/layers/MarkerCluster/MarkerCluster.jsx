@@ -37,7 +37,7 @@ const MarkerCluster = ({ icon: iconProp, popup: popupProp, ...rest }) => {
     <LeafletMarkerCluster
       iconCreateFunction={cluster => {
         // only bind popup if popupProp is defined
-        if (popupProp({ cluster })) {
+        if (popupProp && popupProp({ cluster })) {
           const popup = cluster.bindPopup(
             ReactDOMServer.renderToString(
               <ThemeContext.Provider value={theme}>
