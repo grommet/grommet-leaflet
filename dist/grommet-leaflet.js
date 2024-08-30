@@ -12706,7 +12706,7 @@ const Mf = console.error, Sf = [
   "useLayoutEffect does nothing on the server, because its effect cannot"
 ];
 console.error = function(i, ...n) {
-  i && !Sf.some((a) => i.includes(a)) && Mf(i, ...n);
+  Array.isArray(i) && !Sf.some((a) => i.includes(a)) && Mf(i, ...n);
 };
 export {
   gs as Cluster,
