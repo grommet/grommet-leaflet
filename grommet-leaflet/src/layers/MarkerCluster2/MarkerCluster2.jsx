@@ -8,7 +8,6 @@ import {
   createLayerComponent,
   extendContext,
 } from '@react-leaflet/core';
-import { Popup as LeafletPopup } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet.markercluster';
 import { Cluster, Popup } from '..';
@@ -25,7 +24,11 @@ function createMarkerClusterGroup(props, context) {
     }
   });
 
-  const markers = new L.MarkerClusterGroup(clusterProps);
+  const markers = new L.MarkerClusterGroup({
+    showCoverageOnHover: false,
+    zoomToBoundsOnClick: false,
+    ...clusterProps,
+  });
 
   // Bind events to markers
   Object.entries(clusterEvents).forEach(([key, value]) => {
@@ -33,20 +36,27 @@ function createMarkerClusterGroup(props, context) {
     markers.on(event, value);
   });
 
-  markers.on('clusterclick', e => {
+  markers.on('clusterclick clusterkeypress', e => {
     const { propagatedFrom } = e;
     const popupContent = clusterProps.popup({ markers });
     const popupId = `grommet-leaflet-popup-${uuidv4()}`;
     const popup = new L.Popup();
+    // In order to take advantage of Leaflet's automatic popup placement
+    // and panning we first need to render the popup's contents statically.
+    // This establishes the popup's dimensions so that the map will pan if the
+    // marker is close to the map's bounds.
     popup
       .setLatLng(propagatedFrom.getLatLng())
-      .setContent(`<div id="${popupId}"></div>`)
+      .setContent(
+        `<div id="${popupId}">${ReactDOMServer.renderToString(
+          popupContent,
+        )}</div>`,
+      )
       .openOn(context.map);
 
+    // We then render the popup's contents dynamically and replace the static
+    // content with an interactive ReactNode.
     const domNode = document.getElementById(popupId);
-    domNode.style.width = 'max-content';
-    domNode.style.height = 'max-content';
-    domNode.parentElement.style.width = 'max-content';
     const root = createRoot(domNode);
     root.render(popupContent);
   });
@@ -86,7 +96,7 @@ const MarkerCluster2 = props => {
   };
 
   const popup = ({ cluster }) =>
-    popupProp ? (
+    popupProp && typeof popupProp === 'function' ? (
       <ThemeContext.Provider ref={popupRef} value={theme}>
         <Popup>{popupProp({ cluster })}</Popup>
       </ThemeContext.Provider>

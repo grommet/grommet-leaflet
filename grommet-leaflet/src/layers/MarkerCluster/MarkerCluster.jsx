@@ -11,11 +11,6 @@ import 'leaflet.markercluster';
 import ReactDOMServer from 'react-dom/server';
 import { Cluster, Popup } from '..';
 
-// const createElementObject = (instance, context, container) =>
-//   Object.freeze({ instance, context, container });
-
-// const extendContext = (source, extra) => Object.freeze({ ...source, ...extra });
-
 const createMarkerClusterGroup = (props, context) => {
   const clusterProps = {};
   const clusterEvents = {};
