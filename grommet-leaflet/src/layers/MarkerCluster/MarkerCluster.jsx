@@ -1,17 +1,19 @@
-import React, { useContext } from 'react';
+import React from 'react';
+import ReactDOMServer from 'react-dom/server';
+import { createRoot } from 'react-dom/client';
 import PropTypes from 'prop-types';
 import { ThemeContext } from 'styled-components';
+import { v4 as uuidv4 } from 'uuid';
+import L from 'leaflet';
+import 'leaflet.markercluster';
 import {
   createElementObject,
   createLayerComponent,
   extendContext,
 } from '@react-leaflet/core';
-import L from 'leaflet';
-import 'leaflet.markercluster';
-import ReactDOMServer from 'react-dom/server';
 import { Cluster, Popup } from '..';
 
-const createMarkerClusterGroup = (props, context) => {
+function createMarkerClusterGroup(props, context) {
   const clusterProps = {};
   const clusterEvents = {};
 
@@ -23,71 +25,88 @@ const createMarkerClusterGroup = (props, context) => {
     }
   });
 
-  const markerClusterGroup = new L.MarkerClusterGroup({
+  const markers = new L.MarkerClusterGroup({
     showCoverageOnHover: false,
     zoomToBoundsOnClick: false,
     ...clusterProps,
   });
 
-  // Bind events to markerClusterGroup
+  // Bind events to markers
   Object.entries(clusterEvents).forEach(([key, value]) => {
     const event = `cluster${key.substring(2).toLowerCase()}`;
-    markerClusterGroup.on(event, value);
+    markers.on(event, value);
+  });
+
+  markers.on('clusterclick clusterkeypress', e => {
+    const { propagatedFrom } = e;
+    const popupContent = clusterProps.popup({ markers });
+    const popupId = `grommet-leaflet-popup-${uuidv4()}`;
+    const popup = new L.Popup();
+    // In order to take advantage of Leaflet's automatic popup placement
+    // and panning we first need to render the popup's contents statically.
+    // This establishes the popup's dimensions so that the map will pan if the
+    // marker is close to the map's bounds.
+    popup
+      .setLatLng(propagatedFrom.getLatLng())
+      .setContent(
+        `<div id="${popupId}">${ReactDOMServer.renderToString(
+          popupContent,
+        )}</div>`,
+      )
+      .openOn(context.map);
+
+    // We then render the popup's contents dynamically and replace the static
+    // content with an interactive ReactNode.
+    const domNode = document.getElementById(popupId);
+    const root = createRoot(domNode);
+    root.render(popupContent);
   });
 
   return createElementObject(
-    markerClusterGroup,
-    extendContext(context, { layerContainer: markerClusterGroup }),
+    markers,
+    extendContext(context, {
+      layerContainer: markers,
+    }),
   );
-};
+}
 
 const LeafletMarkerCluster = createLayerComponent(createMarkerClusterGroup);
 
-const MarkerCluster = ({
-  children,
-  icon: iconProp,
-  popup: popupProp,
-  ...rest
-}) => {
-  const theme = useContext(ThemeContext);
+const MarkerCluster = props => {
+  const { children, icon: iconProp, popup: popupProp, ...rest } = props;
+  const theme = React.useContext(ThemeContext);
+  const popupRef = React.useRef(null);
+
+  const createIcon = cluster => {
+    return L.divIcon({
+      // 'grommet-cluster-group' class prevents
+      // leaflet default divIcon styles
+      className: 'grommet-cluster-group',
+      html: ReactDOMServer.renderToString(
+        <ThemeContext.Provider value={theme}>
+          {iconProp ? (
+            React.cloneElement(iconProp({ cluster }), {
+              cluster,
+            })
+          ) : (
+            <Cluster cluster={cluster} />
+          )}
+        </ThemeContext.Provider>,
+      ),
+    });
+  };
+
+  const popup = ({ cluster }) =>
+    popupProp && typeof popupProp === 'function' ? (
+      <ThemeContext.Provider ref={popupRef} value={theme}>
+        <Popup>{popupProp({ cluster })}</Popup>
+      </ThemeContext.Provider>
+    ) : undefined;
 
   return (
     <LeafletMarkerCluster
-      iconCreateFunction={cluster => {
-        let popup;
-
-        // only bind popup if popupProp is defined
-        if (popupProp && popupProp({ cluster })) {
-          popup = cluster.bindPopup(
-            ReactDOMServer.renderToString(
-              <ThemeContext.Provider value={theme}>
-                <Popup>{popupProp({ cluster })}</Popup>
-              </ThemeContext.Provider>,
-            ),
-          );
-
-          cluster.on('click', () => {
-            popup.openPopup();
-          });
-        }
-
-        return L.divIcon({
-          // 'grommet-cluster-group' class prevents
-          // leaflet default divIcon styles
-          className: 'grommet-cluster-group',
-          html: ReactDOMServer.renderToString(
-            <ThemeContext.Provider value={theme}>
-              {iconProp ? (
-                React.cloneElement(iconProp({ cluster }), {
-                  cluster,
-                })
-              ) : (
-                <Cluster cluster={cluster} />
-              )}
-            </ThemeContext.Provider>,
-          ),
-        });
-      }}
+      iconCreateFunction={createIcon}
+      popup={popup}
       {...rest}
     >
       {children}
