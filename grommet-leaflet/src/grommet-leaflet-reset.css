@@ -9,6 +9,9 @@
     color: initial;
     font-size: initial;
 }
+.leaflet-container a:hover {
+    color: initial;
+}
 .leaflet-popup-content-wrapper {
     background-color: transparent;
     padding: 0px;
