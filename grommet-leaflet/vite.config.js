@@ -14,6 +14,7 @@ export default defineConfig({
       fileName: 'grommet-leaflet',
       formats: ['es', 'cjs'],
     },
+    sourcemap: true,
     rollupOptions: {
       // externalize deps that shouldn't be bundled with library
       external: [
