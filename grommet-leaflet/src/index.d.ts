@@ -8,5 +8,6 @@ export * from './layers/Marker';
 export * from './layers/MarkerCluster';
 export * from './layers/Pin';
 export * from './layers/Popup';
+export * from './layers/TileLayer';
 export * from './utils';
 export * from './themes';

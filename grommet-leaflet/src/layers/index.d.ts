@@ -5,3 +5,4 @@ export * from './Marker';
 export * from './MarkerCluster';
 export * from './Pin';
 export * from './Popup';
+export * from './TileLayer';
