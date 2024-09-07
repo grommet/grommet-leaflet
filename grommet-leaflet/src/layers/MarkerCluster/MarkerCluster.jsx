@@ -37,31 +37,6 @@ function createMarkerClusterGroup(props, context) {
     markers.on(event, value);
   });
 
-  markers.on('clusterclick clusterkeypress', e => {
-    const { propagatedFrom } = e;
-    const popupContent = clusterProps.popup({ markers });
-    const popupId = `grommet-leaflet-popup-${uuidv4()}`;
-    const popup = new L.Popup();
-    // In order to take advantage of Leaflet's automatic popup placement
-    // and panning we first need to render the popup's contents statically.
-    // This establishes the popup's dimensions so that the map will pan if the
-    // marker is close to the map's bounds.
-    popup
-      .setLatLng(propagatedFrom.getLatLng())
-      .setContent(
-        `<div id="${popupId}">${ReactDOMServer.renderToString(
-          popupContent,
-        )}</div>`,
-      )
-      .openOn(context.map);
-
-    // We then render the popup's contents dynamically and replace the static
-    // content with an interactive ReactNode.
-    const domNode = document.getElementById(popupId);
-    const root = createRoot(domNode);
-    root.render(popupContent);
-  });
-
   return createElementObject(
     markers,
     extendContext(context, {
@@ -75,9 +50,35 @@ const LeafletMarkerCluster = createLayerComponent(createMarkerClusterGroup);
 const MarkerCluster = props => {
   const { children, icon: iconProp, popup: popupProp, ...rest } = props;
   const theme = React.useContext(ThemeContext);
-  const popupRef = React.useRef(null);
 
   const createIcon = cluster => {
+    // Only bind popup if popupProp is defined
+    if (popupProp && typeof popupProp === 'function') {
+      const popupId = `grommet-leaflet-popup-${uuidv4()}`;
+      const popupContent = (
+        <ThemeContext.Provider value={theme}>
+          <Popup>{popupProp({ cluster })}</Popup>
+        </ThemeContext.Provider>
+      );
+
+      // In order to take advantage of Leaflet's automatic popup placement
+      // and panning we first need to bind the popup's static content.
+      // This establishes the popup's dimensions so that the map will pan if the
+      // marker is close to the map's bounds.
+      const popup = cluster.bindPopup(
+        ReactDOMServer.renderToString(<div id={popupId}>{popupContent}</div>),
+      );
+
+      cluster.on('click keypress', () => {
+        popup.openPopup();
+        // We then render the popup's contents dynamically and replace the
+        // static content with an interactive ReactNode.
+        const domNode = document.getElementById(popupId);
+        const root = createRoot(domNode);
+        root.render(popupContent);
+      });
+    }
+
     return L.divIcon({
       // 'grommet-cluster-group' class prevents
       // leaflet default divIcon styles
@@ -96,19 +97,8 @@ const MarkerCluster = props => {
     });
   };
 
-  const popup = ({ cluster }) =>
-    popupProp && typeof popupProp === 'function' ? (
-      <ThemeContext.Provider ref={popupRef} value={theme}>
-        <Popup>{popupProp({ cluster })}</Popup>
-      </ThemeContext.Provider>
-    ) : undefined;
-
   return (
-    <LeafletMarkerCluster
-      iconCreateFunction={createIcon}
-      popup={popup}
-      {...rest}
-    >
+    <LeafletMarkerCluster iconCreateFunction={createIcon} {...rest}>
       {children}
     </LeafletMarkerCluster>
   );
