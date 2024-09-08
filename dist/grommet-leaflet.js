@@ -12627,7 +12627,7 @@ function bf(r, i) {
 const xf = cs(bf), wf = (r) => {
   const { children: i, icon: n, popup: a, ...l } = r, o = Mt.useContext(Ft);
   return /* @__PURE__ */ ut(xf, { iconCreateFunction: (c) => {
-    if (a && typeof a == "function") {
+    if (a && a({ cluster: c })) {
       const f = `grommet-leaflet-popup-${Ta()}`, _ = /* @__PURE__ */ ut(Ft.Provider, { value: o, children: /* @__PURE__ */ ut(ka, { children: a({ cluster: c }) }) }), m = c.bindPopup(
         Vn.renderToString(/* @__PURE__ */ ut("div", { id: f, children: _ }))
       );
