@@ -53,7 +53,7 @@ const MarkerCluster = props => {
 
   const createIcon = cluster => {
     // Only bind popup if popupProp is defined
-    if (popupProp && typeof popupProp === 'function') {
+    if (popupProp && popupProp({ cluster })) {
       const popupId = `grommet-leaflet-popup-${uuidv4()}`;
       const popupContent = (
         <ThemeContext.Provider value={theme}>
