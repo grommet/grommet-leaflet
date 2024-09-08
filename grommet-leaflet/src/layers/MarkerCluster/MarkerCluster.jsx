@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
-import { createRoot } from 'react-dom/client';
+import { render } from 'react-dom';
 import PropTypes from 'prop-types';
 import { ThemeContext } from 'styled-components';
 import { v4 as uuidv4 } from 'uuid';
@@ -74,8 +74,12 @@ const MarkerCluster = props => {
         // We then render the popup's contents dynamically and replace the
         // static content with an interactive ReactNode.
         const domNode = document.getElementById(popupId);
-        const root = createRoot(domNode);
-        root.render(popupContent);
+        // Need to accomodate earlier versions of React. If <18, then
+        // need to use ReactDOM.render() instead of createRoot().render().
+        // Should drop support for <18 in the future.
+        render(popupContent, domNode);
+        // const root = createRoot(domNode);
+        // root.render(popupContent);
       });
     }
 
