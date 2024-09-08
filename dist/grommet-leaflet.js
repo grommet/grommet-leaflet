@@ -2,9 +2,8 @@ import { jsxs as nr, jsx as ut } from "react/jsx-runtime";
 import Mt, { useRef as Ae, useEffect as jt, createContext as Kl, useContext as ye, forwardRef as ae, useImperativeHandle as Yi, useState as Un, useCallback as Jl } from "react";
 import di, { ThemeContext as Ft, css as es } from "styled-components";
 import { Box as ve, Text as Ql, Button as Mn } from "grommet";
-import { createPortal as th } from "react-dom";
+import { createPortal as th, render as eh } from "react-dom";
 import Vn from "react-dom/server";
-import { createRoot as eh } from "react-dom/client";
 function is(r, i) {
   const n = Ae(i);
   jt(function() {
@@ -6492,7 +6491,7 @@ function ds(r, i, n) {
 function or() {
   return Gi().map;
 }
-function If(r, i) {
+function Of(r, i) {
   const n = or();
   return jt(function() {
     return n.on(r, i), function() {
@@ -6504,7 +6503,7 @@ function If(r, i) {
     i
   ]), n;
 }
-function Bf(r) {
+function If(r) {
   const i = or();
   return jt(function() {
     return i.on(r), function() {
@@ -12635,7 +12634,7 @@ const xf = cs(bf), wf = (r) => {
       c.on("click keypress", () => {
         m.openPopup();
         const p = document.getElementById(f);
-        eh(p).render(_);
+        eh(_, p);
       });
     }
     return qi.divIcon({
@@ -12707,7 +12706,7 @@ export {
   Io as isObject,
   ps as normalizeTheme,
   or as useMap,
-  If as useMapEvent,
-  Bf as useMapEvents
+  Of as useMapEvent,
+  If as useMapEvents
 };
 //# sourceMappingURL=grommet-leaflet.js.map
