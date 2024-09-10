@@ -15,10 +15,8 @@ const SUPPRESSED_WARNINGS = [
 ];
 
 console.error = function filterWarnings(msg, ...args) {
-  if (
-    Array.isArray(msg) &&
-    !SUPPRESSED_WARNINGS.some(entry => msg.includes(entry))
-  ) {
+  const msgString = JSON.stringify(msg);
+  if (!SUPPRESSED_WARNINGS.some(entry => msgString.includes(entry))) {
     consoleError(msg, ...args);
   }
 };
