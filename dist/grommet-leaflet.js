@@ -12689,7 +12689,8 @@ const Pf = console.error, Tf = [
   "useLayoutEffect does nothing on the server, because its effect cannot"
 ];
 console.error = function(i, ...n) {
-  Array.isArray(i) && !Tf.some((a) => i.includes(a)) && Pf(i, ...n);
+  const a = JSON.stringify(i);
+  Tf.some((l) => a.includes(l)) || Pf(i, ...n);
 };
 export {
   gs as Cluster,
