@@ -77,7 +77,7 @@ const MarkerCluster = props => {
         // Need to accomodate earlier versions of React. If <18, then
         // need to use ReactDOM.render() instead of createRoot().render().
         // Should drop support for <18 in the future.
-        render(popupContent, domNode);
+        if (domNode) render(popupContent, domNode);
         // const root = createRoot(domNode);
         // root.render(popupContent);
       });
