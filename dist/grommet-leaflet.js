@@ -12634,7 +12634,7 @@ const xf = cs(bf), wf = (r) => {
       c.on("click keypress", () => {
         m.openPopup();
         const p = document.getElementById(f);
-        eh(_, p);
+        p && eh(_, p);
       });
     }
     return qi.divIcon({
