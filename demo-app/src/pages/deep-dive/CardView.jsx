@@ -22,6 +22,7 @@ export const CardView = () => {
           rocket={datum.rocket}
           date={datum.date_utc}
           src={datum.links?.patch?.small}
+          elevation="medium"
         />
       )}
     </Cards>
@@ -30,7 +31,7 @@ export const CardView = () => {
 
 const Card = ({ name, success, rocket, date, src }) => {
   return (
-    <GrommetCard>
+    <GrommetCard elevation="medium">
       <CardBody gap="medium">
         <Box gap="xsmall">
           <Box

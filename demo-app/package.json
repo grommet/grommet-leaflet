@@ -19,10 +19,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "grommet": "^2.35.0",
-    "grommet-icons": "^4.12.0",
+    "grommet": "latest",
+    "grommet-icons": "latest",
     "grommet-leaflet": "*",
-    "grommet-theme-hpe": "^5.2.0",
+    "grommet-theme-hpe": "latest",
     "pmtiles": "^2.11.0",
     "protomaps": "^1.23.1",
     "react": "^18.2.0",
