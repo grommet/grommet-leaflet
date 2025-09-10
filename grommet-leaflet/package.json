@@ -41,19 +41,19 @@
     "release-stable": "node ./tools/release-stable.mjs"
   },
   "peerDependencies": {
-    "grommet": "^2.32.0",
-    "react": "^16.6.1 || ^17.0.0 || ^18.0.0",
-    "react-dom": "^16.6.1 || ^17.0.0 || ^18.0.0",
+    "grommet": "^2.47.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
     "styled-components": "^5.1.0"
   },
   "dependencies": {
-    "@react-leaflet/core": "^2.1.0",
+    "@react-leaflet/core": "^3.0.0",
     "grommet-icons": "^4.11.0",
     "leaflet": "^1.9.4",
     "leaflet.markercluster": "^1.5.3",
     "prop-types": "^15.8.1",
     "protomaps-leaflet": "^4.0.0",
-    "react-leaflet": "^4.2.1",
+    "react-leaflet": "^5.0.0",
     "uuid": "^9.0.1"
   },
   "devDependencies": {
@@ -85,12 +85,12 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.6",
     "fs-extra": "^11.2.0",
-    "grommet": "^2.32.0",
+    "grommet": "^2.47.0",
     "jsdom": "^24.1.1",
     "path": "^0.12.7",
     "prettier": "^2.8.8",
-    "react": "^16.6.1 || ^17.0.0 || ^18.0.0",
-    "react-dom": "^16.6.1 || ^17.0.0 || ^18.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
     "react-is": "^16.8.0",
     "rollup": "^4.19.1",
     "rollup-plugin-peer-deps-external": "^2.2.4",
