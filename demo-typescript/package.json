@@ -19,7 +19,7 @@
   "dependencies": {
     "grommet": "^2.50.0",
     "grommet-icons": "^4.14.0",
-    "grommet-leaflet": "file:.yalc/grommet-leaflet",
+    "grommet-leaflet": "*",
     "grommet-theme-hpe": "^5.8.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",

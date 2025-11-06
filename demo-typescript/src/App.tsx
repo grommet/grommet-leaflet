@@ -3,10 +3,12 @@ import { Grommet, Box, Text, Page, PageContent } from 'grommet';
 import { hpe } from 'grommet-theme-hpe';
 import { Controls, Map, Marker, MarkerCluster, Pin } from 'grommet-leaflet';
 
+type Coordinate = [number, number];
+
 const statuses = ['good', 'warning', 'critical', 'unknown'];
 
 // get user location
-function userLocation(): Promise<[number, number]> {
+function userLocation(): Promise<Coordinate> {
   return new Promise(resolve => {
     navigator.geolocation.getCurrentPosition(
       position => {
@@ -14,26 +16,26 @@ function userLocation(): Promise<[number, number]> {
       },
       () => {
         const stored = localStorage.getItem('geolocation');
-        if (stored) resolve(JSON.parse(stored) as [number, number]);
+        if (stored) resolve(JSON.parse(stored) as Coordinate);
       },
     );
   });
 }
 
 interface GenerateLocationsOptions {
-  center: [number, number];
+  center: Coordinate;
   radius: number;
 }
 
 function generateLocations(n: number, options: GenerateLocationsOptions) {
   const { center, radius } = options;
-  const locations: { coord: [number, number]; status: string }[] = [];
+  const locations: { coord: Coordinate; status: string }[] = [];
   for (let i = 0; i < n; i += 1) {
     locations.push({
       coord: [
         center[0] - Math.random() * radius,
         center[1] - Math.random() * radius,
-      ] as [number, number],
+      ] as Coordinate,
       status: statuses[Math.floor(Math.random() * statuses.length)],
     });
   }
@@ -41,11 +43,9 @@ function generateLocations(n: number, options: GenerateLocationsOptions) {
 }
 
 const App = () => {
-  const [geolocation, setGeolocation] = useState<
-    [number, number] | undefined
-  >();
+  const [geolocation, setGeolocation] = useState<Coordinate | undefined>();
   const [locations, setLocations] = useState<
-    { coord: [number, number]; status: string }[] | undefined
+    { coord: Coordinate; status: string }[] | undefined
   >();
   const containerRef = useRef<HTMLDivElement | null>(null);
   const mapContainerRef = useRef<L.Map | null>(null);
@@ -83,10 +83,8 @@ const App = () => {
                   {locations ? (
                     <Controls
                       locations={locations.map(
-                        (location: {
-                          coord: [number, number];
-                          status: string;
-                        }) => location.coord,
+                        (location: { coord: Coordinate; status: string }) =>
+                          location.coord,
                       )}
                     />
                   ) : null}
@@ -102,7 +100,7 @@ const App = () => {
                     {locations &&
                       locations.map(
                         (
-                          location: { coord: [number, number]; status: string },
+                          location: { coord: Coordinate; status: string },
                           index: number,
                         ) => (
                           <Marker

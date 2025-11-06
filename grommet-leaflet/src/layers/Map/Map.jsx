@@ -44,7 +44,7 @@ const Map = ({
         <StyledMapContainer
           attributionControl={false}
           center={center}
-          ref={handleRef}
+          ref={ref}
           scrollWheelZoom={scrollWheelZoom}
           maxZoom={maxZoom}
           minZoom={minZoom}

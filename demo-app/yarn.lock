@@ -550,7 +550,7 @@ gensync@^1.0.0-beta.2:
   resolved "https://registry.yarnpkg.com/gensync/-/gensync-1.0.0-beta.2.tgz#32a6ee76c3d7f52d46b2b1ae5d93fea8580a25e0"
   integrity sha512-3hN7NaskYvMDLQY55gnW3NQ+mesEAepTqlg+VEbj7zzqEMBVNhzcGYYeqFo/TlYz6eQiFcp1HcsCZO+nGgS8zg==
 
-grommet-icons@^4.11.0, grommet-icons@^4.12.4:
+grommet-icons@^4.11.0, grommet-icons@^4.12.4, grommet-icons@^4.14.0:
   version "4.14.0"
   resolved "https://registry.yarnpkg.com/grommet-icons/-/grommet-icons-4.14.0.tgz#115e165c724d21f493b45c66b02f915d26a182b4"
   integrity sha512-Y1XxECsP24nU5y1Xs+Xyz6Q4jduzzMUBOb6Dno9YfxZFgxw1ie3+Wwui04+3I6xf036NQJpEI/O8mfMgBaLWXg==
@@ -573,7 +573,7 @@ grommet-theme-hpe@^6.5.1:
   dependencies:
     hpe-design-tokens "~1.4.0"
 
-grommet@^2.48.0:
+grommet@^2.50.0:
   version "2.50.0"
   resolved "https://registry.yarnpkg.com/grommet/-/grommet-2.50.0.tgz#8f99bd6a06b955da28c2a45519bd91783070e9eb"
   integrity sha512-yz7UrSIRbdlSfVYpR7UBrfBayVpb8rYTRapZbUNI/CCDFEjDruT7cGl1ioYfNcTRNniXdOkaueF1Y//bUJ27aw==
