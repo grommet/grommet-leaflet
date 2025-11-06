@@ -3,9 +3,10 @@ module.exports = {
     rollupOptions: {
       output: {
         manualChunks: {
-          leaflet: ['leaflet'],
+          leaflet: ['leaflet', 'react-leaflet', 'leaflet.markercluster'],
+          react: ['react', 'react-dom', 'react-router-dom'],
           grommet: ['grommet', 'grommet-icons', 'grommet-theme-hpe'],
-          vendor: ['react', 'react-dom', 'react-router-dom', 'styled-components'],
+          'grommet-leaflet': ['grommet-leaflet'],
         },
       },
     },
