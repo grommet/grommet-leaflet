@@ -4,7 +4,9 @@
   "description": "Map for Grommet and React using LeafletJS",
   "type": "module",
   "files": [
-    "dist"
+    "dist",
+    "LICENSE",
+    "README.md"
   ],
   "main": "./dist/grommet-leaflet.cjs",
   "module": "./dist/grommet-leaflet.js",
