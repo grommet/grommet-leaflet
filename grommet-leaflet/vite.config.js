@@ -6,7 +6,16 @@ import dts from 'vite-plugin-dts';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [peerDepsExternal(), react(), dts()],
+  plugins: [
+    peerDepsExternal(), 
+    react(), 
+    dts({
+      include: ['src/**/*.{ts,tsx,js,jsx}'],
+      exclude: ['**/*.test.tsx', '**/*.test.ts', '**/vitest.setup.ts', 'src/index.html'],
+      outDir: 'dist',
+      entryRoot: 'src',
+    }),
+  ],
   build: {
     lib: {
       entry: resolve(__dirname, 'src/index.js'),
@@ -19,22 +28,13 @@ export default defineConfig({
       // externalize deps that shouldn't be bundled with library
       external: [
         'react',
-        // 'react/jsx-runtime',
+        'react/jsx-runtime',
         'react-dom',
-        // 'react-dom/server',
+        'react-dom/server',
         'styled-components',
         'grommet',
       ],
       output: {
-        // global variables to use in the UMD build for externalized deps
-        globals: {
-          react: 'React',
-          'styled-components': 'styled',
-          'react-dom': 'ReactDOM',
-          grommet: 'grommet',
-          // 'react-dom/server': 'ReactDOMServer',
-          'react/jsx-runtime': 'react/jsx-runtime.js',
-        },
         interop: 'auto',
       },
     },

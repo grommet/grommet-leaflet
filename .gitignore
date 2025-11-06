@@ -108,3 +108,5 @@ demo-typescript/dist
 
 dist
 .yalc
+.yalc/
+yalc.lock

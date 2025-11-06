@@ -3,6 +3,9 @@
   "version": "0.5.1",
   "description": "Map for Grommet and React using LeafletJS",
   "type": "module",
+  "sideEffects": [
+    "*.css"
+  ],
   "files": [
     "dist",
     "LICENSE",
@@ -10,18 +13,19 @@
   ],
   "main": "./dist/grommet-leaflet.cjs",
   "module": "./dist/grommet-leaflet.js",
-  "types": "./src/index.d.ts",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
       "import": {
-        "types": "./src/index.d.ts",
+        "types": "./dist/index.d.ts",
         "default": "./dist/grommet-leaflet.js"
       },
       "require": {
-        "types": "./src/index.d.ts",
+        "types": "./dist/index.d.ts",
         "default": "./dist/grommet-leaflet.cjs"
       }
-    }
+    },
+    "./style.css": "./dist/style.css"
   },
   "authors": [
     "Matt Glissmann",
@@ -31,8 +35,8 @@
   "license": "ISC",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview",
+    "build": "npx vite build",
+    "preview": "npx vite preview",
     "lint": "eslint . --ext ts,tsx,js,jsx --report-unused-disable-directives --max-warnings 0",
     "lint-fix": "eslint . --ext ts,tsx,js,jsx --fix",
     "prepublishOnly": "npm run build",
@@ -43,19 +47,18 @@
     "release-stable": "node ./tools/release-stable.mjs"
   },
   "peerDependencies": {
-    "grommet": "^2.32.0",
-    "react": "^16.6.1 || ^17.0.0 || ^18.0.0",
-    "react-dom": "^16.6.1 || ^17.0.0 || ^18.0.0",
+    "grommet": "^2.48.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
     "styled-components": "^5.1.0"
   },
   "dependencies": {
-    "@react-leaflet/core": "^2.1.0",
     "grommet-icons": "^4.11.0",
     "leaflet": "^1.9.4",
     "leaflet.markercluster": "^1.5.3",
     "prop-types": "^15.8.1",
     "protomaps-leaflet": "^4.0.0",
-    "react-leaflet": "^4.2.1",
+    "react-leaflet": "^5.0.0",
     "uuid": "^9.0.1"
   },
   "devDependencies": {
@@ -87,13 +90,13 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.6",
     "fs-extra": "^11.2.0",
-    "grommet": "^2.32.0",
+    "grommet": "^2.48.0",
     "jsdom": "^24.1.1",
     "path": "^0.12.7",
     "prettier": "^2.8.8",
-    "react": "^16.6.1 || ^17.0.0 || ^18.0.0",
-    "react-dom": "^16.6.1 || ^17.0.0 || ^18.0.0",
-    "react-is": "^16.8.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "react-is": "^19.1.0",
     "rollup": "^4.19.1",
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "simple-git": "^3.25.0",

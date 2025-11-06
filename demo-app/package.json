@@ -12,27 +12,28 @@
   "license": "ISC",
   "scripts": {
     "dev": "yarn build-grommet-leaflet && vite",
-    "build": "yarn build-grommet-leaflet && vite build",
+    "build": "yarn build-grommet-leaflet && npx vite build",
     "build-grommet-leaflet": "yarn --cwd ../grommet-leaflet build",
     "lint": "eslint . --ext .js --ext .jsx",
     "lint-fix": "eslint . --ext .js --ext .jsx --fix",
     "preview": "vite preview"
   },
   "dependencies": {
-    "grommet": "^2.32.2",
-    "grommet-icons": "^4.11.0",
+    "grommet": "^2.50.0",
+    "grommet-icons": "^4.14.0",
     "grommet-leaflet": "*",
-    "grommet-theme-hpe": "^5.0.3",
+    "grommet-theme-hpe": "^6.5.1",
     "pmtiles": "^2.11.0",
     "protomaps": "^1.23.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
     "react-router-dom": "^6.13.0",
     "styled-components": "^5.3.10"
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^3.1.0",
     "prop-types": "^15.8.1",
+    "react-is": "^19.2.0",
     "vite": "^4.1.4"
   }
 }
