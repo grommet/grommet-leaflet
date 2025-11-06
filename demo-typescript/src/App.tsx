@@ -2,12 +2,11 @@ import { useState, useRef, useEffect } from 'react';
 import { Grommet, Box, Text, Page, PageContent } from 'grommet';
 import { hpe } from 'grommet-theme-hpe';
 import { Controls, Map, Marker, MarkerCluster, Pin } from 'grommet-leaflet';
-import { hpeLeaflet } from './hpeLeaflet';
 
 const statuses = ['good', 'warning', 'critical', 'unknown'];
 
 // get user location
-function userLocation() {
+function userLocation(): Promise<[number, number]> {
   return new Promise(resolve => {
     navigator.geolocation.getCurrentPosition(
       position => {
@@ -15,21 +14,26 @@ function userLocation() {
       },
       () => {
         const stored = localStorage.getItem('geolocation');
-        if (stored) resolve(JSON.parse(stored));
+        if (stored) resolve(JSON.parse(stored) as [number, number]);
       },
     );
   });
 }
 
-function generateLocations(n: number, options: object) {
-  const { center, radius }: any = options;
-  const locations = [];
+interface GenerateLocationsOptions {
+  center: [number, number];
+  radius: number;
+}
+
+function generateLocations(n: number, options: GenerateLocationsOptions) {
+  const { center, radius } = options;
+  const locations: { coord: [number, number]; status: string }[] = [];
   for (let i = 0; i < n; i += 1) {
     locations.push({
       coord: [
         center[0] - Math.random() * radius,
         center[1] - Math.random() * radius,
-      ],
+      ] as [number, number],
       status: statuses[Math.floor(Math.random() * statuses.length)],
     });
   }
@@ -37,10 +41,14 @@ function generateLocations(n: number, options: object) {
 }
 
 const App = () => {
-  const [geolocation, setGeolocation] = useState<any>();
-  const [locations, setLocations] = useState<any>();
-  const containerRef = useRef<any>();
-  const mapContainerRef = useRef<any>();
+  const [geolocation, setGeolocation] = useState<
+    [number, number] | undefined
+  >();
+  const [locations, setLocations] = useState<
+    { coord: [number, number]; status: string }[] | undefined
+  >();
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const mapContainerRef = useRef<L.Map | null>(null);
 
   // get the user's location
   useEffect(() => {
@@ -66,11 +74,19 @@ const App = () => {
                   id="map"
                   ref={mapContainerRef}
                   center={geolocation}
+                  tileLayer={{
+                    url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+                    attribution:
+                      '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+                  }}
                 >
                   {locations ? (
                     <Controls
                       locations={locations.map(
-                        (location: any) => location.coord,
+                        (location: {
+                          coord: [number, number];
+                          status: string;
+                        }) => location.coord,
                       )}
                     />
                   ) : null}
@@ -83,18 +99,26 @@ const App = () => {
                       </Box>
                     )}
                   >
-                    {locations.map((location: any, index: number) => (
-                      <Marker
-                        key={index}
-                        position={location?.coord}
-                        icon={<Pin />}
-                      >
-                        <Box gap="xsmall">
-                          <Text>Device Summary</Text>
-                          <Text size="xsmall">Location: San Francisco, CA</Text>
-                        </Box>
-                      </Marker>
-                    ))}
+                    {locations &&
+                      locations.map(
+                        (
+                          location: { coord: [number, number]; status: string },
+                          index: number,
+                        ) => (
+                          <Marker
+                            key={index}
+                            position={location?.coord}
+                            icon={<Pin />}
+                          >
+                            <Box gap="xsmall">
+                              <Text>Device Summary</Text>
+                              <Text size="xsmall">
+                                Location: San Francisco, CA
+                              </Text>
+                            </Box>
+                          </Marker>
+                        ),
+                      )}
                   </MarkerCluster>
                 </Map>
               )}
