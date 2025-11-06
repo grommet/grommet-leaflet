@@ -4,7 +4,8 @@ module.exports = {
       output: {
         manualChunks: {
           leaflet: ['leaflet'],
-          grommet: ['grommet'],
+          grommet: ['grommet', 'grommet-icons', 'grommet-theme-hpe'],
+          vendor: ['react', 'react-dom', 'react-router-dom', 'styled-components'],
         },
       },
     },
