@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { useMap } from 'react-leaflet';
 import L from 'leaflet';
@@ -33,7 +33,11 @@ const flyToBoundsDuration = 1.5;
 
 const Controls = ({ locations }) => {
   const map = useMap();
-  const bounds = locations && LocationBounds({ locations });
+  // Use useMemo to ensure bounds are only calculated when map is ready
+  const bounds = useMemo(() => {
+    if (!locations || !map) return null;
+    return LocationBounds({ locations });
+  }, [locations, map]);
   const [mounted, setMounted] = React.useState(false);
 
   // on mount, zoom to the bounds of the locations
