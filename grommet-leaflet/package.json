@@ -7,7 +7,9 @@
     "*.css"
   ],
   "files": [
-    "dist"
+    "dist",
+    "LICENSE",
+    "README.md"
   ],
   "main": "./dist/grommet-leaflet.cjs",
   "module": "./dist/grommet-leaflet.js",

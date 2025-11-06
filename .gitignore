@@ -106,5 +106,6 @@ package
 demo-app/dist
 demo-typescript/dist
 
+dist
 .yalc/
 yalc.lock
