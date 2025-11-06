@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef } from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { MapContainer, AttributionControl } from 'react-leaflet';
 import styled, { ThemeContext } from 'styled-components';
