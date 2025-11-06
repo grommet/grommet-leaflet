@@ -1,4 +1,4 @@
-import React, { forwardRef, useContext, useEffect, useRef } from 'react';
+import React, { useContext, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { MapContainer, AttributionControl } from 'react-leaflet';
 import styled, { ThemeContext } from 'styled-components';
@@ -19,24 +19,21 @@ const StyledMapContainer = styled(MapContainer)`
   }}
 `;
 
-const Map = forwardRef(
-  (
-    {
-      center = [0, 0],
-      children,
-      // level 20 is the highest zoom level per OpenStreetMap docs
-      // (https://wiki.openstreetmap.org/wiki/Zoom_levels)
-      maxZoom = 20,
-      minZoom = 3,
-      scrollWheelZoom = true,
-      tileLayer,
-      theme,
-      zoom = 1,
-      zoomControl = false,
-      ...rest
-    },
-    ref,
-  ) => {
+const Map = ({
+  center = [0, 0],
+  children,
+  // level 20 is the highest zoom level per OpenStreetMap docs
+  // (https://wiki.openstreetmap.org/wiki/Zoom_levels)
+  maxZoom = 20,
+  minZoom = 3,
+  ref,
+  scrollWheelZoom = true,
+  tileLayer,
+  theme,
+  zoom = 1,
+  zoomControl = false,
+  ...rest
+}) => {
     // Internal ref to track the map instance for cleanup
     const mapRef = useRef(null);
     
@@ -96,12 +93,12 @@ const Map = forwardRef(
         </StyledMapContainer>
       </ThemeContext.Provider>
     );
-  },
-);
+};
 
 Map.propTypes = {
   center: PropTypes.array,
   children: PropTypes.any,
+  ref: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   scrollWheelZoom: PropTypes.string || PropTypes.bool,
   maxZoom: PropTypes.number,
   minZoom: PropTypes.number,
