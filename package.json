@@ -1,5 +1,5 @@
 {
-  "name": "grommet-leaflet-repository",,
+  "name": "grommet-leaflet-repository",
   "description": "Map for Grommet and React using LeafletJS",
   "repository": "https://github.com/grommet/grommet-leaflet.git",
   "authors": [
