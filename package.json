@@ -20,7 +20,8 @@
     "lint-fix": "eslint . --ext .js --ext .jsx --fix",
     "license": "node ./tools/license-header.js",
     "license-check": "node ./tools/license-header.js --check",
-    "license-staged": "node ./tools/license-header.js --staged"
+    "license-staged": "node ./tools/license-header.js --staged",
+    "prepare": "husky"
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.19.1",
@@ -35,6 +36,7 @@
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.31.11",
     "eslint-plugin-react-hooks": "^4.6.0",
+    "husky": "^9.1.7",
     "prettier": "^2.8.8"
   }
 }
