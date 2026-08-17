@@ -1,3 +1,5 @@
+// SPDX-FileCopyrightText: © Hewlett Packard Enterprise Development LP
+// SPDX-License-Identifier: ISC
 import React from 'react';
 import { Box, Button, Heading, Text } from 'grommet';
 import { Next } from 'grommet-icons';

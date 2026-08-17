@@ -1,3 +1,5 @@
+// SPDX-FileCopyrightText: © Hewlett Packard Enterprise Development LP
+// SPDX-License-Identifier: ISC
 import FileSystem from 'fs';
 import { dirname } from 'path';
 import { fileURLToPath } from 'url';

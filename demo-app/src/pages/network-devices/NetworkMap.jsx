@@ -1,3 +1,5 @@
+// SPDX-FileCopyrightText: © Hewlett Packard Enterprise Development LP
+// SPDX-License-Identifier: ISC
 import React, { useEffect, useRef, useState } from 'react';
 import { Box } from 'grommet';
 import { Cluster, Controls, Map, Marker, MarkerCluster } from 'grommet-leaflet';

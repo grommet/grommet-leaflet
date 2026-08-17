@@ -1,3 +1,5 @@
+// SPDX-FileCopyrightText: © Hewlett Packard Enterprise Development LP
+// SPDX-License-Identifier: ISC
 import React from 'react';
 import { DataContext } from 'grommet';
 import { List, MapLocation, Table } from 'grommet-icons';

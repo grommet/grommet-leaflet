@@ -1,3 +1,5 @@
+// SPDX-FileCopyrightText: © Hewlett Packard Enterprise Development LP
+// SPDX-License-Identifier: ISC
 import React from 'react';
 import { Box, Notification } from 'grommet';
 import { DevicesMap } from './DevicesMap';

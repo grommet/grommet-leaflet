@@ -1,3 +1,5 @@
+// SPDX-FileCopyrightText: © Hewlett Packard Enterprise Development LP
+// SPDX-License-Identifier: ISC
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import { createRoot } from 'react-dom/client';

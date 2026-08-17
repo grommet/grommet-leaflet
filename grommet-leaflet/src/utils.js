@@ -1,3 +1,5 @@
+// SPDX-FileCopyrightText: © Hewlett Packard Enterprise Development LP
+// SPDX-License-Identifier: ISC
 export const isObject = item =>
   item && typeof item === 'object' && !Array.isArray(item);
 
