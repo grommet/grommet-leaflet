@@ -1,3 +1,5 @@
+// SPDX-FileCopyrightText: © Hewlett Packard Enterprise Development LP
+// SPDX-License-Identifier: ISC
 import { expect, test } from "vitest";
 import { render, screen } from '@testing-library/react';
 import { Grommet } from 'grommet';

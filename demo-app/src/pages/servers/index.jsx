@@ -1,3 +1,5 @@
+// SPDX-FileCopyrightText: © Hewlett Packard Enterprise Development LP
+// SPDX-License-Identifier: ISC
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import {

@@ -1,3 +1,5 @@
+// SPDX-FileCopyrightText: © Hewlett Packard Enterprise Development LP
+// SPDX-License-Identifier: ISC
 import React, { useEffect, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { useMap } from 'react-leaflet';

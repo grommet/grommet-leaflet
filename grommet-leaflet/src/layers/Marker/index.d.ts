@@ -1,3 +1,5 @@
+// SPDX-FileCopyrightText: © Hewlett Packard Enterprise Development LP
+// SPDX-License-Identifier: ISC
 import * as React from 'react';
 import * as L from 'leaflet';
 import { MarkerProps as ReactMarkerProps } from 'react-leaflet';

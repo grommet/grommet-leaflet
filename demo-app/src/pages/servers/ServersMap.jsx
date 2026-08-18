@@ -1,3 +1,5 @@
+// SPDX-FileCopyrightText: © Hewlett Packard Enterprise Development LP
+// SPDX-License-Identifier: ISC
 import React, { useContext, useRef, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { Anchor, Box, DataContext, Text } from 'grommet';

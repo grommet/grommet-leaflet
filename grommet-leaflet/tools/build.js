@@ -1,3 +1,5 @@
+// SPDX-FileCopyrightText: © Hewlett Packard Enterprise Development LP
+// SPDX-License-Identifier: ISC
 const { build } = require('esbuild');
 const { sassPlugin } = require('esbuild-sass-plugin');
 const { dependencies } = require('../package.json');

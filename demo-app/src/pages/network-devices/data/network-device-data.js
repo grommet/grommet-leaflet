@@ -1,3 +1,5 @@
+// SPDX-FileCopyrightText: © Hewlett Packard Enterprise Development LP
+// SPDX-License-Identifier: ISC
 const type = ['Branch', 'Campus', 'Main', 'Data center'];
 
 export function generateNetworkLocations(n, options) {

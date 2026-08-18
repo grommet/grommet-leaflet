@@ -1,3 +1,5 @@
+// SPDX-FileCopyrightText: © Hewlett Packard Enterprise Development LP
+// SPDX-License-Identifier: ISC
 import { deleteAsync } from 'del';
 import fs from 'fs-extra';
 import git from 'simple-git';

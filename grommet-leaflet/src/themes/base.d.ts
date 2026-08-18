@@ -1,3 +1,5 @@
+// SPDX-FileCopyrightText: © Hewlett Packard Enterprise Development LP
+// SPDX-License-Identifier: ISC
 import { BoxProps, TextProps } from 'grommet';
 
 export interface GrommetLeafletThemeType {

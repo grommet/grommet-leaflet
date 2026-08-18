@@ -1,3 +1,5 @@
+// SPDX-FileCopyrightText: © Hewlett Packard Enterprise Development LP
+// SPDX-License-Identifier: ISC
 const statuses = ['good', 'warning', 'critical', 'unknown'];
 
 // get user location
